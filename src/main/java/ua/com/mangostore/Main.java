@@ -27,6 +27,10 @@ public class Main {
 
             em.persist(basket1);
             em.persist(basket2);
+
+            Order order = new Order("11", "22", "33");
+            order.setBasket(basket1);
+            em.persist(order);
 //
 //            System.out.println("------------After commit--------------");
 //

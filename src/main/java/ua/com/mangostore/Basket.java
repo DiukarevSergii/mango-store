@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Basket")
+@Table(name = "Baskets")
 public class Basket {
 
     @Id
@@ -25,6 +25,10 @@ public class Basket {
     @ManyToMany(mappedBy = "baskets", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderId")
+    private Order order;
+
     public Basket() {
     }
 
@@ -41,12 +45,12 @@ public class Basket {
             product.baskets.add(this);
     }
 
-    public long getBasketId() {
-        return basketId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setBasketId(long basketId) {
-        this.basketId = basketId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public int getBasketPrice() {
