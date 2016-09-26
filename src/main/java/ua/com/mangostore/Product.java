@@ -27,7 +27,7 @@ public class Product {
     @Column(name = "QUANTITY")
     private int quantity;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "ProductBasket",
             joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
             inverseJoinColumns = {@JoinColumn(name = "BASKET_ID", referencedColumnName = "BASKET_ID")})
@@ -42,6 +42,13 @@ public class Product {
         this.brandName = brandName;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public void addBasket(Basket basket) {
+        if (!baskets.contains(basket))
+            baskets.add(basket);
+        if (!basket.products.contains(this))
+            basket.products.add(this);
     }
 
     public int getPrice() {

@@ -2,9 +2,7 @@ package ua.com.mangostore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Basket")
@@ -24,7 +22,7 @@ public class Basket {
     @Column(nullable = false, name = "BASKET_DISCOUNT")
     private int basketDiscount;
 
-    @ManyToMany(mappedBy = "baskets")
+    @ManyToMany(mappedBy = "baskets", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
 
     public Basket() {
@@ -34,6 +32,13 @@ public class Basket {
         this.basketPrice = basketPrice;
         this.basketQuantity = basketQuantity;
         this.basketDiscount = basketDiscount;
+    }
+
+    public void addProduct(Product product) {
+        if (!products.contains(product))
+            products.add(product);
+        if (!product.baskets.contains(this))
+            product.baskets.add(this);
     }
 
     public long getBasketId() {
