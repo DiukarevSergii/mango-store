@@ -1,6 +1,10 @@
 package ua.com.mangostore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Basket")
@@ -20,9 +24,8 @@ public class Basket {
     @Column(nullable = false, name = "BASKET_DISCOUNT")
     private int basketDiscount;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Products products;
+    @ManyToMany(mappedBy = "baskets")
+    List<Product> products = new ArrayList<>();
 
     public Basket() {
     }
@@ -65,11 +68,21 @@ public class Basket {
         this.basketDiscount = basketDiscount;
     }
 
-    public Products getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Products products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Basket{" +
+                "basketId=" + basketId +
+                ", basketPrice=" + basketPrice +
+                ", basketQuantity=" + basketQuantity +
+                ", basketDiscount=" + basketDiscount +
+                '}';
     }
 }

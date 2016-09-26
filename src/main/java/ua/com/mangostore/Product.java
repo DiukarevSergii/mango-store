@@ -1,11 +1,12 @@
 package ua.com.mangostore;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "Products")
-public class Products {
+@Table(name = "Product")
+public class Product {
 
     @Id
     @GeneratedValue
@@ -26,14 +27,16 @@ public class Products {
     @Column(name = "QUANTITY")
     private int quantity;
 
+    @ManyToMany
+    @JoinTable(name = "ProductBasket",
+            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "BASKET_ID", referencedColumnName = "BASKET_ID")})
+    List<Basket> baskets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "products")
-    private Set<Basket> basketSet;
-
-    public Products() {
+    public Product() {
     }
 
-    public Products(String productTitle, String type, String brandName, int price, int quantity) {
+    public Product(String productTitle, String type, String brandName, int price, int quantity) {
         this.productTitle = productTitle;
         this.type = type;
         this.brandName = brandName;
@@ -89,11 +92,23 @@ public class Products {
         this.productId = productId;
     }
 
-    public Set<Basket> getBasketSet() {
-        return basketSet;
+    public List<Basket> getBaskets() {
+        return baskets;
     }
 
-    public void setBasketSet(Set<Basket> basketSet) {
-        this.basketSet = basketSet;
+    public void setBaskets(List<Basket> baskets) {
+        this.baskets = baskets;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productTitle='" + productTitle + '\'' +
+                ", type='" + type + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }
