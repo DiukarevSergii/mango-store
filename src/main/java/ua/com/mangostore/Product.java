@@ -22,40 +22,38 @@ public class Product {
     @Column(nullable = false, name = "BRAND_NAME")
     private String brandName;
 
-    private int price;
-
-    @Column(name = "QUANTITY")
-    private int quantity;
+    @Column(nullable = false, name = "PRICE")
+    private double price;
 
     @ManyToMany()
-    @JoinTable(name = "ProductBasket",
+    @JoinTable(name = "ProductOrder",
             joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "BASKET_ID", referencedColumnName = "BASKET_ID")})
-    List<Basket> baskets = new ArrayList<>();
+            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")})
+    List<Order> orders = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(String productTitle, String type, String brandName, int price, int quantity) {
+    public Product(String productTitle, String type, String brandName, double price) {
         this.productTitle = productTitle;
         this.type = type;
         this.brandName = brandName;
         this.price = price;
-        this.quantity = quantity;
+
     }
 
-    public void addBasket(Basket basket) {
-        if (!baskets.contains(basket))
-            baskets.add(basket);
-        if (!basket.products.contains(this))
-            basket.products.add(this);
+    public void addOrder(Order order) {
+        if (!orders.contains(order))
+            orders.add(order);
+        if (!order.products.contains(this))
+            order.products.add(this);
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -83,31 +81,22 @@ public class Product {
         this.brandName = brandName;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public List<Basket> getBaskets() {
-        return baskets;
-    }
-
-    public void setBaskets(List<Basket> baskets) {
-        this.baskets = baskets;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
-                ", productTitle='" + productTitle + '\'' +
+                "productTitle='" + productTitle + '\'' +
                 ", type='" + type + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", price=" + price +
-                ", quantity=" + quantity +
+                ", orders=" + orders +
                 '}';
     }
 }

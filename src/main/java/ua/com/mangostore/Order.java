@@ -1,7 +1,9 @@
 package ua.com.mangostore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -11,6 +13,18 @@ public class Order {
     @GeneratedValue
     @Column(name = "ORDER_ID")
     private long orderId;
+
+    @Column(nullable = false, name = "ORDER_PRICE")
+    private double orderPrice;
+
+    @Column(nullable = false, name = "ORDER_PRICE_WITH_DISCOUNT")
+    private double orderPriceWithDiscount;
+
+    @Column(nullable = false, name = "ORDER_QUANTITY")
+    private int orderQuantity;
+
+    @Column(nullable = false, name = "ORDER_DISCOUNT")
+    private int orderDiscount;
 
     @Column(nullable = false, name = "DATE_CREATED")
     Date dateCreated ;
@@ -24,33 +38,58 @@ public class Order {
     @Column(nullable = false, name = "ADDRESS_RECIPIENT")
     String addressRecipient;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "order")
-    private Basket basket;
+    @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    List<Product> products = new ArrayList<>();
 
     public Order() {
-    }
-
-    public Order(String nameRecipient, String surnameRecipient, String addressRecipient) {
         this.dateCreated = new Date();
-        this.nameRecipient = nameRecipient;
-        this.surnameRecipient = surnameRecipient;
-        this.addressRecipient = addressRecipient;
     }
 
-    public Basket getBasket() {
-        return basket;
+    public void addProduct(Product product) {
+        if (!products.contains(product))
+            products.add(product);
+        if (!product.orders.contains(this))
+            product.orders.add(this);
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public double getOrderPriceWithDiscount() {
+        return orderPriceWithDiscount;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public void setOrderPriceWithDiscount(double orderPriceWithDiscount) {
+        this.orderPriceWithDiscount = orderPriceWithDiscount;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public double getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(double OrderPrice) {
+        this.orderPrice = OrderPrice;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int OrderQuantity) {
+        this.orderQuantity = OrderQuantity;
+    }
+
+    public int getOrderDiscount() {
+        return orderDiscount;
+    }
+
+    public void setOrderDiscount(int OrderDiscount) {
+        this.orderDiscount = OrderDiscount;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getNameRecipient() {
@@ -80,7 +119,10 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
+                "orderPrice=" + orderPrice +
+                ", orderPriceWithDiscount=" + orderPriceWithDiscount +
+                ", orderQuantity=" + orderQuantity +
+                ", orderDiscount=" + orderDiscount +
                 ", dateCreated=" + dateCreated +
                 ", nameRecipient='" + nameRecipient + '\'' +
                 ", surnameRecipient='" + surnameRecipient + '\'' +

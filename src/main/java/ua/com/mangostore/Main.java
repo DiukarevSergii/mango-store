@@ -3,6 +3,8 @@ package ua.com.mangostore;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.List;
 
 public class Main {
 
@@ -13,52 +15,63 @@ public class Main {
         try {
             em.getTransaction().begin();
 
-            Product product1 = new Product("Meizu M2", "Smartphone", "Meizu", 4500, 34);
-            Product product2 = new Product("Meizu M3", "Smartphone", "Meizu", 4000, 4);
-            Product product3 = new Product("Meizu M3 Note", "Smartphone", "Meizu", 4550, 45);
+            Product product1 = new Product("Meizu M2", "Smartphone", "Meizu", 4500);
+            Product product2 = new Product("Meizu M3", "Smartphone", "Meizu", 4000);
+            Product product3 = new Product("Meizu M3 Note", "Smartphone", "Meizu", 4550);
 
-            Basket basket1 = new Basket(product1.getPrice(), 1, 0);
-            basket1.addProduct(product1);
-            basket1.addProduct(product2);
-            basket1.addProduct(product3);
+            Order order = new Order();
+            order.addProduct(product1);
+            order.addProduct(product2);
+            order.addProduct(product3);
 
-            Basket basket2 = new Basket(product1.getPrice(), 22, 10);
-            basket2.addProduct(product3);
+            initOrder(order);
 
-            em.persist(basket1);
-            em.persist(basket2);
+            order.setNameRecipient("Simon");
+            order.setSurnameRecipient("Fourcade");
+            order.setAddressRecipient("Paris");
 
-            Order order = new Order("11", "22", "33");
-            order.setBasket(basket1);
+            Order order2 = new Order();
+            order2.addProduct(product3);
+
+            initOrder(order2);
+
+            order2.setNameRecipient("Marten");
+            order2.setSurnameRecipient("Fourcade");
+            order2.setAddressRecipient("Paris");
+
             em.persist(order);
-//
-//            System.out.println("------------After-------------------");
-//
-//            Query query = em.createQuery("SELECT b FROM Basket b", Basket.class);
-//            List<Basket> basketList = query.getResultList();
-//            for (Basket b : basketList) {
-//                for (Product p : b.getProducts()) {
-//                    System.out.println(p);
-//                }
-//                System.out.println();
-//            }
-//            System.out.println("------------Change...-----------------");
-//
-//            product3.setQuantity(0);
-//
-//            query = em.createQuery("SELECT b FROM Basket b", Basket.class);
-//            basketList = query.getResultList();
-//            for (Basket b : basketList) {
-//                for (Product p : b.getProducts()) {
-//                    System.out.println(p);
-//                }
-//                System.out.println();
-//            }
+            em.persist(order2);
+
+            System.out.println("------------Then-------------------");
+
+            Query query = em.createQuery("SELECT b FROM Order b", Order.class);
+            List<Order> basketList = query.getResultList();
+            for (Order b : basketList) {
+                System.out.println(b);
+            }
             System.out.println("-----------Before commit------------");
             em.getTransaction().commit();
         } finally {
             em.close();
             emf.close();
+        }
+    }
+
+    private static void initOrder(Order order) {
+        double orderPrice = 0;
+        int count = 0;
+        for (Product product: order.getProducts()){
+            orderPrice += product.getPrice();
+            count++;
+        }
+        order.setOrderPrice(orderPrice);
+        order.setOrderQuantity(count);
+        if (orderPrice > 3000){
+            order.setOrderDiscount(10);
+            order.setOrderPriceWithDiscount(orderPrice * 0.9);
+        } else {
+            order.setOrderDiscount(0);
+            order.setOrderPriceWithDiscount(orderPrice);
         }
     }
 }
