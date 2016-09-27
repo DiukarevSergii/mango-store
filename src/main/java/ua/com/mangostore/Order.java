@@ -27,19 +27,14 @@ public class Order {
     private int orderDiscount;
 
     @Column(nullable = false, name = "DATE_CREATED")
-    Date dateCreated ;
-
-    @Column(nullable = false, name = "NAME_RECIPIENT")
-    String nameRecipient;
-
-    @Column(nullable = false, name = "SURNAME_RECIPIENT")
-    String surnameRecipient;
-
-    @Column(nullable = false, name = "ADDRESS_RECIPIENT")
-    String addressRecipient;
+    private Date dateCreated ;
 
     @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="CUSTOMER_ID")
+    private Customer customer;
 
     public Order() {
         this.dateCreated = new Date();
@@ -50,6 +45,14 @@ public class Order {
             products.add(product);
         if (!product.orders.contains(this))
             product.orders.add(this);
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public double getOrderPriceWithDiscount() {
@@ -92,30 +95,6 @@ public class Order {
         this.products = products;
     }
 
-    public String getNameRecipient() {
-        return nameRecipient;
-    }
-
-    public void setNameRecipient(String nameRecipient) {
-        this.nameRecipient = nameRecipient;
-    }
-
-    public String getSurnameRecipient() {
-        return surnameRecipient;
-    }
-
-    public void setSurnameRecipient(String surnameRecipient) {
-        this.surnameRecipient = surnameRecipient;
-    }
-
-    public String getAddressRecipient() {
-        return addressRecipient;
-    }
-
-    public void setAddressRecipient(String addressRecipient) {
-        this.addressRecipient = addressRecipient;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -124,9 +103,7 @@ public class Order {
                 ", orderQuantity=" + orderQuantity +
                 ", orderDiscount=" + orderDiscount +
                 ", dateCreated=" + dateCreated +
-                ", nameRecipient='" + nameRecipient + '\'' +
-                ", surnameRecipient='" + surnameRecipient + '\'' +
-                ", addressRecipient='" + addressRecipient + '\'' +
+                ", customer=" + customer +
                 '}';
     }
 }

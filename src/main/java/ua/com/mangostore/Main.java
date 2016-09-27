@@ -26,18 +26,31 @@ public class Main {
 
             initOrder(order);
 
-            order.setNameRecipient("Simon");
-            order.setSurnameRecipient("Fourcade");
-            order.setAddressRecipient("Paris");
+            Customer customer = new Customer();
+            customer.setName("Simon");
+            customer.setSurname("Fourcade");
+            customer.setCity("Paris");
+            customer.setAddress("por favor 19, apr.29");
+            customer.setPhone("911");
+            customer.setZipcode(75001);
+            customer.addOrder(order);
 
             Order order2 = new Order();
             order2.addProduct(product3);
 
             initOrder(order2);
 
-            order2.setNameRecipient("Marten");
-            order2.setSurnameRecipient("Fourcade");
-            order2.setAddressRecipient("Paris");
+            Customer customer2 = new Customer();
+            customer2.setName("Marten");
+            customer2.setSurname("Fourcade");
+            customer2.setCity("Paris");
+            customer2.setAddress("por favor 19, apr.30");
+            customer2.setPhone("911-45");
+            customer2.setZipcode(75001);
+            customer2.addOrder(order2);
+
+            em.persist(customer);
+            em.persist(customer2);
 
             em.persist(order);
             em.persist(order2);
