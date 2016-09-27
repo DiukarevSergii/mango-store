@@ -32,7 +32,7 @@ public class Main {
             order.setBasket(basket1);
             em.persist(order);
 //
-//            System.out.println("------------After commit--------------");
+//            System.out.println("------------After-------------------");
 //
 //            Query query = em.createQuery("SELECT b FROM Basket b", Basket.class);
 //            List<Basket> basketList = query.getResultList();
