@@ -96,7 +96,6 @@ public class Product {
                 ", type='" + type + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", price=" + price +
-                ", orders=" + orders +
                 '}';
     }
 }

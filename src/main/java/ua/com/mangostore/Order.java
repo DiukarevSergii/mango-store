@@ -1,9 +1,13 @@
 package ua.com.mangostore;
 
+import sun.util.resources.LocaleData;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Table(name = "Orders")
@@ -27,7 +31,12 @@ public class Order {
     private int orderDiscount;
 
     @Column(nullable = false, name = "DATE_CREATED")
-    private Date dateCreated ;
+    private String dateCreated ;
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
 
     @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
@@ -37,7 +46,7 @@ public class Order {
     private Customer customer;
 
     public Order() {
-        this.dateCreated = new Date();
+        this.dateCreated = LocalDate.now().toString();
     }
 
     public void addProduct(Product product) {
@@ -95,6 +104,14 @@ public class Order {
         this.products = products;
     }
 
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -103,6 +120,8 @@ public class Order {
                 ", orderQuantity=" + orderQuantity +
                 ", orderDiscount=" + orderDiscount +
                 ", dateCreated=" + dateCreated +
+                ", delivery=" + delivery +
+                ", products=" + products +
                 ", customer=" + customer +
                 '}';
     }

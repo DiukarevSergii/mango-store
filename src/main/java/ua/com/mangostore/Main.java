@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Main {
@@ -62,6 +64,28 @@ public class Main {
             for (Order b : basketList) {
                 System.out.println(b);
             }
+            System.out.println("------------Create delivery-------------------");
+            Delivery delivery = new Delivery();
+            delivery.setDeliveryDate(LocalDate.of(2016, 11, 1));
+            delivery.setDeliveryTime(LocalTime.of(13, 0));
+            delivery.setCost(45);
+            delivery.setStatus("not delivered");
+            delivery.setType("courier");
+
+            delivery.setOrder(order);
+            order.setDelivery(delivery);
+
+            em.persist(delivery);
+
+            System.out.println("------------Show delivery-------------------");
+
+            query = em.createQuery("SELECT d FROM Delivery d", Delivery.class);
+            List<Delivery> deliveryList = query.getResultList();
+            System.out.println(deliveryList.size());
+            for (Delivery d: deliveryList) {
+                System.out.println(d);
+            }
+
             System.out.println("-----------Before commit------------");
             em.getTransaction().commit();
         } finally {
