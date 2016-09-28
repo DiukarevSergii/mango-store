@@ -37,6 +37,18 @@ public class Main {
             customer.setZipcode(75001);
             customer.addOrder(order);
 
+            CreditCard card = new CreditCard();
+            card.setName("Sergii");
+            card.setSurname("Kuper");
+            card.setCardId(123456789);
+            card.setCode(123);
+            card.setExpiresEnd("12/03");
+            card.setCustomer(customer);
+
+            em.persist(card);
+
+            customer.setCreditCard(card);
+
             Order order2 = new Order();
             order2.addProduct(product3);
 
@@ -53,9 +65,6 @@ public class Main {
 
             em.persist(customer);
             em.persist(customer2);
-
-//            em.persist(order);
-//            em.persist(order2);
 
             System.out.println("------------Then-------------------");
 
@@ -77,7 +86,6 @@ public class Main {
 
             em.persist(delivery);
             em.persist(order2);
-
 
             System.out.println("------------Add employee-------------------");
             Employee employee = new Employee();
@@ -106,7 +114,6 @@ public class Main {
             for (Order b : basketList) {
                 System.out.println(b);
             }
-
             System.out.println("-----------Before commit------------");
             em.getTransaction().commit();
         } finally {

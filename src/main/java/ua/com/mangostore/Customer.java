@@ -33,12 +33,23 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
+    @OneToOne(mappedBy = "customer")
+    private CreditCard creditCard;
+
     public Customer() {
     }
 
     public void addOrder(Order order){
         order.setCustomer(this);
         orders.add(order);
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
     }
 
     public String getName() {
