@@ -54,8 +54,8 @@ public class Main {
             em.persist(customer);
             em.persist(customer2);
 
-            em.persist(order);
-            em.persist(order2);
+//            em.persist(order);
+//            em.persist(order2);
 
             System.out.println("------------Then-------------------");
 
@@ -72,9 +72,10 @@ public class Main {
             delivery.setStatus("not delivered");
             delivery.setType("courier");
 
-            delivery.setOrder(order);
-            order.setDelivery(delivery);
+            delivery.setOrder(order2);
+            order2.setDelivery(delivery);
 
+//            em.persist(order2);
             em.persist(delivery);
 
             System.out.println("------------Show delivery-------------------");
@@ -84,6 +85,12 @@ public class Main {
             System.out.println(deliveryList.size());
             for (Delivery d: deliveryList) {
                 System.out.println(d);
+            }
+            System.out.println("------------Show orders-------------------");
+            query = em.createQuery("SELECT b FROM Order b", Order.class);
+            basketList = query.getResultList();
+            for (Order b : basketList) {
+                System.out.println(b);
             }
 
             System.out.println("-----------Before commit------------");

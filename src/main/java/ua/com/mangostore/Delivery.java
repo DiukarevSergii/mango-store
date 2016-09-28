@@ -84,11 +84,12 @@ public class Delivery {
     @Override
     public String toString() {
         return "Delivery{" +
-                "deliveryDate=" + deliveryDate +
-                ", deliveryTime=" + deliveryTime +
+                "deliveryDate='" + deliveryDate + '\'' +
+                ", deliveryTime='" + deliveryTime + '\'' +
                 ", cost=" + cost +
                 ", status='" + status + '\'' +
                 ", type='" + type + '\'' +
+                ", orderID=" + order.getOrderId() +
                 '}';
     }
 }
