@@ -75,8 +75,8 @@ public class Main {
             delivery.setOrder(order2);
             order2.setDelivery(delivery);
 
-//            em.persist(order2);
             em.persist(delivery);
+            em.persist(order2);
 
             System.out.println("------------Show delivery-------------------");
 

@@ -29,8 +29,7 @@ public class Order {
     @Column(nullable = false, name = "DATE_CREATED")
     private String dateCreated;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "DELIVERY_ID")
+    @OneToOne(mappedBy = "order")
     private Delivery delivery;
 
 
@@ -111,6 +110,8 @@ public class Order {
     public long getOrderId() {
         return orderId;
     }
+
+
 
     @Override
     public String toString() {

@@ -27,7 +27,8 @@ public class Delivery {
     @Column(name = "DELIVERY_TYPE")
     private String type;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     public Delivery() {
@@ -80,6 +81,7 @@ public class Delivery {
     public void setType(String type) {
         this.type = type;
     }
+
 
     @Override
     public String toString() {
