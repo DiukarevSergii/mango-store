@@ -31,7 +31,19 @@ public class Delivery {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
+
     public Delivery() {
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Order getOrder() {

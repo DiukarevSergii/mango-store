@@ -32,13 +32,16 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private Delivery delivery;
 
-
     @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
 
     public Order() {
         this.dateCreated = LocalDate.now().toString();
@@ -49,6 +52,14 @@ public class Order {
             products.add(product);
         if (!product.orders.contains(this))
             product.orders.add(this);
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Customer getCustomer() {
@@ -111,19 +122,17 @@ public class Order {
         return orderId;
     }
 
-
-
     @Override
     public String toString() {
         return "Order{" +
-                "orderPrice=" + orderPrice +
+                "orderId=" + orderId +
+                ", orderPrice=" + orderPrice +
                 ", orderPriceWithDiscount=" + orderPriceWithDiscount +
                 ", orderQuantity=" + orderQuantity +
                 ", orderDiscount=" + orderDiscount +
-                ", dateCreated=" + dateCreated +
+                ", dateCreated='" + dateCreated + '\'' +
                 ", delivery=" + delivery +
-                ", products=" + products +
-                ", customer=" + customer +
+                ", employee=" + employee +
                 '}';
     }
 }

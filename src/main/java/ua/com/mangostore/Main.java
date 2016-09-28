@@ -78,6 +78,20 @@ public class Main {
             em.persist(delivery);
             em.persist(order2);
 
+
+            System.out.println("------------Add employee-------------------");
+            Employee employee = new Employee();
+            employee.setPhone("256-45-67");
+            employee.setEmail("victor@superdelivery.ua");
+            employee.setFullName("Victor Ekhe Ivanovich");
+            employee.setPosition("Manager");
+            employee.addOrder(order2);
+            employee.addDelivery(delivery);
+            order2.setEmployee(employee);
+            delivery.setEmployee(employee);
+
+            em.persist(employee);
+
             System.out.println("------------Show delivery-------------------");
 
             query = em.createQuery("SELECT d FROM Delivery d", Delivery.class);
