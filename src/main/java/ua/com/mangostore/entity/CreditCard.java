@@ -1,4 +1,4 @@
-package ua.com.mangostore;
+package ua.com.mangostore.entity;
 
 import javax.persistence.*;
 

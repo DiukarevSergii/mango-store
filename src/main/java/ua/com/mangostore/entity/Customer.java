@@ -1,4 +1,4 @@
-package ua.com.mangostore;
+package ua.com.mangostore.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Customer {
     @Column(name = "CUSTOMER_ID")
     private long customerId;
 
-    @Column(nullable = false, name = "NAME_RECIPIENT")
+    @Column(nullable = false, name = "NAME")
     private String name;
 
     @Column(nullable = false, name = "SURNAME")

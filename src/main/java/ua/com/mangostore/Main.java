@@ -1,5 +1,7 @@
 package ua.com.mangostore;
 
+import ua.com.mangostore.entity.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
