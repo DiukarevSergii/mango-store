@@ -1,13 +1,16 @@
 package ua.com.mangostore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.com.mangostore.entity.Employee;
 import ua.com.mangostore.repository.EmployeeRepository;
 import ua.com.mangostore.service.EmployeeService;
 
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
+
     @Autowired
     private EmployeeRepository employeeRepository;
 

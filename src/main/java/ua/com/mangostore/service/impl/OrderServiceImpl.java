@@ -1,12 +1,14 @@
 package ua.com.mangostore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.com.mangostore.entity.Order;
 import ua.com.mangostore.repository.OrderRepository;
 import ua.com.mangostore.service.OrderService;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired

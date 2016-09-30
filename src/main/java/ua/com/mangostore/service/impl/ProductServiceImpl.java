@@ -1,12 +1,14 @@
 package ua.com.mangostore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.repository.ProductRepository;
 import ua.com.mangostore.service.ProductService;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired

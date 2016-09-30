@@ -34,7 +34,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void testSaveBank() throws Exception {
+    public void testSaveProduct() throws Exception {
         productService.addProduct(ProductUtil.createProduct());
     }
 }
