@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/4.3.9.Final/hibernate-entitymanager-4.3.9.Final-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/4.3.9.Final/hibernate-entitymanager-4.3.9.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
