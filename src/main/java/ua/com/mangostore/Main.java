@@ -92,9 +92,9 @@ public class Main {
             System.out.println("------------Add employee-------------------");
             Employee employee = new Employee();
             employee.setPhone("256-45-67");
-            employee.setEmail("victor@superdelivery.ua");
+            employee.setEmail("victor@mangostore.com.ua");
             employee.setFullName("Victor Ekhe Ivanovich");
-            employee.setPosition("Manager");
+            employee.setPosition(EmployeePosition.COURIER);
             employee.addOrder(order2);
             employee.addDelivery(delivery);
             order2.setEmployee(employee);

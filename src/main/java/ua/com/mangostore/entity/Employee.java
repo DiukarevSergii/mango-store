@@ -19,7 +19,8 @@ public class Employee {
     private String email;
 
     @Column(name = "POSITION")
-    private String position;
+    @Enumerated(EnumType.STRING)
+    private EmployeePosition position;
 
     @Column(nullable = false, name = "PHONE")
     private String phone;
@@ -59,11 +60,11 @@ public class Employee {
         this.email = email;
     }
 
-    public String getPosition() {
+    public EmployeePosition getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(EmployeePosition position) {
         this.position = position;
     }
 
