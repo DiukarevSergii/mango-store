@@ -48,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
+    @Transactional
     public List<Customer> getAll() {
         return customerRepository.findAll();
     }
