@@ -21,7 +21,7 @@ import java.util.Properties;
 @ComponentScan("ua.com.mangostore")
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("ua.com.mangostore.repository")
-public class DataConfig {
+public class AppConfig {
     private static final String PROP_DATABASE_DRIVER = "db.driver";
     private static final String PROP_DATABASE_PASSWORD = "db.password";
     private static final String PROP_DATABASE_URL = "db.url";
