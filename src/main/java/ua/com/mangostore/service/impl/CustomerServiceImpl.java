@@ -10,9 +10,12 @@ import ua.com.mangostore.service.CustomerService;
 import java.util.List;
 
 
-//запуск секьюрити без спринг бута а через томкэт
+//запуск секьюрити без спринг бута через томкэт выполняется в апп конфиге в бине
 //на каждую единицу товара отдельная страница?
+//красная строка
+//письмо с айди группой и темой
 //
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
