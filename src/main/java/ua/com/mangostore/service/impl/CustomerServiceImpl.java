@@ -9,6 +9,10 @@ import ua.com.mangostore.service.CustomerService;
 
 import java.util.List;
 
+
+//запуск секьюрити без спринг бута а через томкэт
+//на каждую единицу товара отдельная страница?
+//
 @Service
 public class CustomerServiceImpl implements CustomerService{
 

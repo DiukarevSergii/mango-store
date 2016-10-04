@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -18,6 +19,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableWebMvc
 @ComponentScan("ua.com.mangostore")
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("ua.com.mangostore.repository")
