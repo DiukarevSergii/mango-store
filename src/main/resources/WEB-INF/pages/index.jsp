@@ -9,11 +9,6 @@
     <title>MANGO STORE</title>
 
     <!-- Bootstrap -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".dropdown-toggle").dropdown('toggle');
-        });
-    </script>
 
     <style type="text/css">
         <%@include file="css/bootstrap.css" %>
@@ -27,9 +22,6 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
 
 </head>
 
@@ -38,8 +30,8 @@
     <div class="row">
         <h1>MANGO STORE</h1>
         <div class="row topmenu">
-            <div class="col-lg-8" id="mango_top_menu">
-                <%--<ul class="nav nav-pills">--%>
+            <div class="col-lg-12" id="mango_top_menu">
+                <ul class="nav nav-pills text-danger">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -59,21 +51,10 @@
                             <li><a href="#">Settings</a></li>
                         </ul>
                     </li>
-                <%--</ul>--%>
-            </div>
-        </div>
-
-        <div class="bs-example">
-            <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
                 </ul>
             </div>
         </div>
+
         <%--<div class='item'>--%>
         <%--<div class="dropdown"><a href="/about/" class="ltitle">Компания</a></div>--%>
         <%--<div class="smitem smitem0" style="">--%>
