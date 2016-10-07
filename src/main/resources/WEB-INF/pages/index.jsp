@@ -66,8 +66,8 @@
         </div>
         <div class="col-lg-2">
             <div class="middle-menu-centr">
-                <p class="font-size-x-smaller">Оформить заказ:</p>
-                <p class="font-size-smaller">0 800 20 70 20</p>
+                <a class="font-size-x-small">Оформить заказ:</a><br>
+                <a class="font-size-small">0 800 20 70 20</a>
             </div>
 
         </div>

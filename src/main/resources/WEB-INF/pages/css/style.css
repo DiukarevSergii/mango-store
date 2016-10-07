@@ -72,6 +72,7 @@ body {
 }
 
 .middle-menu-centr{
+    margin-top: 6px;
     margin-left: 25px;
     margin-right: -20px;
     color: white;
@@ -79,10 +80,12 @@ body {
 
 .font-size-small{
     font-size: small;
+    color: white;
 }
 
-.font-size-x-smaller{
+.font-size-x-small{
     font-size: x-small;
+    color: white;
 }
 
 /*.middle-menu-right{*/
