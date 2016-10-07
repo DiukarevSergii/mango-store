@@ -59,6 +59,7 @@ body {
 }
 
 .middle {
+    margin-top: 1px;
     margin-left: -15px;
     margin-right: -15px;
     background-color: #f6731c;
