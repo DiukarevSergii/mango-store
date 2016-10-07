@@ -17,26 +17,75 @@ body {
 
 .dropdown {
     margin-top: -2px;
-    margin-bottom: 5px;
-    height: 30px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    height: 22px;
 }
 
 .dropdown:hover > .dropdown-menu {
     display: block;
+    margin-left: -1px;
 }
 
 .nav-pills {
     background-color: darkgray;
     color: #4cae4c;
-
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 25px;
+    font-size: small;
 }
 
 .nav > li > a {
     color: #fff;
+    margin-top: -4px;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
     color: black;
 }
 
+.dropdown-menu {
+    font-size: small;
+}
+
+.topmenu {
+    margin-top: -2px;
+}
+
+.topbutton {
+    margin-top: -1px;
+    margin-bottom: -10px;
+}
+
+.middle {
+    margin-left: -15px;
+    margin-right: -15px;
+    background-color: #f6731c;
+}
+
+.logo {
+    margin-top: 5px;
+    margin-bottom: 8px;
+    margin-left: -14px;
+}
+
+.middle-menu-centr{
+    margin-left: 25px;
+    margin-right: -20px;
+    color: white;
+}
+
+.font-size-small{
+    font-size: small;
+}
+
+.font-size-x-smaller{
+    font-size: x-small;
+}
+
+/*.middle-menu-right{*/
+    /*margin-left: 25px;*/
+    /*margin-bottom: -20px;*/
+/*}*/
 
