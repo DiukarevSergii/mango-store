@@ -124,14 +124,107 @@ body {
     margin-left: -15px;
 }
 
-#right-block{
+#right-block {
     float: right;
     width: 210px;
     height: 700px;
     padding: 6px 0px 25px;
-    margin: 0px;
+    margin-top: 25px;
+    margin-right: -5px;
 }
 
 #right-block > a > img {
     border: 1px solid gray;
+}
+
+#lider {
+    text-decoration: underline;
+    color: dimgrey;
+}
+
+.cell-on-main {
+     padding-left: 15px;
+     padding-top: 5px;
+     width: 240px;
+     height: 340px;
+ }
+
+.cell-on-main:hover {
+    border-radius: 8px;
+    border: 4px solid lightgray;
+    padding-left: 11px;
+    padding-top: 1px;
+}
+
+.bottom-block {
+    float: left;
+}
+
+#cell-1 {
+    margin-left: -12px;
+}
+
+#cell-2 {
+    margin-left: 12px;
+}
+
+#cell-3 {
+    margin-left: 12px;
+}
+
+#cell-4 {
+    margin-left: -12px;
+}
+
+#cell-4-1{
+    padding-top: 20px;
+}
+
+#cell-4-1:hover{
+    padding-top: 16px;
+}
+
+#cell-4-2{
+    padding-top: 20px;
+}
+
+#cell-4-2:hover{
+    padding-top: 16px;
+}
+
+#cell-4-3{
+    padding-top: 20px;
+}
+
+#cell-4-3:hover{
+    padding-top: 16px;
+}
+
+#cell-5 {
+    margin-left: 12px;
+    }
+
+#cell-6 {
+    margin-left: 12px;
+}
+
+.in-cell {
+    margin-top: 15px;
+}
+
+#in-cell-2{
+    margin-left: 47px;
+}
+
+#basement-0 {
+    background-color: #f6731c;
+    height: 2px;
+    width: 1000px;
+    margin-left: -30px;
+}
+
+#basement-1 {
+    color: gray;
+    margin-top: 10px;
+    float: right;
 }
