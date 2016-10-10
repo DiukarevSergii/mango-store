@@ -66,9 +66,9 @@ body {
 }
 
 .logo {
-    margin-top: 5px;
-    margin-bottom: 8px;
+    margin-top: 15px;
     margin-left: -14px;
+    margin-bottom: 22px;
 }
 
 .middle-menu-centr{
@@ -78,14 +78,20 @@ body {
     color: white;
 }
 
-.font-size-small{
-    font-size: small;
-    color: white;
-}
-
-.font-size-x-small{
+.order{
     font-size: x-small;
     color: white;
+    margin-bottom: -5px;
+    margin-left: 50px;
+
+}
+
+.phone{
+    font-size: 22px;
+    color: white;
+    margin-left: 50px;
+    margin-bottom: 0px;
+    margin-top: 3px;
 }
 
 /*.middle-menu-right{*/

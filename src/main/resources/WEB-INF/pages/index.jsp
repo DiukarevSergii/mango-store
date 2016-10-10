@@ -61,13 +61,15 @@
     </div>
 
     <div class="row middle">
-        <div class="col-lg-8 logo">
+        <div class="col-lg-7 logo">
             <img src="http://urlid.ru/au3m">
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="middle-menu-centr">
-                <a class="font-size-x-small">Оформить заказ:</a><br>
-                <a class="font-size-small">0 800 20 70 20</a>
+                <p class="order">Оформить заказ:</p>
+                <p class="phone">0 800 00 71 20</p>
+                <p class="order">Служба поддержки клиентов:</p>
+                <p class="phone">0 800 00 71 30</p>
             </div>
 
         </div>
