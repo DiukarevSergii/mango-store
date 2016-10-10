@@ -94,8 +94,10 @@ body {
     margin-top: 3px;
 }
 
-/*.middle-menu-right{*/
-    /*margin-left: 25px;*/
-    /*margin-bottom: -20px;*/
-/*}*/
+.basket {
+    color: white;
+    margin-top: 20px;
+    margin-left: -40px;
+    margin-right: -40px;
+}
 

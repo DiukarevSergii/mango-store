@@ -42,6 +42,9 @@
                         <li><a href="#">Резюме разработчика</a></li>
                     </ul>
                 </li>
+                <li class="topbutton">
+                    <a href="#">Акции</a>
+                </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Клиентам<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -50,8 +53,18 @@
                         <li><a href="#">Сервисный центр</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Поддержка<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Служба поддержки клиентов</a></li>
+                        <li><a href="#">Прошивка смартфонов</a></li>
+                    </ul>
+                </li>
                 <li class="topbutton">
-                    <a href="#">Акции</a>
+                    <a href="#">Новости</a>
+                </li>
+                <li class="topbutton">
+                    <a href="#">Обзоры</a>
                 </li>
                 <li class="dropdown pull-right">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Личный кабинет</a>
@@ -74,9 +87,10 @@
 
         </div>
         <div class="col-lg-1 pull-right">
-            <div class="middle-menu-right">
-                Корзина
-            </div>
+            <p class="basket"><img src="http://urlid.ru/aucg" alt="basket">
+                Корзина </p>
+
+
         </div>
     </div>
 
