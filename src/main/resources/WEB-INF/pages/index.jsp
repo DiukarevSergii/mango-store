@@ -160,39 +160,49 @@
     <div class="main block">
         <h3 id="lider">Лидеры продаж</h3>
         <div class="col-lg-3" id="cell-1">
-            <div class="cell-on-main">
+            <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
-                    <a><img src="http://urlid.ru/audh" alt="" height="240"></a>
+                    <a href="#"><img src="http://urlid.ru/audh" alt="" height="240">
+                    </a>
+                    <p class="font-review">Смартфоны Apple</p>
+                    <a class="title-review" href="#">iPhone 7 (Jet Black)</a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>35 000</span>
+                        </span>
+                        &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
+
                 </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-2">
             <div class="cell-on-main">
                 <div class="in-cell" id="in-cell-2">
-                    <a><img src="http://urlid.ru/audg" alt="" height="240"></a>
+                    <a href="#"><img src="http://urlid.ru/audg" alt="" height="240"></a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-3">
             <div class="cell-on-main">
                 <div class="in-cell" id="in-cell-3">
-                    <a><img src="http://urlid.ru/audi" alt="" height="240"></a>
+                    <a href="#"><img src="http://urlid.ru/audi" alt="" height="240"></a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-4">
             <div class="cell-on-main" id="cell-4-1">
-                <a ><img src="http://urlid.ru/audk" alt="" height="240"></a>
+                <a href="#"><img src="http://urlid.ru/audk" alt="" height="240"></a>
             </div>
         </div>
         <div class="col-lg-3" id="cell-5">
             <div class="cell-on-main" id="cell-4-2">
-                <a><img src="http://urlid.ru/audl" alt="" height="240"></a>
+                <a href="#"><img src="http://urlid.ru/audl" alt="" height="240"></a>
             </div>
         </div>
         <div class="col-lg-3" id="cell-6">
             <div class="cell-on-main" id="cell-4-3">
-                <a><img src="http://urlid.ru/audm" alt="" height="240"></a>
+                <a href="#"><img src="http://urlid.ru/audm" alt="" height="240"></a>
             </div>
         </div>
     </div>

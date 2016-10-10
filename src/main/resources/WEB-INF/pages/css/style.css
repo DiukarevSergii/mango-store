@@ -143,11 +143,11 @@ body {
 }
 
 .cell-on-main {
-     padding-left: 15px;
-     padding-top: 5px;
-     width: 240px;
-     height: 340px;
- }
+    padding-left: 15px;
+    padding-top: 5px;
+    width: 240px;
+    height: 370px;
+}
 
 .cell-on-main:hover {
     border-radius: 8px;
@@ -160,8 +160,21 @@ body {
     float: left;
 }
 
+.in-cell > a:hover {
+    text-decoration: none;
+    color: gray;
+}
+
 #cell-1 {
     margin-left: -12px;
+}
+
+#cell-1-1 {
+    padding-left: 30px;
+}
+
+#cell-1-1:hover {
+    padding-left: 26px;
 }
 
 #cell-2 {
@@ -176,33 +189,33 @@ body {
     margin-left: -12px;
 }
 
-#cell-4-1{
+#cell-4-1 {
     padding-top: 20px;
 }
 
-#cell-4-1:hover{
+#cell-4-1:hover {
     padding-top: 16px;
 }
 
-#cell-4-2{
+#cell-4-2 {
     padding-top: 20px;
 }
 
-#cell-4-2:hover{
+#cell-4-2:hover {
     padding-top: 16px;
 }
 
-#cell-4-3{
+#cell-4-3 {
     padding-top: 20px;
 }
 
-#cell-4-3:hover{
+#cell-4-3:hover {
     padding-top: 16px;
 }
 
 #cell-5 {
     margin-left: 12px;
-    }
+}
 
 #cell-6 {
     margin-left: 12px;
@@ -212,8 +225,23 @@ body {
     margin-top: 15px;
 }
 
-#in-cell-2{
+#in-cell-2 {
     margin-left: 47px;
+}
+
+.font-review {
+    font-size: x-small;
+    color: dimgrey;
+}
+
+.title-review {
+    font-size: 16px;
+    color: #505050;
+}
+
+.main-review {
+    font-size: 26px;
+    color: #f6731c;
 }
 
 #basement-0 {
@@ -224,7 +252,7 @@ body {
 }
 
 #basement-1 {
-    color: gray;
+    color: #505050;
     margin-top: 10px;
     float: right;
 }
