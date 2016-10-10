@@ -84,17 +84,77 @@
                 <p class="order">Служба поддержки клиентов:</p>
                 <p class="phone">0 800 00 71 30</p>
             </div>
-
         </div>
         <div class="col-lg-1 pull-right">
-            <p class="basket"><img src="http://urlid.ru/aucg" alt="basket">
-                Корзина </p>
-
-
+            <div class="basket">
+                <img src="http://urlid.ru/aucg" alt="basket">
+                &nbsp; <a href="#"> Пусто :( </a>
+            </div>
         </div>
     </div>
 
-</div>
+    <div class="row bottom-menu">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills bmenu">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Apple</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Магазины</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Резюме разработчика</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">LG</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Сервисный центр</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Xiaomi</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Сервисный центр</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Samsung</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Магазины</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Резюме разработчика</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Планшеты</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Сервисный центр</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Смартфоны</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Сервисный центр</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="slider">
+        <a href="#">
+            <img src="http://urlid.ru/auco" alt="">
+        </a>
+    </div>
+
 </div>
 
 
