@@ -34,9 +34,9 @@
         <div class="col-lg-12">
             <ul class="nav nav-pills">
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Компания <b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle">Компания <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">О нас</a></li>
+                        <li><a href="/about">О нас</a></li>
                         <li><a href="#">Магазины</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Резюме разработчика</a></li>
@@ -170,7 +170,7 @@
                         <span style='color:#f6731c;text-decoration:line-through'>
                             <span style='color:gray;'>35 000</span>
                         </span>
-                        &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        &nbsp;17 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
                     </p>
 
                 </div>
@@ -178,8 +178,18 @@
         </div>
         <div class="col-lg-3" id="cell-2">
             <div class="cell-on-main">
-                <div class="in-cell" id="in-cell-2">
+                <div class="in-cell" id="in-cell-2-1">
                     <a href="#"><img src="http://urlid.ru/audg" alt="" height="240"></a>
+                </div>
+                <div class="in-cell" id="in-cell-2-2">
+                    <p class="font-review">Смартфоны Samsung</p>
+                    <a class="title-review" href="#">Samsung Galaxy S6</a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>18 000</span>
+                        </span>
+                        &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
                 </div>
             </div>
         </div>
@@ -187,22 +197,60 @@
             <div class="cell-on-main">
                 <div class="in-cell" id="in-cell-3">
                     <a href="#"><img src="http://urlid.ru/audi" alt="" height="240"></a>
+                    <p class="font-review">Смартфоны Meizu</p>
+                    <a class="title-review" href="#">Meizu M3 Note</a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>4 099</span>
+                        </span>
+                        &nbsp;2 299 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-4">
-            <div class="cell-on-main" id="cell-4-1">
-                <a href="#"><img src="http://urlid.ru/audk" alt="" height="240"></a>
+            <div class="cell-on-main">
+                <div class="in-cell" id="cell-4-1">
+                    <a href="#"><img src="http://urlid.ru/audk" alt="" height="240"></a>
+                    <p class="font-review">Планшеты Apple</p>
+                    <a class="title-review" href="#">Apple iPad Air 2</a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>12 000</span>
+                        </span>
+                        &nbsp;10 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-5">
-            <div class="cell-on-main" id="cell-4-2">
-                <a href="#"><img src="http://urlid.ru/audl" alt="" height="240"></a>
+            <div class="cell-on-main">
+                <div class="in-cell" id="cell-4-2">
+                    <a href="#"><img src="http://urlid.ru/audl" alt="" height="240"></a>
+                    <p class="font-review">Планшеты Xiaomi</p>
+                    <a class="title-review" href="#">Xiaomi MiPad 2 </a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>4 700</span>
+                        </span>
+                        &nbsp;3 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-3" id="cell-6">
-            <div class="cell-on-main" id="cell-4-3">
-                <a href="#"><img src="http://urlid.ru/audm" alt="" height="240"></a>
+            <div class="cell-on-main">
+                <div class="in-cell" id="cell-4-3">
+                    <a href="#"><img src="http://urlid.ru/audm" alt="" height="240"></a>
+                    <p class="font-review">Смартфоны Apple</p>
+                    <a class="title-review" href="#">iPhone 7 (Jet Black)</a>
+                    <p class="main-review">
+                        <span style='color:#f6731c;text-decoration:line-through'>
+                            <span style='color:gray;'>35 000</span>
+                        </span>
+                        &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

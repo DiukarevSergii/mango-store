@@ -1,13 +1,8 @@
 package ua.com.mangostore;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.sql.*;
-import java.util.ResourceBundle;
 
 @Controller
 @RequestMapping("/")
@@ -21,6 +16,11 @@ public class MyController {
     @RequestMapping("/")
     public String onIndex() {
         return "index";
+    }
+
+    @RequestMapping(value = "/about", method = RequestMethod.POST)
+    public String onAbout() {
+        return "about";
     }
 
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)

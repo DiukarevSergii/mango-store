@@ -189,30 +189,6 @@ body {
     margin-left: -12px;
 }
 
-#cell-4-1 {
-    padding-top: 20px;
-}
-
-#cell-4-1:hover {
-    padding-top: 16px;
-}
-
-#cell-4-2 {
-    padding-top: 20px;
-}
-
-#cell-4-2:hover {
-    padding-top: 16px;
-}
-
-#cell-4-3 {
-    padding-top: 20px;
-}
-
-#cell-4-3:hover {
-    padding-top: 16px;
-}
-
 #cell-5 {
     margin-left: 12px;
 }
@@ -225,8 +201,11 @@ body {
     margin-top: 15px;
 }
 
-#in-cell-2 {
-    margin-left: 47px;
+#in-cell-2-1 {
+    margin-left: 40px;
+}
+#in-cell-2-2 {
+    margin-top: 0px;
 }
 
 .font-review {
