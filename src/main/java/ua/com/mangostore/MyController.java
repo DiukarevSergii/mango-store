@@ -18,9 +18,24 @@ public class MyController {
         return "index";
     }
 
-    @RequestMapping(value = "/about", method = RequestMethod.POST)
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String onAbout() {
-        return "about";
+        return "highest-menu/about";
+    }
+
+    @RequestMapping(value = "/stores_addresses", method = RequestMethod.GET)
+    public String onAddresses() {
+        return "highest-menu/stores_addresses";
+    }
+
+    @RequestMapping(value = "/shares", method = RequestMethod.GET)
+    public String onShares() {
+        return "highest-menu/shares";
+    }
+
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    public String onPayment() {
+        return "highest-menu/payment";
     }
 
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)

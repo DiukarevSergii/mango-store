@@ -67,8 +67,8 @@ body {
 }
 
 .logo {
-    margin-top: 15px;
-    margin-left: -14px;
+    margin-top: 20px;
+    margin-left: 0px;
     margin-bottom: 19px;
 }
 
@@ -124,10 +124,18 @@ body {
     margin-left: -15px;
 }
 
-#right-block {
+#right-block-1 {
+     float: right;
+     width: 210px;
+     height: 700px;
+     padding: 6px 0px 25px;
+     margin-top: 25px;
+     margin-right: -5px;
+ }
+#right-block-2 {
     float: right;
     width: 210px;
-    height: 700px;
+    height: auto;
     padding: 6px 0px 25px;
     margin-top: 25px;
     margin-right: -5px;
@@ -137,7 +145,7 @@ body {
     border: 1px solid gray;
 }
 
-#lider {
+h3 {
     text-decoration: underline;
     color: dimgrey;
 }
@@ -204,6 +212,7 @@ body {
 #in-cell-2-1 {
     margin-left: 40px;
 }
+
 #in-cell-2-2 {
     margin-top: 0px;
 }
@@ -223,6 +232,14 @@ body {
     color: #f6731c;
 }
 
+.main-block {
+    padding-top: 0px;
+    padding-right: 220px;
+    padding-left: 5px;
+    text-align: justify;
+    height: auto;
+}
+
 #basement-0 {
     background-color: #f6731c;
     height: 2px;
@@ -234,4 +251,19 @@ body {
     color: #505050;
     margin-top: 10px;
     float: right;
+}
+
+.text table td {
+    margin-bottom: -2px;
+    border: 1px solid transparent;
+    border-top: 0;
+    border-bottom: 1px solid #e5e5e5;
+    border-collapse: collapse;
+    padding: 15px;
+    vertical-align: top;
+}
+
+pre {
+    background-color: white;
+    border: 0px solid #ccc;
 }
