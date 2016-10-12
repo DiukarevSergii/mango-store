@@ -38,6 +38,41 @@ public class MyController {
         return "highest-menu/payment";
     }
 
+    @RequestMapping(value = "/delivery", method = RequestMethod.GET)
+    public String onDelivery() {
+        return "highest-menu/delivery";
+    }
+
+    @RequestMapping(value = "/service-center", method = RequestMethod.GET)
+    public String onService() {
+        return "highest-menu/service-center";
+    }
+
+    @RequestMapping(value = "/support", method = RequestMethod.GET)
+    public String onSupport() {
+        return "highest-menu/support";
+    }
+
+    @RequestMapping(value = "/firmware", method = RequestMethod.GET)
+    public String onFirmware() {
+        return "highest-menu/firmware";
+    }
+
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String onNews() {
+        return "highest-menu/news";
+    }
+
+    @RequestMapping(value = "/review", method = RequestMethod.GET)
+    public String onReview() {
+        return "highest-menu/review";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String onLogin() {
+        return "highest-menu/login";
+    }
+
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    public String onLogin(Model model, @RequestParam String login, @RequestParam String password) throws SQLException {
 //        String log = login;

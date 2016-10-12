@@ -154,9 +154,12 @@
     <div id="right-block-2">
         <a><img src="http://urlid.ru/aud5" alt=""></a>
     </div>
-    <div class="main-block">
-        <h3></h3>
-        <p></p>
+    <div class="main-block" style="height: 700px">
+        <h3>Доставка</h3>
+        <p>На данный момент существует несколько видов доставки товаров:</p>
+        <p> - самовывоз из нашего <a href="stores_addresses">магазина;</a> </p>
+        <p> - доставка курьером в течении дня;</p>
+        <p> - супер быстрая доствка дроном в течении часа.</p>
     </div>
     <div class="basement">
         <div class="col-lg-12">

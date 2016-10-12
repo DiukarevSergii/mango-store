@@ -49,25 +49,25 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Клиентам<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/payment">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Сервисный центр</a></li>
+                        <li><a href="/delivery">Доставка</a></li>
+                        <li><a href="/service-center">Сервисный центр</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Поддержка<b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle">Поддержка<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Служба поддержки клиентов</a></li>
-                        <li><a href="#">Прошивка смартфонов</a></li>
+                        <li><a href="/support">Служба поддержки клиентов</a></li>
+                        <li><a href="/firmware">Прошивка смартфонов</a></li>
                     </ul>
                 </li>
                 <li class="topbutton">
-                    <a href="#">Новости</a>
+                    <a href="/news">Новости</a>
                 </li>
                 <li class="topbutton">
-                    <a href="#">Обзоры</a>
+                    <a href="/review">Обзоры</a>
                 </li>
                 <li class="dropdown pull-right">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Личный кабинет</a>
+                    <a href="/login" data-toggle="dropdown" class="dropdown-toggle">Личный кабинет</a>
                 </li>
             </ul>
         </div>
@@ -154,7 +154,7 @@
     <div id="right-block-2">
         <a><img src="http://urlid.ru/aud5" alt=""></a>
     </div>
-    <div class="main-block">
+    <div class="main-block"  style="height: 700px">
         <h3>О магазине МАНГО</h3>
         <p>Компания «МАНГО» — первая украинская специализированная сеть магазинов гаджетов и аксессуаров. Компания
             создана в 2016 году. </p>
