@@ -101,51 +101,39 @@
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Apple</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Магазины</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Резюме разработчика</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">LG</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Сервисный центр</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Xiaomi</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Сервисный центр</a></li>
+                        <li><a href="#">iPhone</a></li>
+                        <li><a href="#">Mac</a></li>
+                        <li><a href="#">Аксессуары</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Samsung</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Магазины</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Резюме разработчика</a></li>
+                        <li><a href="#">Смартфоны</a></li>
+                        <li><a href="#">Планшеты</a></li>
+                        <li><a href="#">Телевизоры</a></li>
+                        <li><a href="#">Аксессуары</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
+                    <a href="#">LG</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Xiaomi</a>
+                </li>
+
+                <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Планшеты</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Сервисный центр</a></li>
+                        <li><a href="#">Планшеты</a></li>
+                        <li><a href="#">Аксессуары</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Смартфоны</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Сервисный центр</a></li>
+                        <li><a href="#">Смартфоны</a></li>
+                        <li><a href="#">Аксессуары</a></li>
                     </ul>
                 </li>
             </ul>
