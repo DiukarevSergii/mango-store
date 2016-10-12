@@ -3,7 +3,7 @@
 
 <html lang="ru">
 <head>
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
+    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
     <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -173,6 +173,8 @@
                             <span style='color:gray;'>35 000</span>
                         </span>
                         &nbsp;17 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
 
                 </div>
@@ -191,6 +193,8 @@
                             <span style='color:gray;'>18 000</span>
                         </span>
                         &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
                 </div>
             </div>
@@ -206,6 +210,8 @@
                             <span style='color:gray;'>4 099</span>
                         </span>
                         &nbsp;2 299 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
                 </div>
             </div>
@@ -221,6 +227,8 @@
                             <span style='color:gray;'>12 000</span>
                         </span>
                         &nbsp;10 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
                 </div>
             </div>
@@ -236,6 +244,8 @@
                             <span style='color:gray;'>4 700</span>
                         </span>
                         &nbsp;3 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
                 </div>
             </div>
@@ -251,6 +261,8 @@
                             <span style='color:gray;'>35 000</span>
                         </span>
                         &nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        <a class="btn small btn_in_section" href="#"
+                           onclick="">Купить</a>
                     </p>
                 </div>
             </div>
