@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import ua.com.mangostore.service.impl.ProductServiceImpl;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -102,5 +103,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return properties;
     }
 
+    @Bean
+    public ProductServiceImpl productService(){
+        return new ProductServiceImpl();
+    }
+
+
 }
+
+
 
