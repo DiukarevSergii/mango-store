@@ -1,36 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MySQL - @localhost">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
-    <schema id="1" name="apartmentsdb" />
-    <schema id="2" name="information_schema" />
+    <schema id="1" name="apartmentsdb"/>
+    <schema id="2" name="information_schema"/>
     <schema id="3" name="mangodb">
       <visible>1</visible>
     </schema>
-    <schema id="4" name="menudb" />
-    <schema id="5" name="mydb" />
-    <schema id="6" name="mydb44" />
-    <schema id="7" name="mysql" />
-    <schema id="8" name="orderdb" />
-    <schema id="9" name="performance_schema" />
-    <schema id="10" name="prog" />
-    <schema id="11" name="sakila" />
-    <schema id="12" name="sys" />
-    <schema id="13" name="testdb" />
-    <schema id="14" name="testdb2" />
-    <schema id="15" name="testdb4" />
-    <schema id="16" name="testproc" />
-    <schema id="17" name="testsec" />
-    <schema id="18" name="testsec2" />
-    <schema id="19" name="tutorial" />
-    <schema id="20" name="world" />
-    <schema id="21" name="testmangodb" />
-    <schema id="22" name="testdb3" />
-    <table id="23" parent="3" name="creditcards" />
-    <table id="24" parent="3" name="customers" />
-    <table id="25" parent="3" name="deliveries" />
-    <table id="26" parent="3" name="employees" />
-    <table id="27" parent="3" name="orders" />
-    <table id="28" parent="3" name="productorder" />
-    <table id="29" parent="3" name="products" />
+    <schema id="4" name="menudb"/>
+    <schema id="5" name="mydb"/>
+    <schema id="6" name="mydb44"/>
+    <schema id="7" name="mysql"/>
+    <schema id="8" name="orderdb"/>
+    <schema id="9" name="performance_schema"/>
+    <schema id="10" name="prog"/>
+    <schema id="11" name="sakila"/>
+    <schema id="12" name="sys"/>
+    <schema id="13" name="testdb"/>
+    <schema id="14" name="testdb2"/>
+    <schema id="15" name="testdb4"/>
+    <schema id="16" name="testproc"/>
+    <schema id="17" name="testsec"/>
+    <schema id="18" name="testsec2"/>
+    <schema id="19" name="tutorial"/>
+    <schema id="20" name="world"/>
+    <schema id="21" name="testmangodb"/>
+    <schema id="22" name="testdb3"/>
+    <table id="23" parent="3" name="creditcards"/>
+    <table id="24" parent="3" name="customers"/>
+    <table id="25" parent="3" name="deliveries"/>
+    <table id="26" parent="3" name="employees"/>
+    <table id="27" parent="3" name="orders"/>
+    <table id="28" parent="3" name="productorder"/>
+    <table id="29" parent="3" name="products"/>
     <column id="30" parent="23" name="CARDS_ID">
       <mandatory>1</mandatory>
       <data-type>bigint(20)|0</data-type>
@@ -56,7 +57,7 @@
     </column>
     <index id="36" parent="23" name="FK_5j0crsmxi99gdpg5ywsu1bne6">
       <columns>CUSTOMER_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <key id="37" parent="23" name="PRIMARY">
       <columns>CARDS_ID</columns>
@@ -128,11 +129,11 @@
     </column>
     <index id="55" parent="25" name="FK_jj24epjyhgahxf1goenilgbrq">
       <columns>ORDER_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <index id="56" parent="25" name="FK_rtplcgc76iprruux7g6s2mosg">
       <columns>EMPLOYEE_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <key id="57" parent="25" name="PRIMARY">
       <columns>DELIVERY_ID</columns>
@@ -206,11 +207,11 @@
     </column>
     <index id="74" parent="27" name="FK_d6xxsl4x3b8aq2defwwgd48j3">
       <columns>CUSTOMER_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <index id="75" parent="27" name="FK_fkwk49klh0l5ajmqiu940lu0v">
       <columns>EMPLOYEE_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <key id="76" parent="27" name="PRIMARY">
       <columns>ORDER_ID</columns>
@@ -238,11 +239,11 @@
     </column>
     <index id="81" parent="28" name="FK_ef2rj9x00ky03574xk3sv356o">
       <columns>ORDER_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <index id="82" parent="28" name="FK_j19quciqof5s63yk2h3pb67ix">
       <columns>PRODUCT_ID</columns>
-      <desc-columns />
+      <desc-columns></desc-columns>
     </index>
     <foreign-key id="83" parent="28" name="FK_j19quciqof5s63yk2h3pb67ix">
       <columns>PRODUCT_ID</columns>

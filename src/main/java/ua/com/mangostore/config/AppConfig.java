@@ -9,12 +9,15 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
+
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @EnableTransactionManagement
@@ -30,7 +33,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "ua.com.mangostore.entity";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
+    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
 
 
     /**
@@ -87,5 +90,29 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
         return dataSource;
     }
+
+
+//    /**
+//     * Переводит (перехватывает) любые JPA или Hibernate исключения в Spring исключения.
+//     *
+//     * @return Реализация интерфейса PersistenceExceptionTranslationPostProcessor.
+//     */
+//    @Bean
+//    public BeanPostProcessor persistenceTranslation() {
+//        return new PersistenceExceptionTranslationPostProcessor();
+//    }
+
+//    /**
+//     * Возвращает объект класса CommonsMultipartResolver, который сохраняет временные файлы
+//     * во временный каталог сервлет контейнера.
+//     *
+//     * @return Объект класса CommonsMultipartResolver для временного сохранения файлов.
+//     */
+//    @Bean(name = "multipartResolver")
+//    public CommonsMultipartResolver createMultipartResolver() {
+//        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+//        resolver.setDefaultEncoding("utf-8");
+//        return resolver;
+//    }
 
 }

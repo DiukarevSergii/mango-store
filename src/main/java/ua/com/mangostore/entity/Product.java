@@ -22,8 +22,17 @@ public class Product {
     @Column(nullable = false, name = "BRAND_NAME")
     private String brandName;
 
-    @Column(nullable = false, name = "PRICE")
-    private double price;
+    @Column(nullable = false, name = "FULL_PRICE")
+    private double fullPrice;
+
+    @Column(name = "SALE_PRICE")
+    private double salePrice;
+
+    @Column(nullable = false, name = "SPECIFICATION")
+    private String specification;
+
+    @Column(nullable = false, name = "IMAGE")
+    private String image;
 
     @ManyToMany()
     @JoinTable(name = "ProductOrder",
@@ -34,12 +43,24 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productTitle, String type, String brandName, double price) {
+    public Product(String productTitle, String type, String brandName, double fullPrice, double salePrice) {
         this.productTitle = productTitle;
         this.type = type;
         this.brandName = brandName;
-        this.price = price;
+        this.fullPrice = fullPrice;
+        this.salePrice = salePrice;
+    }
 
+    public Product(String productTitle, String type, String brandName,
+                   double fullPrice, double salePrice,
+                   String specification, String image) {
+        this.productTitle = productTitle;
+        this.type = type;
+        this.brandName = brandName;
+        this.fullPrice = fullPrice;
+        this.salePrice = salePrice;
+        this.specification = specification;
+        this.image = image;
     }
 
     public void addOrder(Order order) {
@@ -50,11 +71,11 @@ public class Product {
     }
 
     public double getPrice() {
-        return price;
+        return fullPrice;
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.fullPrice = price;
     }
 
     public String getProductTitle() {
@@ -89,13 +110,56 @@ public class Product {
         this.orders = orders;
     }
 
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
+
+    public double getFullPrice() {
+        return fullPrice;
+    }
+
+    public void setFullPrice(double fullPrice) {
+        this.fullPrice = fullPrice;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "productTitle='" + productTitle + '\'' +
                 ", type='" + type + '\'' +
                 ", brandName='" + brandName + '\'' +
-                ", price=" + price +
+                ", fullPrice=" + fullPrice +
+                ", salePrice=" + salePrice +
+                ", specification='" + specification + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

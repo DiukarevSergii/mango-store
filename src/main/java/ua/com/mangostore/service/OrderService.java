@@ -11,4 +11,5 @@ public interface OrderService {
     Order getById(long id);
     Order editOrder(Order order);
     List<Order> getAll();
+    int getSize();
 }
