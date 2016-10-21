@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.model.ProductOnMain;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -23,16 +29,44 @@ public class MainController {
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
+        DecimalFormat df = new DecimalFormat();
+        df.setGroupingUsed(true);
+        df.setGroupingSize(3);
+
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+        decimalFormatSymbols.setZeroDigit('0');
+        decimalFormatSymbols.setGroupingSeparator(' ');
+
+        df.setDecimalFormatSymbols(decimalFormatSymbols);
+
         modelAndView.addObject("cart_size", orderService.getSize());
 
-        Product iphone7 = productService.getByName("iPhone 7 (Jet Black)");
-
-        modelAndView.addObject("title_iPhone7", iphone7.getProductTitle());
-        modelAndView.addObject("imageURL_iPhone7", iphone7.getImageURL());
-        modelAndView.addObject("sale_price_iPhone7", iphone7.getSalePrice());
-        modelAndView.addObject("full_price_iPhone7", iphone7.getFullPrice());
-
+        List<ProductOnMain> productOnMains = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            if (product.getOnMain() != null) {
+                ProductOnMain productOnMain = new ProductOnMain();
+                productOnMain.setProductTitle(product.getProductTitle());
+                productOnMain.setImageURL(product.getImageURL());
+                productOnMain.setSalePrice(df.format(product.getSalePrice()));
+                productOnMain.setFullPrice(df.format(product.getFullPrice()));
+                productOnMains.add(productOnMain);
+            }
+        }
+        modelAndView.addObject("modelList", productOnMains);
         modelAndView.setViewName("index");
+
+//        List<Product> products = new ArrayList<>();
+//        int counter = 1;
+//        for (Product product: productService.getAll()) {
+//            if (product.getOnMain() != null) {
+//                modelAndView.addObject("title" + counter, product.getProductTitle());
+//                modelAndView.addObject("imageURL" + counter, product.getImageURL());
+//                modelAndView.addObject("sale_price" + counter, df.format(product.getSalePrice()));
+//                modelAndView.addObject("full_price" + counter, df.format(product.getFullPrice()));
+//                counter++;
+//            }
+//        }
+//        modelAndView.setViewName("index");
         return modelAndView;
     }
 

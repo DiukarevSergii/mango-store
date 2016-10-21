@@ -32,11 +32,7 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private Delivery delivery;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
-//    private List<SalePosition> salePositions = new ArrayList<>();
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
-//    @ManyToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -51,28 +47,12 @@ public class Order {
         this.dateCreated = LocalDate.now().toString();
     }
 
-
-//    public void addSalePosition(SalePosition salePosition) {
-//        salePositions.add(salePosition);
-//        if (salePosition.getOrder() != this) {
-//            salePosition.setOrder(this);
-//        }
-//    }
-
       public void addProduct(Product product){
           products.add(product);
           if(product.getOrder() != this){
               product.setOrder(this);
           }
       }
-
-
-//    public void addProduct(Product product) {
-//        if (!products.contains(product))
-//            products.add(product);
-//        if (!product.orders.contains(this))
-//            product.orders.add(this);
-//    }
 
     public Employee getEmployee() {
         return employee;

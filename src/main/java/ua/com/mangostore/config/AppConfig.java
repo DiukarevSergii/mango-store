@@ -102,17 +102,17 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //        return new PersistenceExceptionTranslationPostProcessor();
 //    }
 
-//    /**
-//     * Возвращает объект класса CommonsMultipartResolver, который сохраняет временные файлы
-//     * во временный каталог сервлет контейнера.
-//     *
-//     * @return Объект класса CommonsMultipartResolver для временного сохранения файлов.
-//     */
-//    @Bean(name = "multipartResolver")
-//    public CommonsMultipartResolver createMultipartResolver() {
-//        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
-//        resolver.setDefaultEncoding("utf-8");
-//        return resolver;
-//    }
+    /**
+     * Возвращает объект класса CommonsMultipartResolver, который сохраняет временные файлы
+     * во временный каталог сервлет контейнера.
+     *
+     * @return Объект класса CommonsMultipartResolver для временного сохранения файлов.
+     */
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver createMultipartResolver() {
+        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        return resolver;
+    }
 
 }

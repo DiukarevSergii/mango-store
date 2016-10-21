@@ -26,11 +26,14 @@ public class Product {
     @Column(name = "SALE_PRICE")
     private double salePrice;
 
-    @Column(nullable = false, name = "SPECIFICATION")
+    @Column(name = "SPECIFICATION")
     private String specification;
 
-    @Column(nullable = false, name = "IMAGE_URL")
+    @Column(name = "IMAGE_URL")
     private String imageURL;
+
+    @Column(name = "ON_MAIN")
+    private String onMain;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
@@ -43,13 +46,6 @@ public class Product {
     public void setOrder(Order order) {
         this.order = order;
     }
-
-    //
-//    @ManyToMany()
-//    @JoinTable(name = "ProductOrder",
-//            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")})
-//    List<Order> orders = new ArrayList<>();
 
     public Product() {
     }
@@ -74,12 +70,13 @@ public class Product {
         this.imageURL = image;
     }
 
-//    public void addOrder(Order order) {
-//        if (!orders.contains(order))
-//            orders.add(order);
-//        if (!order.products.contains(this))
-//            order.products.add(this);
-//    }
+    public String getOnMain() {
+        return onMain;
+    }
+
+    public void setOnMain(String onMain) {
+        this.onMain = onMain;
+    }
 
     public double getPrice() {
         return fullPrice;
@@ -112,14 +109,6 @@ public class Product {
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
-
-//    public List<Order> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(List<Order> orders) {
-//        this.orders = orders;
-//    }
 
     public long getProductId() {
         return productId;
@@ -168,15 +157,25 @@ public class Product {
 
         Product product = (Product) o;
 
+        if (Double.compare(product.fullPrice, fullPrice) != 0) return false;
+        if (Double.compare(product.salePrice, salePrice) != 0) return false;
         if (!productTitle.equals(product.productTitle)) return false;
-        return order != null ? order.equals(product.order) : product.order == null;
+        if (type != null ? !type.equals(product.type) : product.type != null) return false;
+        return brandName != null ? brandName.equals(product.brandName) : product.brandName == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = productTitle.hashCode();
-        result = 31 * result + (order != null ? order.hashCode() : 0);
+        int result;
+        long temp;
+        result = productTitle.hashCode();
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (brandName != null ? brandName.hashCode() : 0);
+        temp = Double.doubleToLongBits(fullPrice);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(salePrice);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

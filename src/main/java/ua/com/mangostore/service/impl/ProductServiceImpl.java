@@ -18,8 +18,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product addProduct(Product product) {
-        if (getAll().contains(product))
+        if (getAll().contains(product)) {
             return product;
+        }
         Product saveProduct = productRepository.saveAndFlush(product);
         return saveProduct;
     }
@@ -34,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public Product getByName(String name) {
         return productRepository.findByName(name);
+    }
+
+    @Override
+    public Product getById(long id) {
+        return productRepository.findById(id);
     }
 
     @Override
