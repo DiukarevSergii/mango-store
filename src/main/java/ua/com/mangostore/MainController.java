@@ -47,6 +47,8 @@ public class MainController {
                 ProductOnMain productOnMain = new ProductOnMain();
                 productOnMain.setProductTitle(product.getProductTitle());
                 productOnMain.setImageURL(product.getImageURL());
+                productOnMain.setType(product.getType());
+                productOnMain.setBrand(product.getBrand());
                 productOnMain.setSalePrice(df.format(product.getSalePrice()));
                 productOnMain.setFullPrice(df.format(product.getFullPrice()));
                 productOnMains.add(productOnMain);
@@ -54,20 +56,7 @@ public class MainController {
         }
         modelAndView.addObject("modelList", productOnMains);
         modelAndView.setViewName("index");
-
-//        List<Product> products = new ArrayList<>();
-//        int counter = 1;
-//        for (Product product: productService.getAll()) {
-//            if (product.getOnMain() != null) {
-//                modelAndView.addObject("title" + counter, product.getProductTitle());
-//                modelAndView.addObject("imageURL" + counter, product.getImageURL());
-//                modelAndView.addObject("sale_price" + counter, df.format(product.getSalePrice()));
-//                modelAndView.addObject("full_price" + counter, df.format(product.getFullPrice()));
-//                counter++;
-//            }
-//        }
-//        modelAndView.setViewName("index");
-        return modelAndView;
+                return modelAndView;
     }
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)

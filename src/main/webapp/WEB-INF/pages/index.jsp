@@ -55,7 +55,7 @@
                     <div class="in-cell" id="in-cell-1">
                         <a href="#"><img src="<c:out value="${product.imageURL}"/>" alt="" height="240">
                         </a>
-                        <p class="font-review">Смартфоны Apple</p>
+                        <p class="font-review"><c:out value="${product.type}"/> <c:out value="${product.brand}"/></p>
                         <a class="title-review" href="#"><c:out value="${product.productTitle}"/></a>
                         <p class="main-review">
                         <span style='color:#f6731c;text-decoration:line-through'>
@@ -72,96 +72,6 @@
                 </div>
             </div>
         </c:forEach>
-        <%--<div class="col-lg-3" id="cell-2">--%>
-        <%--<div class="cell-on-main">--%>
-        <%--<div class="in-cell" id="in-cell-2-1">--%>
-        <%--<a href="#"><img src="http://urlid.ru/audg" alt="" height="240"></a>--%>
-        <%--</div>--%>
-        <%--<div class="in-cell" id="in-cell-2-2">--%>
-        <%--<a href="#"><img src="${imageURL2}" alt="" height="240">--%>
-        <%--</a>--%>
-        <%--<p class="font-review">Смартфоны Apple</p>--%>
-        <%--<a class="title-review" href="#">${title2}</a>--%>
-        <%--<p class="main-review">--%>
-        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
-        <%--<span style='color:gray;'>${full_price2}</span>--%>
-        <%--</span>--%>
-        <%--&nbsp;${sale_price1} <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
-        <%--<a class="btn small btn_in_section" href="#"--%>
-        <%--onclick="">Купить</a>--%>
-        <%--</p>--%>
-
-        <%--</div>--%>
-        <%--</div>--%>
-
-        <%--<div class="col-lg-3" id="cell-3">--%>
-        <%--<div class="cell-on-main">--%>
-        <%--<div class="in-cell" id="in-cell-3">--%>
-        <%--<a href="#"><img src="http://urlid.ru/audi" alt="" height="240"></a>--%>
-        <%--<p class="font-review">Смартфоны Meizu</p>--%>
-        <%--<a class="title-review" href="#">Meizu M3 Note</a>--%>
-        <%--<p class="main-review">--%>
-        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
-        <%--<span style='color:gray;'>4 099</span>--%>
-        <%--</span>--%>
-        <%--&nbsp;2 299 <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
-        <%--<a class="btn small btn_in_section" href="#"--%>
-        <%--onclick="">Купить</a>--%>
-        <%--</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3" id="cell-4">--%>
-        <%--<div class="cell-on-main">--%>
-        <%--<div class="in-cell" id="cell-4-1">--%>
-        <%--<a href="#"><img src="http://urlid.ru/audk" alt="" height="240"></a>--%>
-        <%--<p class="font-review">Планшеты Apple</p>--%>
-        <%--<a class="title-review" href="#">Apple iPad Air 2</a>--%>
-        <%--<p class="main-review">--%>
-        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
-        <%--<span style='color:gray;'>12 000</span>--%>
-        <%--</span>--%>
-        <%--&nbsp;10 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
-        <%--<a class="btn small btn_in_section" href="#"--%>
-        <%--onclick="">Купить</a>--%>
-        <%--</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3" id="cell-5">--%>
-        <%--<div class="cell-on-main">--%>
-        <%--<div class="in-cell" id="cell-4-2">--%>
-        <%--<a href="#"><img src="http://urlid.ru/audl" alt="" height="240"></a>--%>
-        <%--<p class="font-review">Планшеты Xiaomi</p>--%>
-        <%--<a class="title-review" href="#">Xiaomi MiPad 2 </a>--%>
-        <%--<p class="main-review">--%>
-        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
-        <%--<span style='color:gray;'>4 700</span>--%>
-        <%--</span>--%>
-        <%--&nbsp;3 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
-        <%--<a class="btn small btn_in_section" href="#"--%>
-        <%--onclick="">Купить</a>--%>
-        <%--</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="col-lg-3" id="cell-6">--%>
-        <%--<div class="cell-on-main">--%>
-        <%--<div class="in-cell" id="cell-4-3">--%>
-        <%--<a href="#"><img src="http://urlid.ru/audm" alt="" height="240"></a>--%>
-        <%--<p class="font-review">Смартфоны Apple</p>--%>
-        <%--<a class="title-review" href="#">iPhone 7 (Jet Black)</a>--%>
-        <%--<p class="main-review">--%>
-        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
-        <%--<span style='color:gray;'>35 000</span>--%>
-        <%--</span>--%>
-        <%--&nbsp;11 199 <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
-        <%--<a class="btn small btn_in_section" href="#"--%>
-        <%--onclick="">Купить</a>--%>
-        <%--</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
     </div>
     <div class="bottom-block">
         <p>В своем выступлении Стив призвал выпускников следовать их мечтам и несмотря на неудачи никогда не сдаваться

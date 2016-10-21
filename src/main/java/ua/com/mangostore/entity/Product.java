@@ -17,8 +17,8 @@ public class Product {
     @Column(nullable = false, name = "TYPE")
     private String type;
 
-    @Column(nullable = false, name = "BRAND_NAME")
-    private String brandName;
+    @Column(nullable = false, name = "BRAND")
+    private String brand;
 
     @Column(nullable = false, name = "FULL_PRICE")
     private double fullPrice;
@@ -50,10 +50,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productTitle, String type, String brandName, double fullPrice, double salePrice) {
+    public Product(String productTitle, String type, String brand, double fullPrice, double salePrice) {
         this.productTitle = productTitle;
         this.type = type;
-        this.brandName = brandName;
+        this.brand = brand;
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
     }
@@ -63,7 +63,7 @@ public class Product {
                    String specification, String image) {
         this.productTitle = productTitle;
         this.type = type;
-        this.brandName = brandName;
+        this.brand = brandName;
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
         this.specification = specification;
@@ -102,12 +102,12 @@ public class Product {
         this.type = type;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public long getProductId() {
@@ -161,7 +161,7 @@ public class Product {
         if (Double.compare(product.salePrice, salePrice) != 0) return false;
         if (!productTitle.equals(product.productTitle)) return false;
         if (type != null ? !type.equals(product.type) : product.type != null) return false;
-        return brandName != null ? brandName.equals(product.brandName) : product.brandName == null;
+        return brand != null ? brand.equals(product.brand) : product.brand == null;
 
     }
 
@@ -171,7 +171,7 @@ public class Product {
         long temp;
         result = productTitle.hashCode();
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (brandName != null ? brandName.hashCode() : 0);
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
         temp = Double.doubleToLongBits(fullPrice);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(salePrice);
@@ -184,7 +184,7 @@ public class Product {
         return "Product{" +
                 "productTitle='" + productTitle + '\'' +
                 ", type='" + type + '\'' +
-                ", brandName='" + brandName + '\'' +
+                ", brandName='" + brand + '\'' +
                 ", fullPrice=" + fullPrice +
                 ", salePrice=" + salePrice +
                 ", specification='" + specification + '\'' +

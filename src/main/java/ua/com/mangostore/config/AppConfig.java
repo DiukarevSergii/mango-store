@@ -17,8 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
 @Configuration
 @EnableTransactionManagement
 @EnableWebMvc
@@ -108,9 +106,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
      *
      * @return Объект класса CommonsMultipartResolver для временного сохранения файлов.
      */
-    @Bean(name = "multipartResolver")
+    @Bean
     public CommonsMultipartResolver createMultipartResolver() {
-        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("utf-8");
         return resolver;
     }
