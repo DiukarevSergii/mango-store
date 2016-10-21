@@ -48,21 +48,38 @@
         <h3>Лидеры продаж</h3>
         <div class="col-lg-3" id="cell-1">
             <div class="cell-on-main" id="cell-1-1">
+
                 <div class="in-cell" id="in-cell-1">
-                    <a href="#"><img src="http://urlid.ru/audh" alt="" height="240">
+                    <a href="#"><img src="${imageURL_iPhone7}" alt="" height="240">
                     </a>
                     <p class="font-review">Смартфоны Apple</p>
-                    <a class="title-review" href="#">iPhone 7 (Jet Black)</a>
+                    <a class="title-review" href="#">${title_iPhone7}</a>
                     <p class="main-review">
                         <span style='color:#f6731c;text-decoration:line-through'>
-                            <span style='color:gray;'>35 000</span>
+                            <span style='color:gray;'>${full_price_iPhone7}</span>
                         </span>
-                        &nbsp;17 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>
+                        &nbsp;${sale_price_iPhone7} <sup style="font-size:12px; margin-left:-5px;">грн</sup>
                         <a class="btn small btn_in_section" href="#"
                            onclick="">Купить</a>
                     </p>
 
                 </div>
+
+                <%--<div class="in-cell" id="in-cell-1">--%>
+                    <%--<a href="#"><img src="http://urlid.ru/audh" alt="" height="240">--%>
+                    <%--</a>--%>
+                    <%--<p class="font-review">Смартфоны Apple</p>--%>
+                    <%--<a class="title-review" href="#">iPhone 7 (Jet Black)</a>--%>
+                    <%--<p class="main-review">--%>
+                        <%--<span style='color:#f6731c;text-decoration:line-through'>--%>
+                            <%--<span style='color:gray;'>35 000</span>--%>
+                        <%--</span>--%>
+                        <%--&nbsp;17 999 <sup style="font-size:12px; margin-left:-5px;">грн</sup>--%>
+                        <%--<a class="btn small btn_in_section" href="#"--%>
+                           <%--onclick="">Купить</a>--%>
+                    <%--</p>--%>
+
+                <%--</div>--%>
             </div>
         </div>
         <div class="col-lg-3" id="cell-2">

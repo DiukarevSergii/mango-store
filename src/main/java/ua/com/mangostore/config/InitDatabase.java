@@ -29,25 +29,30 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
 
         Product product1 = new Product("iPhone 7 (Jet Black)", "Smartphone", "Apple", 35_00, 17_999);
-        product1.setImage("http://urlid.ru/audh");
+        Product product3= new Product("iPhone 7 (Jet Black)", "Smartphone", "Apple", 35_00, 17_999);
+        System.out.println(product1.equals(product3));
+        product1.setImageURL("http://urlid.ru/audh");
         product1.setSpecification("");
         Product product2 = new Product("iPhone 5 (Jet Black)", "Smartphone", "Apple", 35_00, 17_999);
-        product2.setImage("http://urlid.ru/audh");
+        product2.setImageURL("http://urlid.ru/audh");
         product2.setSpecification("");
-//        Product product2 = new Product("Meizu M2", "Smartphone", "Meizu", 4500);
-//        Product product3 = new Product("Meizu M3", "Smartphone", "Meizu", 4000);
 
+
+        productService.addProduct(product1);
+        productService.addProduct(product1);
         productService.addProduct(product1);
         productService.addProduct(product2);
 
-//        productService.addProduct(product2);
-//        productService.addProduct(product3);
+        Order order1 = new Order();
+        order1.addProduct(product1);
+        order1.addProduct(product1);
+        order1.addProduct(product2);
+        orderService.addOrder(order1);
 
-        Order order = new Order();
-        order.addProduct(product1);
-        order.addProduct(product2);
-        orderService.addOrder(order);
-        orderService.addOrder(order);
+        Order order2 = new Order();
+        order2.addProduct(product1);
+        order2.addProduct(product2);
+        orderService.addOrder(order2);
 
         System.out.println("Finish!");
     }

@@ -1,8 +1,6 @@
 package ua.com.mangostore.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -31,14 +29,27 @@ public class Product {
     @Column(nullable = false, name = "SPECIFICATION")
     private String specification;
 
-    @Column(nullable = false, name = "IMAGE")
-    private String image;
+    @Column(nullable = false, name = "IMAGE_URL")
+    private String imageURL;
 
-    @ManyToMany()
-    @JoinTable(name = "ProductOrder",
-            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")})
-    List<Order> orders = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
+    Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    //
+//    @ManyToMany()
+//    @JoinTable(name = "ProductOrder",
+//            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")})
+//    List<Order> orders = new ArrayList<>();
 
     public Product() {
     }
@@ -60,15 +71,15 @@ public class Product {
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
         this.specification = specification;
-        this.image = image;
+        this.imageURL = image;
     }
 
-    public void addOrder(Order order) {
-        if (!orders.contains(order))
-            orders.add(order);
-        if (!order.products.contains(this))
-            order.products.add(this);
-    }
+//    public void addOrder(Order order) {
+//        if (!orders.contains(order))
+//            orders.add(order);
+//        if (!order.products.contains(this))
+//            order.products.add(this);
+//    }
 
     public double getPrice() {
         return fullPrice;
@@ -102,13 +113,13 @@ public class Product {
         this.brandName = brandName;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(List<Order> orders) {
+//        this.orders = orders;
+//    }
 
     public long getProductId() {
         return productId;
@@ -142,12 +153,31 @@ public class Product {
         this.specification = specification;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!productTitle.equals(product.productTitle)) return false;
+        return order != null ? order.equals(product.order) : product.order == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = productTitle.hashCode();
+        result = 31 * result + (order != null ? order.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -159,7 +189,7 @@ public class Product {
                 ", fullPrice=" + fullPrice +
                 ", salePrice=" + salePrice +
                 ", specification='" + specification + '\'' +
-                ", image='" + image + '\'' +
+                ", imageURL='" + imageURL + '\'' +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
@@ -20,9 +21,17 @@ public class MainController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
+
+        Product iphone7 = productService.getByName("iPhone 7 (Jet Black)");
+
+        modelAndView.addObject("title_iPhone7", iphone7.getProductTitle());
+        modelAndView.addObject("imageURL_iPhone7", iphone7.getImageURL());
+        modelAndView.addObject("sale_price_iPhone7", iphone7.getSalePrice());
+        modelAndView.addObject("full_price_iPhone7", iphone7.getFullPrice());
+
         modelAndView.setViewName("index");
         return modelAndView;
     }

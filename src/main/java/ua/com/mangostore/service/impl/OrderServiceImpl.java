@@ -46,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    @Override
     @Transactional
     public int getSize() {
         return orderRepository.findAll().size();

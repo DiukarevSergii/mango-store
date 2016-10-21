@@ -18,6 +18,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product addProduct(Product product) {
+        if (getAll().contains(product))
+            return product;
         Product saveProduct = productRepository.saveAndFlush(product);
         return saveProduct;
     }
