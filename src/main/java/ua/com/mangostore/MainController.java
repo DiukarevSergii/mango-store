@@ -41,9 +41,9 @@ public class MainController {
 
         modelAndView.addObject("cart_size", orderService.getSize());
 
-        List<ProductOnMain> productOnMains = new ArrayList<>();
+        List<ProductOnMain> productsOnMain = new ArrayList<>();
         for (Product product : productService.getAll()) {
-            if (product.getOnMain() != null) {
+            if (product.getOnMain().equals("Y")) {
                 ProductOnMain productOnMain = new ProductOnMain();
                 productOnMain.setProductTitle(product.getProductTitle());
                 productOnMain.setImageURL(product.getImageURL());
@@ -51,10 +51,10 @@ public class MainController {
                 productOnMain.setBrand(product.getBrand());
                 productOnMain.setSalePrice(df.format(product.getSalePrice()));
                 productOnMain.setFullPrice(df.format(product.getFullPrice()));
-                productOnMains.add(productOnMain);
+                productsOnMain.add(productOnMain);
             }
         }
-        modelAndView.addObject("modelList", productOnMains);
+        modelAndView.addObject("productsOnMain", productsOnMain);
         modelAndView.setViewName("index");
                 return modelAndView;
     }

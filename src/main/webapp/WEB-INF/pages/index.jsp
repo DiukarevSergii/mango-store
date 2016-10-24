@@ -39,16 +39,16 @@
 
     <div class="slider">
         <a href="#">
-            <img src="http://urlid.ru/auco" alt="">
+            <img src="https://raw.githubusercontent.com/DiukarevSergii/MangoStore/master/src/main/webapp/WEB-INF/img/meizu-mx6-slider-1000x343.jpg" alt="">
         </a>
     </div>
 
-    <jsp:include page="/WEB-INF/pages/template/right-block-1.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
 
     <div class="main block">
         <h3>Лидеры продаж</h3>
 
-        <c:forEach items="${modelList}" var="product">
+        <c:forEach items="${productsOnMain}" var="product">
             <div class="col-lg-3" id="cell-1">
                 <div class="cell-on-main" id="cell-1-1">
 

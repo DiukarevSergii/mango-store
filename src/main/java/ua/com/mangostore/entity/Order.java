@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "Orders")
 public class Order {
-
     @Id
     @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -50,8 +49,15 @@ public class Order {
       public void addProduct(Product product){
           products.add(product);
           if(product.getOrder() != this){
+              product.setOnMain("");
+              product.setQuantity(1);
               product.setOrder(this);
+          } else {
+              product.setQuantity(product.getQuantity() + 1);
+
           }
+          setOrderQuantity(products.size());
+          setOrderPrice(getOrderPrice() + product.getPrice());
       }
 
     public Employee getEmployee() {

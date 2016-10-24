@@ -28,7 +28,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         System.out.println("Start init!");
 
         Product product1 = new Product("iPhone 7 (Jet Black)", "Смартфоны", "Apple", 35_000, 17_999);
-        product1.setImageURL("http://urlid.ru/audh");
+        product1.setImageURL("https://raw.githubusercontent.com/DiukarevSergii/MangoStore/master/src/main/webapp/WEB-INF/img/apple-iphone-7.jpg");
         product1.setSpecification("");
         product1.setOnMain("Y");
 
@@ -64,12 +64,15 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product5);
         productService.addProduct(product6);
 
-//        Order order1 = new Order();
-//        order1.addProduct(product1);
-//        order1.addProduct(product1);
-//        order1.addProduct(product2);
-//        orderService.addOrder(order1);
-//
+        Order order1 = new Order();
+        order1.addProduct(product1);
+        order1.addProduct(product1);
+        order1.addProduct(product2);
+        order1.addProduct(product5);
+        order1.addProduct(product5);
+        order1.addProduct(product5);
+        orderService.addOrder(order1);
+
 //        Order order2 = new Order();
 //        order2.addProduct(product1);
 //        order2.addProduct(product2);

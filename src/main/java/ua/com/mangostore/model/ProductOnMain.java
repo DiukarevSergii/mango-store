@@ -1,5 +1,15 @@
 package ua.com.mangostore.model;
 
+import org.springframework.stereotype.Component;
+
+/**
+ * Класс описывает спикок товаров для отображения на главной странице.
+ * Помечен аннотациями @Component указывает, что клас является компонентом фреймворка Spring;
+ *
+ * @author Diukarev Sergii
+ * @see ua.com.mangostore.MainController
+ */
+@Component
 public class ProductOnMain {
     private String productTitle;
     private String type;

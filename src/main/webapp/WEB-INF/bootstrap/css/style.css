@@ -2,8 +2,8 @@
 
 body {
     bgcolor: "white";
-    background-image: url("../img/acoustic-branding.jpg");
-    /*background-image: url(http://fs104.www.ex.ua/get/845673152022/277602509/philips-nowire-branding.jpg);*/
+    /*background-image: url("../../img/acoustic-branding.jpg");*/
+    background-image: url(http://fs104.www.ex.ua/get/845673152022/277602509/philips-nowire-branding.jpg);
     background-position: 50% 0px;
     background-repeat: no-repeat;
     background-color: rgb(239, 239, 239);
@@ -187,37 +187,37 @@ h3 {
     padding-left: 26px;
 }
 
-#cell-2 {
-    margin-left: 12px;
-}
+/*#cell-2 {*/
+    /*margin-left: 12px;*/
+/*}*/
 
-#cell-3 {
-    margin-left: 12px;
-}
+/*#cell-3 {*/
+    /*margin-left: 12px;*/
+/*}*/
 
-#cell-4 {
-    margin-left: -12px;
-}
+/*#cell-4 {*/
+    /*margin-left: -12px;*/
+/*}*/
 
-#cell-5 {
-    margin-left: 12px;
-}
+/*#cell-5 {*/
+    /*margin-left: 12px;*/
+/*}*/
 
-#cell-6 {
-    margin-left: 12px;
-}
+/*#cell-6 {*/
+    /*margin-left: 12px;*/
+/*}*/
 
 .in-cell {
     margin-top: 15px;
 }
 
-#in-cell-2-1 {
-    margin-left: 40px;
-}
+/*#in-cell-2-1 {*/
+    /*margin-left: 40px;*/
+/*}*/
 
-#in-cell-2-2 {
-    margin-top: 0px;
-}
+/*#in-cell-2-2 {*/
+    /*margin-top: 0px;*/
+/*}*/
 
 .font-review {
     font-size: x-small;

@@ -35,6 +35,9 @@ public class Product {
     @Column(name = "ON_MAIN")
     private String onMain;
 
+    @Column(name = "QUANTITY")
+    private int quantity;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
     Order order;
@@ -68,6 +71,14 @@ public class Product {
         this.salePrice = salePrice;
         this.specification = specification;
         this.imageURL = image;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getOnMain() {
