@@ -32,11 +32,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     /**
      * Указывает где будут хранится ресурсы.
      *
-     * @param registry Объект класса ResourceHandlerRegistry с настройками для ресурсов.
+     * @param resource Объект класса ResourceHandlerRegistry с настройками для ресурсов.
      */
     @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+    public void addResourceHandlers(final ResourceHandlerRegistry resource) {
+        resource.addResourceHandler("/resources/" + "**").addResourceLocations("/resources/");
     }
 
     /**
