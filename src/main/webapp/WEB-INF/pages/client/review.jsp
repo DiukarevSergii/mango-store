@@ -4,27 +4,27 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>MANGO STORE | Shares</title>
+    <title>MANGO STORE | Review </title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
 
 <body>
 <div class="container">
+    <!-- TOP MENU -->
     <jsp:include page="/WEB-INF/pages/template/top-menu.jsp"/>
-
+    <!-- MIDDLE MENU -->
     <jsp:include page="/WEB-INF/pages/template/middle-menu.jsp"/>
-
+    <!-- BOTTOM MENU -->
     <jsp:include page="/WEB-INF/pages/template/bottom-menu.jsp"/>
-
+    <!-- RIGHT BLOCK -->
     <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
 
     <div class="main-block" style="height: 700px">
-        <h3>Акции компании МАНГО</h3>
-        </br>
-        <p>К сожалению пока нет действущих акций :(</p>
-        <p>Следите за обновлениями!</p>
+        <h3>Обзоры компании МАНГО</h3>
+        <p>Пока что нету обзоров :(</p>
     </div>
+    <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 </div>
 

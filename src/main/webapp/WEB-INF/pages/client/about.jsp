@@ -11,12 +11,13 @@
 
 <body>
 <div class="container">
+    <!-- TOP MENU -->
     <jsp:include page="/WEB-INF/pages/template/top-menu.jsp"/>
-
+    <!-- MIDDLE MENU -->
     <jsp:include page="/WEB-INF/pages/template/middle-menu.jsp"/>
-
+    <!-- BOTTOM MENU -->
     <jsp:include page="/WEB-INF/pages/template/bottom-menu.jsp"/>
-
+    <!-- RIGHT BLOCK -->
     <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
 
     <div class="main-block"  style="height: 700px">
@@ -35,6 +36,7 @@
         <p>* - Стив Джобс был одним из основателей и долгое время главным исполнительным директором Apple. </br>12 июня 2005
             года Стив выступил в Стэнфордском университете.</p>
     </div>
+    <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 </div>
 

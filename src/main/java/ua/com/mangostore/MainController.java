@@ -9,27 +9,47 @@ import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.model.ProductOnMain;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
+import ua.com.mangostore.config.InitDatabase;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс-контроллер основных страниц. К даному контроллеру и соответствующим
+ * страницам могут обращатсья все пользователи, независимо от ихних ролей.
+ * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
+ * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Методы класса работают с объектом, возвращенным handleRequest методом, является
+ * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
+ * Этот тип представляет Model и View в MVC шаблоне.
+ *
+ * @author Diukarev Sergii
+ * @see InitDatabase
+ * @see Product
+ * @see ProductService
+ * @see ProductOnMain
+ * @see OrderService
+ */
 @Controller
 public class MainController {
 
+    /**
+     * Объект сервиса для работы с заказами.
+     */
     private OrderService orderService;
+    /**
+     * Объект сервиса для работы с товарами.
+     */
     private ProductService productService;
 
-    @Autowired
-    public MainController(OrderService orderService, ProductService productService) {
-        this.orderService = orderService;
-        this.productService = productService;
-    }
+    /**
+     * Объект {@link DecimalFormat} для  форматирования десятичных чисел.
+     */
+    static DecimalFormat df = new DecimalFormat();
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public ModelAndView home(ModelAndView modelAndView) {
-        DecimalFormat df = new DecimalFormat();
+    {
         df.setGroupingUsed(true);
         df.setGroupingSize(3);
 
@@ -38,7 +58,31 @@ public class MainController {
         decimalFormatSymbols.setGroupingSeparator(' ');
 
         df.setDecimalFormatSymbols(decimalFormatSymbols);
+    }
 
+    /**
+     * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
+     * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
+     *
+     * @param productService      Объект сервиса для работы с товарами.
+     * @param orderService        Объект сервиса для работы с заказами.
+     */
+    @Autowired
+    public MainController(OrderService orderService, ProductService productService) {
+        this.orderService = orderService;
+        this.productService = productService;
+    }
+
+    /**
+     * Возвращает главную cтраницу сайта "index". Для формирования страницы с базы подгружаются
+     * категории товаров отмеченных при старте в {@link InitDatabase}.
+     * URL запроса {"/"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
 
         List<ProductOnMain> productsOnMain = new ArrayList<>();
@@ -59,93 +103,127 @@ public class MainController {
                 return modelAndView;
     }
 
+    /**
+     * Возвращает страницу "client/about" - страница описания компании.
+     * URL запроса "/about", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String onAbout() {
-        return "highest-menu/about";
+        return "client/about";
     }
 
+    /**
+     * Возвращает страницу "client/stores_addresses" - страница описания адрессов магазинов компаниии.
+     * URL запроса "/stores_addresses", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/stores_addresses", method = RequestMethod.GET)
     public String onAddresses() {
-        return "highest-menu/stores_addresses";
+        return "client/stores_addresses";
     }
 
-    @RequestMapping(value = "/shares", method = RequestMethod.GET)
+    /**
+     * Возвращает страницу "client/sales" - страница описания товаров находящихся на распродаже.
+     * URL запроса "/sales", метод GET.
+     *
+     * @return URL страницы.
+     */
+    @RequestMapping(value = "/sales", method = RequestMethod.GET)
     public String onShares() {
-        return "highest-menu/shares";
+        return "client/sales";
     }
 
+    /**
+     * Возвращает страницу "client/payment" - страница описания способов оплаты товаров.
+     * URL запроса "/payment", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/payment", method = RequestMethod.GET)
     public String onPayment() {
-        return "highest-menu/payment";
+        return "client/payment";
     }
 
+    /**
+     * Возвращает страницу "client/delivery" - страница описания доставки товаров.
+     * URL запроса "/delivery", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/delivery", method = RequestMethod.GET)
     public String onDelivery() {
-        return "highest-menu/delivery";
+        return "client/delivery";
     }
 
+    /**
+     * Возвращает страницу "client/service-center" - страница описания сервис центров компании.
+     * URL запроса "/service-center", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/service-center", method = RequestMethod.GET)
     public String onService() {
-        return "highest-menu/service-center";
+        return "client/service-center";
     }
 
+    /**
+     * Возвращает страницу "client/support" - страница описания тех поддержки.
+     * URL запроса "/support", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/support", method = RequestMethod.GET)
     public String onSupport() {
-        return "highest-menu/support";
+        return "client/support";
     }
 
+    /**
+     * Возвращает страницу "client/firmware" - страница описания доступных версий для смартфонов.
+     * URL запроса "/firmware", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/firmware", method = RequestMethod.GET)
     public String onFirmware() {
-        return "highest-menu/firmware";
+        return "client/firmware";
     }
 
+    /**
+     * Возвращает страницу "client/news" - страница описания новостей компании.
+     * URL запроса "/news", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String onNews() {
-        return "highest-menu/news";
+        return "client/news";
     }
 
+    /**
+     * Возвращает страницу "client/review" - страница описания обзоров товаров компании.
+     * URL запроса "/review", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/review", method = RequestMethod.GET)
     public String onReview() {
-        return "highest-menu/review";
+        return "client/review";
     }
 
+    /**
+     * Возвращает страницу "client/login" - страница описания входа в личный кабинет.
+     * URL запроса "/login", метод GET.
+     *
+     * @return URL страницы.
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String onLogin() {
-        return "highest-menu/login";
+        return "client/login";
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String onLogin(Model model, @RequestParam String login, @RequestParam String password) throws SQLException {
-//        String log = login;
-//        String pas = password;
-//        if (flag) {
-//            try {
-//                initDB();
-//                flag = false;
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println("ok");
-//        }
-//        preparedStatement.setString(1, log);
-//        preparedStatement.setString(2, pas);
-//        preparedStatement.executeUpdate();
-//        return "result";
-//    }
-//
-//    private static void initDB() throws SQLException {
-//        connection = DriverManager.getConnection(
-//                res.getString("db.url"), res.getString("db.user"), res.getString("db.password"));
-//        Statement statement = connection.createStatement();
-//        statement.execute("DROP TABLE IF EXISTS LogPas");
-//        statement.execute("CREATE TABLE LogPas " +
-//                "(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-//                "login VARCHAR (10) NOT NULL," +
-//                "password VARCHAR (10) NOT NULL,");
-//
-//        preparedStatement = connection.prepareStatement("INSERT INTO Apartments " +
-//                "(login, password) VALUES (?,?)");
-//    }
 }
 
 

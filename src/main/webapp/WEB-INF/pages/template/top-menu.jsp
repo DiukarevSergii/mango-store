@@ -13,7 +13,7 @@
                 </ul>
             </li>
             <li class="topbutton">
-                <a href="/shares">Акции</a>
+                <a href="/sales">Акции</a>
             </li>
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">Клиентам<b class="caret"></b></a>
