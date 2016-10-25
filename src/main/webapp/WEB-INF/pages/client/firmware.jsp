@@ -22,7 +22,7 @@
     <div class="main-block" style="height: 700px">
         <h3>Прошивки для смартфонов</h3>
         <p>Если вам необходимо перепрошить ваш девайс вы всегда можете сдетать это зайдя в наш <a
-                href="/stres_addresses">магазин</a></p>
+                href="/stores_addresses">магазин</a></p>
     </div>
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
