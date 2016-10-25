@@ -4,7 +4,7 @@
 <div class="row middle">
     <div class="col-lg-7 logo">
         <a href="/">
-            <img src="https://raw.githubusercontent.com/DiukarevSergii/MangoStore/master/src/main/webapp/WEB-INF/img/logo.png" style="width: 250px;">
+            <img src="/resources/img/logo.png" style="width: 250px;">
         </a>
     </div>
     <div class="col-lg-3">
@@ -17,7 +17,7 @@
     </div>
     <div class="col-lg-1 pull-right">
         <div class="basket">
-            <img src="https://raw.githubusercontent.com/DiukarevSergii/MangoStore/master/src/main/webapp/WEB-INF/img/basket.png" alt="basket">
+            <img src="/resources/img/basket.png" alt="basket">
             &nbsp; <a href="/cart"> Корзина: ${cart_size} </a>
         </div>
 

@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
@@ -25,7 +27,7 @@
                 <tbody>
                 <tr>
                     <td style="width: 20px;">
-                        <pre><img src="http://s61.radikal.ru/i174/1610/45/9ec46161b88f.png" alt="" width="45"
+                        <pre><img src="/resources/img/payer.png" alt="" width="45"
                                   height="31"></pre>
                     </td>
                     <td>
@@ -37,7 +39,7 @@
                 </tr>
                 <tr>
                     <td style="width: 20px;">
-                    <pre style="margin-top: -18px"><br><img src="http://s015.radikal.ru/i332/1610/db/9f1a6e78b500.png" alt="" width="40"
+                    <pre style="margin-top: -18px"><br><img src="/resources/img/credit-card.png" alt="" width="40"
                                   height="28"></pre>
                     </td>
                     <td>

@@ -16,7 +16,7 @@
                 <a href="/shares">Акции</a>
             </li>
             <li class="dropdown">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Клиентам<b class="caret"></b></a>
+                <a data-toggle="dropdown" class="dropdown-toggle">Клиентам<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="/payment">Оплата</a></li>
                     <li><a href="/delivery">Доставка</a></li>

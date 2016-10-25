@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
@@ -20,7 +22,7 @@
     <div class="main-block" style="height: 700px">
         <h3>Акции компании МАНГО</h3>
         </br>
-        <p>К сожалению пока нет действущих акция :(</p>
+        <p>К сожалению пока нет действущих акций :(</p>
         <p>Следите за обновлениями!</p>
     </div>
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>

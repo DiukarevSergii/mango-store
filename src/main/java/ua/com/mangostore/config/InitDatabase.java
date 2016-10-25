@@ -28,32 +28,32 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         System.out.println("Start init!");
 
         Product product1 = new Product("iPhone 7 (Jet Black)", "Смартфоны", "Apple", 35_000, 17_999);
-        product1.setImageURL("https://raw.githubusercontent.com/DiukarevSergii/MangoStore/master/src/main/webapp/WEB-INF/img/apple-iphone-7.jpg");
+        product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");
         product1.setSpecification("");
         product1.setOnMain("Y");
 
-        Product product2 = new Product("Samsung Galaxy S6", "Смартфоны", "Samsung", 18_000, 11_199);
-        product2.setImageURL("http://urlid.ru/audg");
+        Product product2 = new Product("Samsung Galaxy A7", "Смартфоны", "Samsung", 11_199, 7_999);
+        product2.setImageURL("http://localhost:8080/resources/img/samsung_a710f_galaxy_a7_400x480.jpg");
         product2.setSpecification("");
         product2.setOnMain("Y");
 
-        Product product3 = new Product("Meizu M3 Note", "Смартфоны", "Apple", 4_099, 2_299);
-        product3.setImageURL("http://urlid.ru/audi");
+        Product product3 = new Product("Meizu MX6", "Смартфоны", "Meizu", 15_099, 10_299);
+        product3.setImageURL("http://localhost:8080/resources/img/meizu_mx6_400x480.jpg");
         product3.setSpecification("");
         product3.setOnMain("Y");
 
         Product product4 = new Product("Apple iPad Air 2", "Планшеты", "Apple", 12_000, 10_999);
-        product4.setImageURL("http://urlid.ru/audk");
+        product4.setImageURL("http://localhost:8080/resources/img/apple_ipad_air-2_400x480.jpg");
         product4.setSpecification("");
         product4.setOnMain("Y");
 
         Product product5 = new Product("Xiaomi MiPad 2", "Планшеты", "Xiaomi", 4_700, 3_999);
-        product5.setImageURL("http://urlid.ru/audl");
+        product5.setImageURL("http://localhost:8080/resources/img/xiaomi_mipad_2_16Gb_400x480.jpg");
         product5.setSpecification("");
         product5.setOnMain("Y");
 
         Product product6 = new Product("Samsung Galaxy Tab S2", "Планшеты", "Samsung", 5_000, 3_999);
-        product6.setImageURL("http://urlid.ru/audm");
+        product6.setImageURL("http://localhost:8080/resources/img/samsung_galaxy_tab_s2_400x480.jpg");
         product6.setSpecification("");
         product6.setOnMain("Y");
 

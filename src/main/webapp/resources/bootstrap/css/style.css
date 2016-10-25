@@ -180,14 +180,20 @@ h3 {
 
 #cell-1-1 {
     padding-left: 30px;
+    padding-right: 20px;
 }
 
 #cell-1-1:hover {
     padding-left: 26px;
+    padding-right: 16px;
 }
 
 .in-cell {
     margin-top: 15px;
+}
+
+.image-on-main {
+    margin-left: -10px;
 }
 
 .font-review {
