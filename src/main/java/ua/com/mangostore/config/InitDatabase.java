@@ -56,6 +56,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         product6.setImageURL("http://localhost:8080/resources/img/samsung_galaxy_tab_s2_400x480.jpg");
         product6.setSpecification("");
         product6.setOnMain("Y");
+        product6.setSpecification("this is on main page");
 
         productService.addProduct(product1);
         productService.addProduct(product2);
@@ -73,10 +74,10 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         order1.addProduct(product5);
         orderService.addOrder(order1);
 
-//        Order order2 = new Order();
-//        order2.addProduct(product1);
-//        order2.addProduct(product2);
-//        orderService.addOrder(order2);
+        Order order2 = new Order();
+        order2.addProduct(product1);
+        order2.addProduct(product2);
+        orderService.addOrder(order2);
 
         System.out.println("Finish!");
     }

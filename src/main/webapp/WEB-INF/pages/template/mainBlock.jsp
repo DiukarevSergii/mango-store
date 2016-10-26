@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="main block">
+<div class="main block" style="margin-bottom: 47px">
     <h3 style="padding-left: 5px;"><c:out value="${title}"/></h3>
     <c:forEach items="${groupOfProducts}" var="product">
-        <div class="col-lg-3" id="cell-1">
+        <div class="col-md-3 col-lg-3" id="cell-1">
             <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
                     <div class="image-on-main">
@@ -27,3 +27,5 @@
         </div>
     </c:forEach>
 </div>
+<div class="col-lg-12" style="margin-bottom: 20px"></div>
+

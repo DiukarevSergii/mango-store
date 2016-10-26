@@ -3,7 +3,7 @@ package ua.com.mangostore.model;
 import org.springframework.stereotype.Component;
 
 /**
- * Класс описывает спикок товаров для отображения на главной странице.
+ * Класс описывает спикок товаров для отображения на странице.
  * Помечен аннотациями @Component указывает, что клас является компонентом фреймворка Spring;
  *
  * @author Diukarev Sergii
