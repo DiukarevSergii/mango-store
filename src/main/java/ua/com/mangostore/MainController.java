@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.mangostore.config.InitDatabase;
 import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.model.ProductOnMain;
+import ua.com.mangostore.model.GroupOfProducts;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.config.InitDatabase;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -29,7 +29,7 @@ import java.util.List;
  * @see InitDatabase
  * @see Product
  * @see ProductService
- * @see ProductOnMain
+ * @see GroupOfProducts
  * @see OrderService
  */
 @Controller
@@ -64,8 +64,8 @@ public class MainController {
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
      * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
      *
-     * @param productService      Объект сервиса для работы с товарами.
-     * @param orderService        Объект сервиса для работы с заказами.
+     * @param productService Объект сервиса для работы с товарами.
+     * @param orderService   Объект сервиса для работы с заказами.
      */
     @Autowired
     public MainController(OrderService orderService, ProductService productService) {
@@ -84,23 +84,24 @@ public class MainController {
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Лидеры продаж");
 
-        List<ProductOnMain> productsOnMain = new ArrayList<>();
+        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
         for (Product product : productService.getAll()) {
             if (product.getOnMain().equals("Y")) {
-                ProductOnMain productOnMain = new ProductOnMain();
+                GroupOfProducts productOnMain = new GroupOfProducts();
                 productOnMain.setProductTitle(product.getProductTitle());
                 productOnMain.setImageURL(product.getImageURL());
                 productOnMain.setType(product.getType());
                 productOnMain.setBrand(product.getBrand());
                 productOnMain.setSalePrice(df.format(product.getSalePrice()));
                 productOnMain.setFullPrice(df.format(product.getFullPrice()));
-                productsOnMain.add(productOnMain);
+                groupOfProducts.add(productOnMain);
             }
         }
-        modelAndView.addObject("productsOnMain", productsOnMain);
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("index");
-                return modelAndView;
+        return modelAndView;
     }
 
     /**

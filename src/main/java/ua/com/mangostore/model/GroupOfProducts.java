@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @see ua.com.mangostore.MainController
  */
 @Component
-public class ProductOnMain {
+public class GroupOfProducts {
     private String productTitle;
     private String type;
     private String brand;
