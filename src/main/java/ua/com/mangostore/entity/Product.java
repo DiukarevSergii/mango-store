@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "SALE_PRICE")
     private double salePrice;
 
-    @Column(name = "SPECIFICATION")
+    @Column(name = "SPECIFICATION", length = 5000)
     private String specification;
 
     @Column(name = "IMAGE_URL")

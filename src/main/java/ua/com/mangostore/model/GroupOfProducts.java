@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GroupOfProducts {
+    private long productId;
     private String productTitle;
     private String type;
     private String brand;
@@ -18,6 +19,14 @@ public class GroupOfProducts {
     private String salePrice;
     private String specification;
     private String imageURL;
+
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
 
     public String getProductTitle() {
         return productTitle;

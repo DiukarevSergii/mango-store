@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import ua.com.mangostore.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("select p from Product p where p.productTitle = :name")
+    @Query("select p from Product p where p.productTitle = :name and p.order is null")
     Product findByName(@Param("name") String name);
 
     @Query("select p from Product p where p.productId = :id")

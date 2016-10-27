@@ -40,7 +40,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         Product product3 = new Product("Meizu MX6", "Смартфоны", "Meizu", 15_099, 10_299);
         product3.setImageURL("http://localhost:8080/resources/img/meizu_mx6_400x480.jpg");
         product3.setSpecification("");
-        product3.setOnMain("Y");
+//        product3.setSpecification("icationspecifnspecification specificationspecifnspecification ");
+        product3.setOnMain("");
 
         Product product4 = new Product("Apple iPad Air 2", "Планшеты", "Apple", 12_000, 10_999);
         product4.setImageURL("http://localhost:8080/resources/img/apple_ipad_air-2_400x480.jpg");
@@ -58,8 +59,15 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         product6.setOnMain("Y");
         product6.setSpecification("this is on main page");
 
+        Product product7= new Product("Meizu M3s", "Смартфоны", "Meizu", 5_000, 3_999);
+        product7.setImageURL("http://localhost:8080/resources/img/meizu_m3s_400x480.jpg");
+        product7.setSpecification("");
+        product7.setOnMain("Y");
+        product7.setSpecification("this is not on main page");
+
         productService.addProduct(product1);
         productService.addProduct(product2);
+        productService.addProduct(product7);
         productService.addProduct(product3);
         productService.addProduct(product4);
         productService.addProduct(product5);

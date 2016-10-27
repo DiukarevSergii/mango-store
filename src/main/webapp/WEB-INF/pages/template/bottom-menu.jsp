@@ -21,7 +21,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="/lg">LG</a>
+                <a href="/meizu">Meizu</a>
             </li>
             <li class="dropdown">
                 <a href="#">Xiaomi</a>

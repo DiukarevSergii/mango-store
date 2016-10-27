@@ -10,12 +10,8 @@
 
 <body>
 <div class="container">
-    <!-- TOP MENU -->
-    <jsp:include page="/WEB-INF/pages/template/top-menu.jsp"/>
-    <!-- MIDDLE MENU -->
-    <jsp:include page="/WEB-INF/pages/template/middle-menu.jsp"/>
-    <!-- BOTTOM MENU -->
-    <jsp:include page="/WEB-INF/pages/template/bottom-menu.jsp"/>
+    <!-- MENU -->
+    <jsp:include page="/WEB-INF/pages/template/menu.jsp"/>
     <!-- RIGHT BLOCK -->
     <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
 

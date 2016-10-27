@@ -2,6 +2,7 @@ package ua.com.mangostore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -86,10 +87,18 @@ public class MainController {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Лидеры продаж");
         List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        Product sliderProduct = null;
         for (Product product : productService.getAll()) {
             if (product.getOnMain().equals("Y")) {
                 createGroupOfProduct(groupOfProducts, product);
             }
+            if (product.getProductTitle().equals("Meizu MX6")) {
+                sliderProduct = product;
+            }
+        }
+        if (sliderProduct != null) {
+            modelAndView.addObject("meizu_id", sliderProduct.getProductId());
+            modelAndView.addObject("meizu_alt", sliderProduct.getProductTitle());
         }
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("index");
@@ -139,18 +148,18 @@ public class MainController {
     /**
      * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
      * соответствующие товары.
-     * URL запроса {"/lg"}, метод GET.
+     * URL запроса {"/meizu"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = {"/lg"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/meizu"}, method = RequestMethod.GET)
     public ModelAndView lg(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
-        modelAndView.addObject("title", "LG");
+        modelAndView.addObject("title", "Meizu");
 
         List<GroupOfProducts> groupOfProducts = new ArrayList<>();
-        groupByBrand(groupOfProducts, "LG");
+        groupByBrand(groupOfProducts, "Meizu");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;
@@ -196,6 +205,7 @@ public class MainController {
     public ModelAndView smartphone(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Смартфоны");
+        modelAndView.addObject("slider_url", productService.getByName("Meizu MX6").getProductId());
 
         List<GroupOfProducts> groupOfProducts = new ArrayList<>();
 
@@ -218,6 +228,7 @@ public class MainController {
 
     private void createGroupOfProduct(List<GroupOfProducts> groupOfProducts, Product product) {
         GroupOfProducts groupOfProduct = new GroupOfProducts();
+        groupOfProduct.setProductId(product.getProductId());
         groupOfProduct.setProductTitle(product.getProductTitle());
         groupOfProduct.setImageURL(product.getImageURL());
         groupOfProduct.setType(product.getType());
@@ -225,6 +236,23 @@ public class MainController {
         groupOfProduct.setSalePrice(df.format(product.getSalePrice()));
         groupOfProduct.setFullPrice(df.format(product.getFullPrice()));
         groupOfProducts.add(groupOfProduct);
+    }
+
+    /**
+     * Возвращает страницу "client/product" с 1-м товаром с уникальним URL, который
+     * совпадает с входящим параметром url. URL запроса "/product_{url}", метод GET.
+     * В запросе в параметре url можно передавать как URL так и артикль товара.
+     *
+     * @param id           URL или id товара, который нужно вернуть на страницу.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/product{id}", method = RequestMethod.GET)
+    public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
+        Product product = productService.getById(id);
+        modelAndView.addObject("product", product);
+        modelAndView.setViewName("client/product");
+        return modelAndView;
     }
 
     /**
