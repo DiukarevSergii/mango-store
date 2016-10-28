@@ -188,13 +188,13 @@ public class Product {
             case "Смартфоны": {
                 this.setSpecification(
                         String.format("" +
-                                        "<br>Операционная система: %s" +
-                                        "<br>Процессор: %s" +
-                                        "<br>Дисплей: %s" +
-                                        "<br>Размеры: %s" +
-                                        "<br>Вес: %s" +
-                                        "<br>Основная камера: %s" +
-                                        "<br>Фронтальная камера: %s",
+                                        "<br><b>Операционная система:</b> %s" +
+                                        "<br><b>Процессор:</b> %s" +
+                                        "<br><b>Дисплей:</b> %s" +
+                                        "<br><b>Размеры:</b> %s" +
+                                        "<br><b>Вес:</b> %s" +
+                                        "<br><b>Основная камера:</b> %s" +
+                                        "<br><b>Фронтальная камера:</b> %s",
                                 os, processor, size, display,
                                 weight, mainCamera, frontCamera));
                 break;
