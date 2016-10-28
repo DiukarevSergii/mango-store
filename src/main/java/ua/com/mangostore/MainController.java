@@ -69,7 +69,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         Product sliderProduct = null;
         for (Product product : productService.getAll()) {
-            if (product.getOnMain().equals("Y")) {
+            if (!product.getOnMain().isEmpty() ) {
                groupOfProducts.add(product);
             }
             if (product.getProductTitle().equals("Meizu MX6")) {
@@ -209,7 +209,7 @@ public class MainController {
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/product{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/product-{id}", method = RequestMethod.GET)
     public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
         Product product = productService.getById(id);
         modelAndView.addObject("product", product);

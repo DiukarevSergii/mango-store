@@ -40,7 +40,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         Product product3 = new Product("Meizu MX6", "Смартфоны", "Meizu", 15_099, 10_299);
         product3.setImageURL("http://localhost:8080/resources/img/meizu_mx6_400x480.jpg");
         product3.setSpecification("");
-//        product3.setSpecification("icationspecifnspecification specificationspecifnspecification ");
         product3.setOnMain("");
 
         Product product4 = new Product("Apple iPad Air 2", "Планшеты", "Apple", 12_000, 10_999);
@@ -59,11 +58,32 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         product6.setOnMain("Y");
         product6.setSpecification("this is on main page");
 
-        Product product7= new Product("Meizu M3s", "Смартфоны", "Meizu", 5_000, 3_999);
+        Product product7 = new Product("Meizu M3s", "Смартфоны", "Meizu", 5_000, 3_999);
         product7.setImageURL("http://localhost:8080/resources/img/meizu_m3s_400x480.jpg");
-        product7.setSpecification("");
         product7.setOnMain("Y");
         product7.setSpecification("this is not on main page");
+
+        Product product8 = new Product("Meizu M3 Note 16GB Grey", "Смартфоны", "Meizu", 3_000, 3_000);
+        product8.setImageURL("http://localhost:8080/resources/img/meizu_m3s_400x480.jpg");
+        product8.setDescription(
+                "<br>Meizu M3s и M3 Note - это любовь в одно касание. Металлический корпус, объемное 2.5 D стекло и\n" +
+                        "лёгкость - а что ещё нужно супер-смартфону?\n" +
+                        "<br>" +
+                        "<br>Крутая начинка. И она здесь есть!\n" +
+                        "Функциональности этих смартфонов может\n" +
+                        "позавидовать любое устройство в этом\n" +
+                        "ценовом сегменте.\n" +
+                        "<br>" +
+                        "<br>Высокая производительсность, крутая камера,\n" +
+                        "великолепная графика и всё это в стильном,\n" +
+                        "тончайшем металлическом корпусе.");
+        product8.setSpecification(
+                "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5\"",
+                "153.6 х 75.5 х 8.2 мм", "163 г", "13 Мп ", "5 Мп");
+
+
+//                String os, String processor, String display, String size
+//                String weight, String mainCamera, String frontCamera
 
         productService.addProduct(product1);
         productService.addProduct(product2);
@@ -72,6 +92,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product4);
         productService.addProduct(product5);
         productService.addProduct(product6);
+        productService.addProduct(product8);
 
         Order order1 = new Order();
         order1.addProduct(product1);
@@ -89,4 +110,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         System.out.println("Finish!");
     }
+
+
 }

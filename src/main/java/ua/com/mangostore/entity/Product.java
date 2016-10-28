@@ -28,6 +28,9 @@ public class Product {
     @Column(name = "SALE_PRICE")
     private double salePrice;
 
+    @Column(name = "DESCRIPTION", length = 2000)
+    private String description;
+
     @Column(name = "SPECIFICATION", length = 5000)
     private String specification;
 
@@ -69,18 +72,7 @@ public class Product {
         this.brand = brand;
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
-    }
-
-    public Product(String productTitle, String type, String brandName,
-                   double fullPrice, double salePrice,
-                   String specification, String image) {
-        this.productTitle = productTitle;
-        this.type = type;
-        this.brand = brandName;
-        this.fullPrice = fullPrice;
-        this.salePrice = salePrice;
-        this.specification = specification;
-        this.imageURL = image;
+        this.onMain = "";
     }
 
     public Order getOrder() {
@@ -143,11 +135,11 @@ public class Product {
         return fullPrice;
     }
 
-    public String getFormatFullPrice(){
+    public String getFormatFullPrice() {
         return df.format(getFullPrice());
     }
 
-    public String getFormatSalePrice(){
+    public String getFormatSalePrice() {
         return df.format(getSalePrice());
     }
 
@@ -167,8 +159,12 @@ public class Product {
         return specification;
     }
 
-    public void setSpecification(String specification) {
-        this.specification = specification;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageURL() {
@@ -177,6 +173,57 @@ public class Product {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public void setSpecification(
+            String os, String processor, String display, String size,
+            String weight, String mainCamera, String frontCamera) {
+
+        switch (this.type) {
+
+            case "Смартфоны": {
+                this.setSpecification(
+                        String.format("" +
+                                        "<br>Операционная система: %s" +
+                                        "<br>Процессор: %s" +
+                                        "<br>Дисплей: %s" +
+                                        "<br>Размеры: %s" +
+                                        "<br>Вес: %s" +
+                                        "<br>Основная камера: %s" +
+                                        "<br>Фронтальная камера: %s",
+                                os, processor, size, display,
+                                weight, mainCamera, frontCamera));
+                break;
+            }
+            case "Планшеты": {
+                this.setSpecification(
+                        String.format(
+                                "2",
+                                os, processor, size, display,
+                                weight, mainCamera, frontCamera));
+                break;
+            }
+            case "Телевизоры": {
+                this.setSpecification(
+                        String.format(
+                                "",
+                                os, processor, size, display,
+                                weight, mainCamera, frontCamera));
+                break;
+            }
+            case "Mac": {
+                setSpecification(
+                        String.format(
+                                "",
+                                os, processor, size, display,
+                                weight, mainCamera, frontCamera));
+                break;
+            }
+        }
     }
 
     @Override
