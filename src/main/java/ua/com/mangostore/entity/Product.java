@@ -1,6 +1,8 @@
 package ua.com.mangostore.entity;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 @Entity
 @Table(name = "Products")
@@ -42,12 +44,20 @@ public class Product {
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
     Order order;
 
-    public Order getOrder() {
-        return order;
-    }
+    /**
+     * Объект {@link DecimalFormat} для  форматирования десятичных чисел.
+     */
+    static DecimalFormat df = new DecimalFormat();
 
-    public void setOrder(Order order) {
-        this.order = order;
+    {
+        df.setGroupingUsed(true);
+        df.setGroupingSize(3);
+
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+        decimalFormatSymbols.setZeroDigit('0');
+        decimalFormatSymbols.setGroupingSeparator(' ');
+
+        df.setDecimalFormatSymbols(decimalFormatSymbols);
     }
 
     public Product() {
@@ -73,6 +83,14 @@ public class Product {
         this.imageURL = image;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -87,14 +105,6 @@ public class Product {
 
     public void setOnMain(String onMain) {
         this.onMain = onMain;
-    }
-
-    public double getPrice() {
-        return fullPrice;
-    }
-
-    public void setPrice(double price) {
-        this.fullPrice = price;
     }
 
     public String getProductTitle() {
@@ -131,6 +141,14 @@ public class Product {
 
     public double getFullPrice() {
         return fullPrice;
+    }
+
+    public String getFormatFullPrice(){
+        return df.format(getFullPrice());
+    }
+
+    public String getFormatSalePrice(){
+        return df.format(getSalePrice());
     }
 
     public void setFullPrice(double fullPrice) {

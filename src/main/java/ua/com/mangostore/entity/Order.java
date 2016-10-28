@@ -57,7 +57,7 @@ public class Order {
 
           }
           setOrderQuantity(products.size());
-          setOrderPrice(getOrderPrice() + product.getPrice());
+          setOrderPrice(getOrderPrice() + product.getFullPrice());
       }
 
     public Employee getEmployee() {

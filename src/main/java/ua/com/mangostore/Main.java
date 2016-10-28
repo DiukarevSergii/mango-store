@@ -128,7 +128,7 @@
 //        double orderPrice = 0;
 //        int count = 0;
 //        for (Product product: order.getProducts()){
-//            orderPrice += product.getPrice();
+//            orderPrice += product.getfullPrice();
 //            count++;
 //        }
 //        order.setOrderPrice(orderPrice);

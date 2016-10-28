@@ -15,9 +15,9 @@
                     <a class="title-review" href="#"><c:out value="${product.productTitle}"/></a>
                     <p class="main-review">
                         <span style='color:#f6731c;text-decoration:line-through'>
-                            <span style='color:gray;'><c:out value="${product.fullPrice}"/></span>
+                            <span style='color:gray;'><c:out value="${product.getFormatFullPrice()}"/></span>
                         </span>
-                        &nbsp;<c:out value="${product.salePrice}"/>
+                        &nbsp;<c:out value="${product.getFormatSalePrice()}"/>
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
                         <a class="btn small btn_in_section" href="#"
                            onclick="">Купить</a>

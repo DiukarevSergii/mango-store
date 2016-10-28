@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.config.InitDatabase;
 import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.model.GroupOfProducts;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,6 @@ import java.util.List;
  * @see InitDatabase
  * @see Product
  * @see ProductService
- * @see GroupOfProducts
  * @see OrderService
  */
 @Controller
@@ -44,22 +40,6 @@ public class MainController {
      * Объект сервиса для работы с товарами.
      */
     private ProductService productService;
-
-    /**
-     * Объект {@link DecimalFormat} для  форматирования десятичных чисел.
-     */
-    static DecimalFormat df = new DecimalFormat();
-
-    {
-        df.setGroupingUsed(true);
-        df.setGroupingSize(3);
-
-        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-        decimalFormatSymbols.setZeroDigit('0');
-        decimalFormatSymbols.setGroupingSeparator(' ');
-
-        df.setDecimalFormatSymbols(decimalFormatSymbols);
-    }
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -86,11 +66,11 @@ public class MainController {
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Лидеры продаж");
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        List<Product> groupOfProducts = new ArrayList<>();
         Product sliderProduct = null;
         for (Product product : productService.getAll()) {
             if (product.getOnMain().equals("Y")) {
-                createGroupOfProduct(groupOfProducts, product);
+               groupOfProducts.add(product);
             }
             if (product.getProductTitle().equals("Meizu MX6")) {
                 sliderProduct = product;
@@ -118,7 +98,7 @@ public class MainController {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Samsung");
 
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Samsung");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
@@ -137,8 +117,7 @@ public class MainController {
     public ModelAndView apple(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Apple");
-
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
@@ -157,18 +136,17 @@ public class MainController {
     public ModelAndView lg(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Meizu");
-
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Meizu");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;
     }
 
-    private void groupByBrand(List<GroupOfProducts> groupOfProducts, String param) {
+    private void groupByBrand(List<Product> groupOfProducts, String param) {
         for (Product product : productService.getAll()) {
             if (product.getOrder() == null && product.getBrand().equals(param)) {
-                createGroupOfProduct(groupOfProducts, product);
+                groupOfProducts.add(product);
             }
         }
     }
@@ -185,8 +163,7 @@ public class MainController {
     public ModelAndView tablet(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Планшеты");
-
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
+        List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Планшеты", "Акссесуары для планшетов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
@@ -206,36 +183,21 @@ public class MainController {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Смартфоны");
         modelAndView.addObject("slider_url", productService.getByName("Meizu MX6").getProductId());
-
-        List<GroupOfProducts> groupOfProducts = new ArrayList<>();
-
+        List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Смартфоны", "Акссесуары для смартфонов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;
     }
 
-    private void groupByType(List<GroupOfProducts> groupOfProducts, String... param) {
+    private void groupByType(List<Product> groupOfProducts, String... param) {
         String param1 = param[0];
         String param2 = param.length > 1 ? param[1] : "";
-
         for (Product product : productService.getAll()) {
             if (product.getOrder() == null && (product.getType().equals(param1) || product.getType().equals(param2))) {
-                createGroupOfProduct(groupOfProducts, product);
+                groupOfProducts.add(product);
             }
         }
-    }
-
-    private void createGroupOfProduct(List<GroupOfProducts> groupOfProducts, Product product) {
-        GroupOfProducts groupOfProduct = new GroupOfProducts();
-        groupOfProduct.setProductId(product.getProductId());
-        groupOfProduct.setProductTitle(product.getProductTitle());
-        groupOfProduct.setImageURL(product.getImageURL());
-        groupOfProduct.setType(product.getType());
-        groupOfProduct.setBrand(product.getBrand());
-        groupOfProduct.setSalePrice(df.format(product.getSalePrice()));
-        groupOfProduct.setFullPrice(df.format(product.getFullPrice()));
-        groupOfProducts.add(groupOfProduct);
     }
 
     /**
