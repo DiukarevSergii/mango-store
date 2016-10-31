@@ -24,7 +24,7 @@
                 <a href="/meizu">Meizu</a>
             </li>
             <li class="dropdown">
-                <a href="#">Xiaomi</a>
+                <a href="/xiaomi">Xiaomi</a>
             </li>
             <li class="dropdown">
                 <a href="/tablet-pc" data-toggle="dropdown" class="dropdown-toggle">Планшеты</a>
