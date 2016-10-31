@@ -185,7 +185,8 @@ public class Product {
 
         switch (this.type) {
 
-            case "Смартфоны": {
+            case "Смартфоны":
+            case "Планшеты": {
                 this.setSpecification(
                         String.format("" +
                                         "<p><b>Операционная система:</b> %s </p>" +
@@ -200,14 +201,7 @@ public class Product {
                                 weight, mainCamera, frontCamera));
                 break;
             }
-            case "Планшеты": {
-                this.setSpecification(
-                        String.format(
-                                "2",
-                                os, processor, deviceSize, displaySize,
-                                weight, mainCamera, frontCamera));
-                break;
-            }
+
             case "Телевизоры": {
                 this.setSpecification(
                         String.format(

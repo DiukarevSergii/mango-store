@@ -240,14 +240,26 @@ public class MainController {
     }
 
     /**
-     * Возвращает страницу "client/sales" - страница описания товаров находящихся на распродаже.
+     * Возвращает страницу "client/someProducts" - страница описания товаров находящихся на распродаже.
      * URL запроса "/sales", метод GET.
      *
-     * @return URL страницы.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
      */
     @RequestMapping(value = "/sales", method = RequestMethod.GET)
-    public String onShares() {
-        return "client/sales";
+    public ModelAndView onSales(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Акции компании МАНГО");
+        List<Product> groupOfProducts = new ArrayList<>();
+
+        for (Product product : productService.getAll()) {
+            if (product.getOrder() == null && (product.getFullPrice() != product.getSalePrice())) {
+                groupOfProducts.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
     }
 
     /**
