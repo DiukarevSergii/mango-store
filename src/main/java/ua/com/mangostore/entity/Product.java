@@ -180,22 +180,23 @@ public class Product {
     }
 
     public void setSpecification(
-            String os, String processor, String display, String size,
-            String weight, String mainCamera, String frontCamera) {
+            String os, String processor, String displaySize, String displayResolution,
+            String deviceSize, String weight, String mainCamera, String frontCamera) {
 
         switch (this.type) {
 
             case "Смартфоны": {
                 this.setSpecification(
                         String.format("" +
-                                        "<br><b>Операционная система:</b> %s" +
-                                        "<br><b>Процессор:</b> %s" +
-                                        "<br><b>Дисплей:</b> %s" +
-                                        "<br><b>Размеры:</b> %s" +
-                                        "<br><b>Вес:</b> %s" +
-                                        "<br><b>Основная камера:</b> %s" +
-                                        "<br><b>Фронтальная камера:</b> %s",
-                                os, processor, size, display,
+                                        "<p><b>Операционная система:</b> %s </p>" +
+                                        "<p><b>Процессор:</b> %s </p>" +
+                                        "<p><b>Дисплей:</b> %s" +
+                                        "<br><b>Разрешение:</b> %s пикселей</p>" +
+                                        "<p><b>Размеры:</b> %s </p>" +
+                                        "<p><b>Вес:</b> %s </p>" +
+                                        "<p><b>Основная камера:</b> %s </p>" +
+                                        "<p><b>Фронтальная камера:</b> %s </p>",
+                                os, processor, deviceSize, displaySize, displayResolution,
                                 weight, mainCamera, frontCamera));
                 break;
             }
@@ -203,7 +204,7 @@ public class Product {
                 this.setSpecification(
                         String.format(
                                 "2",
-                                os, processor, size, display,
+                                os, processor, deviceSize, displaySize,
                                 weight, mainCamera, frontCamera));
                 break;
             }
@@ -211,7 +212,7 @@ public class Product {
                 this.setSpecification(
                         String.format(
                                 "",
-                                os, processor, size, display,
+                                os, processor, deviceSize, displaySize,
                                 weight, mainCamera, frontCamera));
                 break;
             }
@@ -219,7 +220,7 @@ public class Product {
                 setSpecification(
                         String.format(
                                 "",
-                                os, processor, size, display,
+                                os, processor, deviceSize, displaySize,
                                 weight, mainCamera, frontCamera));
                 break;
             }

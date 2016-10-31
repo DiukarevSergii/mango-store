@@ -8,11 +8,11 @@
             <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
                     <div class="image-on-main">
-                        <a href="#"><img src="<c:out value="${product.imageURL}"/>" alt="" height="240">
+                        <a href="/product-${product.productId}"><img src="<c:out value="${product.imageURL}"/>" alt="" height="240">
                         </a>
                     </div>
                     <p class="font-review"><c:out value="${product.type}"/> <c:out value="${product.brand}"/></p>
-                    <a class="title-review" href="#"><c:out value="${product.productTitle}"/></a>
+                    <a class="title-review" href="/product-${product.productId}"><c:out value="${product.productTitle}"/></a>
                     <p class="main-review">
                         <span style='color:#f6731c;text-decoration:line-through'>
                             <span style='color:gray;'><c:out value="${product.getFormatFullPrice()}"/></span>

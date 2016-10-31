@@ -15,7 +15,7 @@
     <!-- SLIDER -->
     <jsp:include page="/WEB-INF/pages/template/slider.jsp"/>
     <!-- RIGHT BLOCK -->
-    <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/right-block-1.jsp"/>
     <!-- MAIN BLOCK -->
     <jsp:include page="/WEB-INF/pages/template/mainBlock.jsp"/>
 

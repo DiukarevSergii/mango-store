@@ -14,7 +14,7 @@
     <!-- MENU -->
     <jsp:include page="/WEB-INF/pages/template/menu.jsp"/>
     <!-- RIGHT BLOCK -->
-    <jsp:include page="/WEB-INF/pages/template/right-block.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/right-block-1.jsp"/>
 
     <div class="main-block" style="height: 700px">
         <h3 style="text-decoration: none">Адреса магазинов компании МАНГО</h3>
