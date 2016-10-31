@@ -26,9 +26,9 @@
         </div>
         <br>
         <div>
-            <h4>Видеообзор:&nbsp; Meizu M3s 16GB Grey</h4>
-            <h5>Видео распаковки от покупателей</h5>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/PxbCTEpM-cw" frameborder="0"
+            <h4>Видеообзор:&nbsp; Apple iPhone 7 Plus 32GB Black</h4>
+            <h5>Полноценный видеообзор</h5>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/k5FSje29Idc" frameborder="0"
                     allowfullscreen></iframe>
         </div>
         <br>
