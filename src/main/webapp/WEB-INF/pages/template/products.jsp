@@ -36,4 +36,19 @@
         </div>
     </c:forEach>
 </div>
-<div class="col-lg-12">&nbsp;</div>
+<c:choose>
+    <c:when test="${groupOfProducts.size() < 5 && groupOfProducts.size() > 0}">
+        <!-- BANNER -->
+        <jsp:include page="/WEB-INF/pages/template/banner-slider.jsp"/>
+    </c:when>
+    <c:when test="${groupOfProducts.size() == 0}">
+        <div class="col-lg-12" style="height: 250px; font-size: medium">
+            <p>Нет доступных товаров =(</p>
+        </div>
+        <!-- BANNER -->
+        <jsp:include page="/WEB-INF/pages/template/banner-slider.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <div class="col-lg-12">&nbsp;</div>
+    </c:otherwise>
+</c:choose>

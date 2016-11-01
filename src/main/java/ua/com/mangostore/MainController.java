@@ -69,8 +69,8 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         Product sliderProduct = null;
         for (Product product : productService.getAll()) {
-            if (!product.getOnMain().isEmpty() ) {
-               groupOfProducts.add(product);
+            if (!product.getOnMain().isEmpty()) {
+                groupOfProducts.add(product);
             }
             if (product.getProductTitle().equals("Meizu MX6")) {
                 sliderProduct = product;
@@ -136,13 +136,9 @@ public class MainController {
     public ModelAndView iphone(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "iPhone");
-        List<Product> groupOfProducts = new ArrayList<>();
 
-        for (Product product : productService.getAll()) {
-            if (product.getOrder() == null && product.getProductTitle().toLowerCase().contains("iphone")) {
-                groupOfProducts.add(product);
-            }
-        }
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByModel(groupOfProducts, "iphone", "apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;
@@ -160,18 +156,62 @@ public class MainController {
     public ModelAndView ipad(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "iPad");
-        List<Product> groupOfProducts = new ArrayList<>();
 
-        for (Product product : productService.getAll()) {
-            if (product.getOrder() == null
-                    && product.getProductTitle().toLowerCase().contains("ipad")
-                    && product.getBrand().toLowerCase().contains("apple")) {
-                groupOfProducts.add(product);
-            }
-        }
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByModel(groupOfProducts, "ipad", "apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/apple/mac"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/apple/mac"}, method = RequestMethod.GET)
+    public ModelAndView mac(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "MacBook и iMac");
+
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByModel(groupOfProducts, "mac", "apple");
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/apple/accessories"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/apple/accessories"}, method = RequestMethod.GET)
+    public ModelAndView appleAccessories(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Акссесуары для Apple");
+
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByType(groupOfProducts, "Акссесуары для Apple");
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    private void groupByModel(List<Product> groupOfProducts, String model, String brand) {
+        for (Product product : productService.getAll()) {
+            if (product.getOrder() == null
+                    && product.getProductTitle().toLowerCase().contains(model)
+                    && product.getBrand().toLowerCase().contains(brand)) {
+                groupOfProducts.add(product);
+            }
+        }
     }
 
     /**
@@ -242,6 +282,25 @@ public class MainController {
     /**
      * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
      * соответствующие товары.
+     * URL запроса {"/tablet-pc/accessories"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/tablet-pc/accessories"}, method = RequestMethod.GET)
+    public ModelAndView tabletAccessories(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Акссесуары для планшетов");
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByType(groupOfProducts, "Акссесуары для планшетов");
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
      * URL запроса {"/smartphones"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
@@ -251,9 +310,27 @@ public class MainController {
     public ModelAndView smartphone(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
         modelAndView.addObject("title", "Смартфоны");
-        modelAndView.addObject("slider_url", productService.getByName("Meizu MX6").getProductId());
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Смартфоны", "Акссесуары для смартфонов");
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/smartphones/accessories"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/smartphones/accessories"}, method = RequestMethod.GET)
+    public ModelAndView smartphoneAccessories(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Акссесуары для смартфонов");
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByType(groupOfProducts, "Акссесуары для смартфонов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
         return modelAndView;

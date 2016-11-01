@@ -8,17 +8,17 @@
                 <ul class="dropdown-menu">
                     <li><a href="/apple/iphone">iPhone</a></li>
                     <li><a href="/apple/ipad">iPad</a></li>
-                    <li><a href="#">Mac</a></li>
-                    <li><a href="#">Аксессуары</a></li>
+                    <li><a href="/apple/mac">MacBook и iMac</a></li>
+                    <li><a href="/apple/accessories">Аксессуары</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="/samsung" data-toggle="dropdown" class="dropdown-toggle">Samsung</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Смартфоны</a></li>
-                    <li><a href="#">Планшеты</a></li>
-                    <li><a href="#">Телевизоры</a></li>
-                    <li><a href="#">Аксессуары</a></li>
+                    <li><a href="/samsung/smartphones">Смартфоны</a></li>
+                    <li><a href="/samsung/tablet-pc">Планшеты</a></li>
+                    <li><a href="/samsung/tv">Телевизоры</a></li>
+                    <li><a href="/samsung/accessories">Аксессуары</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -30,15 +30,15 @@
             <li class="dropdown">
                 <a href="/tablet-pc" data-toggle="dropdown" class="dropdown-toggle">Планшеты</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Планшеты</a></li>
-                    <li><a href="#">Аксессуары</a></li>
+                    <li><a href="/tablet-pc">Планшеты</a></li>
+                    <li><a href="/tablet-pc/accessories">Аксессуары</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="/smartphones" data-toggle="dropdown" class="dropdown-toggle">Смартфоны</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Смартфоны</a></li>
-                    <li><a href="#">Аксессуары</a></li>
+                    <li><a href="/smartphones">Смартфоны</a></li>
+                    <li><a href="/smartphones/accessories">Аксессуары</a></li>
                 </ul>
             </li>
         </ul>

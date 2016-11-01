@@ -3,7 +3,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>MANGO STORE</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
@@ -13,7 +12,7 @@
     <!-- MENU -->
     <jsp:include page="/WEB-INF/pages/template/menu.jsp"/>
     <!-- SLIDER -->
-    <jsp:include page="/WEB-INF/pages/template/slider.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/main-slider.jsp"/>
     <!-- RIGHT BLOCK -->
     <jsp:include page="/WEB-INF/pages/template/right-block-1.jsp"/>
     <!-- MAIN BLOCK -->

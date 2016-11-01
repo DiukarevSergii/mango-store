@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>MANGO STORE | Store Addresses</title>
+    <title>Store Addresses | MANGO STORE</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>

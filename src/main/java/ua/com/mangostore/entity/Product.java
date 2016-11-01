@@ -183,42 +183,44 @@ public class Product {
             String os, String processor, String displaySize, String displayResolution,
             String deviceSize, String weight, String mainCamera, String frontCamera) {
 
-        switch (this.type) {
+        this.setSpecification(
+                String.format("" +
+                                "<p><b>Операционная система:</b> %s </p>" +
+                                "<p><b>Процессор:</b> %s </p>" +
+                                "<p><b>Дисплей:</b> %s" +
+                                "<br><b>Разрешение:</b> %s пикселей</p>" +
+                                "<p><b>Размеры (В х Ш х Г):</b> %s </p>" +
+                                "<p><b>Вес:</b> %s </p>" +
+                                "<p><b>Основная камера:</b> %s </p>" +
+                                "<p><b>Фронтальная камера:</b> %s </p>",
+                        os, processor, displaySize, displayResolution, deviceSize,
+                        weight, mainCamera, frontCamera));
+    }
 
-            case "Смартфоны":
-            case "Планшеты": {
-                this.setSpecification(
-                        String.format("" +
-                                        "<p><b>Операционная система:</b> %s </p>" +
-                                        "<p><b>Процессор:</b> %s </p>" +
-                                        "<p><b>Дисплей:</b> %s" +
-                                        "<br><b>Разрешение:</b> %s пикселей</p>" +
-                                        "<p><b>Размеры (В х Ш х Г):</b> %s </p>" +
-                                        "<p><b>Вес:</b> %s </p>" +
-                                        "<p><b>Основная камера:</b> %s </p>" +
-                                        "<p><b>Фронтальная камера:</b> %s </p>",
-                                os, processor, displaySize, displayResolution, deviceSize,
-                                weight, mainCamera, frontCamera));
-                break;
-            }
+    public void setSpecification(
+            String os, String mainProcessor, String graphicProcessor,
+            String displaySize, String displayResolution,
+            String deviceSize, String weight,
+            String ddrMemeory, String cumulativeMemory, String audio) {
 
-            case "Телевизоры": {
-                this.setSpecification(
-                        String.format(
-                                "",
-                                os, processor, deviceSize, displaySize,
-                                weight, mainCamera, frontCamera));
-                break;
-            }
-            case "Mac": {
-                setSpecification(
-                        String.format(
-                                "",
-                                os, processor, deviceSize, displaySize,
-                                weight, mainCamera, frontCamera));
-                break;
-            }
-        }
+        this.setSpecification(
+                String.format("" +
+                                "<p><b>Операционная система:</b> %s </p>" +
+                                "<p><b>Основной процессор:</b> %s </p>" +
+                                "<p><b>Графический процессор::</b> %s </p>" +
+                                "<p><b>Дисплей:</b> %s" +
+                                "<br><b>Разрешение:</b> %s пикселей</p>" +
+                                "<p><b>Размеры (В х Ш х Г):</b> %s &nbsp;&nbsp;" +
+                                "<b>Вес:</b> %s </p>" +
+                                "<p><b>Оперативная память:</b> %s</p>" +
+                                "<p><b>Накопительная память:</b> %s</p>" +
+                                "<p><b>Аудио:</b> %s </p>",
+                        os,
+                        mainProcessor, graphicProcessor,
+                        displaySize, displayResolution,
+                        deviceSize, weight,
+                        ddrMemeory, cumulativeMemory,
+                        audio));
     }
 
     @Override

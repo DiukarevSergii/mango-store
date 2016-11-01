@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>MANGO STORE | Delivery</title>
+    <title>Delivery | MANGO STORE</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
@@ -21,7 +21,7 @@
         <p>На данный момент существует несколько видов доставки товаров:</p>
         <p> - самовывоз из нашего <a href="stores_addresses">магазина;</a> </p>
         <p> - доставка курьером в течении дня;</p>
-        <p> - супер быстрая доствка дроном в течении часа.</p>
+        <p> - супер быстрая доставка дроном в течении часа.</p>
     </div>
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
