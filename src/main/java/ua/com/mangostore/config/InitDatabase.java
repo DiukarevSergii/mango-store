@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import ua.com.mangostore.entity.Order;
 import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
@@ -298,6 +297,82 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5\"", "1920 x 1080",
                 "153.6 х 75.5 х 8.2 мм", "163 г", "13 Мп ", "5 Мп");
 
+        Product product9 = new Product("iPhone 5s 16GB", "Смартфоны", "Apple", 7_000, 7_000);
+        product9.setImageURL("http://localhost:8080/resources/img/iphone_5s_white_400x480.jpg");
+        product9.setDescription(
+                "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Незаменим с момента создания</h3>" +
+                        "<p align=\"justify\">" +
+                        "<br>iPhone всегда был в авангарде технологий. И iPhone 5s не стал исключением. 64-битная " +
+                        "мобильная архитектура — это огромный шаг вперёд. Датчик отпечатков пальцев — потрясающая " +
+                        "инновация. А двойная светодиодная вспышка просто уникальна. Все эти функции созданы для людей, " +
+                        "а не наоборот. И они снова доказывают, что продуманные инновации намного важнее погони за " +
+                        "количеством. Это и есть прогресс. И он прекрасен." +
+                        "<br><br>iPhone 5s продуман с точностью до микрона. И это заметно в каждой детали. Элегантный " +
+                        "алюминиевый корпус. Гладкие стекло и металл. Сапфировое покрытие на кнопке «Домой». " +
+                        "И такое же защитное покрытие на объективе камеры iSight. Дизайн и качество сборки, которые " +
+                        "трудно превзойти. Поэтому iPhone 5s выглядит невероятно изящным и лёгким. Три варианта цвета " +
+                        "корпуса: золотой, серебристый и «cерый космос»." +
+                        "<br>" +
+                        "<br>" +
+                        "Вы заглядываете в iPhone десятки раз за день, а то и чаще. Утомительно каждый раз вводить пароль." +
+                        " Зато это даëт вам уверенность в том, что никто больше не получит доступ к вашему iPhone." +
+                        " В iPhone 5s используется немного необычный, но более простой и быстрый способ идентификации." +
+                        " Представляем Touch ID. Теперь ваш iPhone узнает вас по отпечатку пальца." +
+                        "<br>" +
+                        "<br>" +
+                        "Приложите палец к кнопке «Домой» и iPhone разблокируется. Это удобный и по-настоящему безопасный" +
+                        " способ защитить ваш телефон. При помощи этой технологии можно также подтверждать покупки в" +
+                        " iTunes, App Store — вводить пароль уже не понадобится. Touch ID распознает отпечаток вашего" +
+                        " пальца под любым углом. Приложите палец как угодно — вертикально, горизонтально или по" +
+                        " диагонали. Ваш iPhone распознает отпечаток и узнает вас. Сенсор Touch ID позволяет сохранить" +
+                        " несколько отпечатков, чтобы телефоном также могли пользоваться люди, которым вы доверяете." +
+                        "<br>" +
+                        "<br>" +
+                        "Есть просто скорость. А есть скорость процессора A7. Скорость графики и производительность " +
+                        "процессора А7 в два раза больше, чем было у А6. Ещë больше впечатляет, что iPhone 5s с " +
+                        "процессором А7 — это первый в мире 64-битный смартфон с возможностями настоящего персонального " +
+                        "компьютера внутри ультратонкого корпуса. Операционная система iOS 7 разрабатывалась специально " +
+                        "под 64-битную архитектуру, и потому использует все возможности процессора A7." +
+                        "<br>" +
+                        "<br>" +
+                        "Сопроцессор М7. Абсолютно новый процессор. Для абсолютной производительности." +
+                        "<br>" +
+                        "<br>" +
+                        "Новый сопроцессор M7 — это помощник A7. Он создан специально для обработки сигналов движения " +
+                        "акселерометра, гироскопа и компаса — тех задач, которые должен был бы выполнять процессор A7. " +
+                        "Но M7 справляется с ними куда лучше. Теперь приложения для фитнеса, " +
+                        "отслеживающие физическую нагрузку, могут собирать эти данные через сопроцессор M7, не загружая " +
+                        "A7. Это позволяет экономнее расходовать заряд аккумулятора." +
+                        "<br><br>" +
+                        "M7 знает, чем вы занимаетесь: гуляете, бегаете или ведёте машину. Если вы припарковали машину " +
+                        "и продолжили свой путь пешком, Карты переключают пошаговую навигацию с автомобильного режима " +
+                        "на пешеходный. А если местоположение телефона не меняется (например, когда вы спите), M7 реже " +
+                        "проверяет подключение к сети, экономя заряд батареи." +
+                        "<br>" +
+                        "<br>" +
+                        "Камера iSight. Самая популярная камера в мире стала ещё лучше." +
+                        "<br>" +
+                        "<br>" +
+                        "В iPhone 5s используются новейшие технологии, специально разработанные для аппаратного и " +
+                        "программного обеспечения камеры iSight. Поэтому каждый может сделать отличный снимок. " +
+                        "Инженеры компании Apple решили, что лучше научить iPhone снимать по-настоящему хорошие кадры, " +
+                        "чем объяснять тонкости съёмки пользователям." +
+                        "</p>");
+        product9.setSpecification(
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4\"", "1136 x 640",
+                " 123.8 x 58.6 x 7.6 мм", "112 г", "8 Мп ", "1.2 Мп");
+
+        Product product10 = new Product("iPhone 5s 16GB", "Смартфоны", "Apple", 7_000, 7_000);
+        product10.setImageURL("http://localhost:8080/resources/img/iphone_5s_white_400x480.jpg");
+        product10.setDescription(
+                "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Незаменим с момента создания</h3>" +
+                        "<p align=\"justify\">" +
+                        "<br>" +
+                        "</p>");
+        product10.setSpecification(
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4\"", "1136 x 640",
+                " 123.8 x 58.6 x 7.6 мм", "112 г", "8 Мп ", "1.2 Мп");
+
         productService.addProduct(product1);
         productService.addProduct(product2);
         productService.addProduct(product7);
@@ -306,20 +381,21 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product5);
         productService.addProduct(product6);
         productService.addProduct(product8);
+        productService.addProduct(product9);
 
-        Order order1 = new Order();
-        order1.addProduct(product1);
-        order1.addProduct(product1);
-        order1.addProduct(product2);
-        order1.addProduct(product5);
-        order1.addProduct(product5);
-        order1.addProduct(product5);
-        orderService.addOrder(order1);
-
-        Order order2 = new Order();
-        order2.addProduct(product1);
-        order2.addProduct(product2);
-        orderService.addOrder(order2);
+//        Order order1 = new Order();
+//        order1.addProduct(product1);
+//        order1.addProduct(product1);
+//        order1.addProduct(product2);
+//        order1.addProduct(product5);
+//        order1.addProduct(product5);
+//        order1.addProduct(product5);
+//        orderService.addOrder(order1);
+//
+//        Order order2 = new Order();
+//        order2.addProduct(product1);
+//        order2.addProduct(product2);
+//        orderService.addOrder(order2);
 
         System.out.println("Finish!");
     }

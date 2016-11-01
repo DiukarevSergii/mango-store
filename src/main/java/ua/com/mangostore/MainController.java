@@ -127,6 +127,30 @@ public class MainController {
     /**
      * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
      * соответствующие товары.
+     * URL запроса {"/apple"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/iphone"}, method = RequestMethod.GET)
+    public ModelAndView iphone(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "Iphone");
+        List<Product> groupOfProducts = new ArrayList<>();
+
+        for (Product product : productService.getAll()) {
+            if (product.getOrder() == null && product.getProductTitle().toLowerCase().contains("iphone")) {
+                groupOfProducts.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
      * URL запроса {"/xiaomi"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.

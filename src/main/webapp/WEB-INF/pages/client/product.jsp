@@ -33,10 +33,12 @@
                     <span class="main-review">
                     <span style="background-color: #f5e79e ; padding-bottom: 4px">
                         &nbsp;
+                        <c:if test="${product.getFormatFullPrice() !=  product.getFormatSalePrice()}">
                     <span style='color:#f6731c;text-decoration:line-through'>
                     <span style='color:gray;'>${product.getFormatFullPrice()}
                     </span>
                     </span>
+                        </c:if>
                     &nbsp;&nbsp;${product.getFormatSalePrice()}&nbsp;
                     <sup style="font-size:12px; margin-left:-5px;">грн&nbsp;</sup>
                     </span>
