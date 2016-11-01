@@ -193,11 +193,11 @@ public class Product {
                                         "<p><b>Процессор:</b> %s </p>" +
                                         "<p><b>Дисплей:</b> %s" +
                                         "<br><b>Разрешение:</b> %s пикселей</p>" +
-                                        "<p><b>Размеры:</b> %s </p>" +
+                                        "<p><b>Размеры (В х Ш х Г):</b> %s </p>" +
                                         "<p><b>Вес:</b> %s </p>" +
                                         "<p><b>Основная камера:</b> %s </p>" +
                                         "<p><b>Фронтальная камера:</b> %s </p>",
-                                os, processor, deviceSize, displaySize, displayResolution,
+                                os, processor, displaySize, displayResolution, deviceSize,
                                 weight, mainCamera, frontCamera));
                 break;
             }

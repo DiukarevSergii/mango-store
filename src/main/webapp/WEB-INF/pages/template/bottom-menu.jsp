@@ -6,7 +6,8 @@
             <li class="dropdown">
                 <a href="/apple" data-toggle="dropdown" class="dropdown-toggle">Apple</a>
                 <ul class="dropdown-menu">
-                    <li><a href="/iphone">iPhone</a></li>
+                    <li><a href="/apple/iphone">iPhone</a></li>
+                    <li><a href="/apple/ipad">iPad</a></li>
                     <li><a href="#">Mac</a></li>
                     <li><a href="#">Аксессуары</a></li>
                 </ul>

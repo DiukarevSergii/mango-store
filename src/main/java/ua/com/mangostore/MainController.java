@@ -127,19 +127,45 @@ public class MainController {
     /**
      * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
      * соответствующие товары.
-     * URL запроса {"/apple"}, метод GET.
+     * URL запроса {"/apple/iphone"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = {"/iphone"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/apple/iphone"}, method = RequestMethod.GET)
     public ModelAndView iphone(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", orderService.getSize());
-        modelAndView.addObject("title", "Iphone");
+        modelAndView.addObject("title", "iPhone");
         List<Product> groupOfProducts = new ArrayList<>();
 
         for (Product product : productService.getAll()) {
             if (product.getOrder() == null && product.getProductTitle().toLowerCase().contains("iphone")) {
+                groupOfProducts.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
+        modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/apple/ipad"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/apple/ipad"}, method = RequestMethod.GET)
+    public ModelAndView ipad(ModelAndView modelAndView) {
+        modelAndView.addObject("cart_size", orderService.getSize());
+        modelAndView.addObject("title", "iPad");
+        List<Product> groupOfProducts = new ArrayList<>();
+
+        for (Product product : productService.getAll()) {
+            if (product.getOrder() == null
+                    && product.getProductTitle().toLowerCase().contains("ipad")
+                    && product.getBrand().toLowerCase().contains("apple")) {
                 groupOfProducts.add(product);
             }
         }
