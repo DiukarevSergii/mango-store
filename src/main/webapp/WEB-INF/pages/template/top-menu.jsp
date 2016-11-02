@@ -8,8 +8,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="/about">О нас</a></li>
                     <li><a href="/stores_addresses">Магазины</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Резюме разработчика</a></li>
                 </ul>
             </li>
             <li class="topbutton">

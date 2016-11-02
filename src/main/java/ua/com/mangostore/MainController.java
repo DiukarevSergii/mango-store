@@ -526,8 +526,8 @@ public class MainController {
     @RequestMapping(value = "/basket", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
         modelAndView.addObject("basket_size", shoppingBasketService.getSize());
-        modelAndView.addObject("products_in_basket", shoppingBasketService.getProductsInBasket());
-        modelAndView.addObject("price_of_basket", shoppingBasketService.getPrice());
+        modelAndView.addObject("productsInBasket", shoppingBasketService.getProductsInBasket());
+        modelAndView.addObject("priceOfBasket", shoppingBasketService.getPrice());
         modelAndView.setViewName("client/basket");
         return modelAndView;
     }
