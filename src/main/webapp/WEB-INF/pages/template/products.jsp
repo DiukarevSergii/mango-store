@@ -8,8 +8,8 @@
             <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
                     <div class="image-on-main">
-                        <a href="/product-${product.productId}"><img src="<c:out value="${product.imageURL}"/>" alt=""
-                                                                     height="240">
+                        <a href="/product-${product.productId}">
+                            <img src="<c:out value="${product.imageURL}"/>" alt="${title}" height="240">
                         </a>
                     </div>
                     <p class="font-review">${product.type} ${product.brand}</p>
@@ -17,19 +17,22 @@
                             value="${product.productTitle}"/></a>
                     <p class="main-review">
                         <c:choose>
-                            <c:when test="${product.getFormatFullPrice() !=  product.getFormatSalePrice()}">
-                                <span style='color:#f6731c;text-decoration:line-through'>
+                        <c:when test="${product.getFormatFullPrice() !=  product.getFormatSalePrice()}">
+                        <span style='color:#f6731c;text-decoration:line-through'>
                                     <span style='color:gray;'>${product.getFormatFullPrice()}</span>
                                 </span>
-                            </c:when>
-                            <c:otherwise>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </c:otherwise>
+                        </c:when>
+                        <c:otherwise>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:otherwise>
                         </c:choose>
                         &nbsp;${product.getFormatSalePrice()}
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                        <a class="btn small btn_in_section" href="#"
-                           onclick="">Купить</a>
+                    <form action="/basket_add" method=post>
+                        <input type="hidden" name="id" value="${product.productId}">
+                        <input type="hidden" name="url" value="${url}">
+                        <button class="btn btn_in_section">Купить</button>
+                    </form>
                     </p>
                 </div>
             </div>

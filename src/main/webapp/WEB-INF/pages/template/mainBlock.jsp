@@ -19,13 +19,19 @@
                         </span>
                         &nbsp;<c:out value="${product.getFormatSalePrice()}"/>
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                        <a class="btn small btn_in_section" href="#"
-                           onclick="">Купить</a>
+                    <form action="/basket_add" method=post>
+                        <input type="hidden" name="id" value="${product.productId}">
+                        <input type="hidden" name="url" value="${url}">
+                        <button class="btn btn_in_section">
+                            Купить
+                        </button>
+                    </form>
                     </p>
                 </div>
             </div>
         </div>
     </c:forEach>
+
 </div>
 <div class="col-lg-12">&nbsp;</div>
 

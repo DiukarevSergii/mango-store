@@ -43,9 +43,13 @@
                     <sup style="font-size:12px; margin-left:-5px;">грн&nbsp;</sup>
                     </span>
                         <br>
-                        <a class="btn btn_in_section" style="width: 206px" href="#" onclick="">
+                        <form action="/basket_add" method=post>
+                            <input type="hidden" name="id" value="${product.productId}">
+                            <input type="hidden" name="url" value="${url}">
+                            <button class="btn btn_in_section" style="width: 206px">
                             Купить
-                        </a>
+                        </button>
+                        </form>
                     </span>
 
                 <p style="font-size: medium">${product.specification}</p>
