@@ -53,8 +53,8 @@ public class MainController {
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
      * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
      *
-     * @param productService        Объект сервиса для работы с товарами.
-     * @param orderService          Объект сервиса для работы с заказами.
+     * @param productService      Объект сервиса для работы с товарами.
+     * @param orderService        Объект сервиса для работы с заказами.
      * @param shoppingCartService Объект сервиса для работы с торговой корзиной.
      */
     @Autowired
@@ -106,13 +106,92 @@ public class MainController {
      */
     @RequestMapping(value = {"/samsung"}, method = RequestMethod.GET)
     public ModelAndView samsung(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingCartService.getSize());
-        modelAndView.addObject("title", "Samsung");
-        modelAndView.addObject("url", "/samsung");
+//        modelAndView.addObject("basket_size", shoppingCartService.getSize());
+//        modelAndView.addObject("title", "Samsung");
+//        modelAndView.addObject("url", "/samsung");
+//        modelAndView.setViewName("client/someProducts");
+//        modelAndView.addObject("groupOfProducts", groupOfProducts);
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Samsung");
+        getSimpleModelAndView(modelAndView, groupOfProducts, "Samsung", "/samsung", "client/someProducts");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/samsung/smartphones"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/samsung/smartphones"}, method = RequestMethod.GET)
+    public ModelAndView samsungSmartphones(ModelAndView modelAndView) {
+        getModelAndView(modelAndView, "Смартфоны от фирмы Samsung", "Смартфоны", "/samsung/smartphones");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/samsung/tablet-pc"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/samsung/tablet-pc"}, method = RequestMethod.GET)
+    public ModelAndView samsungTabletPC(ModelAndView modelAndView) {
+        return getModelAndView(modelAndView, "Планшеты от фирмы Samsung", "Планшеты", "/samsung/tablet-pc");
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/samsung/tv"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/samsung/tv"}, method = RequestMethod.GET)
+    public ModelAndView samsungTV(ModelAndView modelAndView) {
+        getModelAndView(modelAndView, "Акссесуары от фирмы Samsung", "Телевизоры", "/samsung/tv");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает cтраницу сайта "client/someProducts". Для формирования страницы с базы подгружаются
+     * соответствующие товары.
+     * URL запроса {"/samsung/tv"}, метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = {"/samsung/accessories"}, method = RequestMethod.GET)
+    public ModelAndView samsungAccessories(ModelAndView modelAndView) {
+        getModelAndView(modelAndView, "Акссесуары от фирмы Samsung", "Акссесуары", "/samsung/accessories");
+        return modelAndView;
+    }
+
+    private ModelAndView getModelAndView(ModelAndView modelAndView, String title, String type, String url) {
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
+        modelAndView.addObject("title", title);
+        modelAndView.addObject("url", url);
+        List<Product> groupOfProducts = new ArrayList<>();
+        groupByBrand(groupOfProducts, "Samsung");
+        groupByType(type, groupOfProducts);
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("client/someProducts");
+        return modelAndView;
+    }
+
+
+    private ModelAndView getSimpleModelAndView(ModelAndView modelAndView, List<Product> groupOfProducts,
+                                               String title, String url, String viewName) {
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
+        modelAndView.addObject("title", title);
+        modelAndView.addObject("url", url);
+        modelAndView.setViewName(viewName);
+        modelAndView.addObject("groupOfProducts", groupOfProducts);
         return modelAndView;
     }
 
@@ -364,6 +443,17 @@ public class MainController {
         }
     }
 
+    private void groupByType(String type, List<Product> groupOfProducts) {
+        List<Product> groupByBrand = new ArrayList<>();
+        for (Product product : groupOfProducts) {
+            if (product.getOrder() == null && (product.getType().equals(type))) {
+                groupByBrand.add(product);
+            }
+        }
+        groupOfProducts.clear();
+        groupOfProducts.addAll(groupByBrand);
+    }
+
     /**
      * Возвращает страницу "client/product" с 1-м товаром с уникальним URL, который
      * совпадает с входящим параметром url. URL запроса "/product_{url}", метод GET.
@@ -531,6 +621,7 @@ public class MainController {
         modelAndView.addObject("basket_price", shoppingCartService.getPrice());
         modelAndView.addObject("productsInBasket", shoppingCartService.getSalePositions());
         modelAndView.addObject("priceOfBasket", shoppingCartService.getPrice());
+        modelAndView.addObject("url", "/basket");
         modelAndView.setViewName("client/basket");
         return modelAndView;
     }
@@ -553,6 +644,23 @@ public class MainController {
         return modelAndView;
     }
 
+    /**
+     * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
+     * URL запроса "/basket_remove_position", метод POST.
+     *
+     * @param id           Код товара, который нужно добавить в корзину.
+     * @param url          URL запроса для перенаправления.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/basket_remove_position", method = RequestMethod.POST)
+    public ModelAndView removeProductFromBasket(@RequestParam long id, @RequestParam("url") String url,
+                                                ModelAndView modelAndView) {
+        SalePosition salePosition = new SalePosition(productService.getById(id), 1);
+        shoppingCartService.remove(salePosition);
+        modelAndView.setViewName("redirect:" + url);
+        return modelAndView;
+    }
 }
 
 

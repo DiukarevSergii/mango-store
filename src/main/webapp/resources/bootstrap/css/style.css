@@ -124,19 +124,9 @@ body {
     margin-left: -15px;
 }
 
-/*.right-block {*/
-/*float: right;*/
-/*width: 210px;*/
-/*height: 700px;*/
-/*padding: 6px 0px 25px;*/
-/*margin-top: 25px;*/
-/*margin-right: -5px;*/
-/*}*/
-
 #right-block-1 {
     float: right;
     width: 210px;
-    /*height: 700px;*/
     padding: 6px 0px 25px;
     margin-top: 25px;
     margin-right: -5px;
@@ -259,6 +249,18 @@ pre {
 .btn.small {
     padding: 5px 16px;
     font-size: 15px;
+}
+
+input[type="submit"] {
+    background:url("/resources/img/del.png");
+    border: hidden;
+    width: 16px;
+    background-repeat: no-repeat;
+}
+
+input[type="submit"]:hover {
+    background:url("/resources/img/del-hover.png");
+    background-repeat: no-repeat;
 }
 
 .btn {
