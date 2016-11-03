@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
-import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.SalePosition;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import java.util.List;
  * и @Scope - область видимости бина "session" (один экземпляр бина для каждой сессии).
  *
  * @author Diukarev Sergii
- * @see Product
+ * @see SalePosition
  */
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class ShoppingBasket implements Serializable {
+public class ShoppingCart implements Serializable {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.
      */
@@ -31,21 +31,23 @@ public class ShoppingBasket implements Serializable {
     /**
      * Список торговых позиций, которые сделал клиент, но пока не оформил заказ.
      */
-    private List<Product> productsInBasket = new ArrayList<>();
+    private List<SalePosition> salePositions = new ArrayList<>();
 
     /**
      * Конструктр без параметров.
      */
-    public ShoppingBasket() {
+    public ShoppingCart() {
+        super();
     }
 
     /**
      * Конструктор для инициализации основных переменных корзины.
      *
-     * @param productsInBasket Торговые позиции, добавленные клиентом в корзину.
+     * @param salePositions Торговые позиции, сделаные клиентом.
      */
-    public ShoppingBasket(List<Product> productsInBasket) {
-        this.productsInBasket = productsInBasket;
+    public ShoppingCart(List<SalePosition> salePositions) {
+        super();
+        this.salePositions = salePositions;
     }
 
     /**
@@ -57,13 +59,13 @@ public class ShoppingBasket implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Shoping Basket: ");
-        if (productsInBasket != null && !productsInBasket.isEmpty()) {
+        StringBuilder sb = new StringBuilder("Shoping Cart: ");
+        if (salePositions != null && !salePositions.isEmpty()) {
             int count = 1;
-            for (Product product : productsInBasket) {
-                sb.append("\n").append(count++).append(") ").append(product.getProductTitle())
-                        .append("\n№ ").append(product.getProductId())
-                        .append(", ").append(product.getSalePrice()).append(" UAH");
+            for (SalePosition salePosition : salePositions) {
+                sb.append("\n").append(count++).append(") ").append(salePosition.getProduct().getProductTitle())
+                        .append("\n№ ").append(salePosition.getProduct().getProductId())
+                        .append(", ").append(salePosition.getPrice()).append(" UAH");
             }
             sb.append("\nPrice: ").append(getPrice()).append(" UAH");
         } else {
@@ -75,18 +77,15 @@ public class ShoppingBasket implements Serializable {
     /**
      * Добавляет торговую позицию в список корзины.
      *
-     * @param product Торговая позиция, которая будет добавлена в корзину.
+     * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
-    public void addProduct(Product product) {
-        if (product != null) {
-            if (!productsInBasket.contains(product)) {
-                productsInBasket.add(product);
-                product.setQuantity(1);
-                System.out.println("contain");
+    public void addSalePosition(SalePosition salePosition) {
+        if (salePosition != null) {
+            if (!salePositions.contains(salePosition)) {
+                salePositions.add(salePosition);
             } else {
-                System.out.println(product.getQuantity());
-                product.setQuantity(product.getQuantity() + 1);
-                System.out.println(product.getQuantity());
+                int index = salePositions.indexOf(salePosition);
+                salePositions.get(index).numberIncr();
             }
         }
     }
@@ -94,37 +93,37 @@ public class ShoppingBasket implements Serializable {
     /**
      * Добавляет список торговых позиций в список корзины.
      *
-     * @param productsInBasket Список торговых позиций, которые будут добавлены в корзину.
+     * @param salePositions Список торговых позиций, которые будут добавлены в корзину.
      */
-    public void addProductsInBasket(List<Product> productsInBasket) {
-        for (Product product : productsInBasket) {
-            addProduct(product);
+    public void addSalePositions(List<SalePosition> salePositions) {
+        for (SalePosition salePosition : salePositions) {
+            addSalePosition(salePosition);
         }
     }
 
     /**
      * Удаляет торговую позицию из корзины.
      *
-     * @param product Торговая позиция для удаления из корзины.
+     * @param salePosition Торговая позиция для удаления из корзины.
      */
-    public void removeProduct(Product product) {
-        productsInBasket.remove(product);
+    public void removeSalePosition(SalePosition salePosition) {
+        salePositions.remove(salePosition);
     }
 
     /**
      * Удаляет список торговых позицый из корзины.
      *
-     * @param productsInBasket Торговые позиции для удаления из корзины.
+     * @param salePositions Торговые позиции для удаления из корзины.
      */
-    public void removeProductsInBasket(List<Product> productsInBasket) {
-        this.productsInBasket.removeAll(productsInBasket);
+    public void removeSalePositions(List<SalePosition> salePositions) {
+        this.salePositions.removeAll(salePositions);
     }
 
     /**
      * Очищает корзину. Удаляет все торговые позиции в корзине.
      */
-    public void clearProductsInBasket() {
-        productsInBasket.clear();
+    public void clearSalePositions() {
+        salePositions.clear();
     }
 
     /**
@@ -133,19 +132,17 @@ public class ShoppingBasket implements Serializable {
      *
      * @return Объект типа {@link List} - список торговых позиций только для чтения или пустой список.
      */
-    public List<Product> getProductsInBasket() {
-        return productsInBasket == null || productsInBasket.isEmpty()
-                ? Collections.EMPTY_LIST
-                : Collections.unmodifiableList(productsInBasket);
+    public List<SalePosition> getSalePositions() {
+        return salePositions == null || salePositions.isEmpty() ? Collections.EMPTY_LIST : Collections.unmodifiableList(salePositions);
     }
 
     /**
      * Устанавливает список торговых позиций.
      *
-     * @param productsInBasket Список торговых позиций .
+     * @param salePositions Список торговых позиций .
      */
-    public void setProductsInBasket(List<Product> productsInBasket) {
-        this.productsInBasket = productsInBasket;
+    public void setSalePositions(List<SalePosition> salePositions) {
+        this.salePositions = salePositions;
     }
 
     /**
@@ -155,8 +152,8 @@ public class ShoppingBasket implements Serializable {
      */
     public double getPrice() {
         double sum = 0;
-        for (Product product : productsInBasket) {
-            sum += product.getSalePrice();
+        for (SalePosition salePosition : salePositions) {
+            sum += salePosition.getPrice();
         }
         return sum;
     }
@@ -168,8 +165,8 @@ public class ShoppingBasket implements Serializable {
      */
     public int getSize() {
         int size = 0;
-        for (Product product : productsInBasket) {
-            size += product.getQuantity();
+        for (SalePosition salePosition : salePositions) {
+            size += salePosition.getNumber();
         }
         return size;
     }

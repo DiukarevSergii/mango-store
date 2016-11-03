@@ -17,17 +17,17 @@
     <div class="text">
         <table>
             <tbody>
-            <c:forEach items="${productsInBasket}" var="product">
+            <c:forEach items="${productsInBasket}" var="position">
                 <tr>
                     <td>
-                        <pre><img src="${product.imageURL}" alt="${product.productTitle}" height="100"></pre>
+                        <pre><img src="${position.product.imageURL}" alt="${position.product.productTitle}" height="100"></pre>
                     </td>
                     <td>
                         <p style="margin-top: 10px; margin-bottom: 0px">
-                            <strong><a class="title-review" href="/product-${product.productId}">
-                                <span style="font-size: 16px; color: #7eb105">${product.productTitle}</span>
+                            <strong><a class="title-review" href="/product-${position.product.productId}">
+                                <span style="font-size: 16px; color: #7eb105">${position.product.productTitle}</span>
                             </a></strong></p>
-                        <p><span style="font-size: 12px; color: darkgrey; ">Код товара: ${product.productId}</span>
+                        <p><span style="font-size: 12px; color: darkgrey; ">Код товара: ${position.product.productId}</span>
                         </p>
                     </td>
                 </tr>
@@ -35,34 +35,48 @@
                     <td>
                         <div class="basket-review">
                             <span style="color:gray;">Цена</span>
-                            <span style="color:black;"><strong><p>${product.getFormatFullPrice()} ₴</p></strong></span>
+                            <span style="color:black;"><strong><p>${position.product.getFormatFullPrice()} ₴</p></strong></span>
                         </div>
                     </td>
                     <td>
                         <div class="basket-review">
                             <span style="color:gray;">Цена со скидкой</span>
-                            <span style="color:black;"><strong><p>${product.getFormatSalePrice()} ₴</p></strong></span>
+                            <span style="color:black;"><strong><p>${position.product.getFormatSalePrice()} ₴</p></strong></span>
                         </div>
                     </td>
                     <td>
                         <div class="basket-review">
-                            <span style="color:gray;">Количество: ${product.getQuantity()}</span>
+                            <span style="color:gray;">Количество: ${position.number}</span>
                             <div class="section  number-plus-minus">
-                                <input class="qnt" type="number" value="${product.quantity}" min="1" max="10"/>
+                                <input class="qnt" type="number" value="${position.number}" min="1" max="10"/>
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="basket-review">
                             <span style="color:gray;">Сумма</span>
-                            <strong><p class="mini-sum"><span>${product.salePrice * product.quantity}</span> ₴
+                            <strong><p class="mini-sum"><span>${position.getPrice()}</span> ₴
                             </p></strong>
                         </div>
                     </td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="basket-review">
+                        <span style="color:gray;">Итого к оплате</span>
+                        <strong><p class="mini-sum"><span>${basket_price}</span> ₴
+                        </p></strong>
+                    </div>
+                </td>
+            </tr>
             </tbody>
+
         </table>
+
     </div>
 
     <!-- BASEMENT -->

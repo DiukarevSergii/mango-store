@@ -1,38 +1,38 @@
-package ua.com.mangostore.dao;
+package ua.com.mangostore.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ua.com.mangostore.dao.ShoppingBasketDAO;
-import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.model.ShoppingBasket;
+import ua.com.mangostore.dao.ShoppingCartDAO;
+import ua.com.mangostore.entity.SalePosition;
+import ua.com.mangostore.model.ShoppingCart;
 
 import java.util.List;
 
 /**
- * Класс реализует методы интерфейса {@link ShoppingBasketDAO} для работы с корзиной.
+ * Класс реализует методы интерфейса {@link ShoppingCartDAO} для работы с корзиной.
  *
  * @author Diukarev Sergii
- * @see ShoppingBasketDAO
- * @see ShoppingBasket
+ * @see ShoppingCartDAO
+ * @see ShoppingCart
  */
 @Repository
-public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
+public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     /**
      * Объект корзина, в которой хранятся торговые позиции клиента.
      */
-    private ShoppingBasket shoppingBasket;
+    private ShoppingCart shoppingCart;
 
     /**
      * Конструктор для инициализации основных переменных.
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param shoppingBasket Объект класса {@link ShoppingBasket} для работы с товарной корзиной.
+     * @param shoppingCart Объект класса {@link ShoppingCart} для работы с товарной корзиной.
      */
     @Autowired
-    public ShoppingBasketDAOImpl(ShoppingBasket shoppingBasket) {
+    public ShoppingCartDAOImpl(ShoppingCart shoppingCart) {
         super();
-        this.shoppingBasket = shoppingBasket;
+        this.shoppingCart = shoppingCart;
     }
 
     /**
@@ -41,46 +41,46 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
      * @return Объект типа {@link List} - список торговых позиций.
      */
     @Override
-    public List<Product> getProductsInBasket() {
-        return shoppingBasket.getProductsInBasket();
+    public List<SalePosition> getSalePositions() {
+        return shoppingCart.getSalePositions();
     }
 
     /**
      * Добавляет торговую позицию в список корзины.
      *
-     * @param product Торговая позиция, которая будет добавлена в корзину.
+     * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
     @Override
-    public void addProduct(Product product) {
-        shoppingBasket.addProduct(product);
+    public void addSalePosition(SalePosition salePosition) {
+        shoppingCart.addSalePosition(salePosition);
     }
 
     /**
      * Удаляет торговую позицию из корзины.
      *
-     * @param product Торговая позиция для удаления из корзины.
+     * @param salePosition Торговая позиция для удаления из корзины.
      */
     @Override
-    public void removeProduct(Product product) {
-        shoppingBasket.removeProduct(product);
+    public void removeSalePosition(SalePosition salePosition) {
+        shoppingCart.removeSalePosition(salePosition);
     }
 
     /**
      * Очищает корзину. Удаляет все торговые позиции в корзине.
      */
     @Override
-    public void clearProductsInBasket() {
-        shoppingBasket.clearProductsInBasket();
+    public void clearSalePositions() {
+        shoppingCart.clearSalePositions();
     }
 
     /**
      * Возвращает объект-корзину целиком.
      *
-     * @return Объект класса {@link ShoppingBasket} - корзина.
+     * @return Объект класса {@link ShoppingCart} - корзина.
      */
     @Override
-    public ShoppingBasket get() {
-        return shoppingBasket;
+    public ShoppingCart get() {
+        return shoppingCart;
     }
 
     /**
@@ -90,7 +90,7 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
      */
     @Override
     public int getSize() {
-        return shoppingBasket.getSize();
+        return shoppingCart.getSize();
     }
 
     /**
@@ -100,6 +100,6 @@ public class ShoppingBasketDAOImpl implements ShoppingBasketDAO {
      */
     @Override
     public double getPrice() {
-        return shoppingBasket.getPrice();
+        return shoppingCart.getPrice();
     }
 }

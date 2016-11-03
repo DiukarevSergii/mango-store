@@ -3,6 +3,8 @@ package ua.com.mangostore.entity;
 import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -46,6 +48,16 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
     Order order;
+
+    /**
+     * Торговые позиции.
+     * К текущему товару можно добраться через поле "product"
+     * в объекте класса {@link SalePosition}.
+     * Выборка объекта salePosition при первом доступе к нему.
+     * Сущность salePosition автоматически удаляется при удалении текущей.
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<SalePosition> salePositions = new ArrayList<>();
 
     /**
      * Объект {@link DecimalFormat} для  форматирования десятичных чисел.
@@ -221,6 +233,24 @@ public class Product {
                         deviceSize, weight,
                         ddrMemeory, cumulativeMemory,
                         audio));
+    }
+
+    /**
+     * Возвращает список торговых позиций, для которых пренадлежит текущий товара.
+     *
+     * @return Объект класса {@link SalePosition} - торговая позиция.
+     */
+    public List<SalePosition> getSalePositions() {
+        return salePositions;
+    }
+
+    /**
+     * Устанавливает список торговых позиций, для которых пренадлежит текущий товара.
+     *
+     * @param salePositions Торговая позиция.
+     */
+    public void setSalePositions(List<SalePosition> salePositions) {
+        this.salePositions = salePositions;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package ua.com.mangostore.service;
 
-import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.model.ShoppingBasket;
+import ua.com.mangostore.entity.SalePosition;
+import ua.com.mangostore.model.ShoppingCart;
 
 import java.util.List;
 
@@ -11,36 +11,36 @@ import java.util.List;
  * которые оформляет клиент.
  *
  * @author Diukarev Sergii
- * @see ShoppingBasket
+ * @see ShoppingCart
  */
-public interface ShoppingBasketService {
+public interface ShoppingCartService {
 
     /**
      * Возвращает объект корзину.
-     * @return Объект класса {@link ShoppingBasket} - торговая корзина.
+     * @return Объект класса {@link ShoppingCart} - торговая корзина.
      */
-    ShoppingBasket getShoppingBasket();
+    ShoppingCart getShoppingCart();
 
     /**
      * Добавляет торговую позицию в список корзины.
      *
-     * @param product Торговая позиция, которая будет добавлена в корзину.
+     * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
-    void add(Product product);
+    void add(SalePosition salePosition);
 
     /**
      * Возвращает список всех торговых позиций в корзине.
      *
      * @return Объект типа {@link List} - список торговых позиций.
      */
-    List getProductsInBasket();
+    List getSalePositions();
 
     /**
      * Удаляет торговую позицию из корзины.
      *
-     * @param product Торговая позиция для удаления из корзины.
+     * @param salePosition Торговая позиция для удаления из корзины.
      */
-    void remove(Product product);
+    void remove(SalePosition salePosition);
 
     /**
      * Очищает корзину. Удаляет все торговые позиции в корзине.

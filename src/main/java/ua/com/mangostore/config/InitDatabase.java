@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.service.ShoppingBasketService;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -22,8 +21,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
     private ProductService productService;
     @Resource
     private OrderService orderService;
-    @Resource
-    private ShoppingBasketService shoppingBasketService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

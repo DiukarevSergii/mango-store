@@ -1,50 +1,51 @@
 package ua.com.mangostore.dao;
 
-import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.model.ShoppingBasket;
+import ua.com.mangostore.dao.impl.ShoppingCartDAOImpl;
+import ua.com.mangostore.entity.SalePosition;
+import ua.com.mangostore.model.ShoppingCart;
 
 import java.util.List;
 
 /**
- * Интерфейс описывает набор методов для работы объектов класса {@link ShoppingBasket}.
+ * Интерфейс описывает набор методов для работы объектов класса {@link ShoppingCart}.
  *
- * @author Yurii Salimov
- * @see ShoppingBasketDAOImpl
- * @see Product
+ * @author Diukarev Sergii
+ * @see ShoppingCartDAOImpl
+ * @see SalePosition
  */
-public interface ShoppingBasketDAO {
+public interface ShoppingCartDAO {
     /**
      * Возвращает список всех торговых позиций в корзине.
      *
      * @return Объект типа {@link List} - список торговых позиций.
      */
-    List<Product> getProductsInBasket();
+    List<SalePosition> getSalePositions();
 
     /**
      * Добавляет торговую позицию в список корзины.
      *
-     * @param product Торговая позиция, которая будет добавлена в корзину.
+     * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
-    void addProduct(Product product);
+    void addSalePosition(SalePosition salePosition);
 
     /**
      * Удаляет торговую позицию из корзины.
      *
-     * @param product Торговая позиция для удаления из корзины.
+     * @param salePosition Торговая позиция для удаления из корзины.
      */
-    void removeProduct(Product product);
+    void removeSalePosition(SalePosition salePosition);
 
     /**
      * Очищает корзину. Удаляет все торговые позиции в корзине.
      */
-    void clearProductsInBasket();
+    void clearSalePositions();
 
     /**
      * Возвращает объект-корзину целиком.
      *
-     * @return Объект класса {@link ShoppingBasket} - корзина.
+     * @return Объект класса {@link ShoppingCart} - корзина.
      */
-    ShoppingBasket get();
+    ShoppingCart get();
 
     /**
      * Возвращает размер корзины, то есть количество товаров в корзине.

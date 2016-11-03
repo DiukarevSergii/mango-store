@@ -3,17 +3,18 @@ package ua.com.mangostore.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.mangostore.dao.ShoppingBasketDAO;
-import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.dao.ShoppingCartDAO;
+import ua.com.mangostore.entity.SalePosition;
 import ua.com.mangostore.exception.BadRequestException;
-import ua.com.mangostore.model.ShoppingBasket;
-import ua.com.mangostore.service.ShoppingBasketService;
+import ua.com.mangostore.model.ShoppingCart;
+import ua.com.mangostore.service.ShoppingCartService;
+
 
 import java.util.List;
 
 /**
  * Класс сервисного слоя для работы с торговой корзиной.
- * Реализует методы интерфейса {@link ShoppingBasketService}.
+ * Реализует методы интерфейса {@link ShoppingCartService}.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -21,55 +22,55 @@ import java.util.List;
  * данной аннотацией начинается транзакция, после выполнения метода транзакция коммитится,
  * при выбрасывании RuntimeException откатывается.
  *
- * @author Yurii Salimov
- * @see ShoppingBasket
- * @see ShoppingBasketService
- * @see ShoppingBasketDAO
+ * @author Diukarev Sergii
+ * @see ShoppingCart
+ * @see ShoppingCartService
+ * @see ShoppingCartDAO
  */
 @Service
-public class ShoppingBasketServiceImpl implements ShoppingBasketService {
+public class ShoppingCartServiceImpl implements ShoppingCartService {
     /**
      * Реализация интерфейса для работы з торговой корзиной.
      */
-    private ShoppingBasketDAO shoppingBasketDAO;
+    private ShoppingCartDAO shoppingCartDAO;
 
     /**
      * Конструктор для инициализации основных переменных сервиса.
      * Помечаный аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
      *
-     * @param shoppingBasketDAO Реализация интерфейса для работы з торговой корзиной.
+     * @param shoppingCartDAO Реализация интерфейса для работы з торговой корзиной.
      */
     @Autowired
-    public ShoppingBasketServiceImpl(ShoppingBasketDAO shoppingBasketDAO) {
-        this.shoppingBasketDAO = shoppingBasketDAO;
+    public ShoppingCartServiceImpl(ShoppingCartDAO shoppingCartDAO) {
+        this.shoppingCartDAO = shoppingCartDAO;
     }
 
     /**
      * Возвращает объект корзину. Режим только для чтения.
      *
-     * @return Объект класса {@link ShoppingBasket} - торговая корзина.
+     * @return Объект класса {@link ShoppingCart} - торговая корзина.
      * @throws BadRequestException Бросает исключение, если корзина отсутствует.
      */
     @Override
     @Transactional(readOnly = true)
-    public ShoppingBasket getShoppingBasket() throws BadRequestException {
-        ShoppingBasket shoppingBasket = shoppingBasketDAO.get();
-        if (shoppingBasket == null) {
-            throw new BadRequestException("Can't find shopping basket!");
+    public ShoppingCart getShoppingCart() throws BadRequestException {
+        ShoppingCart shoppingCart = shoppingCartDAO.get();
+        if (shoppingCart == null) {
+            throw new BadRequestException("Can't find shopping cart!");
         }
-        return shoppingBasket;
+        return shoppingCart;
     }
 
     /**
      * Добавляет торговую позицию в список корзины.
      *
-     * @param product Торговая позиция, которая будет добавлена в корзину.
+     * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
     @Override
     @Transactional
-    public void add(Product product) {
-        if (product != null) {
-            shoppingBasketDAO.addProduct(product);
+    public void add(SalePosition salePosition) {
+        if (salePosition != null) {
+            shoppingCartDAO.addSalePosition(salePosition);
         }
     }
 
@@ -78,21 +79,22 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
      *
      * @return Объект типа {@link List} - список торговых позиций.
      */
+    @Override
     @Transactional(readOnly = true)
-    public List<Product> getProductsInBasket() {
-        return shoppingBasketDAO.getProductsInBasket();
+    public List<SalePosition> getSalePositions() {
+        return shoppingCartDAO.getSalePositions();
     }
 
     /**
      * Удаляет торговую позицию из корзины.
      *
-     * @param product Торговая позиция для удаления из корзины.
+     * @param salePosition Торговая позиция для удаления из корзины.
      */
     @Override
     @Transactional
-    public void remove(Product product) {
-        if (product != null) {
-            shoppingBasketDAO.removeProduct(product);
+    public void remove(SalePosition salePosition) {
+        if (salePosition != null) {
+            shoppingCartDAO.removeSalePosition(salePosition);
         }
     }
 
@@ -102,7 +104,7 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
     @Override
     @Transactional
     public void clear() {
-        shoppingBasketDAO.clearProductsInBasket();
+        shoppingCartDAO.clearSalePositions();
     }
 
     /**
@@ -113,7 +115,7 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
     @Override
     @Transactional(readOnly = true)
     public double getPrice() {
-        return shoppingBasketDAO.getPrice();
+        return shoppingCartDAO.getPrice();
     }
 
     /**
@@ -125,6 +127,6 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
     @Override
     @Transactional(readOnly = true)
     public int getSize() {
-        return shoppingBasketDAO.getSize();
+        return shoppingCartDAO.getSize();
     }
 }

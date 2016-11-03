@@ -1,4 +1,4 @@
-package ua.com.mangostore;
+package ua.com.mangostore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.config.InitDatabase;
 import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.SalePosition;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.service.ShoppingBasketService;
+import ua.com.mangostore.service.ShoppingCartService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.List;
  * @see Product
  * @see ProductService
  * @see OrderService
- * @see ShoppingBasketService
+ * @see ShoppingCartService
  */
 @Controller
 public class MainController {
@@ -46,7 +47,7 @@ public class MainController {
     /**
      * Объект сервиса для работы с торговой корзиной.
      */
-    private ShoppingBasketService shoppingBasketService;
+    private ShoppingCartService shoppingCartService;
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -54,13 +55,13 @@ public class MainController {
      *
      * @param productService        Объект сервиса для работы с товарами.
      * @param orderService          Объект сервиса для работы с заказами.
-     * @param shoppingBasketService Объект сервиса для работы с торговой корзиной.
+     * @param shoppingCartService Объект сервиса для работы с торговой корзиной.
      */
     @Autowired
-    public MainController(OrderService orderService, ProductService productService, ShoppingBasketService shoppingBasketService) {
+    public MainController(OrderService orderService, ProductService productService, ShoppingCartService shoppingCartService) {
         this.orderService = orderService;
         this.productService = productService;
-        this.shoppingBasketService = shoppingBasketService;
+        this.shoppingCartService = shoppingCartService;
     }
 
     /**
@@ -73,7 +74,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Лидеры продаж");
         modelAndView.addObject("url", "/");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -105,7 +106,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/samsung"}, method = RequestMethod.GET)
     public ModelAndView samsung(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Samsung");
         modelAndView.addObject("url", "/samsung");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -125,7 +126,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/apple"}, method = RequestMethod.GET)
     public ModelAndView apple(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Apple");
         modelAndView.addObject("url", "/apple");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -145,7 +146,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/apple/iphone"}, method = RequestMethod.GET)
     public ModelAndView iphone(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "iPhone");
         modelAndView.addObject("url", "/apple/iphone");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -165,7 +166,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/apple/ipad"}, method = RequestMethod.GET)
     public ModelAndView ipad(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "iPad");
         modelAndView.addObject("url", "/apple/ipad");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -185,7 +186,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/apple/mac"}, method = RequestMethod.GET)
     public ModelAndView mac(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "MacBook и iMac");
         modelAndView.addObject("url", "/apple/mac");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -205,7 +206,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/apple/accessories"}, method = RequestMethod.GET)
     public ModelAndView appleAccessories(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Акссесуары для Apple");
         modelAndView.addObject("url", "/apple/accessories");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -235,7 +236,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/xiaomi"}, method = RequestMethod.GET)
     public ModelAndView xiaomi(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Xiaomi");
         modelAndView.addObject("url", "/apple/xiaomi");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -255,7 +256,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/meizu"}, method = RequestMethod.GET)
     public ModelAndView lg(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Meizu");
         modelAndView.addObject("url", "/apple/meizu");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -283,7 +284,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/tablet-pc"}, method = RequestMethod.GET)
     public ModelAndView tablet(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Планшеты");
         modelAndView.addObject("url", "/tablet-pc");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -303,7 +304,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/tablet-pc/accessories"}, method = RequestMethod.GET)
     public ModelAndView tabletAccessories(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Акссесуары для планшетов");
         modelAndView.addObject("url", "/tablet-pc/accessories");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -323,7 +324,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/smartphones"}, method = RequestMethod.GET)
     public ModelAndView smartphone(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Смартфоны");
         modelAndView.addObject("url", "/smartphones");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -343,7 +344,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/smartphones/accessories"}, method = RequestMethod.GET)
     public ModelAndView smartphoneAccessories(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Акссесуары для смартфонов");
         modelAndView.addObject("url", "/smartphones/accessories");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -374,7 +375,7 @@ public class MainController {
      */
     @RequestMapping(value = "/product-{id}", method = RequestMethod.GET)
     public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         Product product = productService.getById(id);
         modelAndView.addObject("title", product.getProductTitle());
         modelAndView.addObject("url", "product-" + id);
@@ -414,7 +415,7 @@ public class MainController {
      */
     @RequestMapping(value = "/sales", method = RequestMethod.GET)
     public ModelAndView onSales(ModelAndView modelAndView) {
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Акции компании МАНГО");
         modelAndView.addObject("url", "/sales");
         List<Product> groupOfProducts = new ArrayList<>();
@@ -526,9 +527,10 @@ public class MainController {
     @RequestMapping(value = "/basket", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
         modelAndView.addObject("title", "Моя корзина");
-        modelAndView.addObject("basket_size", shoppingBasketService.getSize());
-        modelAndView.addObject("productsInBasket", shoppingBasketService.getProductsInBasket());
-        modelAndView.addObject("priceOfBasket", shoppingBasketService.getPrice());
+        modelAndView.addObject("basket_size", shoppingCartService.getSize());
+        modelAndView.addObject("basket_price", shoppingCartService.getPrice());
+        modelAndView.addObject("productsInBasket", shoppingCartService.getSalePositions());
+        modelAndView.addObject("priceOfBasket", shoppingCartService.getPrice());
         modelAndView.setViewName("client/basket");
         return modelAndView;
     }
@@ -545,9 +547,8 @@ public class MainController {
     @RequestMapping(value = "/basket_add", method = RequestMethod.POST)
     public ModelAndView addProductToBasket(@RequestParam long id, @RequestParam("url") String url,
                                            ModelAndView modelAndView) {
-        Product product = productService.getById(id);
-        shoppingBasketService.add(product);
-        productService.editProduct(product);
+        SalePosition salePosition = new SalePosition(productService.getById(id), 1);
+        shoppingCartService.add(salePosition);
         modelAndView.setViewName("redirect:" + url);
         return modelAndView;
     }
