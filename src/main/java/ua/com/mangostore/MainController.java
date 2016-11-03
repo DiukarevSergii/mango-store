@@ -525,6 +525,7 @@ public class MainController {
      */
     @RequestMapping(value = "/basket", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
+        modelAndView.addObject("title", "Моя корзина");
         modelAndView.addObject("basket_size", shoppingBasketService.getSize());
         modelAndView.addObject("productsInBasket", shoppingBasketService.getProductsInBasket());
         modelAndView.addObject("priceOfBasket", shoppingBasketService.getPrice());
@@ -544,7 +545,9 @@ public class MainController {
     @RequestMapping(value = "/basket_add", method = RequestMethod.POST)
     public ModelAndView addProductToBasket(@RequestParam long id, @RequestParam("url") String url,
                                            ModelAndView modelAndView) {
-        shoppingBasketService.add(productService.getById(id));
+        Product product = productService.getById(id);
+        shoppingBasketService.add(product);
+        productService.editProduct(product);
         modelAndView.setViewName("redirect:" + url);
         return modelAndView;
     }

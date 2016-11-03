@@ -57,7 +57,7 @@ public class ShoppingBasket implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Shoping Cart: ");
+        StringBuilder sb = new StringBuilder("Shoping Basket: ");
         if (productsInBasket != null && !productsInBasket.isEmpty()) {
             int count = 1;
             for (Product product : productsInBasket) {
@@ -82,8 +82,11 @@ public class ShoppingBasket implements Serializable {
             if (!productsInBasket.contains(product)) {
                 productsInBasket.add(product);
                 product.setQuantity(1);
+                System.out.println("contain");
             } else {
+                System.out.println(product.getQuantity());
                 product.setQuantity(product.getQuantity() + 1);
+                System.out.println(product.getQuantity());
             }
         }
     }
