@@ -60,4 +60,11 @@ public interface ShoppingCartDAO {
      * @return Значение типа double - цена корзины.
      */
     double getPrice();
+
+    /**
+     * Возвращает цену корзины в отформатированном виде- цена всех продаж.
+     *
+     * @return Значение типа String - цена корзины в отформатированном виде.
+     */
+    String getFormatPrice();
 }

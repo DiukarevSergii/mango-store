@@ -3,6 +3,8 @@ package ua.com.mangostore.entity;
 import ua.com.mangostore.model.ShoppingCart;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  * Класс описывает сущность "Торговая позиция".
@@ -92,6 +94,15 @@ public class SalePosition{
      */
     public double getPrice() {
         return product.getSalePrice() * number;
+    }
+
+    /**
+     * Возвращает общую стоимость торговой позиции (цена товара * количество).
+     *
+     * @return Значение типа double - цена торговой пзиции.
+     */
+    public String getFormatPrice() {
+        return product.df.format(product.getSalePrice() * number);
     }
 
     /**

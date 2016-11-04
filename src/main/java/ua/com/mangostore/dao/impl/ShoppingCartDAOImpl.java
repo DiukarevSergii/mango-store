@@ -102,4 +102,14 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     public double getPrice() {
         return shoppingCart.getPrice();
     }
+
+    /**
+     * Возвращает цену корзины в отформатированном виде- цена всех продаж.
+     *
+     * @return Значение типа String - цена корзины в отформатированном виде.
+     */
+    @Override
+    public String getFormatPrice(){
+        return shoppingCart.getFormatPrice();
+    }
 }

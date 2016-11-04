@@ -19,7 +19,7 @@
                         </span>
                         &nbsp;<c:out value="${product.getFormatSalePrice()}"/>
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                    <form action="/basket_add" method=post>
+                    <form action="/cart_add" method=post>
                         <input type="hidden" name="id" value="${product.productId}">
                         <input type="hidden" name="url" value="${url}">
                         <button class="btn btn_in_section">

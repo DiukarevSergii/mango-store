@@ -16,9 +16,9 @@
         </div>
     </div>
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
-        <div class=" basket">
-            <img src="/resources/img/basket.png" alt="basket">
-            &nbsp; <a href="/basket"> Корзина: ${basket_size}</a>
+        <div class=" cart">
+            <img src="/resources/img/cart.png" alt="cart">
+            &nbsp; <a href="/cart"> Корзина: ${cart_size}</a>
         </div>
     </div>
 </div>

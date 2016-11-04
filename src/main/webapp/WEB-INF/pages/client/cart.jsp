@@ -17,7 +17,7 @@
     <div class="text">
         <table>
             <tbody>
-            <c:forEach items="${productsInBasket}" var="position">
+            <c:forEach items="${productsInCart}" var="position">
                 <tr>
                     <td>
                         <pre><img src="${position.product.imageURL}" alt="${position.product.productTitle}"
@@ -34,7 +34,7 @@
                     </td>
                     <td></td>
                     <td style="text-align: right;">
-                        <form action="/basket_remove_position" method=post>
+                        <form action="/cart_remove_position" method=post>
                             <input type="hidden" name="id" value="${position.product.productId}">
                             <input type="hidden" name="url" value="${url}">
                             <input type="submit" value="" alt="Удалить товар"/>
@@ -43,19 +43,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="basket-review">
+                        <div class="cart-review">
                             <span style="color:gray;">Цена</span>
                             <span style="color:black;"><strong><p>${position.product.getFormatFullPrice()} ₴</p></strong></span>
                         </div>
                     </td>
                     <td>
-                        <div class="basket-review">
+                        <div class="cart-review">
                             <span style="color:gray;">Цена со скидкой</span>
                             <span style="color:black;"><strong><p>${position.product.getFormatSalePrice()} ₴</p></strong></span>
                         </div>
                     </td>
                     <td>
-                        <div class="basket-review">
+                        <div class="cart-review">
                             <span style="color:gray;">Количество</span>
                             <span class="mini-sum"
                                   style="text-align: center;"><strong><p>${position.number}</p></strong></span>
@@ -65,9 +65,9 @@
                         </div>
                     </td>
                     <td>
-                        <div class="basket-review">
+                        <div class="cart-review">
                             <span style="color:gray;">Сумма</span>
-                            <strong><p class="mini-sum"><span>${position.getPrice()}</span> ₴
+                            <strong><p class="mini-sum"><span>${position.getFormatPrice()}</span> ₴
                             </p></strong>
                         </div>
                     </td>
@@ -78,9 +78,9 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <div class="basket-review">
+                    <div class="cart-review">
                         <span style="color:gray;text-align: right;">Итого к оплате</span>
-                        <strong><p class="mini-sum"><span>${basket_price}</span> ₴
+                        <strong><p class="mini-sum"><span>${cart_price}</span> ₴
                         </p></strong>
                     </div>
                 </td>

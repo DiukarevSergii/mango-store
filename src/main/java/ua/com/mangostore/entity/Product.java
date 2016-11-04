@@ -62,7 +62,7 @@ public class Product {
     /**
      * Объект {@link DecimalFormat} для  форматирования десятичных чисел.
      */
-    static DecimalFormat df = new DecimalFormat();
+    public static DecimalFormat df = new DecimalFormat();
 
     {
         df.setGroupingUsed(true);

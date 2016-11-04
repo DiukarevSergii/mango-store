@@ -71,8 +71,8 @@
 //            System.out.println("------------Then-------------------");
 //
 //            Query query = em.createQuery("SELECT b FROM Order b", Order.class);
-//            List<Order> basketList = query.getResultList();
-//            for (Order b : basketList) {
+//            List<Order> cartList = query.getResultList();
+//            for (Order b : cartList) {
 //                System.out.println(b);
 //            }
 //            System.out.println("------------Create delivery-------------------");
@@ -112,8 +112,8 @@
 //            }
 //            System.out.println("------------Show orders-------------------");
 //            query = em.createQuery("SELECT b FROM Order b", Order.class);
-//            basketList = query.getResultList();
-//            for (Order b : basketList) {
+//            cartList = query.getResultList();
+//            for (Order b : cartList) {
 //                System.out.println(b);
 //            }
 //            System.out.println("-----------Before commit------------");

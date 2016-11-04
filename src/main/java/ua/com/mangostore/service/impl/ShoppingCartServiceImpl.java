@@ -9,7 +9,6 @@ import ua.com.mangostore.exception.BadRequestException;
 import ua.com.mangostore.model.ShoppingCart;
 import ua.com.mangostore.service.ShoppingCartService;
 
-
 import java.util.List;
 
 /**
@@ -117,6 +116,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public double getPrice() {
         return shoppingCartDAO.getPrice();
     }
+
+    /**
+     * Возвращает цену корзины в отформатированном виде- цена всех продаж.
+     *
+     * @return Значение типа String - цена корзины в отформатированном виде.
+     */
+    public String getFormatPrice(){
+        return shoppingCartDAO.getFormatPrice();
+    }
+
+
 
     /**
      * Возвращает размер корзины, то есть количество товаров в корзине.

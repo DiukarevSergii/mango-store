@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
+import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.entity.SalePosition;
 
 import java.io.Serializable;
@@ -159,6 +160,15 @@ public class ShoppingCart implements Serializable {
     }
 
     /**
+     * Возвращает цену корзины в отформатированном виде- цена всех продаж.
+     *
+     * @return Значение типа String - цена корзины в отформатированном виде.
+     */
+    public String getFormatPrice() {
+        return Product.df.format(getPrice());
+    }
+
+    /**
      * Возвращает размер корзины - количество товаров в корзине.
      *
      * @return Значение типа int - количество товаров в корзине.
@@ -170,4 +180,5 @@ public class ShoppingCart implements Serializable {
         }
         return size;
     }
+
 }
