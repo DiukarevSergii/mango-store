@@ -305,7 +305,7 @@ public class MainController {
     public ModelAndView xiaomi(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Xiaomi");
-        modelAndView.addObject("url", "/apple/xiaomi");
+        modelAndView.addObject("url", "/xiaomi");
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Xiaomi");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
@@ -325,7 +325,7 @@ public class MainController {
     public ModelAndView lg(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.addObject("title", "Meizu");
-        modelAndView.addObject("url", "/apple/meizu");
+        modelAndView.addObject("url", "/meizu");
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Meizu");
         modelAndView.addObject("groupOfProducts", groupOfProducts);

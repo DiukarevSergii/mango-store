@@ -252,15 +252,38 @@ pre {
 }
 
 input[type="submit"] {
-    background:url("/resources/img/del.png");
+    background: url("/resources/img/del.png");
     border: hidden;
     width: 16px;
     background-repeat: no-repeat;
 }
 
+input[type="text"]{
+    width: 440px;
+}
+
 input[type="submit"]:hover {
-    background:url("/resources/img/del-hover.png");
+    background: url("/resources/img/del-hover.png");
     background-repeat: no-repeat;
+}
+
+.btn.btn-add {
+    background-color: #7eb129;
+    box-shadow: 0 3px 0 0 #658e21;
+    height: 30px;
+    width: 440px;
+    font-size: medium;
+    margin-top: 10px;
+}
+
+.btn.btn-add:hover {
+    background-color: #72a400;
+    box-shadow: 0 3px 0 0 #658e21;
+    height: 30px;
+    width: 440px;
+    font-size: medium;
+    margin-top: 10px;
+
 }
 
 .btn {
