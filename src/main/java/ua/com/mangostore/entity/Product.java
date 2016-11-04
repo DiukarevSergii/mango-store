@@ -45,9 +45,9 @@ public class Product {
     @Column(name = "QUANTITY")
     private int quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
-    Order order;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
+//    Order order;
 
     /**
      * Торговые позиции.
@@ -87,13 +87,13 @@ public class Product {
         this.onMain = "";
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
 
     public int getQuantity() {
         return quantity;

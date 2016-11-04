@@ -67,7 +67,7 @@
             <td>
                 <div class="cart-review">
                     <span style="color:gray;text-align: right;">Итого к оплате</span>
-                    <strong><p class="mini-sum"><span>${cart_price}</span> ₴
+                    <strong><p class="mini-sum"><span>${cart_format_price}</span> ₴
                     </p></strong>
                 </div>
             </td>

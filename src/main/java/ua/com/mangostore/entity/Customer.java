@@ -24,11 +24,11 @@ public class Customer {
     @Column(nullable = false, name = "CITY")
     private String city;
 
-    @Column(name = "ZIPCODE")
-    private int zipcode;
-
     @Column(nullable = false, name = "PHONE")
     private String phone;
+
+    @Column(nullable = false, name = "EMAIL")
+    private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
@@ -42,6 +42,14 @@ public class Customer {
     public void addOrder(Order order){
         order.setCustomer(this);
         orders.add(order);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public CreditCard getCreditCard() {
@@ -84,14 +92,6 @@ public class Customer {
         this.city = city;
     }
 
-    public int getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -107,7 +107,6 @@ public class Customer {
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", zipcode='" + zipcode + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

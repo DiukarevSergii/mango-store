@@ -15,12 +15,18 @@
     <jsp:include page="/WEB-INF/pages/template/right-block-1.jsp"/>
     <h3>Моя корзина</h3>
 
+<c:choose>
+    <c:when test="${cart_price > 0}">
     <!-- PRODUCTS IN CART -->
     <jsp:include page="/WEB-INF/pages/template/products_in_cart.jsp"/>
 
     <!-- REGISTRATION ORDER-->
     <jsp:include page="/WEB-INF/pages/template/registration_order.jsp"/>
-
+    </c:when>
+    <c:otherwise>
+        Ваша корзина все ещё пуста =(
+    </c:otherwise>
+</c:choose>
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 

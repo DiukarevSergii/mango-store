@@ -53,8 +53,8 @@ public class MainController {
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
      * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
      *
-     * @param productService        Объект сервиса для работы с товарами.
-     * @param orderService          Объект сервиса для работы с заказами.
+     * @param productService      Объект сервиса для работы с товарами.
+     * @param orderService        Объект сервиса для работы с заказами.
      * @param shoppingCartService Объект сервиса для работы с торговой корзиной.
      */
     @Autowired
@@ -285,8 +285,7 @@ public class MainController {
 
     private void groupByModel(List<Product> groupOfProducts, String model, String brand) {
         for (Product product : productService.getAll()) {
-            if (product.getOrder() == null
-                    && product.getProductTitle().toLowerCase().contains(model)
+            if (product.getProductTitle().toLowerCase().contains(model)
                     && product.getBrand().toLowerCase().contains(brand)) {
                 groupOfProducts.add(product);
             }
@@ -335,7 +334,7 @@ public class MainController {
 
     private void groupByBrand(List<Product> groupOfProducts, String param) {
         for (Product product : productService.getAll()) {
-            if (product.getOrder() == null && product.getBrand().equals(param)) {
+            if (product.getBrand().equals(param)) {
                 groupOfProducts.add(product);
             }
         }
@@ -425,7 +424,7 @@ public class MainController {
         String param1 = param[0];
         String param2 = param.length > 1 ? param[1] : "";
         for (Product product : productService.getAll()) {
-            if (product.getOrder() == null && (product.getType().equals(param1) || product.getType().equals(param2))) {
+            if ((product.getType().equals(param1) || product.getType().equals(param2))) {
                 groupOfProducts.add(product);
             }
         }
@@ -434,7 +433,7 @@ public class MainController {
     private void groupByType(String type, List<Product> groupOfProducts) {
         List<Product> groupByBrand = new ArrayList<>();
         for (Product product : groupOfProducts) {
-            if (product.getOrder() == null && (product.getType().equals(type))) {
+            if ((product.getType().equals(type))) {
                 groupByBrand.add(product);
             }
         }
@@ -498,7 +497,7 @@ public class MainController {
         modelAndView.addObject("url", "/sales");
         List<Product> groupOfProducts = new ArrayList<>();
         for (Product product : productService.getAll()) {
-            if (product.getOrder() == null && (product.getFullPrice() != product.getSalePrice())) {
+            if ((product.getFullPrice() != product.getSalePrice())) {
                 groupOfProducts.add(product);
             }
         }
@@ -606,7 +605,8 @@ public class MainController {
     public ModelAndView viewCart(ModelAndView modelAndView) {
         modelAndView.addObject("title", "Моя корзина");
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
-        modelAndView.addObject("cart_price", shoppingCartService.getFormatPrice());
+        modelAndView.addObject("cart_format_price", shoppingCartService.getFormatPrice());
+        modelAndView.addObject("cart_price", shoppingCartService.getPrice());
         modelAndView.addObject("productsInCart", shoppingCartService.getSalePositions());
         modelAndView.addObject("priceOfCart", shoppingCartService.getPrice());
         modelAndView.addObject("url", "/cart");
@@ -625,28 +625,85 @@ public class MainController {
      */
     @RequestMapping(value = "/cart_add", method = RequestMethod.POST)
     public ModelAndView addProductToCart(@RequestParam long id, @RequestParam("url") String url,
-                                           ModelAndView modelAndView) {
+                                         ModelAndView modelAndView) {
         SalePosition salePosition = new SalePosition(productService.getById(id), 1);
         shoppingCartService.add(salePosition);
         modelAndView.setViewName("redirect:" + url);
         return modelAndView;
     }
 
-/**
- * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
- * URL запроса "/cart_remove_position", метод POST.
- *
- * @param id           Код товара, который нужно добавить в корзину.
- * @param url          URL запроса для перенаправления.
- * @param modelAndView Объект класса {@link ModelAndView}.
- * @return Объект класса {@link ModelAndView}.
- */
+    /**
+     * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
+     * URL запроса "/cart_remove_position", метод POST.
+     *
+     * @param id           Код товара, который нужно добавить в корзину.
+     * @param url          URL запроса для перенаправления.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/cart_remove_position", method = RequestMethod.POST)
     public ModelAndView removeProductFromCart(@RequestParam long id, @RequestParam("url") String url,
-                                           ModelAndView modelAndView) {
+                                              ModelAndView modelAndView) {
         SalePosition salePosition = new SalePosition(productService.getById(id), 1);
         shoppingCartService.remove(salePosition);
         modelAndView.setViewName("redirect:" + url);
+        return modelAndView;
+    }
+
+    /**
+     * Оформляет и сохраняет заказ клиента, возвращает страницу "client/checkout".
+     * Если корзина пуста, то перенаправляет на главную страницу.
+     * URL запроса "/checkout", метод POST.
+     *
+     * @param name         Имя клиента, сжелавшего заказ.
+     *                     //     * @param surname      Фамилия клиента, сжелавшего заказ.
+     * @param email        Электронная почта клиента.
+     * @param phone        Номер телефона клиента.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public ModelAndView viewCheckout(/*@RequestParam(value = "сustomer_name") String name,
+                                     /*@RequestParam(value = "сustomer_surname") String surname,
+                                     @RequestParam(value = "сustomer_email") String email,
+                                     @RequestParam(value = "сustomer_phone") String phone,
+                                     @RequestParam(value = "сustomer_city") String city,
+                                     @RequestParam(value = "сustomer_delivery") String delivery,*/
+                                     @RequestParam(value = "user_name") String name,
+//                                     @RequestParam(value = "user_email") String email,
+//                                     @RequestParam(value = "user_phone") String phone,
+                                     ModelAndView modelAndView) {
+        if (shoppingCartService.getSize() > 0) {
+            System.out.println(name);
+//            Customer customer = new Customer();
+//            customer.setName(name);
+//            customer.setSurname(surname);
+//            customer.setEmail(email);
+//            customer.setPhone(phone);
+//            customer.setCity(city);
+////            customer.setCreditCard(creditCard);
+//
+//            Order order = new Order();
+//            order.setOrderPrice(shoppingCartService.getPrice());
+//            order.setCustomer(customer);
+//            order.addSalePositions(shoppingCartService.getSalePositions());
+//
+//            orderService.addOrder(order);
+
+//            modelAndView.addObject("order", order);
+//            modelAndView.addObject("title", "Заказ успешно оформлен!");
+            modelAndView.addObject("title", name);
+            modelAndView.addObject("cart_size", shoppingCartService.getSize());
+            modelAndView.addObject("cart_format_price", shoppingCartService.getFormatPrice());
+            modelAndView.addObject("cart_price", shoppingCartService.getPrice());
+            modelAndView.addObject("productsInCart", shoppingCartService.getSalePositions());
+            modelAndView.addObject("priceOfCart", shoppingCartService.getPrice());
+            modelAndView.setViewName("client/checkout");
+
+            shoppingCartService.clear();
+        } else {
+            modelAndView.setViewName("redirect:/");
+        }
         return modelAndView;
     }
 }

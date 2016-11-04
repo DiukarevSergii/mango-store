@@ -274,6 +274,7 @@ input[type="submit"]:hover {
     width: 440px;
     font-size: medium;
     margin-top: 10px;
+    background-image: none;
 }
 
 .btn.btn-add:hover {
@@ -283,7 +284,7 @@ input[type="submit"]:hover {
     width: 440px;
     font-size: medium;
     margin-top: 10px;
-
+    background-image: none;
 }
 
 .btn {
