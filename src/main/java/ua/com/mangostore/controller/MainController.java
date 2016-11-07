@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.config.InitDatabase;
+import ua.com.mangostore.entity.Customer;
+import ua.com.mangostore.entity.Order;
 import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.entity.SalePosition;
+import ua.com.mangostore.service.CustomerService;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 import ua.com.mangostore.service.ShoppingCartService;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +52,10 @@ public class MainController {
      * Объект сервиса для работы с торговой корзиной.
      */
     private ShoppingCartService shoppingCartService;
+    /**
+     * Объект сервиса для работы с покупателями.
+     */
+    private CustomerService customerService;
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -58,10 +66,12 @@ public class MainController {
      * @param shoppingCartService Объект сервиса для работы с торговой корзиной.
      */
     @Autowired
-    public MainController(OrderService orderService, ProductService productService, ShoppingCartService shoppingCartService) {
+    public MainController(OrderService orderService, ProductService productService, ShoppingCartService shoppingCartService,
+                          CustomerService customerService) {
         this.orderService = orderService;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
+        this.customerService = customerService;
     }
 
     /**
@@ -663,35 +673,36 @@ public class MainController {
      * @return Объект класса {@link ModelAndView}.
      */
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public ModelAndView viewCheckout(/*@RequestParam(value = "сustomer_name") String name,
-                                     /*@RequestParam(value = "сustomer_surname") String surname,
-                                     @RequestParam(value = "сustomer_email") String email,
-                                     @RequestParam(value = "сustomer_phone") String phone,
-                                     @RequestParam(value = "сustomer_city") String city,
-                                     @RequestParam(value = "сustomer_delivery") String delivery,*/
-                                     @RequestParam(value = "user_name") String name,
-//                                     @RequestParam(value = "user_email") String email,
-//                                     @RequestParam(value = "user_phone") String phone,
+    public ModelAndView viewCheckout(@RequestParam(value = "name") String name,
+                                     @RequestParam(value = "surname") String surname,
+                                     @RequestParam(value = "email") String email,
+                                     @RequestParam(value = "phone") String phone,
+                                     @RequestParam(value = "city") String city,
+                                     @RequestParam(value = "delivery_type") String delivery_type,
                                      ModelAndView modelAndView) {
         if (shoppingCartService.getSize() > 0) {
-            System.out.println(name);
-//            Customer customer = new Customer();
-//            customer.setName(name);
-//            customer.setSurname(surname);
-//            customer.setEmail(email);
-//            customer.setPhone(phone);
-//            customer.setCity(city);
+            byte[] bytes = name.getBytes(StandardCharsets.ISO_8859_1);
+            name = new String(bytes, StandardCharsets.UTF_8);
+            bytes = surname.getBytes(StandardCharsets.ISO_8859_1);
+            surname = new String(bytes, StandardCharsets.UTF_8);
+            bytes = city.getBytes(StandardCharsets.ISO_8859_1);
+            city = new String(bytes, StandardCharsets.UTF_8);
+            System.out.println(delivery_type);
+            Customer customer = new Customer();
+            customer.setName(name);
+            customer.setSurname(surname);
+            customer.setEmail(email);
+            customer.setPhone(phone);
+            customer.setCity(city);
 ////            customer.setCreditCard(creditCard);
-//
-//            Order order = new Order();
-//            order.setOrderPrice(shoppingCartService.getPrice());
-//            order.setCustomer(customer);
-//            order.addSalePositions(shoppingCartService.getSalePositions());
-//
-//            orderService.addOrder(order);
 
-//            modelAndView.addObject("order", order);
-//            modelAndView.addObject("title", "Заказ успешно оформлен!");
+            Order order = new Order();
+            order.setOrderPrice(shoppingCartService.getPrice());
+            order.setOrderPriceWithDiscount(shoppingCartService.getPrice());
+            order.addSalePositions(shoppingCartService.getSalePositions());
+            order.setCustomer(customer);
+            orderService.addOrder(order);
+
             modelAndView.addObject("title", name);
             modelAndView.addObject("cart_size", shoppingCartService.getSize());
             modelAndView.addObject("cart_format_price", shoppingCartService.getFormatPrice());

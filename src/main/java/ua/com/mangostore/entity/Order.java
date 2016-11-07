@@ -20,7 +20,7 @@ public class Order {
     @Column(nullable = false, name = "ORDER_PRICE_WITH_DISCOUNT")
     private double orderPriceWithDiscount;
 
-    @Column(nullable = false, name = "ORDER_DISCOUNT")
+    @Column(name = "ORDER_DISCOUNT")
     private int orderDiscount;
 
     @Column(nullable = false, name = "DATE_CREATED")
@@ -32,7 +32,7 @@ public class Order {
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
 //    List<Product> products = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 

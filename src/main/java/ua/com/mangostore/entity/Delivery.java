@@ -25,7 +25,8 @@ public class Delivery {
     private String status;
 
     @Column(name = "DELIVERY_TYPE")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private DeliveryType deliveryType;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
@@ -86,24 +87,13 @@ public class Delivery {
         this.status = status;
     }
 
-    public String getType() {
-        return type;
+    public DeliveryType getDeliveryType() {
+        return deliveryType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDeliveryType(DeliveryType deliveryType) {
+        this.deliveryType = deliveryType;
     }
 
 
-    @Override
-    public String toString() {
-        return "Delivery{" +
-                "deliveryDate='" + deliveryDate + '\'' +
-                ", deliveryTime='" + deliveryTime + '\'' +
-                ", cost=" + cost +
-                ", status='" + status + '\'' +
-                ", type='" + type + '\'' +
-                ", orderID=" + order.getOrderId() +
-                '}';
-    }
 }

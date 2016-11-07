@@ -18,7 +18,7 @@ public class Customer {
     @Column(nullable = false, name = "SURNAME")
     private String surname;
 
-    @Column(nullable = false, name = "ADDRESS")
+    @Column(name = "ADDRESS")
     private String address;
 
     @Column(nullable = false, name = "CITY")
