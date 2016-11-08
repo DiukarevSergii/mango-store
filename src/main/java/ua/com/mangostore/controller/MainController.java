@@ -616,7 +616,6 @@ public class MainController {
         modelAndView.addObject("title", "Моя корзина");
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.addObject("cart_format_price", shoppingCartService.getFormatPrice());
-        modelAndView.addObject("cart_price", shoppingCartService.getPrice());
         modelAndView.addObject("productsInCart", shoppingCartService.getSalePositions());
         modelAndView.addObject("priceOfCart", shoppingCartService.getPrice());
         modelAndView.addObject("url", "/cart");
@@ -687,7 +686,7 @@ public class MainController {
             surname = new String(bytes, StandardCharsets.UTF_8);
             bytes = city.getBytes(StandardCharsets.ISO_8859_1);
             city = new String(bytes, StandardCharsets.UTF_8);
-            System.out.println(delivery_type);
+
             Customer customer = new Customer();
             customer.setName(name);
             customer.setSurname(surname);
@@ -701,13 +700,14 @@ public class MainController {
             order.setOrderPriceWithDiscount(shoppingCartService.getPrice());
             order.addSalePositions(shoppingCartService.getSalePositions());
             order.setCustomer(customer);
+            System.out.println(order.getOrderId());
             orderService.addOrder(order);
 
-            modelAndView.addObject("title", name);
-            modelAndView.addObject("cart_size", shoppingCartService.getSize());
+            modelAndView.addObject("name", name);
+            modelAndView.addObject("order", order);
+            modelAndView.addObject("cart_size", 0);
+            modelAndView.addObject("productsInCart", order.getSalePositions());
             modelAndView.addObject("cart_format_price", shoppingCartService.getFormatPrice());
-            modelAndView.addObject("cart_price", shoppingCartService.getPrice());
-            modelAndView.addObject("productsInCart", shoppingCartService.getSalePositions());
             modelAndView.addObject("priceOfCart", shoppingCartService.getPrice());
             modelAndView.setViewName("client/checkout");
 

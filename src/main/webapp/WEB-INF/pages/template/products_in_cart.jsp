@@ -7,8 +7,8 @@
         <c:forEach items="${productsInCart}" var="position">
             <tr>
                 <td>
-                    <pre><img src="${position.product.imageURL}" alt="${position.product.productTitle}"
-                              height="100"></pre>
+                    <pre><a href="${position.product.imageURL}"><img src="${position.product.imageURL}" alt="${position.product.productTitle}"
+                              height="100"></a></pre>
                 </td>
                 <td>
                     <p style="margin-top: 10px; margin-bottom: 0px">
@@ -35,17 +35,23 @@
                         <span style="color:black;"><strong><p>${position.product.getFormatFullPrice()} ₴</p></strong></span>
                     </div>
                 </td>
-                <td>
-                    <div class="cart-review">
-                        <span style="color:gray;">Цена со скидкой</span>
-                        <span style="color:black;"><strong><p>${position.product.getFormatSalePrice()} ₴</p></strong></span>
-                    </div>
-                </td>
+                <c:choose>
+                    <c:when test="${position.product.fullPrice != position.product.salePrice}">
+                        <td>
+                            <div class="cart-review">
+                                <span style="color:gray;">Цена со скидкой</span>
+                                <span style="color:red;"><strong><p>${position.product.getFormatSalePrice()} ₴</p></strong></span>
+                            </div>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td></td>
+                    </c:otherwise>
+                </c:choose>
                 <td>
                     <div class="cart-review">
                         <span style="color:gray;">Количество</span>
-                        <span class="mini-sum"
-                              style="text-align: center;"><strong><p>${position.number}</p></strong></span>
+                        <span style="text-align: center;"><strong><p>${position.number}</p></strong></span>
                             <%--<div>--%>
                             <%--<input type="number" value="${position.number}" min="1" max="10"/>--%>
                             <%--</div>--%>
@@ -54,7 +60,7 @@
                 <td>
                     <div class="cart-review">
                         <span style="color:gray;">Сумма</span>
-                        <strong><p class="mini-sum"><span>${position.getFormatPrice()}</span> ₴
+                        <strong><p><span>${position.getFormatPrice()}</span> ₴
                         </p></strong>
                     </div>
                 </td>
@@ -67,7 +73,7 @@
             <td>
                 <div class="cart-review">
                     <span style="color:gray;text-align: right;">Итого к оплате</span>
-                    <strong><p class="mini-sum"><span>${cart_format_price}</span> ₴
+                    <strong><p><span>${cart_format_price}</span> ₴
                     </p></strong>
                 </div>
             </td>

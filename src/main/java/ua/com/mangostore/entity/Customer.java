@@ -7,28 +7,62 @@ import java.util.List;
 @Entity
 @Table(name = "Customers")
 public class Customer {
+    /**
+     * Уникальный код обьекта.
+     * Аннотация @Id говорит о том что поле является ключем для текущего объекта,
+     * Аннотация @GeneratedValue говорит о том что значение генерируется автоматически.
+     * Значение поля сохраняется в колонке "CUSTOMER_ID".
+     */
     @Id
     @GeneratedValue
     @Column(name = "CUSTOMER_ID")
     private long customerId;
 
+    /**
+     * Имя покупателя. Значение поля сохраняется в колонке "NAME". Не может быть null.
+     */
     @Column(nullable = false, name = "NAME")
     private String name;
 
+    /**
+     * Фамилия покупателя. Значение поля сохраняется в колонке "SURNAME". Не может быть null.
+     */
     @Column(nullable = false, name = "SURNAME")
     private String surname;
 
+    /**
+     * Адресс покупателя. Значение поля сохраняется в колонке "ADDRESS". Может быть null.
+     */
     @Column(name = "ADDRESS")
     private String address;
 
+    /**
+     * Город покупателя. Значение поля сохраняется в колонке "CITY". Не может быть null.
+     */
     @Column(nullable = false, name = "CITY")
     private String city;
 
+    /**
+     * Телефон покупателя. Значение поля сохраняется в колонке "PHONE". Не может быть null.
+     */
     @Column(nullable = false, name = "PHONE")
     private String phone;
 
+    /**
+     * Электронная почта покупателя, также используется для входа в учетную запись на сайте (логин).
+     * Значение поля сохраняется в колонке "EMAIL".
+     * Не может быть null.
+     */
     @Column(nullable = false, name = "EMAIL")
     private String email;
+
+    /**
+     * Пароль пользователя для входа в учетную запись на сайте.
+     * Значение поля сохраняется в колонке "PASSWORD".
+     * Может быть null.
+     */
+    @Column(name = "PASSWORD")
+    private String password;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();

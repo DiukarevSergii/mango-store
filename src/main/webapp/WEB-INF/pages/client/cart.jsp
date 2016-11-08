@@ -16,7 +16,7 @@
     <h3>Моя корзина</h3>
 
 <c:choose>
-    <c:when test="${cart_price > 0}">
+    <c:when test="${cart_size > 0}">
     <!-- PRODUCTS IN CART -->
     <jsp:include page="/WEB-INF/pages/template/products_in_cart.jsp"/>
 

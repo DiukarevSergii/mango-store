@@ -5,26 +5,52 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "Orders")
 public class Order {
+    /**
+     * Уникальный код обьекта.
+     * Аннотация @Id говорит о том что поле является ключем для текущего объекта,
+     * Аннотация @GeneratedValue говорит о том что значение генерируется автоматически.
+     * Значение поля сохраняется в колонке "ORDER_ID".
+     */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     private long orderId;
 
+    /**
+     * Общая стоимость заказа. Значение поля сохраняется в колонке "ORDER_PRICE". Не может быть null.
+     */
     @Column(nullable = false, name = "ORDER_PRICE")
     private double orderPrice;
 
+    /**
+     * Общая стоимость заказа со скидкой. Значение поля сохраняется в колонке "ORDER_PRICE_WITH_DISCOUNT".
+     * Может быть null.
+     */
     @Column(nullable = false, name = "ORDER_PRICE_WITH_DISCOUNT")
     private double orderPriceWithDiscount;
 
+    /**
+     * Сумма скидки для заказа. Значение поля сохраняется в колонке "ORDER_DISCOUNT". Может быть null.
+     */
     @Column(name = "ORDER_DISCOUNT")
     private int orderDiscount;
 
+    /**
+     * Дата создания заказа. Значение поля сохраняется в колонке "DATE_CREATED". Не может быть null.
+     */
     @Column(nullable = false, name = "DATE_CREATED")
     private String dateCreated;
+
+    /**
+     * Номер заказа. Значение поля сохраняется в колонке "number". Не может быть null.
+     */
+    @Column(name = "NUMBER", nullable = false)
+    private String number;
 
     @OneToOne(mappedBy = "order")
     private Delivery delivery;
@@ -52,6 +78,26 @@ public class Order {
 
     public Order() {
         this.dateCreated = LocalDate.now().toString();
+        this.number = createNumberOfOrder();
+    }
+
+    /**
+     * Набор вожможных символов для использованния по-умолчанию.
+     */
+
+    protected static final char[] NUMBER_PATTERN = {
+            'M', 'A', 'N', 'G', 'O', 'S', 'T', 'R', 'E',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+
+    private String createNumberOfOrder() {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            int number = new Random().nextInt(NUMBER_PATTERN.length);
+            char ch = NUMBER_PATTERN[number];
+            builder.append(ch);
+        }
+        return builder.toString();
     }
 
 //      public void addProduct(Product product){
@@ -67,6 +113,9 @@ public class Order {
 //          setOrderQuantity(products.size());
 //          setOrderPrice(getOrderPrice() + product.getFullPrice());
 //      }
+
+
+
 
     /**
      * Добавляет торговую позицию в текущий заказа.
@@ -141,6 +190,14 @@ public class Order {
                 salePosition.setOrder(this);
             }
         }
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Employee getEmployee() {
