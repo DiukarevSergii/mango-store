@@ -30,6 +30,11 @@
                placeholder="Введите город" required>
         <p class="help-block" style="font-size: 11px">Пример: Киев. Только кирилица</p>
 
+        <strong><p style="font-size: 16px">Ваш адресс:</p></strong>
+        <input type="text" class="form-control" name="address" autocomplete="on"
+               placeholder="Введите адресс">
+        <p class="help-block" style="font-size: 11px">Поле не обязательно для заполнения</p>
+
         <strong><p style="font-size: 16px; margin-top: 15px">Способ доставки:</p></strong>
         <div class="radio">
             <label>

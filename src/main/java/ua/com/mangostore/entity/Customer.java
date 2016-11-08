@@ -49,9 +49,8 @@ public class Customer {
     private String phone;
 
     /**
-     * Электронная почта покупателя.
-     * Значение поля сохраняется в колонке "EMAIL".
-     * Может быть null.
+     * Электронная почта покупателя. Значение поля сохраняется в колонке "EMAIL".
+     * Не может быть null.
      */
     @Column(name = "EMAIL")
     private String email;

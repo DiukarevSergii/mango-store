@@ -34,9 +34,6 @@
             <li class="topbutton">
                 <a href="/review">Обзоры</a>
             </li>
-            <li class="dropdown pull-right">
-                <a href="/login" data-toggle="dropdown" class="dropdown-toggle">Личный кабинет</a>
-            </li>
         </ul>
     </div>
 </div>

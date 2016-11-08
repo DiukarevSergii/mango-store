@@ -718,10 +718,13 @@ public class MainController {
         if (shoppingCartService.getSize() > 0) {
             byte[] bytes = name.getBytes(StandardCharsets.ISO_8859_1);
             name = new String(bytes, StandardCharsets.UTF_8);
+
             bytes = surname.getBytes(StandardCharsets.ISO_8859_1);
             surname = new String(bytes, StandardCharsets.UTF_8);
+
             bytes = city.getBytes(StandardCharsets.ISO_8859_1);
             city = new String(bytes, StandardCharsets.UTF_8);
+
             bytes = address.getBytes(StandardCharsets.ISO_8859_1);
             address = new String(bytes, StandardCharsets.UTF_8);
 
@@ -729,6 +732,7 @@ public class MainController {
             customer.setName(name);
             customer.setSurname(surname);
             customer.setPhone(phone);
+            customer.setEmail(email);
             customer.setCity(city);
             customer.setAddress(address);
 ////            customer.setCreditCard(creditCard);
