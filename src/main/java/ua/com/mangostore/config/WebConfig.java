@@ -39,6 +39,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resource.addResourceHandler("/resources/" + "**").addResourceLocations("/resources/");
     }
 
+//    @Bean
+//    public UserDetailsService getCustomerDetailsService(){
+//        return new CustomerDetailsServiceImpl();
+//    }
+
     /**
      * Настройка логин-контроллера.
      * Оказывает помощь в регистрации простого автоматизированного логин-контроллера предварительно

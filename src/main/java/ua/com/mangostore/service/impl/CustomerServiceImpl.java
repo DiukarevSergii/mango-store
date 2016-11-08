@@ -33,6 +33,13 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepository.findByName(name);
     }
 
+
+    @Override
+    @Transactional
+    public Customer getByEmail(String email) {
+        return customerRepository.findByEmail(email);
+    }
+
     @Override
     @Transactional
     public Customer editCustomer(Customer customer) {

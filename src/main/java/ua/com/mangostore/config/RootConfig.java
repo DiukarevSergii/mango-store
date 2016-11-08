@@ -22,7 +22,7 @@ import java.util.Properties;
 @EnableWebMvc
 @ComponentScan("ua.com.mangostore")
 @EnableJpaRepositories("ua.com.mangostore.repository")
-public class AppConfig extends WebMvcConfigurerAdapter {
+public class RootConfig extends WebMvcConfigurerAdapter {
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";

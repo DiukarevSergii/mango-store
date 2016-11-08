@@ -3,9 +3,6 @@
 <% response.setCharacterEncoding("UTF-8"); %>
 
 <div class="registration_order" style="margin-left: 20px;">
-
-    <% request.setCharacterEncoding("UTF-8"); %>
-
     <form action="/checkout" method="post">
         <h4 style="color: #f6731c; font-size: 20px; text-decoration: none">Ваши данные</h4>
 

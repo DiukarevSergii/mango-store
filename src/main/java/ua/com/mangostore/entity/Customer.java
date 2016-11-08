@@ -49,20 +49,13 @@ public class Customer {
     private String phone;
 
     /**
-     * Электронная почта покупателя, также используется для входа в учетную запись на сайте (логин).
+     * Электронная почта покупателя.
      * Значение поля сохраняется в колонке "EMAIL".
-     * Не может быть null.
-     */
-    @Column(nullable = false, name = "EMAIL")
-    private String email;
-
-    /**
-     * Пароль пользователя для входа в учетную запись на сайте.
-     * Значение поля сохраняется в колонке "PASSWORD".
      * Может быть null.
      */
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "EMAIL")
+    private String email;
+
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();

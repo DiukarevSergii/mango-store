@@ -1,5 +1,7 @@
 package ua.com.mangostore.entity;
 
+//import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +17,28 @@ public class Employee {
     @Column(nullable = false, name = "FULL_NAME")
     private String fullName;
 
-    @Column(name = "EMAIL")
-    private String email;
-
     @Column(name = "POSITION")
     @Enumerated(EnumType.STRING)
     private EmployeePosition position;
 
     @Column(nullable = false, name = "PHONE")
     private String phone;
+
+    /**
+     * Электронная почта сотрудника, также используется для входа в учетную запись на сайте (логин).
+     * Значение поля сохраняется в колонке "EMAIL".
+     * Может быть null.
+     */
+    @Column(name = "EMAIL")
+    private String email;
+
+    /**
+     * Пароль пользователя для входа в учетную запись на сайте.
+     * Значение поля сохраняется в колонке "PASSWORD".
+     * Может быть null.
+     */
+    @Column(name = "PASSWORD")
+    private String password;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
@@ -42,6 +57,17 @@ public class Employee {
     public void addDelivery(Delivery delivery){
         delivery.setEmployee(this);
         deliveries.add(delivery);
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+//        ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(1);
+//        int salt = (int) (Math.random() * 10000);
+//        this.password = passwordEncoder.encodePassword(password, salt);
     }
 
     public String getFullName() {

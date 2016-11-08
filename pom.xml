@@ -17,9 +17,34 @@
         <hb.manager>4.2.5.Final</hb.manager>
         <spring.test>3.2.4.RELEASE</spring.test>
         <junit.version>4.11</junit.version>
+        <!--<spring.securiry>3.2.0.RELEASE</spring.securiry>-->
     </properties>
 
     <dependencies>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-web</artifactId>-->
+            <!--<version>${spring.securiry}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-core</artifactId>-->
+            <!--<version>${spring.securiry}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-config</artifactId>-->
+            <!--<version>${spring.securiry}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-taglibs</artifactId>-->
+            <!--<version>${spring.securiry}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework</groupId>
