@@ -1,4 +1,4 @@
-package ua.com.mangostore.entity;
+package ua.com.mangostore.entity.enums;
 
 public enum EmployeePosition {
     ADMIN,

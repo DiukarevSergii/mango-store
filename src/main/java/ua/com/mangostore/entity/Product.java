@@ -1,5 +1,7 @@
 package ua.com.mangostore.entity;
 
+import ua.com.mangostore.entity.enums.OnMain;
+
 import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -40,7 +42,8 @@ public class Product {
     private String imageURL;
 
     @Column(name = "ON_MAIN")
-    private String onMain;
+    @Enumerated(EnumType.STRING)
+    private OnMain onMain;
 
     @Column(name = "QUANTITY")
     private int quantity;
@@ -84,7 +87,6 @@ public class Product {
         this.brand = brand;
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
-        this.onMain = "";
     }
 
 //    public Order getOrder() {
@@ -103,11 +105,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getOnMain() {
+    public OnMain getOnMain() {
         return onMain;
     }
 
-    public void setOnMain(String onMain) {
+    public void setOnMain(OnMain onMain) {
         this.onMain = onMain;
     }
 

@@ -1,5 +1,7 @@
 package ua.com.mangostore.entity;
 
+import ua.com.mangostore.entity.enums.DeliveryType;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;

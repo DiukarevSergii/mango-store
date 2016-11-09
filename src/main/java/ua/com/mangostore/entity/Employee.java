@@ -2,6 +2,8 @@ package ua.com.mangostore.entity;
 
 //import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
+import ua.com.mangostore.entity.enums.EmployeePosition;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

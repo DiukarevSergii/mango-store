@@ -9,65 +9,88 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>1.8</java.version>
-        <spring.mvc>4.1.2.RELEASE</spring.mvc>
-        <spring.data>1.3.4.RELEASE</spring.data>
+        <!-- JAVAX CORE -->
         <javax.servlet>3.1.0</javax.servlet>
-        <mysql.version>5.1.29</mysql.version>
-        <hb.manager>4.2.5.Final</hb.manager>
+        <jstl>1.2</jstl>
+
+        <!-- SPRING CORE -->
+        <spring-webmvc>4.2.6.RELEASE</spring-webmvc>
+        <spring-context>4.2.6.RELEASE</spring-context>
+
+        <!-- SPRING SECURITY -->
+        <spring.securiry>4.1.0.RELEASE</spring.securiry>
+
+        <!-- SPRING DATA -->
+        <spring-data-jpa>1.10.1.RELEASE</spring-data-jpa>
+
+        <!-- SPRING TEST -->
         <spring.test>3.2.4.RELEASE</spring.test>
-        <junit.version>4.11</junit.version>
-        <!--<spring.securiry>3.2.0.RELEASE</spring.securiry>-->
+
+        <!-- MultipartResolver -->
+        <commons-fileupload>1.3.1</commons-fileupload>
+
+        <!-- JAVA8 -->
+        <java.version>1.8</java.version>
+
+        <!-- MYSQL -->
+        <mysql.version>5.1.29</mysql.version>
+
+        <!-- HIBERNATE -->
+        <hb.manager>4.2.5.Final</hb.manager>
+
+        <!-- JUNIT -->
+        <junit.version>4.12</junit.version>
+
     </properties>
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-web</artifactId>-->
-            <!--<version>${spring.securiry}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-core</artifactId>-->
-            <!--<version>${spring.securiry}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-config</artifactId>-->
-            <!--<version>${spring.securiry}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-taglibs</artifactId>-->
-            <!--<version>${spring.securiry}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.1.2.RELEASE</version>
+            <version>${spring-context}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>4.1.2.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-core</artifactId>-->
+            <!--<version>${spring-core}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.mvc}</version>
+            <version>${spring-webmvc}</version>
         </dependency>
 
         <dependency>
@@ -86,7 +109,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>${spring.data}</version>
+            <version>${spring-data-jpa}</version>
         </dependency>
 
         <dependency>
@@ -112,7 +135,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.2.2</version>
+            <version>${commons-fileupload}</version>
         </dependency>
 
 

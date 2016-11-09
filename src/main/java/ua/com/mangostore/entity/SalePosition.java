@@ -102,7 +102,7 @@ public class SalePosition{
      * @return Значение типа double - цена торговой пзиции.
      */
     public String getFormatPrice() {
-        return product.df.format(product.getSalePrice() * number);
+        return Product.df.format(product.getSalePrice() * number);
     }
 
     /**

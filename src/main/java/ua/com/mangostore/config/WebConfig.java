@@ -3,11 +3,13 @@ package ua.com.mangostore.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import ua.com.mangostore.service.impl.EmployeeDetailsServiceImpl;
 
 @Configuration
 @EnableWebMvc
@@ -39,10 +41,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resource.addResourceHandler("/resources/" + "**").addResourceLocations("/resources/");
     }
 
-//    @Bean
-//    public UserDetailsService getCustomerDetailsService(){
-//        return new CustomerDetailsServiceImpl();
-//    }
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+        return new EmployeeDetailsServiceImpl();
+    }
 
     /**
      * Настройка логин-контроллера.

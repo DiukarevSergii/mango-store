@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.enums.OnMain;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
@@ -19,8 +20,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
     protected EntityManager em;
     @Resource
     private ProductService productService;
-    @Resource
-    private OrderService orderService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -28,7 +27,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");
-        product1.setOnMain("Y");
+        product1.setOnMain(OnMain.ON_MAIN);
         product1.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Новое поколение легенды</h3>" +
                         "<p align=\"justify\">" +
@@ -63,7 +62,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product2 = new Product("Samsung A710F Galaxy A7", "Смартфоны", "Samsung", 11_199, 7_999);
         product2.setImageURL("http://localhost:8080/resources/img/samsung_a710f_galaxy_a7_400x480.jpg");
-        product2.setOnMain("Y");
+        product2.setOnMain(OnMain.ON_MAIN);
         product2.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Великолепное сочетание металла и стекла</h3>" +
                         "<p align=\"justify\">" +
@@ -120,7 +119,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product4 = new Product("iPad Air 2 16GB", "Планшеты", "Apple", 12_000, 10_999);
         product4.setImageURL("http://localhost:8080/resources/img/apple_ipad_air-2_400x480.jpg");
-        product4.setOnMain("Y");
+        product4.setOnMain(OnMain.ON_MAIN);
         product4.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Вы не захотите выпускать его из рук</h3>" +
                         "<p align=\"justify\">" +
@@ -180,7 +179,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product5 = new Product("Xiaomi MiPad 2 16Gb", "Планшеты", "Xiaomi", 4_700, 3_999);
         product5.setImageURL("http://localhost:8080/resources/img/xiaomi_mipad_2_16gb_400x480.jpg");
-        product5.setOnMain("Y");
+        product5.setOnMain(OnMain.ON_MAIN);
         product5.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Цельнометаллический корпус</h3>" +
                         "<p align=\"justify\">" +
@@ -206,7 +205,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product6 = new Product("Samsung Galaxy Tab S2 8\"", "Планшеты", "Samsung", 10_000, 7_999);
         product6.setImageURL("http://localhost:8080/resources/img/samsung_galaxy_tab_s2_400x480.jpg");
-        product6.setOnMain("Y");
+        product6.setOnMain(OnMain.ON_MAIN);
         product6.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Исключительно легкий и тонкий</h3>" +
                         "<p align=\"justify\">" +
@@ -237,7 +236,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         Product product7 = new Product("Meizu M3s", "Смартфоны", "Meizu", 5_000, 3_999);
         product7.setImageURL("http://localhost:8080/resources/img/meizu_m3s_400x480.jpg");
-        product7.setOnMain("Y");
+        product7.setOnMain(OnMain.ON_MAIN);
         product7.setDescription(
                 "<h3 style=\"margin-top: 10px; margin-bottom: -5px\">Металлическое совершенство</h3>" +
                         "<p align=\"justify\">" +
@@ -729,7 +728,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "8 ГБ (два модуля по 4 ГБ) памяти DDR3 1867 МГц; четыре слота SO-DIMM, доступных пользователю",
                 "Накопитель Fusion Drive ёмкостью 1 ТБ",
                 "Стереодинамики");
-        product15.setOnMain("Y");
+        product15.setOnMain(OnMain.ON_MAIN);
 
         //        Product product12 = new Product("", "Смартфоны", "Apple", 20_000, 20_000);
 //        product12.setImageURL("http://localhost:8080/resources/img/");
@@ -757,20 +756,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product13);
         productService.addProduct(product14);
         productService.addProduct(product15);
-
-//        Order order1 = new Order();
-//        order1.addProduct(product1);
-//        order1.addProduct(product1);
-//        order1.addProduct(product2);
-//        order1.addProduct(product5);
-//        order1.addProduct(product5);
-//        order1.addProduct(product5);
-//        orderService.addOrder(order1);
-//
-//        Order order2 = new Order();
-//        order2.addProduct(product1);
-//        order2.addProduct(product2);
-//        orderService.addOrder(order2);
 
         System.out.println("Finish!");
     }

@@ -59,7 +59,7 @@ public interface ShoppingCartService {
      *
      * @return Значение типа String - цена корзины в отформатированном виде.
      */
-    public String getFormatPrice();
+    String getFormatPrice();
 
     /**
      * Возвращает размер корзины, то есть количество товаров в корзине.
