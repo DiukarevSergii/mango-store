@@ -31,7 +31,7 @@ public class Employee {
      * Значение поля сохраняется в колонке "EMAIL".
      * Может быть null.
      */
-    @Column(name = "EMAIL")
+    @Column(nullable = false, name = "EMAIL")
     private String email;
 
     /**
@@ -39,7 +39,7 @@ public class Employee {
      * Значение поля сохраняется в колонке "PASSWORD".
      * Может быть null.
      */
-    @Column(name = "PASSWORD")
+    @Column(nullable = false, name = "PASSWORD")
     private String password;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
@@ -49,6 +49,14 @@ public class Employee {
     private List<Delivery> deliveries = new ArrayList<>();
 
     public Employee() {
+    }
+
+    public Employee(String fullName, EmployeePosition position, String phone, String email, String password) {
+        this.fullName = fullName;
+        this.position = position;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
     }
 
     public void addOrder(Order order){

@@ -9,8 +9,10 @@ import ua.com.mangostore.exception.ForbiddenException;
 /**
  * Класс-контроллер для страницы авторизация и страниц предназначеных для персонала.
  * К даному контроллеру и соответствующим страницам может обращатся только персонал магазина.
+ *
  * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
  * является bean'ом и его необходимо подгрузить при старте приложения.
+ *
  * Методы класса работают с объектом, возвращенным handleRequest методом, является
  * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
  * Этот тип представляет Model and View в MVC шаблоне.
@@ -20,7 +22,7 @@ import ua.com.mangostore.exception.ForbiddenException;
 @Controller
 public class LoginController {
     /**
-     * Возвращает страницу "manager/login" - страница описания входа в личный кабинет.
+     * Возвращает страницу "employee/login" - страница описания входа в личный кабинет.
      * URL запроса "/login", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
@@ -28,7 +30,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView onLogin(ModelAndView modelAndView) {
-        modelAndView.setViewName("manager/login");
+        modelAndView.setViewName("employee/login");
         return modelAndView;
     }
 

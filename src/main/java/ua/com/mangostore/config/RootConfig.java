@@ -1,6 +1,7 @@
 package ua.com.mangostore.config;
 
 import org.hibernate.ejb.HibernatePersistence;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -31,8 +33,8 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "ua.com.mangostore.entity";
-//    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
+    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
+//    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
 
 
     /**
@@ -91,15 +93,15 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     }
 
 
-//    /**
-//     * Переводит (перехватывает) любые JPA или Hibernate исключения в Spring исключения.
-//     *
-//     * @return Реализация интерфейса PersistenceExceptionTranslationPostProcessor.
-//     */
-//    @Bean
-//    public BeanPostProcessor persistenceTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
+    /**
+     * Переводит (перехватывает) любые JPA или Hibernate исключения в Spring исключения.
+     *
+     * @return Реализация интерфейса PersistenceExceptionTranslationPostProcessor.
+     */
+    @Bean
+    public BeanPostProcessor persistenceTranslation() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
 
     /**
      * Возвращает объект класса CommonsMultipartResolver, который сохраняет временные файлы

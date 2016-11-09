@@ -703,18 +703,6 @@ public class MainController {
                                      @RequestParam(value = "delivery_type") String delivery_type,
                                      ModelAndView modelAndView) {
         if (shoppingCartService.getSize() > 0) {
-            byte[] bytes = name.getBytes(StandardCharsets.ISO_8859_1);
-            name = new String(bytes, StandardCharsets.UTF_8);
-
-            bytes = surname.getBytes(StandardCharsets.ISO_8859_1);
-            surname = new String(bytes, StandardCharsets.UTF_8);
-
-            bytes = city.getBytes(StandardCharsets.ISO_8859_1);
-            city = new String(bytes, StandardCharsets.UTF_8);
-
-            bytes = address.getBytes(StandardCharsets.ISO_8859_1);
-            address = new String(bytes, StandardCharsets.UTF_8);
-
             Customer customer = new Customer();
             customer.setName(name);
             customer.setSurname(surname);
@@ -729,7 +717,6 @@ public class MainController {
             order.setOrderPriceWithDiscount(shoppingCartService.getPrice());
             order.addSalePositions(shoppingCartService.getSalePositions());
             order.setCustomer(customer);
-            System.out.println(order.getOrderId());
             orderService.addOrder(order);
 
             modelAndView.addObject("name", name);

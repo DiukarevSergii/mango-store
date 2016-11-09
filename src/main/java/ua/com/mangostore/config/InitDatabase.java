@@ -4,8 +4,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import ua.com.mangostore.entity.Employee;
 import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.OnMain;
+import ua.com.mangostore.service.EmployeeService;
 import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
@@ -18,12 +21,26 @@ import javax.persistence.PersistenceContext;
 public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> {
     @PersistenceContext
     protected EntityManager em;
+
     @Resource
     private ProductService productService;
+
+    @Resource
+    private EmployeeService employeeService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         System.out.println("Start init!");
+
+        employeeService.addEmployee(new Employee(
+                "Super Admin", EmployeePosition.MANAGER, "044",
+                "admin@mango.com.ua", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"));
+        employeeService.addEmployee(new Employee(
+                "Simple Manage", EmployeePosition.MANAGER, "123456789",
+                "simpleManager@mango.com.ua", "1111"));
+        employeeService.addEmployee(new Employee(
+                "Junior Courier", EmployeePosition.COURIER, "0 800 678 900",
+                "juniorCourier@mango.com.ua", "1111"));
 
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");

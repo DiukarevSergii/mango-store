@@ -31,10 +31,10 @@
 
             <h3>Пожалуйста выполните вход в систему:</h3>
             Ваш E-mail:<br/><input type="text" name="j_login"><br/>
-            Ваш пароль:<br/><input type="password" name="j_password" style="width: 440px"><br/>
-            <input type="submit" class="btn btn-add" value="Войти"/>
+            Ваш пароль:<br/><input type="password" name="j_password" style="width: 440px" autocomplete="on">
+            <br/>
+            <input type="submit" class="btn btn-add" value="Войти" />
             <p class="help-block" style="font-size: 14px">Войдите или <a href="/new_user">зарегестрируйтесь.</a></p>
-
 
         </form>
 

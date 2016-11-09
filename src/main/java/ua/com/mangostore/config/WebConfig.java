@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import ua.com.mangostore.service.impl.EmployeeDetailsServiceImpl;
+import ua.com.mangostore.service.impl.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebMvc
@@ -42,8 +42,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailsService getUserDetailsService(){
-        return new EmployeeDetailsServiceImpl();
+    public UserDetailsService getEmployeeDetailsService(){
+        return new UserDetailsServiceImpl();
     }
 
     /**

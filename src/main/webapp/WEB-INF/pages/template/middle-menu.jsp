@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -18,7 +19,7 @@
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pull-right">
         <div class=" cart">
             <img src="/resources/img/cart.png" alt="cart">
-            &nbsp; <a href="/cart"> Корзина: ${cart_size}</a>
+            &nbsp; <a href="/cart"> Корзина: ${cart_size}<c:if test="${cart_size == null}">0</c:if></a>
         </div>
     </div>
 </div>
