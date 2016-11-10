@@ -14,7 +14,6 @@ import ua.com.mangostore.service.impl.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
 @ComponentScan("ua.com.mangostore")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -47,11 +46,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          * Включаем защиту от CSRF атак,
          * указываем правила запросов по которым будет определятся доступ к ресурсам и остальным данным
          */
-        httpSecurity.csrf().disable()
+        httpSecurity
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/employee/admin/**").hasRole("ADMIN")
-                .antMatchers("/employee/manager/**").hasRole("MANAGER")
-                .antMatchers("/employee/courier/**").hasRole("COURIER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/courier/**").hasRole("COURIER")
+                .antMatchers("/manager/**").hasRole("MANAGER")
                 .and()
                 .exceptionHandling().accessDeniedPage("/unauthorized")
                 .and()
@@ -68,45 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true);
-
-//        httpSecurity.csrf()
-//                .disable()
-//                .authorizeRequests()
-//                .antMatchers("/resources/**", "/**").permitAll()
-//                .anyRequest().permitAll()
-//                .and();
-
-        /**
-         * Указываем страницу с формой логина,
-         * указываем action с формы логина,
-         * указываем URL при неудачном логине,
-         * указываем параметры логина и пароля с формы логина,
-         * а также даем доступ к форме логина всем
-         */
-//        httpSecurity.formLogin()
-//                .loginPage("/login")
-//                .loginProcessingUrl("/j_spring_security_check")
-//                .failureUrl("/login?error")
-//                .usernameParameter("j_username")
-//                .passwordParameter("j_password")
-//                .permitAll();
-
-        /**
-         * Разрешаем делать логаут всем,
-         * указываем URL логаута,
-         * указываем URL при удачном логауте,
-         * делаем не валидной текущую сессию.
-         */
-//        httpSecurity.logout()
-//                .permitAll()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login?logout")
-//                .invalidateHttpSession(true);
-//
-//        httpSecurity.
-//                exceptionHandling().accessDeniedPage("/forbidden_exception")
-//                .and()
-//                .csrf().disable();
     }
 
     /**

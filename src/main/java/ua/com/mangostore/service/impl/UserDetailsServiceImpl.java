@@ -16,7 +16,6 @@ import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     @Autowired
     EmployeeService employeeService;
 
@@ -27,7 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(employee.getFullName() + " not found");
 
         Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(employee.getPosition().toString()));
+        System.out.println(employee.getPosition().name().toString());
+        roles.add(new SimpleGrantedAuthority(employee.getPosition().name().toString()));
 
         return new User(employee.getEmail(), employee.getPassword(), roles);
     }

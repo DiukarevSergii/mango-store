@@ -9,7 +9,6 @@ import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.OnMain;
 import ua.com.mangostore.service.EmployeeService;
-import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
 import javax.annotation.Resource;
@@ -33,14 +32,14 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
-                "Super Admin", EmployeePosition.MANAGER, "044",
-                "admin@mango.com.ua", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"));
+                "Super Admin", EmployeePosition.ADMIN, "044",
+                "admin@mango.com.ua", "password"));
         employeeService.addEmployee(new Employee(
                 "Simple Manage", EmployeePosition.MANAGER, "123456789",
-                "simpleManager@mango.com.ua", "1111"));
+                "simpleManager@mango.com.ua", "password"));
         employeeService.addEmployee(new Employee(
                 "Junior Courier", EmployeePosition.COURIER, "0 800 678 900",
-                "juniorCourier@mango.com.ua", "1111"));
+                "juniorCourier@mango.com.ua", "password"));
 
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");

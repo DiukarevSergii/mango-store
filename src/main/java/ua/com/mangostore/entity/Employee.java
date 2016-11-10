@@ -2,6 +2,7 @@ package ua.com.mangostore.entity;
 
 //import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 
 import javax.persistence.*;
@@ -56,7 +57,7 @@ public class Employee {
         this.position = position;
         this.phone = phone;
         this.email = email;
-        this.password = password;
+        this.setPassword(password);
     }
 
     public void addOrder(Order order){
@@ -75,9 +76,8 @@ public class Employee {
     }
 
     public void setPassword(String password) {
-//        ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(1);
-//        int salt = (int) (Math.random() * 10000);
-//        this.password = passwordEncoder.encodePassword(password, salt);
+        ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder();
+        this.password = shaPasswordEncoder.encodePassword(password, null);
     }
 
     public String getFullName() {

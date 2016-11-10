@@ -3,9 +3,11 @@ package ua.com.mangostore.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -55,7 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
 //    @Override
 //    public void addViewControllers(ViewControllerRegistry viewController) {
-//        viewController.addViewController(LOGIN_URL).setViewName(LOGIN_VIEW_NAME);
+//        viewController.addViewController("/login").setViewName("login");
 //        viewController.setOrder(Ordered.HIGHEST_PRECEDENCE);
 //    }
 }
