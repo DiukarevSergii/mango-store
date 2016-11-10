@@ -9,6 +9,7 @@ public interface ProductService {
     Product addProduct(Product product);
     void delete(long id);
     Product getByName(String name);
+    Product getById(long id);
     Product editProduct(Product product);
     List<Product> getAll();
 

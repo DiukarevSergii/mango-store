@@ -1,7 +1,7 @@
 package ua.com.mangostore.test.util;
 
 import ua.com.mangostore.entity.Employee;
-import ua.com.mangostore.entity.EmployeePosition;
+import ua.com.mangostore.entity.enums.EmployeePosition;
 
 public class EmployeeUtil {
     public static Employee createEmployee(){

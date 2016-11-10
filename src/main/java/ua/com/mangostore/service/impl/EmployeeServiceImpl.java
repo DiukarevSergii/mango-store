@@ -36,6 +36,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
+    public Employee getByEmail(String email) {
+        return employeeRepository.findByEmail(email);
+    }
+
+    @Override
+    @Transactional
     public Employee editEmployee(Employee employee) {
         return employeeRepository.saveAndFlush(employee);
     }

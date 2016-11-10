@@ -9,16 +9,8 @@ import ua.com.mangostore.service.CustomerService;
 
 import java.util.List;
 
-
-//запуск секьюрити без спринг бута через томкэт выполняется в апп конфиге в бине
-//на каждую единицу товара отдельная страница?
-//красная строка
-//письмо с айди группой и темой
-//
-
 @Service
 public class CustomerServiceImpl implements CustomerService{
-
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -39,6 +31,13 @@ public class CustomerServiceImpl implements CustomerService{
     @Transactional
     public Customer getByName(String name) {
         return customerRepository.findByName(name);
+    }
+
+
+    @Override
+    @Transactional
+    public Customer getByEmail(String email) {
+        return customerRepository.findByEmail(email);
     }
 
     @Override

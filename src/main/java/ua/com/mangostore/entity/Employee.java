@@ -1,5 +1,10 @@
 package ua.com.mangostore.entity;
 
+//import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import ua.com.mangostore.entity.enums.EmployeePosition;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +20,28 @@ public class Employee {
     @Column(nullable = false, name = "FULL_NAME")
     private String fullName;
 
-    @Column(name = "EMAIL")
-    private String email;
-
     @Column(name = "POSITION")
     @Enumerated(EnumType.STRING)
     private EmployeePosition position;
 
     @Column(nullable = false, name = "PHONE")
     private String phone;
+
+    /**
+     * Электронная почта сотрудника, также используется для входа в учетную запись на сайте (логин).
+     * Значение поля сохраняется в колонке "EMAIL".
+     * Может быть null.
+     */
+    @Column(nullable = false, name = "EMAIL")
+    private String email;
+
+    /**
+     * Пароль пользователя для входа в учетную запись на сайте.
+     * Значение поля сохраняется в колонке "PASSWORD".
+     * Может быть null.
+     */
+    @Column(nullable = false, name = "PASSWORD")
+    private String password;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
@@ -34,6 +52,14 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String fullName, EmployeePosition position, String phone, String email, String password) {
+        this.fullName = fullName;
+        this.position = position;
+        this.phone = phone;
+        this.email = email;
+        this.setPassword(password);
+    }
+
     public void addOrder(Order order){
         order.setEmployee(this);
         orders.add(order);
@@ -42,6 +68,16 @@ public class Employee {
     public void addDelivery(Delivery delivery){
         delivery.setEmployee(this);
         deliveries.add(delivery);
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder();
+        this.password = shaPasswordEncoder.encodePassword(password, null);
     }
 
     public String getFullName() {

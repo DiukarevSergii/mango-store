@@ -7,28 +7,54 @@ import java.util.List;
 @Entity
 @Table(name = "Customers")
 public class Customer {
+    /**
+     * Уникальный код обьекта.
+     * Аннотация @Id говорит о том что поле является ключем для текущего объекта,
+     * Аннотация @GeneratedValue говорит о том что значение генерируется автоматически.
+     * Значение поля сохраняется в колонке "CUSTOMER_ID".
+     */
     @Id
     @GeneratedValue
     @Column(name = "CUSTOMER_ID")
     private long customerId;
 
+    /**
+     * Имя покупателя. Значение поля сохраняется в колонке "NAME". Не может быть null.
+     */
     @Column(nullable = false, name = "NAME")
     private String name;
 
+    /**
+     * Фамилия покупателя. Значение поля сохраняется в колонке "SURNAME". Не может быть null.
+     */
     @Column(nullable = false, name = "SURNAME")
     private String surname;
 
-    @Column(nullable = false, name = "ADDRESS")
+    /**
+     * Адресс покупателя. Значение поля сохраняется в колонке "ADDRESS". Может быть null.
+     */
+    @Column(name = "ADDRESS")
     private String address;
 
+    /**
+     * Город покупателя. Значение поля сохраняется в колонке "CITY". Не может быть null.
+     */
     @Column(nullable = false, name = "CITY")
     private String city;
 
-    @Column(name = "ZIPCODE")
-    private int zipcode;
-
+    /**
+     * Телефон покупателя. Значение поля сохраняется в колонке "PHONE". Не может быть null.
+     */
     @Column(nullable = false, name = "PHONE")
     private String phone;
+
+    /**
+     * Электронная почта покупателя. Значение поля сохраняется в колонке "EMAIL".
+     * Не может быть null.
+     */
+    @Column(name = "EMAIL")
+    private String email;
+
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
@@ -42,6 +68,14 @@ public class Customer {
     public void addOrder(Order order){
         order.setCustomer(this);
         orders.add(order);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public CreditCard getCreditCard() {
@@ -84,14 +118,6 @@ public class Customer {
         this.city = city;
     }
 
-    public int getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -107,7 +133,6 @@ public class Customer {
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", zipcode='" + zipcode + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

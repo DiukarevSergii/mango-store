@@ -1,7 +1,5 @@
 package ua.com.mangostore.test.service;
 
-import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.test.config.TestDataBaseConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +7,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import ua.com.mangostore.service.ProductService;
+import ua.com.mangostore.test.config.TestDataBaseConfig;
 import ua.com.mangostore.test.util.ProductUtil;
 
 import javax.annotation.Resource;
