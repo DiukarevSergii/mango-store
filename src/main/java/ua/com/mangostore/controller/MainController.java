@@ -1,7 +1,10 @@
 package ua.com.mangostore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -732,6 +735,13 @@ public class MainController {
             modelAndView.setViewName("redirect:/");
         }
         return modelAndView;
+    }
+
+    @RequestMapping("/unauthorized")
+    public String unauthorized(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("login", user.getUsername());
+        return "employee/unauthorized";
     }
 }
 

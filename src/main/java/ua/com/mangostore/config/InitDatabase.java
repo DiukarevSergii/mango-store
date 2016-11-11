@@ -32,11 +32,11 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
-                "Super Admin", EmployeePosition.ADMIN, "044",
-                "admin@mango.com.ua", "password"));
+                "admin", EmployeePosition.ADMIN, "044",
+                "admin", "password"));
         employeeService.addEmployee(new Employee(
-                "Simple Manage", EmployeePosition.MANAGER, "123456789",
-                "simpleManager@mango.com.ua", "password"));
+                "manager", EmployeePosition.MANAGER, "123456789",
+                "manager", "password"));
         employeeService.addEmployee(new Employee(
                 "Junior Courier", EmployeePosition.COURIER, "0 800 678 900",
                 "juniorCourier@mango.com.ua", "password"));
@@ -774,6 +774,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product15);
 
         System.out.println("Finish!");
+
     }
 
 

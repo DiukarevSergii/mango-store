@@ -39,9 +39,7 @@ public class WebInitializer implements WebApplicationInitializer {
          * Управление жизненным циклом корневого контекста приложения
          */
         servletContext.addListener(new SessionListener());
-
         appContext.setServletContext(servletContext);
-
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(appContext));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
