@@ -93,9 +93,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         Product sliderProduct = null;
         for (Product product : productService.getAll()) {
-            if (product.getOnMain() != null && product.getOnMain().name().equals("ON_MAIN")) {
-                groupOfProducts.add(product);
-            }
+            groupOfProducts.add(product);
             if (product.getProductTitle().equals("Meizu MX6")) {
                 sliderProduct = product;
             }

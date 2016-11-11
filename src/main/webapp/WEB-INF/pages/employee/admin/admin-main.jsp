@@ -13,16 +13,8 @@
     <!-- LOGIN HEADER -->
     <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
 
-    <h1>Добрый день, ${admin.fullName}</h1>
-    <h3 style="text-decoration: none; margin-top: 20px;">
-        <p>Вы вошли как: ${admin.email}</p>
-        <p>Ваш уровень доступа: ${admin.getPosition()}</p>
-    </h3>
-    <div>
-        <c:url value="/logout" var="logoutUrl"/>
-        <p>Нажмите для выхода: <a href="${logoutUrl}">LOGOUT</a></p>
-    </div>
-    <div class="registration_order" style="margin-left: 20px;height: 700px">
+    <div style="height: 700px">
+
     </div>
 
 
