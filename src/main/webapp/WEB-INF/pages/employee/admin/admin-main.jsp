@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>Access denied</title>
+    <title>Админ панель</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
@@ -13,9 +13,11 @@
     <!-- LOGIN HEADER -->
     <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
 
-    <h2 style="text-decoration: none; margin-top: 20px;">
-        Недостаточно прав доступа для ${login}!
-    </h2>
+    <h1>Добрый день, ${admin.fullName}</h1>
+    <h3 style="text-decoration: none; margin-top: 20px;">
+        <p>Вы вошли как: ${admin.email}</p>
+        <p>Ваш уровень доступа: ${admin.getPosition()}</p>
+    </h3>
     <div>
         <c:url value="/logout" var="logoutUrl"/>
         <p>Нажмите для выхода: <a href="${logoutUrl}">LOGOUT</a></p>

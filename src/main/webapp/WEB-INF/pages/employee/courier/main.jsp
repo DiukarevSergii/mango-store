@@ -6,7 +6,7 @@
 </head>
 <body>
 <div align="center">
-    <h1>Secret MAIN ADMIN page</h1>
+    <h1>Secret MAIN COURIER page</h1>
 
     <c:url value="/logout" var="logoutUrl" />
     <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>
