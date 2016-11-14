@@ -287,6 +287,26 @@ input[type="submit"]:hover {
     background-image: none;
 }
 
+.btn.btn-change-product {
+    background-color: rgb(236, 168, 9);
+    box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-change-product:hover {
+    background-color: rgb(236, 93, 12);
+    box-shadow: 0 3px 0 0 rgb(171, 48, 7);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
 .btn.btn-add-product {
     background-color: rgba(147, 147, 147, 0.78);
     box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.56);

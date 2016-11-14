@@ -8,12 +8,13 @@
             <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
                     <div class="image-on-main">
-                        <a href="/product-${product.productId}">
+                        <a href="#">
                             <img src="<c:out value="${product.imageURL}"/>" alt="${title}" height="240">
                         </a>
                     </div>
                     <p class="font-review">${product.type} ${product.brand}</p>
-                    <a class="title-review" href="/product-${product.productId}">${product.productTitle}</a>
+                    <a class="title-review" href="#"><c:out
+                            value="${product.productTitle}"/></a>
                     <p class="main-review">
                         <c:choose>
                         <c:when test="${product.getFormatFullPrice() !=  product.getFormatSalePrice()}">
@@ -27,10 +28,10 @@
                         </c:choose>
                         &nbsp;${product.getFormatSalePrice()}
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                    <form action="/cart_add" method=post>
+                    <form action="#" method=post>
                         <input type="hidden" name="id" value="${product.productId}">
                         <input type="hidden" name="url" value="${url}">
-                        <button class="btn btn_in_section">Купить</button>
+                        <button class="btn btn-change-product">Редактировать товар</button>
                     </form>
                     </p>
                 </div>
@@ -39,16 +40,10 @@
     </c:forEach>
 </div>
 <c:choose>
-    <c:when test="${groupOfProducts.size() < 5 && groupOfProducts.size() > 0}">
-        <!-- BANNER -->
-        <jsp:include page="/WEB-INF/pages/template/banner-slider.jsp"/>
-    </c:when>
     <c:when test="${groupOfProducts.size() == 0}">
         <div class="col-lg-12" style="height: 250px; font-size: medium">
-            <p>Нет доступных товаров =(</p>
+            <p>Нет доступных товаров. </p>
         </div>
-        <!-- BANNER -->
-        <jsp:include page="/WEB-INF/pages/template/banner-slider.jsp"/>
     </c:when>
     <c:otherwise>
         <div class="col-lg-12">&nbsp;</div>

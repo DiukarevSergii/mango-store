@@ -22,11 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Employee employee = employeeService.getByEmail(email);
-        if (employee == null)
+        if (employee == null) {
             throw new UsernameNotFoundException(employee.getEmail() + " not found");
-
+        }
         Set<GrantedAuthority> roles = new HashSet<>();
-        System.out.println(employee.getPosition().toString());
         roles.add(new SimpleGrantedAuthority(employee.getPosition().toString()));
 
         return new User(employee.getEmail(), employee.getPassword(), roles);
