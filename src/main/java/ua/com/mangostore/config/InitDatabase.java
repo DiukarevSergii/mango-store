@@ -29,7 +29,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-       /* System.out.println("Start init!");
+        System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
                 "admin", EmployeePosition.ADMIN, "044",
@@ -774,7 +774,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product15);
 
         System.out.println("Finish!");
-        */
+
     }
 
 

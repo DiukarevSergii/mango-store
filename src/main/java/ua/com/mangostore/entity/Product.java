@@ -87,6 +87,7 @@ public class Product {
         this.brand = brand;
         this.fullPrice = fullPrice;
         this.salePrice = salePrice;
+        this.onMain = OnMain.NOT_ON_MAIN;
     }
 
 //    public Order getOrder() {
