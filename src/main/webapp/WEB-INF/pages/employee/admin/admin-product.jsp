@@ -11,7 +11,7 @@
     <meta name="title" content="Редактирование продукта ${product.productTitle} | MANGO STORE">
     <title>Редактирование продукта ${product.productTitle} | MANGO STORE</title>
 </head>
-<body>
+<body style="background-image: none; background-color: lightgrey">
 <div class="container">
     <!-- LOGIN HEADER -->
     <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
@@ -21,15 +21,15 @@
     <div class="row admin-main-title">
         <h3 style="font-size: 30px">Категория: Редактирование продукта</h3>
     </div>
-    <div class="product block" style="padding-left:5px; margin-top: 12px">
+    <div class="product block" style="margin-top: 12px">
         <div class="col-lg-12" style="margin-top: 12px">
             <form action="/admin/update-product" method="post">
-                <input type="hidden" name="productId" value="${product.productId}">
+                <input type="hidden" name="id" value="${product.productId}">
                 <table class="table">
                     <tr>
                         <th style="font-size: medium">Название:</th>
                         <td>
-                            <input class="form-control" type="text" name="title" value="${product.productTitle}"
+                            <input class="form-control" type="text" name="productTitle" value="${product.productTitle}"
                                    minlength="5" maxlength="100" style="width:700px" required>
                         </td>
                     </tr>
@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <th>Цена со скидкой:</th>
-                        <td><input class="form-control" type="text" name="fullPrice" value="${product.salePrice}"
+                        <td><input class="form-control" type="text" name="salePrice" value="${product.salePrice}"
                                    minlength="1" maxlength="10" style="width:100px" required>
                         </td>
                     </tr>
@@ -84,9 +84,9 @@
                 </table>
             </form>
             <div style="margin-left: 195px; margin-top: -10px; margin-bottom: 20px">
-                <form action="/admin/remove" method=get>
+                <form action="/admin/remove-product" method=post>
                     <td>
-                        <input type="hidden" name="id" value="${position.product.productId}">
+                        <input type="hidden" name="id" value="${product.productId}">
                         <button class="btn btn-danger" style="width: 206px">
                             Удалить товар
                         </button>

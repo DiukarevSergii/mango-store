@@ -29,6 +29,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
         System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
@@ -739,7 +740,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "OS X El Capitan",
                 "4-ядерный процессор Intel Core i5 с тактовой частотой 3.2 ГГц (ускорение Turbo Boost до 3.6 ГГц)",
                 "Графический процессор AMD Radeon R9 M390 с 2 ГБ памяти GDDR5",
-                "27\"", "5120 x 2880",
+                "27", "5120 x 2880",
                 "51.6  х 65.0 х 20.3 cм", "9.54 кг",
                 "8 ГБ (два модуля по 4 ГБ) памяти DDR3 1867 МГц; четыре слота SO-DIMM, доступных пользователю",
                 "Накопитель Fusion Drive ёмкостью 1 ТБ",
@@ -775,7 +776,5 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         System.out.println("Finish!");
 
-    }
-
-
+   }
 }

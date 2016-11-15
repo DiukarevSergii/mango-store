@@ -38,7 +38,7 @@
         <strong><p style="font-size: 16px; margin-top: 15px">Способ доставки:</p></strong>
         <div class="radio">
             <label>
-                <input type="radio" name="delivery_type" id="radio1" value="PICKUP">
+                <input type="radio" name="delivery_type" id="radio1" value="PICKUP" checked="checked">
                 Самовывоз
             </label>
         </div>
