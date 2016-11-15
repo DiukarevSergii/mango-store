@@ -10,13 +10,13 @@
                     <li><a href="#"><b>Добавить товар</b></a></li>
                     <li class="divider"></li>
                     <li class="divider"></li>
-                    <li><a><b>По типам</b></a></li>
+                    <li><a href="/admin/type"><b>По типам</b></a></li>
                     <li class="divider"></li>
                     <c:forEach items="${groupOfProductsByType}" var="product">
                         <li><a href="/admin/type/${product.type}">${product.type}</a></li>
                     </c:forEach>
                     <li class="divider"></li>
-                    <li><a><b>По брендам</b></a></li>
+                    <li><a href="/admin/brand"><b>По брендам</b></a></li>
                     <li class="divider"></li>
                     <c:forEach items="${groupOfProductsByBrand}" var="product">
                         <li><a href="/admin/brand/${product.brand}">${product.brand}</a></li>

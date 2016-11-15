@@ -87,6 +87,26 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/type", method = RequestMethod.GET)
+    public ModelAndView mainType(ModelAndView modelAndView) {
+        getUser(modelAndView);
+        byBrand(modelAndView);
+        modelAndView.addObject("title", "По типам");
+
+        Set<String> types = new TreeSet<>();
+        List<Product> groupOfProductsByType = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            String type = product.getType();
+            if (!types.contains(type)) {
+                types.add(type);
+                groupOfProductsByType.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProductsByType", groupOfProductsByType);
+        modelAndView.setViewName("employee/admin/type");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/brand/{brand}", method = RequestMethod.GET)
     public ModelAndView onBrand(@PathVariable("brand") String brand, ModelAndView modelAndView) {
         getUser(modelAndView);
@@ -102,6 +122,26 @@ public class AdminController {
         }
         modelAndView.addObject("groupOfProducts", groupOfProductsByBrand);
         modelAndView.setViewName("employee/admin/some_products");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/brand", method = RequestMethod.GET)
+    public ModelAndView mainBrand(ModelAndView modelAndView) {
+        getUser(modelAndView);
+        byType(modelAndView);
+        modelAndView.addObject("title", "По брендам");
+
+        Set<String> brands = new TreeSet<>();
+        List<Product> groupOfProductsByBrand = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            String brand = product.getBrand();
+            if (!brands.contains(brand)) {
+                brands.add(brand);
+                groupOfProductsByBrand.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProductsByBrand", groupOfProductsByBrand);
+        modelAndView.setViewName("employee/admin/brand");
         return modelAndView;
     }
 

@@ -43,7 +43,7 @@
                     <sup style="font-size:12px; margin-left:-5px;">грн&nbsp;</sup>
                     </span>
                         <br>
-                        <form action="/cart_add" method=post>
+                        <form action="/cart-add" method=post>
                             <input type="hidden" name="id" value="${product.productId}">
                             <input type="hidden" name="url" value="${url}">
                             <button class="btn btn_in_section" style="width: 206px">
