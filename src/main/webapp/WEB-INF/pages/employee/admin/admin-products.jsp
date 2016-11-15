@@ -28,11 +28,9 @@
                         </c:choose>
                         &nbsp;${product.getFormatSalePrice()}
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                    <form action="#" method=post>
-                        <input type="hidden" name="id" value="${product.productId}">
-                        <input type="hidden" name="url" value="${url}">
+                    <a href="/admin/product-${product.productId}" method=get>
                         <button class="btn btn-change-product">Редактировать товар</button>
-                    </form>
+                    </a>
                     </p>
                 </div>
             </div>

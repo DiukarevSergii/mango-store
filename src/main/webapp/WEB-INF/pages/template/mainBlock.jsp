@@ -15,7 +15,7 @@
                             </a>
                         </div>
                         <p class="font-review"><c:out value="${product.type}"/> <c:out value="${product.brand}"/></p>
-                        <a class="title-review" href="/admin/${product.productId}"><c:out
+                        <a class="title-review" href="/product-${product.productId}"><c:out
                                 value="${product.productTitle}"/></a>
                         <p class="main-review">
                         <span style='color:#f6731c;text-decoration:line-through'>

@@ -170,4 +170,22 @@ public class AdminController {
         }
         modelAndView.addObject("groupOfProductsByType", groupOfProductsByType);
     }
+
+    /**
+     * Возвращает страницу "employee/admin/admin-product" с 1-м товаром с уникальним URL, который
+     * совпадает с входящим параметром url. URL запроса "/product-{id}", метод GET.
+     * В запросе в параметре id передается артикль товара.
+     *
+     * @param id           id товара, который нужно вернуть на страницу.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/product-{id}", method = RequestMethod.GET)
+    public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
+        Product product = productService.getById(id);
+        modelAndView.addObject("title", product.getProductTitle());
+        modelAndView.addObject("product", product);
+        modelAndView.setViewName("employee/admin/admin-product");
+        return modelAndView;
+    }
 }

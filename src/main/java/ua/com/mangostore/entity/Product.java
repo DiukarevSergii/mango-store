@@ -199,10 +199,9 @@ public class Product {
             String deviceSize, String weight, String mainCamera, String frontCamera) {
 
         this.setSpecification(
-                String.format("" +
-                                "<p><b>Операционная система:</b> %s </p>" +
+                String.format("<p><b>Операционная система:</b> %s </p>" +
                                 "<p><b>Процессор:</b> %s </p>" +
-                                "<p><b>Дисплей:</b> %s" +
+                                "<p><b>Дисплей:</b> %s дюймов" +
                                 "<br><b>Разрешение:</b> %s пикселей</p>" +
                                 "<p><b>Размеры (В х Ш х Г):</b> %s </p>" +
                                 "<p><b>Вес:</b> %s </p>" +
@@ -219,11 +218,10 @@ public class Product {
             String ddrMemeory, String cumulativeMemory, String audio) {
 
         this.setSpecification(
-                String.format("" +
-                                "<p><b>Операционная система:</b> %s </p>" +
+                String.format("<p><b>Операционная система:</b> %s </p>" +
                                 "<p><b>Основной процессор:</b> %s </p>" +
                                 "<p><b>Графический процессор::</b> %s </p>" +
-                                "<p><b>Дисплей:</b> %s" +
+                                "<p><b>Дисплей:</b> %s дюймов" +
                                 "<br><b>Разрешение:</b> %s пикселей</p>" +
                                 "<p><b>Размеры (В х Ш х Г):</b> %s &nbsp;&nbsp;" +
                                 "<b>Вес:</b> %s </p>" +

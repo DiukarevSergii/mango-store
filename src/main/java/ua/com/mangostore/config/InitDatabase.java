@@ -29,7 +29,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        /*System.out.println("Start init!");
+        System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
                 "admin", EmployeePosition.ADMIN, "044",
@@ -73,7 +73,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product1.setSpecification(
                 "iOS", "Четырехъядерный Apple A10 Fusion с 64-битной архитектурой",
-                "5.5\"", "1920 x 1080", "158.2 x 77.9 x 7.3 мм", "188 г",
+                "5.5", "1920 x 1080", "158.2 x 77.9 x 7.3 мм", "188 г",
                 "двойная камера 12 Мп с широкоугольным и телеобъективом", "7 Мп");
 
         Product product2 = new Product("Samsung A710F Galaxy A7", "Смартфоны", "Samsung", 11_199, 7_999);
@@ -98,7 +98,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product2.setSpecification(
                 "Android v5.1 Lollipop", "8-ядерный процессор с частотой 1.6 ГГц",
-                "5.5\"", "1920 x 1080", "151.5 x 74.1 x 7.3 мм", "172 г", "13 Мп", "5 Мп");
+                "5.5", "1920 x 1080", "151.5 x 74.1 x 7.3 мм", "172 г", "13 Мп", "5 Мп");
 
         Product product3 = new Product("Meizu MX6", "Смартфоны", "Meizu", 7_099, 5_299);
         product3.setImageURL("http://localhost:8080/resources/img/meizu_mx6_400x480.jpg");
@@ -131,7 +131,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product3.setSpecification(
                 "Android", "Десятиядерный MediaTek Helio X20 (MT6797) (4 x 1.5 ГГц + 4 x 1.9 ГГц + 2 x 2.3 ГГц)",
-                "5.5\"", "1920 x 1080", "153.6 x 75.2 x 7.25 мм", "155 г", "(Sony IMX 386) 12 Мп", "5 Мп");
+                "5.5", "1920 x 1080", "153.6 x 75.2 x 7.25 мм", "155 г", "(Sony IMX 386) 12 Мп", "5 Мп");
 
         Product product4 = new Product("iPad Air 2 16GB", "Планшеты", "Apple", 12_000, 10_999);
         product4.setImageURL("http://localhost:8080/resources/img/apple_ipad_air-2_400x480.jpg");
@@ -190,7 +190,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "с увеличенными пикселями позволяет делать более чёткие снимки в условиях низкой освещённости." +
                         "</p>");
         product4.setSpecification(
-                "iOS 8", "Процессор A8X с 64-битной архитектурой", "9.7\"", "2048 x 1536",
+                "iOS 8", "Процессор A8X с 64-битной архитектурой", "9.7", "2048 x 1536",
                 "240 х 169.5 х 6.1 мм", "444 г", "8 Мп ", "1.2 Мп");
 
         Product product5 = new Product("Xiaomi MiPad 2 16Gb", "Планшеты", "Xiaomi", 4_700, 3_999);
@@ -216,7 +216,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "быстрой зарядки вместо привычного microUSB." +
                         "</p>");
         product5.setSpecification(
-                "Android 5.1 + MIUI V7", "4-ядерный Intel Atom X5-Z8500 с тактовой частотой 2.2 ГГц", "7.9\"", "2048x1536",
+                "Android 5.1 + MIUI V7", "4-ядерный Intel Atom X5-Z8500 с тактовой частотой 2.2 ГГц", "7.9", "2048x1536",
                 "200.4 х 132.6 х 6.95 мм", "322 г", "8 Мп ", "5 Мп");
 
         Product product6 = new Product("Samsung Galaxy Tab S2 8\"", "Планшеты", "Samsung", 10_000, 7_999);
@@ -276,7 +276,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Надёжнее только в швейцарском банке. И то не факт." +
                         "</p>");
         product7.setSpecification(
-                "Android", "Восьмиядерный MediaTek MT6750 (4 x 1.5 ГГц + 4 x 1 ГГц)", "5\"", "1280 x 720",
+                "Android", "Восьмиядерный MediaTek MT6750 (4 x 1.5 ГГц + 4 x 1 ГГц)", "5", "1280 x 720",
                 "141.9 x 69.9 x 8.3 мм", "138 г", "13 Мп ", "5 Мп");
 
         Product product8 = new Product("Meizu M3 Note 16GB Grey", "Смартфоны", "Meizu", 3_000, 3_000);
@@ -309,7 +309,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Надёжнее только в швейцарском банке. И то не факт." +
                         "</p>");
         product8.setSpecification(
-                "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5\"", "1920 x 1080",
+                "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5", "1920 x 1080",
                 "153.6 х 75.5 х 8.2 мм", "163 г", "13 Мп ", "5 Мп");
 
         Product product9 = new Product("iPhone 5s 16GB", "Смартфоны", "Apple", 7_000, 7_000);
@@ -374,7 +374,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "чем объяснять тонкости съёмки пользователям." +
                         "</p>");
         product9.setSpecification(
-                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4\"", "1136 x 640",
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4", "1136 x 640",
                 "123.8 x 58.6 x 7.6 мм", "112 г", "8 Мп ", "1.2 Мп");
 
         Product product10 = new Product("iPhone 6s Plus 16GB", "Смартфоны", "Apple", 20_000, 20_000);
@@ -430,7 +430,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "сети Wi‑Fi iPhone 6s позволяет работать в интернете и загружать приложения почти в два раза быстрее." +
                         "</p>");
         product10.setSpecification(
-                "iOS 9", "Процессор A9 с 64-битной архитектурой", "5.5\"", "1920x1080",
+                "iOS 9", "Процессор A9 с 64-битной архитектурой", "5.5", "1920x1080",
                 "158.2 x 77.9 x 7.3 мм", "192 г", "12 Мп ", "5 Мп");
 
         Product product11 = new Product("iPhone 6 Plus", "Смартфоны", "Apple", 19_000, 19_000);
@@ -479,7 +479,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Передовая технология Touch ID позволяет защитить iPhone идеальным паролем: вашим отпечатком пальца. Кроме того, таким же образом можно подтверждать покупки в iTunes и App Store, поэтому вам не придётся снова и снова вводить пароль." +
                         "</p>");
         product11.setSpecification(
-                "iOS 8", "Процессор A8 с 64-разрядной архитектурой", "5.5\"", "1920x1080",
+                "iOS 8", "Процессор A8 с 64-разрядной архитектурой", "5.5", "1920x1080",
                 "158,1 x 77,8 x 7,1 мм", "172 г", "8 Мп", "1.2 Мп");
 
         Product product12 = new Product("iPhone SE 16Gb", "Смартфоны", "Apple", 12_000, 12_000);
@@ -542,7 +542,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "выглядит и отлично работает на iPhone. Теперь даже самые простые задачи будут увлекательными." +
                         "</p>");
         product12.setSpecification(
-                "iOS 9", "Процессор A9 с 64-битной архитектурой", "4\"", "1136 x 640",
+                "iOS 9", "Процессор A9 с 64-битной архитектурой", "4", "1136 x 640",
                 "123.8 x 58.6 x 7.6 мм", "113 г", "12 Мп ", "1.2 Мп");
 
         Product product13 = new Product("iPad Air 16GB", "Планшеты", "Apple", 8_000, 7_000);
@@ -619,7 +619,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "соединением. А благодаря гибким тарифным планам вам не нужно подписывать долгосрочный контракт." +
                         "</p>");
         product13.setSpecification(
-                "iOS 7", "Процессор A7 с 64-битной архитектурой", "9.7\"", "2048 x 1536",
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "9.7", "2048 x 1536",
                 "240 х 169.5 х 7.5 мм", "469 г", "5 Мп ", "1.2 Мп");
 
         Product product14 = new Product("iPad Pro 9.7 32GB", "Планшеты", "Apple", 17_000, 17_000);
@@ -689,7 +689,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "эффективную работу аккумулятора до 10 часов." +
                         "</p>");
         product14.setSpecification(
-                "iOS 9", "Процессор A9X с 64-битной архитектурой", "9.7\"", "2048х1536",
+                "iOS 9", "Процессор A9X с 64-битной архитектурой", "9.7", "2048х1536",
                 "240 х 169,5 х 6,1 мм", "437 г", "12 Мп ", "5 Мп");
 
 
@@ -774,7 +774,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product15);
 
         System.out.println("Finish!");
-       */
+
     }
 
 

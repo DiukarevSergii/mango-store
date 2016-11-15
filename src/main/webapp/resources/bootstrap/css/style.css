@@ -288,8 +288,18 @@ input[type="submit"]:hover {
 }
 
 .btn.btn-change-product {
-    background-color: rgb(236, 168, 9);
-    box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+     background-color: rgb(236, 168, 9);
+     box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+     height: 30px;
+     width: 180px;
+     font-size: 14px;
+     margin-top: -4px;
+     background-image: none;
+ }
+
+.btn.btn-change-product:hover {
+    background-color: rgb(236, 93, 12);
+    box-shadow: 0 3px 0 0 rgb(171, 48, 7);
     height: 30px;
     width: 180px;
     font-size: 14px;
@@ -297,9 +307,19 @@ input[type="submit"]:hover {
     background-image: none;
 }
 
-.btn.btn-change-product:hover {
+.btn.btn-danger {
+    background-color: rgb(250, 96, 12);
+    box-shadow: 0 3px 0 0 rgb(229, 88, 11);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-danger:hover {
     background-color: rgb(236, 93, 12);
-    box-shadow: 0 3px 0 0 rgb(171, 48, 7);
+    box-shadow: 0 3px 0 0 rgb(229, 88, 11);
     height: 30px;
     width: 180px;
     font-size: 14px;
