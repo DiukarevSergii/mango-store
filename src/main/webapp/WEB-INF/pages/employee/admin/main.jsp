@@ -29,8 +29,14 @@
         <!-- ADD PRODUCT -->
         <div class="row admin-title" style="height: 15px; margin-top: -10px">
         </div>
-        <div align="center" style="margin-top: -15px; margin-bottom: 25px">
-            <input class="btn btn-add-product" type="submit" value="Добавить товар">
+        <div style="margin-top: 10px; margin-bottom: 20px" align="center">
+            <form action="/admin/add-product" method=get>
+                <td>
+                    <button class="btn" style="width: 206px;font-size: larger">
+                        Добавить товар
+                    </button>
+                </td>
+            </form>
         </div>
     </div>
 

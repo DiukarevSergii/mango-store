@@ -7,7 +7,7 @@
             <li class="dropdown">
                 <a href="/admin/main">Товары</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><b>Добавить товар</b></a></li>
+                    <li><a href="/admin/add-product"><b>Добавить товар</b></a></li>
                     <li class="divider"></li>
                     <li class="divider"></li>
                     <li><a href="/admin/type"><b>По типам</b></a></li>
@@ -33,7 +33,6 @@
                     <li class="divider"></li>
                     <li><a href="#">Менеджеры</a></li>
                     <li><a href="#">Курьеры</a></li>
-
                 </ul>
             </li>
         </ul>

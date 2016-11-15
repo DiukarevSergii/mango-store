@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Добавление продукта | MANGO STORE</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
-    <meta name="title" content="Редактирование продукта ${product.productTitle} | MANGO STORE">
-    <title>Редактирование продукта ${product.productTitle} | MANGO STORE</title>
+    <meta name="title" content="Добавление продукта | MANGO STORE">
 </head>
 <body style="background-image: none; background-color: lightgrey">
 <div class="container">
@@ -23,36 +23,44 @@
     </div>
     <div class="product block" style="margin-top: 12px">
         <div class="col-lg-12" style="margin-top: 12px">
-            <form action="/admin/update-product" method="post">
-                <input type="hidden" name="id" value="${product.productId}">
+            <form action="/admin/add-product" method="post">
                 <table class="table">
                     <tr>
                         <th style="font-size: medium">Название:</th>
                         <td>
-                            <input class="form-control" type="text" name="productTitle" value="${product.productTitle}"
+                            <input class="form-control" type="text" name="productTitle"
                                    minlength="5" maxlength="100" style="width:700px" required>
                         </td>
                     </tr>
                     <tr>
-                        <th>Изображение товара:</th>
-                        <td><img src="${product.imageURL}" alt="${product.productTitle}" height="320"
-                                 style="float: left; padding: 0px; margin-right: -20px">
+                        <th style="font-size: medium">Тип:</th>
+                        <td>
+                            <input class="form-control" type="text" name="type"
+                                   minlength="5" maxlength="100" style="width:700px" required>
                         </td>
+                    </tr>
                     <tr>
-                        <th>Ссылка:</th>
-                        <td><input class="form-control" type="text" name="imageURL" value="${product.imageURL}"
+                        <th style="font-size: medium">Бренд:</th>
+                        <td>
+                            <input class="form-control" type="text" name="brand"
+                                   minlength="5" maxlength="100" style="width:700px" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ссылка на изображение товара:</th>
+                        <td><input class="form-control" type="text" name="imageURL"
                                    minlength="50" maxlength="400" style="width:700px" required>
                         </td>
                     </tr>
                     <tr>
                         <th>Полная стоимость:</th>
-                        <td><input class="form-control" type="text" name="fullPrice" value="${product.fullPrice}"
+                        <td><input class="form-control" type="text" name="fullPrice"
                                    minlength="1" maxlength="10" style="width:100px" required>
                         </td>
                     </tr>
                     <tr>
                         <th>Цена со скидкой:</th>
-                        <td><input class="form-control" type="text" name="salePrice" value="${product.salePrice}"
+                        <td><input class="form-control" type="text" name="salePrice"
                                    minlength="1" maxlength="10" style="width:100px" required>
                         </td>
                     </tr>
@@ -60,35 +68,32 @@
                         <th>Характеристики:</th>
                         <td>
                             <textarea class="form-control" type="text" name="specification"
-                                      maxlength="400" style="width:700px; height: 110px">${product.specification}
-                            </textarea>
+                                      maxlength="400" style="width:700px; height: 110px"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th>Описание товара:</th>
                         <td>
                             <textarea class="form-control" type="text" name="description"
-                                      maxlength="400" style="width:700px; min-height: 240px">${product.description}
-                            </textarea>
+                                      maxlength="400"
+                                      style="width:700px; min-height: 240px"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th></th>
                         <td>
-                            <input type="hidden" name="id" value="${product.productId}">
                             <button class="btn" style="width: 206px">
-                                Обновить
+                                Добавить продукт
                             </button>
                         </td>
                     </tr>
                 </table>
             </form>
-            <div style="margin-left: 195px; margin-top: -10px; margin-bottom: 20px">
-                <form action="/admin/remove-product" method=post>
+            <div style="margin-left: 232px; margin-top: -10px; margin-bottom: 20px">
+                <form action="/admin/add-product" method=get>
                     <td>
-                        <input type="hidden" name="id" value="${product.productId}">
                         <button class="btn btn-danger" style="width: 206px">
-                            Удалить товар
+                            Сбросить все
                         </button>
                     </td>
                 </form>

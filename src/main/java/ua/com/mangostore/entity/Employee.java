@@ -113,6 +113,22 @@ public class Employee {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        return email.equals(employee.email);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Employee{" +
                 "fullName='" + fullName + '\'' +

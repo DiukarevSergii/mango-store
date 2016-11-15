@@ -18,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee addEmployee(Employee employee) {
+        if (getAll().contains(employee)) {
+            return employee;
+        }
         Employee saveEmployee = employeeRepository.saveAndFlush(employee);
         return saveEmployee;
     }

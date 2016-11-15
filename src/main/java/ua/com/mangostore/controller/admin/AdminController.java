@@ -171,7 +171,7 @@ public class AdminController {
     }
 
     /**
-     * Возвращает страницу "employee/admin/admin-product" с 1-м товаром с уникальним URL, который
+     * Возвращает страницу "employee/admin/admin-edit-product" с 1-м товаром с уникальним URL, который
      * совпадает с входящим параметром url. URL запроса "/product-{id}", метод GET.
      * В запросе в параметре id передается артикль товара.
      *
@@ -186,7 +186,7 @@ public class AdminController {
         Product product = productService.getById(id);
         modelAndView.addObject("title", product.getProductTitle());
         modelAndView.addObject("product", product);
-        modelAndView.setViewName("employee/admin/admin-product");
+        modelAndView.setViewName("employee/admin/admin-edit-product");
         return modelAndView;
     }
 
@@ -214,19 +214,23 @@ public class AdminController {
      * Возвращает страницу "employee/admin/success"  и обновляет товар по входящим параметрам.
      * URL запроса "/admin/update-product", метод POST.
      *
-     * @param id             Код товара для обновления.
-     * @param productTitle   Название товара.
-     * @param imageURL       Ссылка на изображения товара.
-     * @param fullPrice      Цена товара без скидки.
-     * @param salePrice      Цена товара cо скидкой.
-     * @param specification  Характеристики товара.
-     * @param description    Описание товара.
-     * @param modelAndView   Объект класса {@link ModelAndView}.
+     * @param id            Код товара для обновления.
+     * @param productTitle  Название товара.
+     * @param type          Тип товара.
+     * @param brand         Бренд товара.
+     * @param imageURL      Ссылка на изображения товара.
+     * @param fullPrice     Цена товара без скидки.
+     * @param salePrice     Цена товара cо скидкой.
+     * @param specification Характеристики товара.
+     * @param description   Описание товара.
+     * @param modelAndView  Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
     @RequestMapping(value = "/update-product", method = RequestMethod.POST)
     public ModelAndView updateProduct(@RequestParam long id,
                                       @RequestParam String productTitle,
+                                      @RequestParam String type,
+                                      @RequestParam String brand,
                                       @RequestParam String imageURL,
                                       @RequestParam double fullPrice,
                                       @RequestParam double salePrice,
@@ -237,6 +241,8 @@ public class AdminController {
 
         Product product = productService.getById(id);
         product.setProductTitle(productTitle);
+        product.setType(type);
+        product.setBrand(brand);
         product.setImageURL(imageURL);
         product.setFullPrice(fullPrice);
         product.setSalePrice(salePrice);
@@ -245,6 +251,64 @@ public class AdminController {
 
         productService.editProduct(product);
         modelAndView.addObject("message", "обновили продукт " + product.getProductTitle());
+        modelAndView.setViewName("employee/admin/success");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/admin/admin-add-product".
+     * URL запроса "/admin/add-product", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/add-product", method = RequestMethod.GET)
+    public ModelAndView addProduct(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        modelAndView.setViewName("employee/admin/admin-add-product");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/admin/admin-add-product"  и добавляет товар по входящим параметрам в базу.
+     * URL запроса "/admin/add-product", метод POST.
+     *
+     * @param productTitle  Название товара.
+     * @param type          Тип товара.
+     * @param brand         Бренд товара.
+     * @param imageURL      Ссылка на изображения товара.
+     * @param fullPrice     Цена товара без скидки.
+     * @param salePrice     Цена товара cо скидкой.
+     * @param specification Характеристики товара.
+     * @param description   Описание товара.
+     * @param modelAndView  Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/add-product", method = RequestMethod.POST)
+    public ModelAndView addProduct(@RequestParam String productTitle,
+                                   @RequestParam String type,
+                                   @RequestParam String brand,
+                                   @RequestParam String imageURL,
+                                   @RequestParam double fullPrice,
+                                   @RequestParam double salePrice,
+                                   @RequestParam String specification,
+                                   @RequestParam String description,
+                                   ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        Product product = new Product();
+        product.setProductTitle(productTitle);
+        product.setType(type);
+        product.setBrand(brand);
+        product.setImageURL(imageURL);
+        product.setFullPrice(fullPrice);
+        product.setSalePrice(salePrice);
+        product.setSpecification(specification);
+        product.setDescription(description);
+
+        productService.addProduct(product);
+        modelAndView.addObject("message", "добавили продукт " + product.getProductTitle());
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
     }
