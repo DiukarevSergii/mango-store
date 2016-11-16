@@ -15,7 +15,7 @@
 <body style="background-image: none; background-color: lightgrey">
 <div class="container">
     <!-- LOGIN HEADER -->
-    <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
+    <jsp:include page="/WEB-INF/pages/employee/admin/login-header.jsp"/>
     <!-- ADMIN MENU -->
     <jsp:include page="/WEB-INF/pages/employee/admin/admin-general-menu.jsp"/>
 

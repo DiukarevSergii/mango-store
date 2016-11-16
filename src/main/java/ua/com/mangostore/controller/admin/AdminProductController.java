@@ -22,21 +22,14 @@ import java.util.TreeSet;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class AdminController {
+public class AdminProductController {
     @Autowired
     private EmployeeService employeeService;
     @Autowired
     private ProductService productService;
 
-    private void getUser(ModelAndView modelAndView) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Employee admin = employeeService.getByEmail(user.getUsername());
-        modelAndView.addObject("user", admin);
-    }
-
-
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView mainAdmin(ModelAndView modelAndView) {
+    public ModelAndView mainProduct(ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
         List<Product> groupOfProductsOnMain = new ArrayList<>();
@@ -46,14 +39,8 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProductsOnMain", groupOfProductsOnMain);
-        modelAndView.setViewName("employee/admin/main");
+        modelAndView.setViewName("employee/admin/products/main");
         return modelAndView;
-    }
-
-    private void getUserTypeBrand(ModelAndView modelAndView) {
-        getUser(modelAndView);
-        byType(modelAndView);
-        byBrand(modelAndView);
     }
 
     @RequestMapping(value = "/on-main", method = RequestMethod.GET)
@@ -68,7 +55,7 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProducts", groupOfProductsOnMain);
-        modelAndView.setViewName("employee/admin/some_products");
+        modelAndView.setViewName("employee/admin/products/some_products");
         return modelAndView;
     }
 
@@ -84,7 +71,7 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProducts", groupOfProductsByType);
-        modelAndView.setViewName("employee/admin/some_products");
+        modelAndView.setViewName("employee/admin/products/some_products");
         return modelAndView;
     }
 
@@ -104,7 +91,7 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProductsByType", groupOfProductsByType);
-        modelAndView.setViewName("employee/admin/type");
+        modelAndView.setViewName("employee/admin/products/type");
         return modelAndView;
     }
 
@@ -120,7 +107,7 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProducts", groupOfProductsByBrand);
-        modelAndView.setViewName("employee/admin/some_products");
+        modelAndView.setViewName("employee/admin/products/some_products");
         return modelAndView;
     }
 
@@ -140,38 +127,12 @@ public class AdminController {
             }
         }
         modelAndView.addObject("groupOfProductsByBrand", groupOfProductsByBrand);
-        modelAndView.setViewName("employee/admin/brand");
+        modelAndView.setViewName("employee/admin/products/brand");
         return modelAndView;
     }
 
-    private void byBrand(ModelAndView modelAndView) {
-        Set<String> brands = new TreeSet<>();
-        List<Product> groupOfProductsByBrand = new ArrayList<>();
-        for (Product product : productService.getAll()) {
-            String brand = product.getBrand();
-            if (!brands.contains(brand)) {
-                brands.add(brand);
-                groupOfProductsByBrand.add(product);
-            }
-        }
-        modelAndView.addObject("groupOfProductsByBrand", groupOfProductsByBrand);
-    }
-
-    private void byType(ModelAndView modelAndView) {
-        Set<String> types = new TreeSet<>();
-        List<Product> groupOfProductsByType = new ArrayList<>();
-        for (Product product : productService.getAll()) {
-            String type = product.getType();
-            if (!types.contains(type)) {
-                types.add(type);
-                groupOfProductsByType.add(product);
-            }
-        }
-        modelAndView.addObject("groupOfProductsByType", groupOfProductsByType);
-    }
-
     /**
-     * Возвращает страницу "employee/admin/admin-edit-product" с 1-м товаром с уникальним URL, который
+     * Возвращает страницу "employee/admin/products/admin-update-product" с 1-м товаром с уникальним URL, который
      * совпадает с входящим параметром url. URL запроса "/product-{id}", метод GET.
      * В запросе в параметре id передается артикль товара.
      *
@@ -186,7 +147,7 @@ public class AdminController {
         Product product = productService.getById(id);
         modelAndView.addObject("title", product.getProductTitle());
         modelAndView.addObject("product", product);
-        modelAndView.setViewName("employee/admin/admin-edit-product");
+        modelAndView.setViewName("employee/admin/products/admin-update-product");
         return modelAndView;
     }
 
@@ -205,6 +166,7 @@ public class AdminController {
 
         String productTitle = productService.getById(id).getProductTitle();
         productService.delete(id);
+        modelAndView.addObject("title", "товары");
         modelAndView.addObject("message", "удалили продукт " + productTitle);
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
@@ -234,6 +196,7 @@ public class AdminController {
                                       @RequestParam String imageURL,
                                       @RequestParam double fullPrice,
                                       @RequestParam double salePrice,
+                                      @RequestParam String onMain,
                                       @RequestParam String specification,
                                       @RequestParam String description,
                                       ModelAndView modelAndView) {
@@ -246,17 +209,20 @@ public class AdminController {
         product.setImageURL(imageURL);
         product.setFullPrice(fullPrice);
         product.setSalePrice(salePrice);
+        OnMain statusOnMain = OnMain.ON_MAIN.name().equals(onMain) ? OnMain.ON_MAIN : OnMain.NOT_ON_MAIN;
+        product.setOnMain(statusOnMain);
         product.setSpecification(specification);
         product.setDescription(description);
 
         productService.editProduct(product);
+        modelAndView.addObject("title", "товары");
         modelAndView.addObject("message", "обновили продукт " + product.getProductTitle());
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
     }
 
     /**
-     * Возвращает страницу "employee/admin/admin-add-product".
+     * Возвращает страницу "employee/admin/products/admin-add-product".
      * URL запроса "/admin/add-product", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
@@ -266,12 +232,12 @@ public class AdminController {
     public ModelAndView addProduct(ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
-        modelAndView.setViewName("employee/admin/admin-add-product");
+        modelAndView.setViewName("employee/admin/products/admin-add-product");
         return modelAndView;
     }
 
     /**
-     * Возвращает страницу "employee/admin/admin-add-product"  и добавляет товар по входящим параметрам в базу.
+     * Возвращает страницу "employee/admin/products/admin-add-product"  и добавляет товар по входящим параметрам в базу.
      * URL запроса "/admin/add-product", метод POST.
      *
      * @param productTitle  Название товара.
@@ -292,6 +258,7 @@ public class AdminController {
                                    @RequestParam String imageURL,
                                    @RequestParam double fullPrice,
                                    @RequestParam double salePrice,
+                                   @RequestParam String onMain,
                                    @RequestParam String specification,
                                    @RequestParam String description,
                                    ModelAndView modelAndView) {
@@ -304,13 +271,53 @@ public class AdminController {
         product.setImageURL(imageURL);
         product.setFullPrice(fullPrice);
         product.setSalePrice(salePrice);
+        OnMain statusOnMain = OnMain.ON_MAIN.name().equals(onMain) ? OnMain.ON_MAIN : OnMain.NOT_ON_MAIN;
+        product.setOnMain(statusOnMain);
         product.setSpecification(specification);
         product.setDescription(description);
 
         productService.addProduct(product);
+        modelAndView.addObject("title", "товары");
         modelAndView.addObject("message", "добавили продукт " + product.getProductTitle());
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
     }
 
+    private void getUserTypeBrand(ModelAndView modelAndView) {
+        getUser(modelAndView);
+        byType(modelAndView);
+        byBrand(modelAndView);
+    }
+
+    private void getUser(ModelAndView modelAndView) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Employee admin = employeeService.getByEmail(user.getUsername());
+        modelAndView.addObject("user", admin);
+    }
+
+    private void byType(ModelAndView modelAndView) {
+        Set<String> types = new TreeSet<>();
+        List<Product> groupOfProductsByType = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            String type = product.getType();
+            if (!types.contains(type)) {
+                types.add(type);
+                groupOfProductsByType.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProductsByType", groupOfProductsByType);
+    }
+
+    private void byBrand(ModelAndView modelAndView) {
+        Set<String> brands = new TreeSet<>();
+        List<Product> groupOfProductsByBrand = new ArrayList<>();
+        for (Product product : productService.getAll()) {
+            String brand = product.getBrand();
+            if (!brands.contains(brand)) {
+                brands.add(brand);
+                groupOfProductsByBrand.add(product);
+            }
+        }
+        modelAndView.addObject("groupOfProductsByBrand", groupOfProductsByBrand);
+    }
 }

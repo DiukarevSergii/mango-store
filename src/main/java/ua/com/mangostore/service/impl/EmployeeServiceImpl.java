@@ -39,6 +39,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
+    public Employee getById(long id) {
+        return employeeRepository.findById(id);
+    }
+
+    @Override
+    @Transactional
     public Employee getByEmail(String email) {
         return employeeRepository.findByEmail(email);
     }

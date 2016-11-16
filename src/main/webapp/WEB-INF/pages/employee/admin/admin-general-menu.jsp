@@ -26,9 +26,9 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Персонал</a>
+                <a href="/admin/employees">Сотрудники</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><b>Добавить работника</b></a></li>
+                    <li><a href="/admin/add-employee"><b>Добавить работника</b></a></li>
                     <li class="divider"></li>
                     <li class="divider"></li>
                     <li><a href="#">Менеджеры</a></li>

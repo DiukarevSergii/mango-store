@@ -20,7 +20,7 @@ public class Employee {
     @Column(nullable = false, name = "FULL_NAME")
     private String fullName;
 
-    @Column(name = "POSITION")
+    @Column(nullable = false, name = "POSITION")
     @Enumerated(EnumType.STRING)
     private EmployeePosition position;
 
@@ -110,6 +110,14 @@ public class Employee {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 
     @Override

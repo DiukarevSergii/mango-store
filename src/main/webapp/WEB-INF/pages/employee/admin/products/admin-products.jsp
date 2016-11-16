@@ -8,12 +8,12 @@
             <div class="cell-on-main" id="cell-1-1">
                 <div class="in-cell" id="in-cell-1">
                     <div class="image-on-main">
-                        <a href="#">
+                        <a href="/admin/product-${product.productId}" method=get >
                             <img src="<c:out value="${product.imageURL}"/>" alt="${title}" height="240">
                         </a>
                     </div>
                     <p class="font-review">${product.type} ${product.brand}</p>
-                    <a class="title-review" href="#"><c:out
+                    <a class="title-review" href="/admin/product-${product.productId}" method=get ><c:out
                             value="${product.productTitle}"/></a>
                     <p class="main-review">
                         <c:choose>
@@ -28,8 +28,8 @@
                         </c:choose>
                         &nbsp;${product.getFormatSalePrice()}
                         <sup style="font-size:12px; margin-left:-5px;">грн</sup>
-                    <a href="/admin/product-${product.productId}" method=get>
-                        <button class="btn btn-change-product">Редактировать товар</button>
+                    <a href="/admin/product-${product.productId}" method=get >
+                        <button class="btn btn-change-product" style="margin-top: 3px">Редактировать товар</button>
                     </a>
                     </p>
                 </div>

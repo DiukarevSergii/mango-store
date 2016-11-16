@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>Access denied</title>
+    <title>Админ панель</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
@@ -12,18 +12,17 @@
 <div class="container">
     <!-- LOGIN HEADER -->
     <jsp:include page="/WEB-INF/pages/employee/admin/login-header.jsp"/>
+    <!-- ADMIN MENU -->
+    <jsp:include page="/WEB-INF/pages/employee/admin/admin-general-menu.jsp"/>
 
-    <h2 style="text-decoration: none; margin-top: 20px;">
-        Недостаточно прав доступа для ${login}!
-    </h2>
-    <div>
-        <c:url value="/logout" var="logoutUrl"/>
-        <p>Нажмите для выхода: <a href="${logoutUrl}">LOGOUT</a></p>
+    <div class="admin-page">
+        <div class="row admin-main-title">
+            <h3 style="font-size: 30px">Категория: Товары</h3>
+        </div>
+        <!-- PRODUCTS BY BRAND -->
+        <jsp:include page="/WEB-INF/pages/employee/admin/products/products-by-brand.jsp"/>
+        <c:set var="count" value="0" scope="page"/>
     </div>
-    <div class="registration_order" style="margin-left: 20px;height: 700px">
-    </div>
-
-
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 

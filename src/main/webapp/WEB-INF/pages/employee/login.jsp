@@ -11,7 +11,7 @@
 <body style="background-image: none; background-color: lightgrey">
 <div class="container">
     <!-- LOGIN HEADER -->
-    <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
+    <jsp:include page="/WEB-INF/pages/employee/admin/login-header.jsp"/>
 
     <h4 style="color: #f6731c; font-size: 20px; text-decoration: none; margin-top: 20px;">Вход в админ панель</h4>
     <div class="registration_order" style="margin-left: 20px;height: 700px">

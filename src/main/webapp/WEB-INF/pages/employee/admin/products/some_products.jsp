@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -9,19 +8,15 @@
 </head>
 
 <body style="background-image: none; background-color: lightgrey">
+
 <div class="container">
     <!-- LOGIN HEADER -->
-    <jsp:include page="/WEB-INF/pages/template/login-header.jsp"/>
+    <jsp:include page="/WEB-INF/pages/employee/admin/login-header.jsp"/>
     <!-- ADMIN MENU -->
     <jsp:include page="/WEB-INF/pages/employee/admin/admin-general-menu.jsp"/>
+    <!-- PRODUCTS -->
+    <jsp:include page="/WEB-INF/pages/employee/admin/products/admin-products.jsp"/>
 
-    <div class="admin-page">
-        <div class="row admin-main-title">
-            <h3 style="font-size: 30px">Категория: Товары</h3>
-        </div>
-        <!-- PRODUCTS BY TYPE -->
-        <jsp:include page="/WEB-INF/pages/employee/admin/products-by-type.jsp"/>
-    </div>
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 
