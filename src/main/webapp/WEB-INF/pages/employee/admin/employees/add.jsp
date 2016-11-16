@@ -56,9 +56,10 @@
                     <tr>
                         <th>Должность:</th>
                         <td>
-                            <select class="form-control" name="position" style="width:120px">
+                            <select class="form-control" name="position" style="width:200px" required>
+                                <option value="">Выберите должность</option>
                                 <option value="ADMIN">Админ</option>
-                                <option value="MANAGER" selected>Менеджер</option>
+                                <option value="MANAGER" >Менеджер</option>
                                 <option value="COURIER">Курьер</option>
                             </select>
 

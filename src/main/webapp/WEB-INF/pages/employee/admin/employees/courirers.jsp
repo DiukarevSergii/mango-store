@@ -56,7 +56,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        <a href="" title="Добавить нового курьера">
+                        <a href="/admin/add-employee" title="Добавить нового курьера">
                             <button class="btn" type="submit">Добавить нового курьера</button>
                         </a>
                         <c:if test="${fn:length(couriers) gt 0}">

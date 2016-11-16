@@ -57,8 +57,7 @@
                 <table class="table">
                     <tr>
                         <td>
-
-                            <a href="" title="Добавить нового менеджера">
+                            <a href="/admin/add-employee" title="Добавить нового менеджера">
                                 <button class="btn" type="submit">Добавить нового менеджера</button>
                             </a>
 
