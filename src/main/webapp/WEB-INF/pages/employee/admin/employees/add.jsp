@@ -49,7 +49,7 @@
                     <tr>
                         <th style="font-size: medium">Пароль</th>
                         <td>
-                            <input class="form-control" type="text" name="email"
+                            <input class="form-control" type="text" name="password"
                                    minlength="5" maxlength="100" style="width:700px" required>
                         </td>
                     </tr>

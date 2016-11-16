@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.entity.Employee;
 import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.service.EmployeeService;
 import ua.com.mangostore.service.ProductService;
 
@@ -74,9 +75,26 @@ public class AdminEmployeeController {
     public ModelAndView addProduct(@RequestParam String fullName,
                                    @RequestParam String phone,
                                    @RequestParam String email,
+                                   @RequestParam String password,
                                    @RequestParam String position,
                                    ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
+
+        Employee employee = new Employee();
+        employee.setFullName(fullName);
+        employee.setPhone(phone);
+        employee.setEmail(email);
+        employee.setPassword(password);
+        EmployeePosition employeePosition;
+        if (EmployeePosition.ADMIN.name().equals(position)) {
+            employeePosition = EmployeePosition.ADMIN;
+        } else if (EmployeePosition.MANAGER.name().equals(position)) {
+            employeePosition = EmployeePosition.MANAGER;
+        } else {
+            employeePosition = EmployeePosition.COURIER;
+        }
+        employee.setPosition(employeePosition);
+        employeeService.addEmployee(employee);
 
         modelAndView.addObject("title", "сотрудники");
         modelAndView.addObject("message", "добавили сотрудника " + fullName);
