@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,17 +34,20 @@ public class AdminEmployeeController {
 
         List<Employee> couriers = new ArrayList<>();
         List<Employee> managers = new ArrayList<>();
+        List<Employee> admins = new ArrayList<>();
 
         for (Employee employee : employeeService.getAll()) {
             if (employee.getPosition().name().equals("COURIER")) {
                 couriers.add(employee);
-            }
-            if (employee.getPosition().name().equals("MANAGER")) {
+            } else if (employee.getPosition().name().equals("MANAGER")) {
                 managers.add(employee);
+            } else {
+                admins.add(employee);
             }
         }
         modelAndView.addObject("couriers", couriers);
         modelAndView.addObject("managers", managers);
+        modelAndView.addObject("admins", admins);
         modelAndView.setViewName("employee/admin/employees/main");
         return modelAndView;
     }
@@ -59,6 +63,73 @@ public class AdminEmployeeController {
 
         modelAndView.addObject("title", "сотрудники");
         modelAndView.addObject("message", "удалили сотрудника " + fullName);
+        modelAndView.setViewName("employee/admin/success");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/admin/employees/update" с 1-м сотрудником с уникальним URL, который
+     * совпадает с входящим параметром url. URL запроса "/employee-{id}", метод GET.
+     * В запросе в параметре id передается артикль товара.
+     *
+     * @param id           id сотрудника, который нужно вернуть на страницу.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/employee-{id}", method = RequestMethod.GET)
+    public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        Employee employee = employeeService.getById(id);
+        modelAndView.addObject("title", "Редактирование информации о сотруднике");
+        modelAndView.addObject("employee", employee);
+        modelAndView.setViewName("employee/admin/employees/update");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/admin/success"  и обновляет информацию о сотруднике по входящим параметрам.
+     * URL запроса "/admin/update-employee", метод POST.
+     *
+     * @param id           Код сотрудника для обновления.
+     * @param fullName     ФИО сотрудника.
+     * @param phone        Телефон сотрудника.
+     * @param email        Почта сотрудника.
+     * @param password     Пароль сотрудника.
+     * @param position     Должность сотрудника.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/update-employee", method = RequestMethod.POST)
+    public ModelAndView updateProduct(@RequestParam long id,
+                                      @RequestParam String fullName,
+                                      @RequestParam String phone,
+                                      @RequestParam String email,
+                                      @RequestParam String password,
+                                      @RequestParam String position,
+                                      ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        Employee employee = employeeService.getById(id);
+        employee.setFullName(fullName);
+        employee.setPhone(phone);
+        if (!employee.getPassword().equals(password)) {
+            employee.setPassword(password);
+        }
+        employee.setPassword(password);
+        EmployeePosition employeePosition;
+        if (EmployeePosition.ADMIN.name().equals(position)) {
+            employeePosition = EmployeePosition.ADMIN;
+        } else if (EmployeePosition.MANAGER.name().equals(position)) {
+            employeePosition = EmployeePosition.MANAGER;
+        } else {
+            employeePosition = EmployeePosition.COURIER;
+        }
+        employee.setPosition(employeePosition);
+        employeeService.editEmployee(employee);
+
+        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("message", "обновили информацию сотрудника " + fullName);
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
     }
@@ -80,11 +151,18 @@ public class AdminEmployeeController {
                                    ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
+        if (employeeService.getByEmail(email) != null) {
+            modelAndView.addObject("message", "Сотрудник с такой почтой уже существует. Попробуйте ещё раз");
+            modelAndView.addObject("sms", "Сотрудник с такой почтой уже существует. Попробуйте ещё раз");
+            modelAndView.setViewName("employee/admin/employees/add");
+            return modelAndView;
+        }
+
         Employee employee = new Employee();
         employee.setFullName(fullName);
         employee.setPhone(phone);
-        employee.setEmail(email);
         employee.setPassword(password);
+        employee.setEmail(email);
         EmployeePosition employeePosition;
         if (EmployeePosition.ADMIN.name().equals(position)) {
             employeePosition = EmployeePosition.ADMIN;
@@ -98,6 +176,38 @@ public class AdminEmployeeController {
 
         modelAndView.addObject("title", "сотрудники");
         modelAndView.addObject("message", "добавили сотрудника " + fullName);
+        modelAndView.setViewName("employee/admin/success");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/remove-all-managers", method = RequestMethod.GET)
+    public ModelAndView removeAllManagers(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        for (Employee employee : employeeService.getAll()) {
+            if (employee.getPosition().equals(EmployeePosition.MANAGER)) {
+                employeeService.delete(employee.getEmployeeId());
+            }
+        }
+
+        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("message", "Вы успешно удалили всех менеджеров!");
+        modelAndView.setViewName("employee/admin/success");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/remove-all-couriers", method = RequestMethod.GET)
+    public ModelAndView removeAllCouriers(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        for (Employee employee : employeeService.getAll()) {
+            if (employee.getPosition().equals(EmployeePosition.COURIER)) {
+                employeeService.delete(employee.getEmployeeId());
+            }
+        }
+        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("message", "Вы успешно удалили всех курьеров!");
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
     }

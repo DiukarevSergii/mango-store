@@ -23,6 +23,8 @@
         <jsp:include page="/WEB-INF/pages/employee/admin/employees/managers.jsp"/>
         <!-- COURIERS -->
         <jsp:include page="/WEB-INF/pages/employee/admin/employees/courirers.jsp"/>
+        <!-- ADMINS -->
+        <jsp:include page="/WEB-INF/pages/employee/admin/employees/admins.jsp"/>
 
     </div>
 

@@ -57,6 +57,7 @@ public class Employee {
         this.position = position;
         this.phone = phone;
         this.email = email;
+        this.password = "";
         this.setPassword(password);
     }
 
@@ -76,8 +77,8 @@ public class Employee {
     }
 
     public void setPassword(String password) {
-        ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder();
-        this.password = shaPasswordEncoder.encodePassword(password, null);
+            ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder();
+            this.password = shaPasswordEncoder.encodePassword(password, null);
     }
 
     public String getFullName() {

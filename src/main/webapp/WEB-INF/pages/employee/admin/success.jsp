@@ -20,7 +20,7 @@
     <jsp:include page="/WEB-INF/pages/employee/admin/admin-general-menu.jsp"/>
 
     <div class="row admin-main-title">
-        <h3 style="font-size: 30px">Категория: Редактирование продукта</h3>
+        <h3 style="font-size: 30px">Категория: </h3>
     </div>
     <div class="product block" style="margin-top: 40px" align="center">
         <h3>Вы успешно ${message}</h3>

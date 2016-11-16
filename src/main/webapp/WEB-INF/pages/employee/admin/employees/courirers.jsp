@@ -4,46 +4,45 @@
 
 
 <div class="row admin-title">
-    <h3>Список курьеров:</h3>
+    <h3>Список курьеров:
+        <c:if test="${fn:length(couriers) eq 0}">
+            <span style="color: red"> Пуст!</span>
+            <div style="margin-top: 10px">
+                <a href="/admin/add-employee" title="Добавить нового курьера">
+                    <button class="btn" type="submit">Добавить нового курьера</button>
+                </a>
+            </div>
+        </c:if>
+    </h3>
 </div>
+
 <div class="row">
     <div style="margin-top: 12px">
         <div class="col-lg-12" style="margin-top: 12px">
-            <div class="row section-name text-shadow">
-                <b>
-                    <c:if test="${fn:length(couriers) eq 0}">
-                        <span class="color-red"> - список пуст!</span>
-                        <br>
-                        <a href="/admin/add_user" title="Добавить нового курьера">
-                            <button class="btn" type="submit">Добавить нового курьера</button>
-                        </a>
-                    </c:if>
-                </b>
-            </div>
             <c:if test="${fn:length(couriers) gt 0}">
                 <table class="table">
                     <tr>
-                        <th >Имя</th>
-                        <th >Должность</th>
-                        <th >Телефон</th>
-                        <th >Почта</th>
-                        <th ></th>
-                        <th ></th>
+                        <th>Имя</th>
+                        <th>Должность</th>
+                        <th>Телефон</th>
+                        <th>Почта</th>
+                        <th></th>
+                        <th></th>
                     </tr>
 
                     <c:forEach items="${couriers}" var="employee">
                         <tr>
-                            <td > ${employee.fullName} </td>
-                            <td >${employee.position.name()}</td>
-                            <td >${employee.phone}</td>
-                            <td >${employee.email}</td>
+                            <td> ${employee.fullName} </td>
+                            <td>${employee.position.name()}</td>
+                            <td>${employee.phone}</td>
+                            <td>${employee.email}</td>
                             <td>
-                                <form action="/admin/update-employee" method=post>
-                                    <input type="hidden" name="id" value="${employee.employeeId}">
-                                    <button class="btn btn-change-employee" type="submit">Редактировать</button>
-                                </form>
+                                <a href="/admin/employee-${employee.employeeId}" method=get>
+                                    <button class="btn btn-change-employee" style="margin-top: 3px">Редактировать
+                                    </button>
+                                </a>
                             </td>
-                            <td align="left">
+                            <td>
                                 <form action="/admin/remove-employee" method=post>
                                     <input type="hidden" name="id" value="${employee.employeeId}">
                                     <button class="btn btn-remove-employee" type="submit">Удалить</button>
@@ -53,20 +52,21 @@
                     </c:forEach>
                 </table>
             </c:if>
-            <table class="table">
-                <tr>
-                    <td>
-                        <a href="/admin/add-employee" title="Добавить нового курьера">
-                            <button class="btn" type="submit">Добавить нового курьера</button>
-                        </a>
-                        <c:if test="${fn:length(couriers) gt 0}">
-                            <a href="" title="Удалить всех менеджеров">
+            <c:if test="${fn:length(couriers) gt 0}">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="/admin/add-employee" title="Добавить нового курьера">
+                                <button class="btn" type="submit">Добавить нового курьера</button>
+                            </a>
+
+                            <a href="/admin/remove-all-couriers" title="Удалить всех курьеров">
                                 <button class="btn btn-remove-all-employee" type="submit">Удалить всех курьеров</button>
                             </a>
-                        </c:if>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                </table>
+            </c:if>
         </div>
     </div>
 </div>
