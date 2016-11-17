@@ -60,13 +60,13 @@
                     <tr>
                         <th>Полная стоимость:</th>
                         <td><input class="form-control" type="text" name="fullPrice" value="${product.fullPrice}"
-                                   minlength="1" maxlength="10" style="width:90px" required>
+                                   minlength="1" maxlength="10" style="width:90px" pattern="(\d+)?([\.,]\d+)?" required>
                         </td>
                     </tr>
                     <tr>
                         <th>Цена со скидкой:</th>
                         <td><input class="form-control" type="text" name="salePrice" value="${product.salePrice}"
-                                   minlength="1" maxlength="10" style="width:90px" required>
+                                   minlength="1" maxlength="10" style="width:90px" pattern="(\d+)?([\.,]\d+)?" required>
                         </td>
                     </tr>
                     <tr>

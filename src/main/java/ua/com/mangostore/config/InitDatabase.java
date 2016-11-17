@@ -781,8 +781,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         customer.setSurname("Покупатель");
         customer.setPhone("+38(012)345-67-89");
         customer.setEmail("customers@newcustomer.com");
-        customer.setCity("Kiev");
-        customer.setAddress("");
+        customer.setCity("Киев");
+        customer.setAddress("проспект Независимости 4");
 
         double sumAllSalePositions = 0;
         SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
@@ -793,10 +793,12 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         Order order = new Order();
         order.setOrderPrice(sumAllSalePositions);
         order.addSalePosition(salePosition1);
+        order.addSalePosition(salePosition2);
+        order.addSalePosition(salePosition3);
         order.setCustomer(customer);
 
         Delivery delivery = new Delivery();
-        delivery.setDeliveryType(DeliveryType.COURIER);
+        delivery.setDeliveryType(DeliveryType.COURIER.name());
         delivery.setOrder(order);
         deliveryService.addDelivery(delivery);
 

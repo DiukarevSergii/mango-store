@@ -58,7 +58,7 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 

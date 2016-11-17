@@ -136,8 +136,8 @@ public class Customer {
         return "Customer{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

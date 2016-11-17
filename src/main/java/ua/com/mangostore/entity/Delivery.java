@@ -82,9 +82,27 @@ public class Delivery {
         return deliveryType;
     }
 
+    public void setDeliveryType(String deliveryType) {
+        if (deliveryType.equals(DeliveryType.PICKUP.name())) {
+            this.setDeliveryType(DeliveryType.PICKUP);
+            this.setCost(0);
+        } else if (deliveryType.equals(DeliveryType.COURIER.name())) {
+            this.setDeliveryType(DeliveryType.COURIER);
+            this.setCost(50);
+        } else {
+            this.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT);
+            this.setCost(150);
+        }
+    }
+
     public void setDeliveryType(DeliveryType deliveryType) {
         this.deliveryType = deliveryType;
     }
 
+    public void reset(){
+        this.deliveryTime = "";
+        this.deliveryDate = "";
+        this.setEmployee(null);
+    }
 
 }

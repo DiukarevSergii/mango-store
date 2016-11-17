@@ -7,8 +7,9 @@
         <c:forEach items="${productsInCart}" var="position">
             <tr>
                 <td>
-                    <pre><a href="${position.product.imageURL}"><img src="${position.product.imageURL}" alt="${position.product.productTitle}"
-                              height="100"></a></pre>
+                    <pre><a href="${position.product.imageURL}"><img src="${position.product.imageURL}"
+                                                                     alt="${position.product.productTitle}"
+                                                                     height="100"></a></pre>
                 </td>
                 <td>
                     <p style="margin-top: 10px; margin-bottom: 0px">
@@ -52,9 +53,6 @@
                     <div class="cart-review">
                         <span style="color:gray;">Количество</span>
                         <span style="text-align: center;"><strong><p>${position.number}</p></strong></span>
-                            <%--<div>--%>
-                            <%--<input type="number" value="${position.number}" min="1" max="10"/>--%>
-                            <%--</div>--%>
                     </div>
                 </td>
                 <td>
