@@ -32,29 +32,36 @@
                     <tr>
                         <th style="font-size: medium">ФИО:</th>
                         <td>
-                            <input class="form-control" type="text" name="fullName"
-                                   minlength="5" maxlength="100" style="width:700px" required>
+                            <input class="form-control" type="text" name="fullName" pattern="[А-Яа-я ]+"
+                                   minlength="10" maxlength="100" style="width:700px"
+                                   placeholder="Введите ФИО сотрудника" required>
+                            <p class="help-block" style="font-size: 11px;margin-left: 5px">Пример: Иван Франко. Только кирилица</p>
                         </td>
                     </tr>
                     <tr>
                         <th style="font-size: medium">Телефон:</th>
                         <td>
                             <input class="form-control" type="text" name="phone"
-                                   minlength="5" maxlength="100" style="width:700px" required>
+                                   minlength="8" maxlength="100" style="width:700px" autocomplete="on"
+                                   pattern="\+[0-9]{2}\(0[0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                                   placeholder="+38 (0__) ___-__-__" required>
+                            <p class="help-block" style="font-size: 11px; margin-left: 5px">Пример: +38(050)123-45-67</p>
                         </td>
                     </tr>
                     <tr>
                         <th style="font-size: medium">Почта</th>
                         <td>
                             <input class="form-control" type="text" name="email"
-                                   minlength="5" maxlength="100" style="width:700px" required>
+                                   minlength="10" maxlength="100" style="width:700px" autocomplete="on"
+                                   placeholder="Введите email сотрудника" required>
                         </td>
                     </tr>
                     <tr>
                         <th style="font-size: medium">Пароль</th>
                         <td>
                             <input class="form-control" type="text" name="password"
-                                   minlength="5" maxlength="100" style="width:700px" required>
+                                   minlength="6" maxlength="100" style="width:700px"
+                                   placeholder="Установите пароль для сотрудника" required>
                         </td>
                     </tr>
                     <tr>
@@ -63,7 +70,7 @@
                             <select class="form-control" name="position" style="width:200px" required>
                                 <option value="">Выберите должность</option>
                                 <option value="ADMIN">Админ</option>
-                                <option value="MANAGER" >Менеджер</option>
+                                <option value="MANAGER">Менеджер</option>
                                 <option value="COURIER">Курьер</option>
                             </select>
                         </td>

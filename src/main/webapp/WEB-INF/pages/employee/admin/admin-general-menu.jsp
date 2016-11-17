@@ -31,8 +31,9 @@
                     <li><a href="/admin/add-employee"><b>Добавить работника</b></a></li>
                     <li class="divider"></li>
                     <li class="divider"></li>
-                    <li><a href="#">Менеджеры</a></li>
-                    <li><a href="#">Курьеры</a></li>
+                    <li><a href="/admin/only-managers">Менеджеры</a></li>
+                    <li><a href="/admin/only-couriers">Курьеры</a></li>
+                    <li><a href="/admin/only-admins">Админы</a></li>
                 </ul>
             </li>
         </ul>

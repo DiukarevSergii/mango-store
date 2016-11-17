@@ -48,10 +48,6 @@ public class Product {
     @Column(name = "QUANTITY")
     private int quantity;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
-//    Order order;
-
     /**
      * Торговые позиции.
      * К текущему товару можно добраться через поле "product"
@@ -89,14 +85,6 @@ public class Product {
         this.salePrice = salePrice;
         this.onMain = OnMain.NOT_ON_MAIN;
     }
-
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
 
     public int getQuantity() {
         return quantity;

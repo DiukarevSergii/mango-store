@@ -4,12 +4,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import ua.com.mangostore.entity.Employee;
-import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.*;
+import ua.com.mangostore.entity.enums.DeliveryType;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.OnMain;
-import ua.com.mangostore.service.EmployeeService;
-import ua.com.mangostore.service.ProductService;
+import ua.com.mangostore.service.*;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -23,9 +22,12 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Resource
     private ProductService productService;
-
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private OrderService orderService;
+    @Resource
+    private DeliveryService deliveryService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -773,6 +775,34 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product13);
         productService.addProduct(product14);
         productService.addProduct(product15);
+
+        Customer customer = new Customer();
+        customer.setName("Новый");
+        customer.setSurname("Покупатель");
+        customer.setPhone("+38(012)345-67-89");
+        customer.setEmail("customers@newcustomer.com");
+        customer.setCity("Kiev");
+        customer.setAddress("");
+
+        double sumAllSalePositions = 0;
+        SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
+        SalePosition salePosition2 = new SalePosition(productService.getById(3), 1);
+        SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        Order order = new Order();
+        order.setOrderPrice(sumAllSalePositions);
+        order.addSalePosition(salePosition1);
+        order.setCustomer(customer);
+
+        Delivery delivery = new Delivery();
+        delivery.setDeliveryType(DeliveryType.COURIER);
+        delivery.setOrder(order);
+        deliveryService.addDelivery(delivery);
+
+        order.setDelivery(delivery);
+
+        orderService.addOrder(order);
 
         System.out.println("Finish!");
 

@@ -23,7 +23,6 @@
         <jsp:include page="/WEB-INF/pages/employee/admin/products/products-by-type.jsp"/>
         <!-- PRODUCTS BY BRAND -->
         <jsp:include page="/WEB-INF/pages/employee/admin/products/products-by-brand.jsp"/>
-        <c:set var="count" value="0" scope="page"/>
         <!-- PRODUCTS ON MAIN PAGE -->
         <jsp:include page="/WEB-INF/pages/employee/admin/products/products-on-main.jsp"/>
         <!-- ADD PRODUCT -->

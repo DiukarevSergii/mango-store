@@ -7,4 +7,20 @@ public enum DeliveryType {
 
     DeliveryType() {
     }
+
+    @Override
+    public String toString() {
+        switch (this.name()) {
+            case ("PICKUP"): {
+                return "Самовывоз";
+            }
+            case ("COURIER"): {
+                return "Доставка курьером";
+            }
+            case ("UNMANNED_AIRCRAFT"): {
+                return "Доставка дроном";
+            }
+        }
+        return "ОШИБКА";
+    }
 }

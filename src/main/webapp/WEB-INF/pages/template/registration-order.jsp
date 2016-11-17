@@ -10,7 +10,7 @@
         <input type="text" class="form-control" name="name" autocomplete="on" pattern="[А-Яа-я]+"
                placeholder="Введите имя" required>
         <strong><p style="font-size: 16px;margin-top: 10px;">Фамилия</p></strong>
-        <input type="text" class="form-control" name="surname" autocomplete="on" pattern="А-Яа-я]+"
+        <input type="text" class="form-control" name="surname" autocomplete="on" pattern="[А-Яа-я]+"
                placeholder="Введите фамилию"
                required>
         <p class="help-block" style="font-size: 11px">Пример: Иван Франко. Только кирилица</p>
@@ -28,7 +28,7 @@
         <strong><p style="font-size: 16px">Ваш город:</p></strong>
         <input type="text" class="form-control" name="city" autocomplete="on" pattern="[А-Яа-я]+"
                placeholder="Введите город" required>
-        <p class="help-block" style="font-size: 11px">Пример: Киев. Только кирилица</p>
+        <p class="help-block" style="font-size: 11px;">Пример: Киев. Только кирилица</p>
 
         <strong><p style="font-size: 16px">Ваш адресс:</p></strong>
         <input type="text" class="form-control" name="address" autocomplete="on"
@@ -38,19 +38,19 @@
         <strong><p style="font-size: 16px; margin-top: 15px">Способ доставки:</p></strong>
         <div class="radio">
             <label>
-                <input type="radio" name="delivery_type" id="radio1" value="PICKUP" checked="checked">
+                <input type="radio" name="delivery" id="radio1" value="PICKUP" checked="checked">
                 Самовывоз
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="delivery_type" id="radio2" value="COURIER">
+                <input type="radio" name="delivery" id="radio2" value="COURIER">
                 Доставка курьером
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="delivery_type" id="radio3" value="UNMANNED_AIRCRAFT">
+                <input type="radio" name="delivery" id="radio3" value="UNMANNED_AIRCRAFT">
                 Доставка дроном
             </label>
         </div>

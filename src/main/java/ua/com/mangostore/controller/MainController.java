@@ -11,14 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.config.InitDatabase;
-import ua.com.mangostore.entity.Customer;
-import ua.com.mangostore.entity.Order;
-import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.entity.SalePosition;
-import ua.com.mangostore.service.CustomerService;
-import ua.com.mangostore.service.OrderService;
-import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.service.ShoppingCartService;
+import ua.com.mangostore.entity.*;
+import ua.com.mangostore.entity.enums.DeliveryType;
+import ua.com.mangostore.service.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -59,6 +54,11 @@ public class MainController {
      * Объект сервиса для работы с покупателями.
      */
     private CustomerService customerService;
+    /**
+     * Объект сервиса по работе с доставкой.
+     */
+    private DeliveryService deliveryService;
+
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -70,11 +70,12 @@ public class MainController {
      */
     @Autowired
     public MainController(OrderService orderService, ProductService productService, ShoppingCartService shoppingCartService,
-                          CustomerService customerService) {
+                          CustomerService customerService, DeliveryService deliveryService) {
         this.orderService = orderService;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
         this.customerService = customerService;
+        this.deliveryService = deliveryService;
     }
 
     /**
@@ -701,7 +702,7 @@ public class MainController {
                                      @RequestParam(value = "email") String email,
                                      @RequestParam(value = "city") String city,
                                      @RequestParam(value = "address") String address,
-                                     @RequestParam(value = "delivery_type") String delivery_type,
+                                     @RequestParam(value = "delivery") String deliveryType,
                                      ModelAndView modelAndView) {
         if (shoppingCartService.getSize() > 0) {
             Customer customer = new Customer();
@@ -711,13 +712,24 @@ public class MainController {
             customer.setEmail(email);
             customer.setCity(city);
             customer.setAddress(address);
-////            customer.setCreditCard(creditCard);
 
-            Order order = new Order();
+                        Order order = new Order();
             order.setOrderPrice(shoppingCartService.getPrice());
-            order.setOrderPriceWithDiscount(shoppingCartService.getPrice());
             order.addSalePositions(shoppingCartService.getSalePositions());
             order.setCustomer(customer);
+
+            Delivery delivery = new Delivery();
+            if (deliveryType.equals(DeliveryType.PICKUP)){
+                delivery.setDeliveryType(DeliveryType.PICKUP);
+            } else if (deliveryType.equals(DeliveryType.COURIER)){
+                delivery.setDeliveryType(DeliveryType.COURIER);
+            } else {
+                delivery.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT);
+            }
+            delivery.setOrder(order);
+            deliveryService.addDelivery(delivery);
+
+            order.setDelivery(delivery);
             orderService.addOrder(order);
 
             modelAndView.addObject("name", name);

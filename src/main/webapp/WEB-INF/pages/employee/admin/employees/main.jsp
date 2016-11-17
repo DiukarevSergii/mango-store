@@ -28,7 +28,6 @@
 
     </div>
 
-
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 

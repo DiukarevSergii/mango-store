@@ -1,7 +1,11 @@
 package ua.com.mangostore.entity;
 
+import ua.com.mangostore.entity.enums.Status;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,23 +26,22 @@ public class Order {
     private long orderId;
 
     /**
+     * Номер заказа. Значение поля сохраняется в колонке "number". Не может быть null.
+     */
+    @Column(name = "NUMBER", nullable = false)
+    private String number;
+
+    /**
+     * Статус заказа. Значение поля сохраняется в колонке "status". Не может быть null.
+     */
+    @Column(name = "STATUS", nullable = false)
+    private Status status;
+
+    /**
      * Общая стоимость заказа. Значение поля сохраняется в колонке "ORDER_PRICE". Не может быть null.
      */
     @Column(nullable = false, name = "ORDER_PRICE")
     private double orderPrice;
-
-    /**
-     * Общая стоимость заказа со скидкой. Значение поля сохраняется в колонке "ORDER_PRICE_WITH_DISCOUNT".
-     * Может быть null.
-     */
-    @Column(nullable = false, name = "ORDER_PRICE_WITH_DISCOUNT")
-    private double orderPriceWithDiscount;
-
-    /**
-     * Сумма скидки для заказа. Значение поля сохраняется в колонке "ORDER_DISCOUNT". Может быть null.
-     */
-    @Column(name = "ORDER_DISCOUNT")
-    private int orderDiscount;
 
     /**
      * Дата создания заказа. Значение поля сохраняется в колонке "DATE_CREATED". Не может быть null.
@@ -47,16 +50,13 @@ public class Order {
     private String dateCreated;
 
     /**
-     * Номер заказа. Значение поля сохраняется в колонке "number". Не может быть null.
+     * Время создания заказа. Значение поля сохраняется в колонке "TIME_CREATED". Не может быть null.
      */
-    @Column(name = "NUMBER", nullable = false)
-    private String number;
+    @Column(nullable = false, name = "TIME_CREATED")
+    private String timeCreated;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery;
-
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
-//    List<Product> products = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
@@ -77,8 +77,10 @@ public class Order {
     private List<SalePosition> salePositions = new ArrayList<>();
 
     public Order() {
-        this.dateCreated = LocalDate.now().toString();
+        this.setDateCreated(LocalDate.now());
+        this.setTimeCreated(LocalTime.now());
         this.number = createNumberOfOrder();
+        this.status = Status.NEW;
     }
 
     /**
@@ -99,23 +101,6 @@ public class Order {
         }
         return builder.toString();
     }
-
-//      public void addProduct(Product product){
-//          products.add(product);
-//          if(product.getOrder() != this){
-//              product.setOnMain("");
-//              product.setQuantity(1);
-//              product.setOrder(this);
-//          } else {
-//              product.setQuantity(product.getQuantity() + 1);
-//
-//          }
-//          setOrderQuantity(products.size());
-//          setOrderPrice(getOrderPrice() + product.getFullPrice());
-//      }
-
-
-
 
     /**
      * Добавляет торговую позицию в текущий заказа.
@@ -216,37 +201,21 @@ public class Order {
         this.customer = customer;
     }
 
-    public double getOrderPriceWithDiscount() {
-        return orderPriceWithDiscount;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setOrderPriceWithDiscount(double orderPriceWithDiscount) {
-        this.orderPriceWithDiscount = orderPriceWithDiscount;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public double getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(double OrderPrice) {
-        this.orderPrice = OrderPrice;
+    public void setOrderPrice(double orderPrice) {
+        this.orderPrice = orderPrice;
     }
-
-    public int getOrderDiscount() {
-        return orderDiscount;
-    }
-
-    public void setOrderDiscount(int OrderDiscount) {
-        this.orderDiscount = OrderDiscount;
-    }
-
-//    public List<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(List<Product> products) {
-//        this.products = products;
-//    }
 
     public Delivery getDelivery() {
         return delivery;
@@ -260,13 +229,37 @@ public class Order {
         return orderId;
     }
 
+    public String getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public void setDateCreated(LocalDate localDate) {
+        this.dateCreated = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
+    }
+
+    public String getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(String timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
+    public void setTimeCreated(LocalTime localTime) {
+        this.timeCreated = localTime.format(DateTimeFormatter.ofPattern("H:mm")).toString();
+    }
+
+
+
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
                 ", orderPrice=" + orderPrice +
-                ", orderPriceWithDiscount=" + orderPriceWithDiscount +
-                ", orderDiscount=" + orderDiscount +
                 ", dateCreated='" + dateCreated + '\'' +
                 ", delivery=" + delivery +
                 ", employee=" + employee +

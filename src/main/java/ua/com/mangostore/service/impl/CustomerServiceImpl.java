@@ -17,6 +17,9 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     @Transactional
     public Customer addCustomer(Customer customer) {
+        if (getAll().contains(customer)) {
+            return customer;
+        }
         Customer saveCustomer = customerRepository.saveAndFlush(customer);
         return saveCustomer;
     }

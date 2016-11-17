@@ -61,7 +61,7 @@ public class AdminEmployeeController {
         String fullName = employeeService.getById(id).getFullName();
         employeeService.delete(id);
 
-        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("title", "Сотрудники");
         modelAndView.addObject("message", "удалили сотрудника " + fullName);
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
@@ -77,11 +77,32 @@ public class AdminEmployeeController {
      * @return Объект класса {@link ModelAndView}.
      */
     @RequestMapping(value = "/employee-{id}", method = RequestMethod.GET)
-    public ModelAndView viewProduct(@PathVariable("id") long id, ModelAndView modelAndView) {
+    public ModelAndView viewEmployee(@PathVariable("id") long id, ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
         Employee employee = employeeService.getById(id);
         modelAndView.addObject("title", "Редактирование информации о сотруднике");
+        modelAndView.addObject("employee", employee);
+        modelAndView.setViewName("employee/admin/employees/update");
+        return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/admin/employees/update" с 1-м сотрудником с уникальним URL, который
+     * совпадает с входящим параметром url. URL запроса "/employee-{id}", метод GET.
+     * В запросе в параметре id передается артикль товара.
+     *
+     * @param id           id сотрудника, который нужно вернуть на страницу.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
+    @RequestMapping(value = "/employee-{id}-error", method = RequestMethod.GET)
+    public ModelAndView viewEmployeeError(@PathVariable("id") long id, ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        Employee employee = employeeService.getById(id);
+        modelAndView.addObject("title", "Редактирование информации о сотруднике");
+        modelAndView.addObject("message", "Сотрудник с такой почтой уже существует. Попробуйте ещё раз");
         modelAndView.addObject("employee", employee);
         modelAndView.setViewName("employee/admin/employees/update");
         return modelAndView;
@@ -111,12 +132,17 @@ public class AdminEmployeeController {
         getUserTypeBrand(modelAndView);
 
         Employee employee = employeeService.getById(id);
+        if (!employee.getEmail().equals(email) && employeeService.getByEmail(email) != null) {
+            modelAndView.setViewName("redirect:/admin/employee-" + id + "-error");
+            return modelAndView;
+        }
+
         employee.setFullName(fullName);
         employee.setPhone(phone);
         if (!employee.getPassword().equals(password)) {
             employee.setPassword(password);
         }
-        employee.setPassword(password);
+        employee.setEmail(email);
         EmployeePosition employeePosition;
         if (EmployeePosition.ADMIN.name().equals(position)) {
             employeePosition = EmployeePosition.ADMIN;
@@ -128,7 +154,7 @@ public class AdminEmployeeController {
         employee.setPosition(employeePosition);
         employeeService.editEmployee(employee);
 
-        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("title", "Сотрудники");
         modelAndView.addObject("message", "обновили информацию сотрудника " + fullName);
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
@@ -137,7 +163,6 @@ public class AdminEmployeeController {
     @RequestMapping(value = "/add-employee", method = RequestMethod.GET)
     public ModelAndView addProduct(ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
-
         modelAndView.setViewName("employee/admin/employees/add");
         return modelAndView;
     }
@@ -153,7 +178,6 @@ public class AdminEmployeeController {
 
         if (employeeService.getByEmail(email) != null) {
             modelAndView.addObject("message", "Сотрудник с такой почтой уже существует. Попробуйте ещё раз");
-            modelAndView.addObject("sms", "Сотрудник с такой почтой уже существует. Попробуйте ещё раз");
             modelAndView.setViewName("employee/admin/employees/add");
             return modelAndView;
         }
@@ -174,7 +198,7 @@ public class AdminEmployeeController {
         employee.setPosition(employeePosition);
         employeeService.addEmployee(employee);
 
-        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("title", "Сотрудники");
         modelAndView.addObject("message", "добавили сотрудника " + fullName);
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
@@ -190,7 +214,7 @@ public class AdminEmployeeController {
             }
         }
 
-        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("title", "Сотрудники");
         modelAndView.addObject("message", "Вы успешно удалили всех менеджеров!");
         modelAndView.setViewName("employee/admin/success");
         return modelAndView;
@@ -206,9 +230,58 @@ public class AdminEmployeeController {
                 employeeService.delete(employee.getEmployeeId());
             }
         }
-        modelAndView.addObject("title", "сотрудники");
+        modelAndView.addObject("title", "Сотрудники");
         modelAndView.addObject("message", "Вы успешно удалили всех курьеров!");
         modelAndView.setViewName("employee/admin/success");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/only-managers", method = RequestMethod.GET)
+    public ModelAndView onlyManagers(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        List<Employee> managers = new ArrayList<>();
+
+        for (Employee employee : employeeService.getAll()) {
+            if (employee.getPosition().name().equals("MANAGER")) {
+                managers.add(employee);
+            }
+        }
+        modelAndView.addObject("managers", managers);
+        modelAndView.setViewName("employee/admin/employees/only-managers");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/only-couriers", method = RequestMethod.GET)
+    public ModelAndView onlyCouriers(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        List<Employee> couriers = new ArrayList<>();
+
+        for (Employee employee : employeeService.getAll()) {
+            if (employee.getPosition().name().equals("COURIER")) {
+                couriers.add(employee);
+            }
+        }
+        modelAndView.addObject("couriers", couriers);
+        modelAndView.setViewName("employee/admin/employees/only-couriers");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/only-admins", method = RequestMethod.GET)
+    public ModelAndView onlyAdmins(ModelAndView modelAndView) {
+        getUserTypeBrand(modelAndView);
+
+        List<Employee> admins = new ArrayList<>();
+
+        for (Employee employee : employeeService.getAll()) {
+            if (employee.getPosition().name().equals("ADMIN")) {
+                admins.add(employee);
+            }
+        }
+        modelAndView.addObject("admins", admins);
+        modelAndView.setViewName("employee/admin/employees/only-admins");
         return modelAndView;
     }
 

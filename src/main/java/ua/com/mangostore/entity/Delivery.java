@@ -23,14 +23,11 @@ public class Delivery {
     @Column(name = "DELIVERY_COST")
     private double cost;
 
-    @Column(name = "STATUS")
-    private String status;
-
     @Column(name = "DELIVERY_TYPE")
     @Enumerated(EnumType.STRING)
     private DeliveryType deliveryType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
@@ -79,14 +76,6 @@ public class Delivery {
 
     public void setCost(double cost) {
         this.cost = cost;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public DeliveryType getDeliveryType() {

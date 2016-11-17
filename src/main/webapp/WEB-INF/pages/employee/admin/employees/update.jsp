@@ -23,6 +23,9 @@
     </div>
     <div class="product block" style="margin-top: 12px">
         <div class="col-lg-12" style="margin-top: 12px">
+            <c:if test="${message ne null}">
+                <p style="color: red">${message}</p>
+            </c:if>
             <form action="/admin/update-employee" method="post">
                 <table class="table">
                     <tr>
@@ -89,13 +92,13 @@
                 </table>
             </form>
             <div style="margin-left: 127px; margin-top: -10px; margin-bottom: 20px">
-                <form action="/admin/update-employee" method=get>
+                <a href="/admin/employee-${employee.employeeId}" method=get>
                     <td>
                         <button class="btn btn-danger" style="width: 206px">
                             Сбросить все
                         </button>
                     </td>
-                </form>
+                </a>
             </div>
         </div>
     </div>

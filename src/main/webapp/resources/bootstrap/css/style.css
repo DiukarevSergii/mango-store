@@ -337,6 +337,32 @@ input[type="submit"]:hover {
     background-image: none;
 }
 
+.btn.btn-change-order {
+    background-color: rgb(236, 168, 9);
+    box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
+.btn.btn-change-order:hover {
+    background-color: rgb(224, 159, 9);
+    box-shadow: 0 3px 0 0 rgb(152, 107, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
 .btn.btn-remove-employee {
     background-color: rgb(236, 77, 1);
     box-shadow: 0 3px 0 0 rgb(203, 66, 1);
@@ -363,6 +389,33 @@ input[type="submit"]:hover {
     background-image: none;
 }
 
+
+.btn.btn-remove-order {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
+.btn.btn-remove-order:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
 .btn.btn-remove-all-employee {
     background-color: rgb(236, 77, 1);
     box-shadow: 0 3px 0 0 rgb(203, 66, 1);
@@ -375,6 +428,28 @@ input[type="submit"]:hover {
 }
 
 .btn.btn-remove-all-employee:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-orders {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-orders:hover {
     background-color: rgb(222, 72, 1);
     box-shadow: 0 3px 0 0 rgb(185, 60, 1);
     height: 27px;
