@@ -55,7 +55,7 @@ public class SalePosition{
      * Выборка объекта order при первом доступе к нему.
      * Сущность order автоматически удаляется при удалении текущей.
      */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID", nullable = false)
     private Order order;
 
@@ -175,16 +175,12 @@ public class SalePosition{
 
         SalePosition that = (SalePosition) o;
 
-        return product != null ? product.equals(that.product) : that.product == null;
+        return product.equals(that.product);
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (salePositionId ^ (salePositionId >>> 32));
-        result = 31 * result + (product != null ? product.hashCode() : 0);
-        result = 31 * result + number;
-        result = 31 * result + (order != null ? order.hashCode() : 0);
-        return result;
+        return product.hashCode();
     }
 }

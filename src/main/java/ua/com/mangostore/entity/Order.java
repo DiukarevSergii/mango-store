@@ -58,7 +58,7 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
@@ -108,7 +108,15 @@ public class Order {
      * @param salePosition Торговая позиция, которая будет добавлена в заказ.
      */
     public void addSalePosition(SalePosition salePosition) {
-        salePositions.add(salePosition);
+        if (salePositions.contains(salePosition)) {
+            for (SalePosition position: salePositions){
+                if (position.equals(salePosition)){
+                    position.setNumber(position.getNumber() + salePosition.getNumber());
+                }
+            }
+        } else {
+            salePositions.add(salePosition);
+        }
         if (salePosition.getOrder() != this) {
             salePosition.setOrder(this);
         }
@@ -252,7 +260,6 @@ public class Order {
     public void setTimeCreated(LocalTime localTime) {
         this.timeCreated = localTime.format(DateTimeFormatter.ofPattern("H:mm")).toString();
     }
-
 
 
     @Override

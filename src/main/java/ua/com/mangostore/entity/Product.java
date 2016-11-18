@@ -55,7 +55,7 @@ public class Product {
      * Выборка объекта salePosition при первом доступе к нему.
      * Сущность salePosition автоматически удаляется при удалении текущей.
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.ALL)
     private List<SalePosition> salePositions = new ArrayList<>();
 
     /**

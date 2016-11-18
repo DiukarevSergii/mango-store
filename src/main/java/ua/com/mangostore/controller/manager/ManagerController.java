@@ -9,16 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.mangostore.entity.Customer;
-import ua.com.mangostore.entity.Delivery;
-import ua.com.mangostore.entity.Employee;
-import ua.com.mangostore.entity.Order;
-import ua.com.mangostore.entity.enums.DeliveryType;
+import ua.com.mangostore.entity.*;
 import ua.com.mangostore.entity.enums.Status;
-import ua.com.mangostore.service.CustomerService;
-import ua.com.mangostore.service.DeliveryService;
-import ua.com.mangostore.service.EmployeeService;
-import ua.com.mangostore.service.OrderService;
+import ua.com.mangostore.service.*;
 
 @Controller
 @RequestMapping("/managers")
@@ -31,6 +24,8 @@ public class ManagerController {
     private DeliveryService deliveryService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public ModelAndView mainAdmin(ModelAndView modelAndView) {
@@ -67,13 +62,16 @@ public class ManagerController {
      */
     @RequestMapping(value = "/update-order", method = RequestMethod.POST)
     public ModelAndView updateProduct(@RequestParam long id,
-                                      @RequestParam String status,
-                                      @RequestParam double orderPrice,
-                                      @RequestParam String deliveryType,
+                                      @RequestParam String name,
+                                      @RequestParam String surname,
                                       @RequestParam String email,
+                                      @RequestParam String phone,
                                       @RequestParam String city,
                                       @RequestParam String address,
-                                      @RequestParam String phone,
+                                      @RequestParam String status,
+                                      @RequestParam String deliveryType,
+                                      @RequestParam double orderPrice,
+                                      @RequestParam String idProductForRemove,
 
                                       ModelAndView modelAndView) {
         getUser(modelAndView);
@@ -83,7 +81,7 @@ public class ManagerController {
 
         Delivery delivery = order.getDelivery();
         if (!delivery.getDeliveryType().equals(deliveryType)) {
-           delivery.setDeliveryType(deliveryType);
+            delivery.setDeliveryType(deliveryType);
         }
         if (!order.getStatus().name().equals(status)) {
             if (status.equals(Status.NEW.name())) {
@@ -103,10 +101,49 @@ public class ManagerController {
         order.setDelivery(delivery);
 
         Customer customer = customerService.getByEmail(order.getCustomer().getEmail());
+        customer.setName(name);
+        customer.setSurname(surname);
         customer.setEmail(email);
         customer.setCity(city);
         customer.setAddress(address);
         customer.setAddress(phone);
+        customerService.editCustomer(customer);
+
+        order.setCustomer(customer);
+
+        //doesn't work yet
+
+//        idProductForRemove = idProductForRemove.replaceFirst(",", "");
+//
+//        String[] arrIdForRemove = new String[1];
+//        if (idProductForRemove.contains(",")) {
+//            arrIdForRemove = idProductForRemove.split(",");
+//        } else {
+//            arrIdForRemove[0] = idProductForRemove;
+//        }
+//
+//        if (!arrIdForRemove[0].isEmpty()) {
+//            List<SalePosition> copy = new ArrayList<>(order.getSalePositions());
+//            List<SalePosition> salePositions = order.getSalePositions();
+//
+//            System.out.println("size(): " + salePositions.size());
+//
+//            for (SalePosition salePosition : copy) {
+//                long idProduct = salePosition.getProduct().getProductId();
+//                for (String idForRemove : arrIdForRemove) {
+//                    if (idProduct == Long.parseLong(idForRemove)) {
+//
+//                        order.removeSalePosition(salePosition);
+//                    }
+//                }
+//            }
+//        }
+
+//        SalePosition salePosition = new SalePosition(productService.getById(4), 1);
+//        order.addSalePosition(salePosition);
+//
+//        SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
+//        order.removeSalePosition(salePosition1);
 
         orderService.editOrder(order);
 
@@ -116,6 +153,19 @@ public class ManagerController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/add-product", method = RequestMethod.POST)
+    public ModelAndView addProduct(@RequestParam long id,
+                                   @RequestParam long productId,
+                                   @RequestParam int number,
+                                   ModelAndView modelAndView) {
+        Order order = orderService.getById(id);
+        SalePosition salePosition = new SalePosition(productService.getById(productId), number);
+        order.addSalePosition(salePosition);
+        orderService.editOrder(order);
+
+        modelAndView.setViewName("redirect:/managers/order-" + id);
+        return modelAndView;
+    }
 
     private void getUser(ModelAndView modelAndView) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

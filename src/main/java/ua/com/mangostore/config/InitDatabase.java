@@ -8,6 +8,7 @@ import ua.com.mangostore.entity.*;
 import ua.com.mangostore.entity.enums.DeliveryType;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.OnMain;
+import ua.com.mangostore.entity.enums.Status;
 import ua.com.mangostore.service.*;
 
 import javax.annotation.Resource;
@@ -28,6 +29,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
     private OrderService orderService;
     @Resource
     private DeliveryService deliveryService;
+    @Resource
+    private CustomerService customerService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -41,8 +44,11 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "manager", EmployeePosition.MANAGER, "123456789",
                 "manager", "password"));
         employeeService.addEmployee(new Employee(
-                "Junior Courier", EmployeePosition.COURIER, "0 800 678 900",
-                "juniorCourier@mango.com.ua", "password"));
+                "courier1", EmployeePosition.COURIER, "0 800 678 900",
+                "courier", "password"));
+        employeeService.addEmployee(new Employee(
+                "courier2", EmployeePosition.COURIER, "0 800 678 901",
+                "courier2", "password"));
 
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");
@@ -784,29 +790,93 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         customer.setCity("Киев");
         customer.setAddress("проспект Независимости 4");
 
+
         double sumAllSalePositions = 0;
         SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
         SalePosition salePosition2 = new SalePosition(productService.getById(3), 1);
         SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
-        Order order = new Order();
-        order.setOrderPrice(sumAllSalePositions);
-        order.addSalePosition(salePosition1);
-        order.addSalePosition(salePosition2);
-        order.addSalePosition(salePosition3);
-        order.setCustomer(customer);
+        //New orders
+        //Order order
+        Order order1 = new Order();
+        order1.setOrderPrice(sumAllSalePositions);
+        order1.addSalePosition(salePosition1);
+        order1.addSalePosition(salePosition2);
+        order1.addSalePosition(salePosition3);
+        order1.setCustomer(customer);
 
         Delivery delivery = new Delivery();
         delivery.setDeliveryType(DeliveryType.COURIER.name());
-        delivery.setOrder(order);
-        deliveryService.addDelivery(delivery);
+        delivery.setOrder(order1);
+        order1.setDelivery(delivery);
+        customer.addOrder(order1);
 
-        order.setDelivery(delivery);
+        orderService.addOrder(order1);
 
-        orderService.addOrder(order);
+
+        //Customer customer2
+        Customer customer2 = new Customer();
+        customer2.setName("Второй");
+        customer2.setSurname("Покупатель");
+        customer2.setPhone("+38(012)342-67-89");
+        customer2.setEmail("customers2@newcustomer.com");
+        customer2.setCity("Киев");
+        customer2.setAddress("бульвар Дружбы Народов 24");
+
+        //Order order2
+        sumAllSalePositions = 0;
+        SalePosition salePosition4 = new SalePosition(productService.getById(11), 1);
+        SalePosition salePosition5 = new SalePosition(productService.getById(7), 1);
+        SalePosition salePosition6 = new SalePosition(productService.getById(8), 3);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        Order order2 = new Order();
+        order2.setOrderPrice(sumAllSalePositions);
+        order2.addSalePosition(salePosition4);
+        order2.addSalePosition(salePosition5);
+        order2.addSalePosition(salePosition6);
+        order2.setCustomer(customer2);
+
+        customer2.addOrder(order2);
+
+        Delivery delivery2 = new Delivery();
+        delivery2.setDeliveryType(DeliveryType.COURIER.name());
+        delivery2.setOrder(order2);
+        order2.setDelivery(delivery2);
+
+        orderService.addOrder(order2);
+
+        //Customer customer3
+        Customer customer3 = new Customer();
+        customer3.setName("Десятый");
+        customer3.setSurname("Покупатель");
+        customer3.setPhone("+38(012)342-67-89");
+        customer3.setEmail("customers3@newcustomer.com");
+        customer3.setCity("Киев");
+        customer3.setAddress("проспект Свободы 14");
+
+        //Order order3
+        sumAllSalePositions = 0;
+        SalePosition salePosition7 = new SalePosition(productService.getById(10), 1);
+        SalePosition salePosition8 = new SalePosition(productService.getById(6), 1);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        Order order3 = new Order();
+        order3.setOrderPrice(sumAllSalePositions);
+        order3.addSalePosition(salePosition7);
+        order3.addSalePosition(salePosition8);
+        order3.setCustomer(customer3);
+        order3.setStatus(Status.WORK);
+
+        Delivery delivery3 = new Delivery();
+        delivery3.setDeliveryType(DeliveryType.COURIER.name());
+        delivery3.setOrder(order3);
+        order3.setDelivery(delivery3);
+
+        orderService.addOrder(order3);
 
         System.out.println("Finish!");
 
-   }
+    }
 }

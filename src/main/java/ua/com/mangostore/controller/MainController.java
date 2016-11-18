@@ -15,7 +15,6 @@ import ua.com.mangostore.entity.*;
 import ua.com.mangostore.entity.enums.DeliveryType;
 import ua.com.mangostore.service.*;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -671,7 +670,7 @@ public class MainController {
     @RequestMapping(value = "/cart-remove-position", method = RequestMethod.POST)
     public ModelAndView removeProductFromCart(@RequestParam long id, @RequestParam("url") String url,
                                               ModelAndView modelAndView) {
-        if (shoppingCartService.getSize() == 0){
+        if (shoppingCartService.getSize() == 0) {
             modelAndView.setViewName("redirect:" + "/");
             return modelAndView;
         }
@@ -690,8 +689,8 @@ public class MainController {
      * @param surname      Фамилия клиента, сжелавшего заказ.
      * @param email        Электронная почта клиента.
      * @param phone        Номер телефона клиента.
-     * @param city        Город клиента.
-     * @param address        Адресс клиента.
+     * @param city         Город клиента.
+     * @param address      Адресс клиента.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -713,18 +712,18 @@ public class MainController {
             customer.setCity(city);
             customer.setAddress(address);
 
-                        Order order = new Order();
+            Order order = new Order();
             order.setOrderPrice(shoppingCartService.getPrice());
             order.addSalePositions(shoppingCartService.getSalePositions());
             order.setCustomer(customer);
 
             Delivery delivery = new Delivery();
-            if (deliveryType.equals(DeliveryType.PICKUP)){
-                delivery.setDeliveryType(DeliveryType.PICKUP);
-            } else if (deliveryType.equals(DeliveryType.COURIER)){
-                delivery.setDeliveryType(DeliveryType.COURIER);
+            if (deliveryType.equals(DeliveryType.PICKUP)) {
+                delivery.setDeliveryType(DeliveryType.PICKUP.name());
+            } else if (deliveryType.equals(DeliveryType.COURIER)) {
+                delivery.setDeliveryType(DeliveryType.COURIER.name());
             } else {
-                delivery.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT);
+                delivery.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT.name());
             }
             delivery.setOrder(order);
             deliveryService.addDelivery(delivery);
@@ -748,7 +747,7 @@ public class MainController {
     }
 
     @RequestMapping("/unauthorized")
-    public String unauthorized(Model model){
+    public String unauthorized(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("login", user.getUsername());
         return "employee/unauthorized";

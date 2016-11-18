@@ -2,6 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -45,22 +47,22 @@
                         <th style="font-size: medium;">Имя покупателя:</th>
                         <td>
                             <input class="form-control" type="text" name="name" value="${customer.name}"
-                                   minlength="5" maxlength="100" style="width:600px" pattern="[А-Яа-я]"
+                                   minlength="5" maxlength="100" style="width:600px" pattern="[А-Яа-я]+"
                                    required>
                         </td>
                     </tr>
                     <tr>
                         <th style="font-size: medium;">Фамилия покупателя:</th>
                         <td>
-                            <input class="form-control" type="text" name="name" value="${customer.surname}"
-                                   minlength="5" maxlength="100" style="width:600px" pattern="[А-Яа-я]"
+                            <input class="form-control" type="text" name="surname" value="${customer.surname}"
+                                   minlength="5" maxlength="100" style="width:600px" pattern="[А-Яа-я]+"
                                    required>
                         </td>
                     </tr>
                     <tr>
                         <th style="font-size: medium;">Почта:</th>
                         <td>
-                            <input class="form-control" type="text" name="name" value="${customer.email}"
+                            <input class="form-control" type="text" name="email" value="${customer.email}"
                                    minlength="5" maxlength="100" style="width:600px"
                                    required>
                         </td>
@@ -68,7 +70,7 @@
                     <tr>
                         <th style="font-size: medium;">Телефон:</th>
                         <td>
-                            <input class="form-control" type="text" name="name" value="${customer.phone}"
+                            <input class="form-control" type="text" name="phone" value="${customer.phone}"
                                    minlength="5" maxlength="100" style="width:600px"
                                    required>
                         </td>
@@ -76,7 +78,7 @@
                     <tr>
                         <th style="font-size: medium;">Город:</th>
                         <td>
-                            <input class="form-control" type="text" name="name" value="${customer.city}"
+                            <input class="form-control" type="text" name="city" value="${customer.city}"
                                    minlength="5" maxlength="100" style="width:600px"
                                    required>
                         </td>
@@ -84,9 +86,8 @@
                     <tr>
                         <th style="font-size: medium;">Адресс:</th>
                         <td>
-                            <input class="form-control" type="text" name="name" value="${customer.address}"
-                                   minlength="5" maxlength="100" style="width:600px"
-                                   required>
+                            <input class="form-control" type="text" name="address" value="${customer.address}"
+                                   minlength="5" maxlength="100" style="width:600px">
                         </td>
                     </tr>
                     <tr>
@@ -188,9 +189,10 @@
                                 <th>Цена со скидкой</th>
                                 <th>Количество</th>
                                 <th>Сумма</th>
-                                <th>Удалить</th>
-
+                                    <%--<th>Удалить</th>--%>
                             </tr>
+                            <input type="hidden" name="idProductForRemove" value=""/>
+
                             <c:forEach items="${order.salePositions}" var="position">
                                 <tr>
                                     <td><a href="${position.product.imageURL}"> <img src="${position.product.imageURL}"
@@ -204,8 +206,8 @@
                                     <td>${position.product.getFormatSalePrice()} ₴</td>
                                     <td>${position.number}</td>
                                     <td>${position.getFormatPrice()} ₴</td>
-                                    <td><label><input type="checkbox" value="${position.product.productId}"/></label>
-                                    </td>
+                                        <%--<td><label><input type="checkbox" name="idProductForRemove" value="${position.product.productId}"/></label>--%>
+                                        <%--</td>--%>
                                 </tr>
                             </c:forEach>
                         </c:when>
@@ -216,7 +218,7 @@
                     </td>
                     </tr>
                 </table>
-                <table align="center">
+                <table align="right">
                     <tr>
                         <td>
                             <input type="hidden" name="id" value="${order.orderId}">
@@ -224,25 +226,39 @@
                                 Редактировать информацию
                             </button>
                         </td>
-                        <td style="width: 20px"></td>
-                        <td>
-                            <input type="hidden" name="id" value="${order.orderId}">
-                            <button class="btn btn-add-product" style="width: 220px">
-                                Добавить товар
-                            </button>
-                        </td>
                     </tr>
                 </table>
             </form>
-            <div align="center" style="margin-top: 20px; margin-bottom: 20px">
-                <a href="/managers/order-${order.orderId}" method=get>
+
+            <table align="left" style="margin-top: -20px">
+                <tr>
                     <td>
-                        <button class="btn btn-danger" style="width: 206px">
-                            Сбросить все
-                        </button>
+                        <form action="/managers/add-product" method="post">
+                            <input type="text" class="form-control" name="productId" autocomplete="on" pattern="[0-9]+"
+                                   placeholder="Введите код товара" required style="width: 220px; margin-top: 10px">
+                            <input type="text" class="form-control" name="number" autocomplete="on" pattern="[0-9]+"
+                                   placeholder="Введите количество" required style="width: 220px; margin-top: 10px">
+                            <input type="hidden" name="id" value="${order.orderId}">
+                            <button class="btn btn-add-product" style="width: 220px; margin-top: 10px">
+                                Добавить товар
+                            </button>
+                        </form>
                     </td>
-                </a>
-            </div>
+                </tr>
+                <tr>
+                    <div align="left">
+                        <a href="/managers/order-${order.orderId}" method=get>
+                            <td>
+                                <button class="btn btn-danger" style="width: 220px;margin-top: 10px; margin-bottom: 20px">
+                                    Сбросить все
+                                </button>
+                            </td>
+                        </a>
+                    </div>
+                </tr>
+            </table>
+
+
         </div>
     </div>
     <!-- BASEMENT -->
