@@ -20,22 +20,22 @@
                         <th>Номер</th>
                         <th>Статус</th>
                         <th>Дата и время</th>
-                        <th></th>
+                        <th>Город</th>
                         <th></th>
                     </tr>
 
                     <c:forEach items="${orders}" var="order">
                         <tr>
-                            <td>${order.number} </td>
+                            <td>${order.number}</td>
                             <td>${order.status.toString()}</td>
                             <td> ${order.dateCreated} ${order.timeCreated}</td>
+                            <td>${order.customer.city}</td>
                             <form action="/courier/update" method="get">
                                 <td align="left">
                                     <input type="hidden" name="id" value="${order.orderId}">
                                     <button class="btn" style="margin-top: 3px">
                                         Взять доставку
                                     </button>
-
                                 </td>
                             </form>
                             <td></td>

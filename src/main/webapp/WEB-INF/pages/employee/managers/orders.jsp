@@ -39,9 +39,12 @@
                                         Смотреть и редактировать
                                     </button>
                                 </a>
-                                <a href=="/manager/remove-order-${order.orderId}" method=post>
+                            </td>
+                            <td>
+                                <form action="/managers/remove-order" method="post">
+                                    <input type="hidden" name="id" value="${order.orderId}">
                                     <button class="btn btn-remove-order" type="submit">Удалить</button>
-                                </a>
+                                </form>
                             </td>
                             <td></td>
                         </tr>

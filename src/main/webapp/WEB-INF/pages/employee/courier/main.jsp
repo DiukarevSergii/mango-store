@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-    <title>Заказы | Админ панель</title>
+    <title>Все доступные заказы | Админ панель</title>
     <!-- HEAD -->
     <jsp:include page="/WEB-INF/pages/template/head.jsp"/>
 </head>
@@ -13,7 +13,7 @@
     <!-- LOGIN HEADER -->
     <jsp:include page="/WEB-INF/pages/employee/courier/login-header.jsp"/>
     <!-- COURIER MENU -->
-    <jsp:include page="/WEB-INF/pages/employee/courier/manager-general-menu.jsp"/>
+    <jsp:include page="/WEB-INF/pages/employee/courier/courier-general-menu.jsp"/>
 
     <div class="admin-page">
         <div class="row admin-main-title">
@@ -22,6 +22,7 @@
         <!-- ALL ORDERS -->
         <jsp:include page="/WEB-INF/pages/employee/courier/orders.jsp"/>
     </div>
+
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
 

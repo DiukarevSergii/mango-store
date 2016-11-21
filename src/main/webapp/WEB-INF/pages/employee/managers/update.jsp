@@ -135,6 +135,22 @@
                         </td>
                     </tr>
                     <tr>
+                        <th style="font-size: medium">Общая стоимость заказа:</th>
+                        <td>
+                            <input class="form-control" type="text" name="orderPrice" value="${order.orderPrice}"
+                                   minlength="1" maxlength="100" style="width:150px" pattern="(\d+)?([\.,]\d+)?"
+                                   required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Курьер:</th>
+
+                        <td>
+                        <p>${fullName}</p>
+                        <p>${phone}</p>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Тип доставки:</th>
                         <td>
                             <select class="form-control" name="deliveryType" style="width:200px">
@@ -156,14 +172,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="font-size: medium">Общая стоимость заказа:</th>
-                        <td>
-                            <input class="form-control" type="text" name="orderPrice" value="${order.orderPrice}"
-                                   minlength="1" maxlength="100" style="width:150px" pattern="(\d+)?([\.,]\d+)?"
-                                   required>
                         </td>
                     </tr>
                     <tr>

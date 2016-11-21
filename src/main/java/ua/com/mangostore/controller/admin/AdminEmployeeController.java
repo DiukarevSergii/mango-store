@@ -29,7 +29,7 @@ public class AdminEmployeeController {
     private ProductService productService;
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
-    public ModelAndView mainEmployee(ModelAndView modelAndView) {
+    public ModelAndView onMainEmployee(ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
         List<Employee> couriers = new ArrayList<>();

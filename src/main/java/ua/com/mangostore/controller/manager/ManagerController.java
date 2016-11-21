@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.entity.*;
+import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.Status;
 import ua.com.mangostore.service.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/managers")
@@ -28,7 +32,7 @@ public class ManagerController {
     private ProductService productService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView mainAdmin(ModelAndView modelAndView) {
+    public ModelAndView onMainManagers(ModelAndView modelAndView) {
         getUser(modelAndView);
 
         modelAndView.addObject("orders", orderService.getAll());
@@ -36,9 +40,23 @@ public class ManagerController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/couriers", method = RequestMethod.GET)
+    public ModelAndView onCouriers(ModelAndView modelAndView) {
+        getUser(modelAndView);
+
+        List<Employee> couriers = new ArrayList<>();
+        for (Employee employee: employeeService.getAll()){
+            if (employee.getPosition().name().equals(EmployeePosition.COURIER.name())){
+                couriers.add(employee);
+            }
+        }
+        modelAndView.addObject("couriers", couriers);
+        modelAndView.setViewName("employee/managers/couriers");
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/order-{id}", method = RequestMethod.GET)
-    public ModelAndView mainAdmin(@PathVariable long id,
+    public ModelAndView onOrder(@PathVariable long id,
                                   ModelAndView modelAndView) {
         getUser(modelAndView);
 
@@ -47,7 +65,26 @@ public class ManagerController {
 
         modelAndView.addObject("order", order);
         modelAndView.addObject("customer", customer);
+
+        Employee courier = order.getDelivery().getEmployee();
+        if (courier != null) {
+            modelAndView.addObject("fullName",courier.getFullName());
+            modelAndView.addObject("phone", courier.getPhone());
+        }
         modelAndView.setViewName("employee/managers/update");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/remove-order", method = RequestMethod.POST)
+    public ModelAndView removeOrder(@RequestParam long id,
+                                  ModelAndView modelAndView) {
+        getUser(modelAndView);
+
+        Order order = orderService.getById(id);
+        order.setStatus(Status.DELETED);
+        orderService.editOrder(order);
+
+        modelAndView.setViewName("redirect:/managers/main");
         return modelAndView;
     }
 

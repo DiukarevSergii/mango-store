@@ -27,11 +27,11 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryType deliveryType;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
@@ -58,16 +58,16 @@ public class Delivery {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate = deliveryDate.toString();
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public String getDeliveryTime() {
         return deliveryTime;
     }
 
-    public void setDeliveryTime(LocalTime deliveryTime) {
-        this.deliveryTime = deliveryTime.toString();
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
     }
 
     public double getCost() {

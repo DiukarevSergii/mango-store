@@ -29,7 +29,7 @@ public class AdminProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView mainProduct(ModelAndView modelAndView) {
+    public ModelAndView onMainProduct(ModelAndView modelAndView) {
         getUserTypeBrand(modelAndView);
 
         List<Product> groupOfProductsOnMain = new ArrayList<>();

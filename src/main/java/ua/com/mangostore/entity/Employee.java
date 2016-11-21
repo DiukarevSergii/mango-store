@@ -1,7 +1,5 @@
 package ua.com.mangostore.entity;
 
-//import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 

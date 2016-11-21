@@ -8,7 +8,7 @@
                 <a href="/managers/main">Заказы</a>
             </li>
             <li class="dropdown">
-                <a href="#">Курьеры</a>
+                <a href="/managers/couriers">Курьеры</a>
             </li>
         </ul>
     </div>

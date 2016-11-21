@@ -5,10 +5,10 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <ul class="nav nav-pills bmenu" id="bmenu">
             <li class="dropdown">
-                <a href="/admin/main">Все доступные заказы</a>
+                <a href="/courier/main">Все доступные заказы</a>
             </li>
             <li class="dropdown">
-                <a href="/admin/employees">Все ваши заказы</a>
+                <a href="/courier/deliveries">Все ваши заказы</a>
             </li>
         </ul>
     </div>
