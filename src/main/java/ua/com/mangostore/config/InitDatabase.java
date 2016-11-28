@@ -38,17 +38,17 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         System.out.println("Start init!");
 
         employeeService.addEmployee(new Employee(
-                "admin", EmployeePosition.ADMIN, "044",
-                "admin", "password"));
+                "Сергей Семенов", EmployeePosition.ADMIN, "0 800 678 777",
+                "sergii_admin@mangostore.com.ua", "password"));
         employeeService.addEmployee(new Employee(
-                "manager", EmployeePosition.MANAGER, "123456789",
-                "manager", "password"));
+                "Юлия Джима", EmployeePosition.MANAGER, "0 800 678 800",
+                "juliya_manager@mangostore.com.ua", "password"));
         employeeService.addEmployee(new Employee(
-                "courier1", EmployeePosition.COURIER, "0 800 678 900",
-                "courier", "password"));
+                "Мартен Фуркад", EmployeePosition.COURIER, "0 800 678 900",
+                "marten_courier@mangostore.com.ua", "password"));
         employeeService.addEmployee(new Employee(
-                "courier2", EmployeePosition.COURIER, "0 800 678 901",
-                "courier2", "password"));
+                "Симон Фуркад", EmployeePosition.COURIER, "0 800 678 901",
+                "simon_courier@mangostore.com.ua", "password"));
 
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");

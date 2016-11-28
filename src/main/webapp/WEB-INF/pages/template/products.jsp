@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="products block" style="margin-bottom: 47px">
+<div class="products" style="margin-bottom: 47px">
     <h3 style="padding-left: 5px;">${title}</h3>
     <c:forEach items="${groupOfProducts}" var="product">
         <div class="col-lg-3" id="products">

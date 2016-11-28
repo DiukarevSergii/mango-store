@@ -143,7 +143,7 @@ public class ManagerController {
         customer.setEmail(email);
         customer.setCity(city);
         customer.setAddress(address);
-        customer.setAddress(phone);
+        customer.setPhone(phone);
         customerService.editCustomer(customer);
 
         order.setCustomer(customer);

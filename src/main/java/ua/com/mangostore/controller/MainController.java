@@ -718,9 +718,9 @@ public class MainController {
             order.setCustomer(customer);
 
             Delivery delivery = new Delivery();
-            if (deliveryType.equals(DeliveryType.PICKUP)) {
+            if (deliveryType.equals(DeliveryType.PICKUP.name())) {
                 delivery.setDeliveryType(DeliveryType.PICKUP.name());
-            } else if (deliveryType.equals(DeliveryType.COURIER)) {
+            } else if (deliveryType.equals(DeliveryType.COURIER.name())) {
                 delivery.setDeliveryType(DeliveryType.COURIER.name());
             } else {
                 delivery.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT.name());

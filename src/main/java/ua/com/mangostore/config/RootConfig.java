@@ -36,7 +36,6 @@ public class RootConfig extends WebMvcConfigurerAdapter {
 //    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
 
-
     /**
      * Создает фабрику EntityManager, может быть передана в JPA с помощью инъекции зависимостей.
      *
