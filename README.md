@@ -27,7 +27,7 @@ Managers have the access to edit information about the orders and customers. The
 Couriers can navigate on the main pages of the site and the pages intended for couriers (.../courier).
 Couriers can view all orders with status "in Work", take the desired order and then after delivery order change the status to "Closed"
 
-![MANGO STORE](screenshot/courier_orders.png)]  ![MANGO STORE](screenshot/courier_order_view.png)
+![MANGO STORE](screenshot/courier_orders.png)  ![MANGO STORE](screenshot/courier_order_view.png)
 
 To access the pages of administrators, managers and couriers need to be authorized (.../login). Without the authorization of access is denied.
 
