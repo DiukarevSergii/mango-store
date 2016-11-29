@@ -2,7 +2,7 @@
 
 "**MANGO STORE**" is the internet shop gadgets and accessories. Here You can buy smartphone, PC, table PC, TV and accessories.
 
-**Used Technologies**: Java SE/EE, Maven, Servlets, Spring Framework (IoC, MVC, Data, Security), JPA / Hibernate, MySQL, JSP / JSTL, Bootstrap, CSS, JS, Junit, Mockito, Jacoco.
+**Used Technologies**: Java SE/EE, Maven, Servlets, Spring Framework (IoC, MVC, Data, Security), JPA / Hibernate, MySQL, JSP / JSTL, Bootstrap, CSS.
 
 Store work can be divided into 4 parts: _for customers_, _for administrator_,  _for managers_, and _for couriers_.
 
