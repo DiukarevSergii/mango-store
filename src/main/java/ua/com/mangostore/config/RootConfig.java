@@ -19,21 +19,63 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Класс основных конфигураций для Spring: DataSource, JpaVendorAdapter, JpaTransactionManager,
+ * BeanPostProcessor, CommonsMultipartResolver.
+ * Помечен аннотацией @Configuration - класс является источником определения бинов;
+ * помечен аннотацией @EnableTransactionManagement - активирует возможности Spring транзакции через @Transactional;
+ * помечен аннотацией @EnableJpaRepositories - активирует Spring Data JPA, который будет создавать конкретную
+ * реализацию для репозитория из пакета "ua.com.mangostore.repository" и настраивать на взаимодействие
+ * с БД в памяти, используя JPA;
+ * аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
+ * пакета "ua.com.mangostore".
+ *
+ * @author Diukarev Sergii
+ */
 @Configuration
 @EnableTransactionManagement
-@EnableWebMvc
-@ComponentScan("ua.com.mangostore")
 @EnableJpaRepositories("ua.com.mangostore.repository")
+@ComponentScan("ua.com.mangostore")
 public class RootConfig extends WebMvcConfigurerAdapter {
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
 
+    /**
+     * Драйвер для подключение к базе данных.
+     */
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+
+    /**
+     * Путь к базе данных.
+     */
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
+
+    /**
+     * Логин для подключение к базе данных.
+     */
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+
+    /**
+     * Пароль для подключение к базе данных.
+     */
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
+
+    /**
+     * Диалект.
+     */
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+
+    /**
+     * Отображение SQL запросов.
+     */
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
+
+    /**
+     * Пакет сканирования для фабрики EntityManager.
+     */
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "ua.com.mangostore.entity";
-//    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
+
+    /**
+     * Создание схема БД каждый раз при запуске приложения
+     */
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
 
     /**
@@ -47,9 +89,7 @@ public class RootConfig extends WebMvcConfigurerAdapter {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
         entityManagerFactoryBean.setPackagesToScan(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN);
-
         entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
-
         return entityManagerFactoryBean;
     }
 
@@ -90,7 +130,6 @@ public class RootConfig extends WebMvcConfigurerAdapter {
 
         return dataSource;
     }
-
 
     /**
      * Переводит (перехватывает) любые JPA или Hibernate исключения в Spring исключения.
