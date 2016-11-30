@@ -22,7 +22,7 @@
                 </td>
                 <td></td>
                 <td style="text-align: right;">
-                    <form action="/cart_remove_position" method=post>
+                    <form action="/cart-remove-position" method=post>
                         <input type="hidden" name="id" value="${position.product.productId}">
                         <input type="hidden" name="url" value="${url}">
                         <input type="submit" value="" alt="Удалить товар"/>
