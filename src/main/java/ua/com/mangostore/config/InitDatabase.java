@@ -15,12 +15,35 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Класс инициализации БД при запуске.
+ * Помечен аннотацией @Component - класс является компонентом Spring;
+ * помечен аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
+ * пакета "ua.com.mangostore".
+ *
+ * @author Diukarev Sergii
+ * @see Product
+ * @see ProductService
+ * @see Order
+ * @see OrderService
+ * @see Delivery
+ * @see DeliveryService
+ * @see Customer
+ * @see CustomerService
+ */
 @Component
 @ComponentScan("ua.com.mangostore")
 public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> {
+    /**
+     * Аннотация @PersistenceContext предназаначена для автоматического связывания менеджера сущностей с бином.
+     */
     @PersistenceContext
     protected EntityManager em;
 
+    /**
+     * Аннотация @Resource, в отличие от @Autowired,
+     * позволяет передать в качестве зависимости конкретный бин по его имени.
+     */
     @Resource
     private ProductService productService;
     @Resource
@@ -34,9 +57,14 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
+        /**
+         * Выводим сообщение в консоль об начале инициализации
+         */
         System.out.println("Start init!");
 
+        /**
+         * Добавляем персонал
+         */
         employeeService.addEmployee(new Employee(
                 "Сергей Семенов", EmployeePosition.ADMIN, "0 800 678 777",
                 "sergii_admin@mangostore.com.ua", "password"));
@@ -50,6 +78,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "Симон Фуркад", EmployeePosition.COURIER, "0 800 678 901",
                 "simon_courier@mangostore.com.ua", "password"));
 
+        /**
+         * Добавляем продукцию
+         */
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");
         product1.setOnMain(OnMain.ON_MAIN);
@@ -755,7 +786,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "Стереодинамики");
         product15.setOnMain(OnMain.ON_MAIN);
 
-        //        Product product12 = new Product("", "Смартфоны", "Apple", 20_000, 20_000);
+        //        Product product16 = new Product("", "Смартфоны", "Apple", 20_000, 20_000);
 //        product12.setImageURL("http://localhost:8080/resources/img/");
 //        product12.setDescription(
 //                "<h3 style=\"margin-top: 10px; margin-bottom: -5px\"> </h3>" +
@@ -782,6 +813,10 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product14);
         productService.addProduct(product15);
 
+        /**
+         * Добавляем покупателя
+         */
+        //Customer customer
         Customer customer = new Customer();
         customer.setName("Новый");
         customer.setSurname("Покупатель");
@@ -790,15 +825,19 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         customer.setCity("Киев");
         customer.setAddress("проспект Независимости 4");
 
-
+        /**
+         * Создаем торговые позиции
+         */
         double sumAllSalePositions = 0;
         SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
         SalePosition salePosition2 = new SalePosition(productService.getById(3), 1);
         SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
-        //New orders
-        //Order order
+        /**
+         * Создаём заказ
+         */
+        //Order order1
         Order order1 = new Order();
         order1.setOrderPrice(sumAllSalePositions);
         order1.addSalePosition(salePosition1);
@@ -806,6 +845,10 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         order1.addSalePosition(salePosition3);
         order1.setCustomer(customer);
 
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery
         Delivery delivery = new Delivery();
         delivery.setDeliveryType(DeliveryType.COURIER.name());
         delivery.setOrder(order1);
@@ -814,7 +857,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         orderService.addOrder(order1);
 
-
+        /**
+         * Добавляем покупателя
+         */
         //Customer customer2
         Customer customer2 = new Customer();
         customer2.setName("Второй");
@@ -824,13 +869,19 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         customer2.setCity("Киев");
         customer2.setAddress("бульвар Дружбы Народов 24");
 
-        //Order order2
+        /**
+         * Создаем торговые позиции
+         */
         sumAllSalePositions = 0;
         SalePosition salePosition4 = new SalePosition(productService.getById(11), 1);
         SalePosition salePosition5 = new SalePosition(productService.getById(7), 1);
         SalePosition salePosition6 = new SalePosition(productService.getById(8), 3);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
+        /**
+         * Создаём заказ
+         */
+        //Order order2
         Order order2 = new Order();
         order2.setOrderPrice(sumAllSalePositions);
         order2.addSalePosition(salePosition4);
@@ -840,6 +891,10 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         customer2.addOrder(order2);
 
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery2
         Delivery delivery2 = new Delivery();
         delivery2.setDeliveryType(DeliveryType.COURIER.name());
         delivery2.setOrder(order2);
@@ -847,6 +902,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         orderService.addOrder(order2);
 
+        /**
+         * Добавляем покупателя
+         */
         //Customer customer3
         Customer customer3 = new Customer();
         customer3.setName("Десятый");
@@ -856,12 +914,18 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         customer3.setCity("Киев");
         customer3.setAddress("проспект Свободы 14");
 
-        //Order order3
+        /**
+         * Создаем торговые позиции
+         */
         sumAllSalePositions = 0;
         SalePosition salePosition7 = new SalePosition(productService.getById(10), 1);
         SalePosition salePosition8 = new SalePosition(productService.getById(6), 1);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
+        /**
+         * Создаём заказ
+         */
+        //Order order3
         Order order3 = new Order();
         order3.setOrderPrice(sumAllSalePositions);
         order3.addSalePosition(salePosition7);
@@ -869,6 +933,10 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         order3.setCustomer(customer3);
         order3.setStatus(Status.WORK);
 
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery3
         Delivery delivery3 = new Delivery();
         delivery3.setDeliveryType(DeliveryType.COURIER.name());
         delivery3.setOrder(order3);
@@ -876,6 +944,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
         orderService.addOrder(order3);
 
+        /**
+         * Выводим сообщение в консоль об окончании инициализации
+         */
         System.out.println("Finish!");
 
     }

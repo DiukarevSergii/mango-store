@@ -13,6 +13,18 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import ua.com.mangostore.service.impl.UserDetailsServiceImpl;
 
+/**
+ * Класс конфигурации Spring компонентов представления , настройка MVC.
+ * Указывает Spring где находятся компоненты представления, и как их отображать.
+ * Помечен аннотацией @Configuration - класс является источником определения бинов;
+ * помечен аннотацией @EnableWebMvc - позволяет проекту использовать MVC;
+ * помечен аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
+ * пакета "ua.com.mangostore".
+ *
+ * @author Diukarev Sergii
+ * @see WebInitializer
+ * @see RootConfig
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan("ua.com.mangostore")
@@ -42,22 +54,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry resource) {
         resource.addResourceHandler("/resources/" + "**").addResourceLocations("/resources/");
     }
-
-    @Bean
-    public UserDetailsService getEmployeeDetailsService(){
-        return new UserDetailsServiceImpl();
-    }
-
-    /**
-     * Настройка логин-контроллера.
-     * Оказывает помощь в регистрации простого автоматизированного логин-контроллера предварительно
-     * сконфигурированных с кодом состояния и вьюшкой.
-     *
-     * @param viewController Объект класса ViewControllerRegistry.
-     */
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry viewController) {
-//        viewController.addViewController("/login").setViewName("login");
-//        viewController.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//    }
 }

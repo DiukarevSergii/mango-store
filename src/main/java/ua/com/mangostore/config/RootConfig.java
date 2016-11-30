@@ -27,7 +27,7 @@ import java.util.Properties;
  * помечен аннотацией @EnableJpaRepositories - активирует Spring Data JPA, который будет создавать конкретную
  * реализацию для репозитория из пакета "ua.com.mangostore.repository" и настраивать на взаимодействие
  * с БД в памяти, используя JPA;
- * аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
+ * помечен аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
  * пакета "ua.com.mangostore".
  *
  * @author Diukarev Sergii
@@ -56,7 +56,7 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     /**
      * Пароль для подключение к базе данных.
      */
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
 
     /**
      * Диалект.
@@ -122,12 +122,10 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
         dataSource.setDriverClassName(PROPERTY_NAME_DATABASE_DRIVER);
         dataSource.setUrl(PROPERTY_NAME_DATABASE_URL);
         dataSource.setUsername(PROPERTY_NAME_DATABASE_USERNAME);
         dataSource.setPassword(PROPERTY_NAME_DATABASE_PASSWORD);
-
         return dataSource;
     }
 
