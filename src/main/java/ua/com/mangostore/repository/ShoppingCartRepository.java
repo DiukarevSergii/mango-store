@@ -1,6 +1,6 @@
-package ua.com.mangostore.dao;
+package ua.com.mangostore.repository;
 
-import ua.com.mangostore.dao.impl.ShoppingCartDAOImpl;
+import ua.com.mangostore.repository.impl.*;
 import ua.com.mangostore.entity.SalePosition;
 import ua.com.mangostore.model.ShoppingCart;
 
@@ -10,10 +10,10 @@ import java.util.List;
  * Интерфейс описывает набор методов для работы объектов класса {@link ShoppingCart}.
  *
  * @author Diukarev Sergii
- * @see ShoppingCartDAOImpl
+ * @see ShoppingCartRepositoryImpl
  * @see SalePosition
  */
-public interface ShoppingCartDAO {
+public interface ShoppingCartRepository {
     /**
      * Возвращает список всех торговых позиций в корзине.
      *
@@ -62,7 +62,7 @@ public interface ShoppingCartDAO {
     double getPrice();
 
     /**
-     * Возвращает цену корзины в отформатированном виде- цена всех продаж.
+     * Возвращает цену корзины в отформатированном виде - цена всех продаж.
      *
      * @return Значение типа String - цена корзины в отформатированном виде.
      */

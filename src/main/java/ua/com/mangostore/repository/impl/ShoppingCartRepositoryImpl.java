@@ -1,22 +1,22 @@
-package ua.com.mangostore.dao.impl;
+package ua.com.mangostore.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ua.com.mangostore.dao.ShoppingCartDAO;
+import ua.com.mangostore.repository.ShoppingCartRepository;
 import ua.com.mangostore.entity.SalePosition;
 import ua.com.mangostore.model.ShoppingCart;
 
 import java.util.List;
 
 /**
- * Класс реализует методы интерфейса {@link ShoppingCartDAO} для работы с корзиной.
+ * Класс реализует методы интерфейса {@link ShoppingCartRepository} для работы с корзиной.
  *
  * @author Diukarev Sergii
- * @see ShoppingCartDAO
+ * @see ShoppingCartRepository
  * @see ShoppingCart
  */
 @Repository
-public class ShoppingCartDAOImpl implements ShoppingCartDAO {
+public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     /**
      * Объект корзина, в которой хранятся торговые позиции клиента.
      */
@@ -30,7 +30,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
      * @param shoppingCart Объект класса {@link ShoppingCart} для работы с товарной корзиной.
      */
     @Autowired
-    public ShoppingCartDAOImpl(ShoppingCart shoppingCart) {
+    public ShoppingCartRepositoryImpl(ShoppingCart shoppingCart) {
         super();
         this.shoppingCart = shoppingCart;
     }
