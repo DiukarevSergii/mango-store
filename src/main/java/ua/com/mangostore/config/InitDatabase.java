@@ -818,8 +818,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          */
         //Customer customer
         Customer customer = new Customer();
-        customer.setName("Новый");
-        customer.setSurname("Покупатель");
+        customer.setName("Ирина");
+        customer.setSurname("Варвинец");
         customer.setPhone("+38(012)345-67-89");
         customer.setEmail("customers@newcustomer.com");
         customer.setCity("Киев");
@@ -862,8 +862,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          */
         //Customer customer2
         Customer customer2 = new Customer();
-        customer2.setName("Второй");
-        customer2.setSurname("Покупатель");
+        customer2.setName("Ольга");
+        customer2.setSurname("Абрамова");
         customer2.setPhone("+38(012)342-67-89");
         customer2.setEmail("customers2@newcustomer.com");
         customer2.setCity("Киев");
@@ -907,8 +907,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          */
         //Customer customer3
         Customer customer3 = new Customer();
-        customer3.setName("Десятый");
-        customer3.setSurname("Покупатель");
+        customer3.setName("Симон");
+        customer3.setSurname("Шемп");
         customer3.setPhone("+38(012)342-67-89");
         customer3.setEmail("customers3@newcustomer.com");
         customer3.setCity("Киев");
