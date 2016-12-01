@@ -11,6 +11,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Класс описывает сущность "Заказ".
+ * Аннотация @Entity говорит о том что объекты этого класса будет обрабатываться Hibernate.
+ * Аннотация @Table(name = "Orders") указывает на таблицу "Orders", в которой будут храниться объекты.
+ *
+ * @author Diukarev Sergii
+ */
 @Entity
 @Table(name = "Orders")
 public class Order {
@@ -58,10 +65,25 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery;
 
+    /**
+     * Покупатель, оформивший заказ.
+     * Между объектами классов {@link Order} и
+     * {@link Customer} связь один-ко-многим, а именно каждая
+     * запись в одной таблице напрямую связана с одной или несколькими записями в другой таблице.
+     * Выборка объекта customer до первого доступа к нему, при первом доступе к текущему объекту.
+     * Сущности связаны полностью каскадным обновлением записей в базе данных.
+     */
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
+    /**
+     * Покупатель, оформивший заказ.
+     * Между объектами классов {@link Order} и
+     * {@link Employee} связь один-ко-многим, а именно каждая
+     * запись в одной таблице напрямую связана с одной или несколькими записями в другой таблице.
+     * Выборка объекта employee при первом доступа к нему.
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
@@ -76,6 +98,10 @@ public class Order {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private List<SalePosition> salePositions = new ArrayList<>();
 
+    /**
+     * Конструктр без параметров.
+     * Автоматически инициализируются поля номер, дата и время создания заказа, статуса заказа.
+     */
     public Order() {
         this.setDateCreated(LocalDate.now());
         this.setTimeCreated(LocalTime.now());
@@ -86,14 +112,17 @@ public class Order {
     /**
      * Набор вожможных символов для использованния по-умолчанию.
      */
-
     protected static final char[] NUMBER_PATTERN = {
             'M', 'A', 'N', 'G', 'O', 'S', 'T', 'R', 'E',
             '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
+    /**
+     * Возвращает рандомную строку используя набор символов NUMBER_PATTERN.
+     *
+     * @return Значение типа {@link String} - рандомная строка из набора символов NUMBER_PATTERN.
+     */
     private String createNumberOfOrder() {
         StringBuilder builder = new StringBuilder();
-
         for (int i = 0; i < 6; i++) {
             int number = new Random().nextInt(NUMBER_PATTERN.length);
             char ch = NUMBER_PATTERN[number];
@@ -109,8 +138,8 @@ public class Order {
      */
     public void addSalePosition(SalePosition salePosition) {
         if (salePositions.contains(salePosition)) {
-            for (SalePosition position: salePositions){
-                if (position.equals(salePosition)){
+            for (SalePosition position : salePositions) {
+                if (position.equals(salePosition)) {
                     position.setNumber(position.getNumber() + salePosition.getNumber());
                 }
             }
@@ -185,90 +214,194 @@ public class Order {
         }
     }
 
+    /**
+     * Возвращает номер заказа.
+     *
+     * @return Значение типа {@link String} - номер заказа.
+     */
     public String getNumber() {
         return number;
     }
 
+    /**
+     * Устанавливает номер заказа.
+     *
+     * @param number номер заказа.
+     */
     public void setNumber(String number) {
         this.number = number;
     }
 
+    /**
+     * Возвращает сотрудника, связанного с заказом.
+     *
+     * @return Значение типа {@link Employee} - сотрудник, связанного с заказом.
+     */
     public Employee getEmployee() {
         return employee;
     }
 
+    /**
+     * Устанавливает сотрудника, связанного с заказом.
+     *
+     * @param employee сотрудник, связанного с заказом.
+     */
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
+    /**
+     * Возвращает покупателя, сделавшего заказ.
+     *
+     * @return Значение типа {@link Customer} - покупатель, сделавший заказ.
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     * Устанавливает покупателя, связанного с заказом.
+     *
+     * @param customer покупателя, связанного с заказом.
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    /**
+     * Возвращает статус заказа.
+     *
+     * @return Значение типа {@link Status} - статус заказа.
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     * Устанавливает статус заказа.
+     *
+     * @param status статус заказа.
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    /**
+     * Возвращает общую стоимость заказа.
+     *
+     * @return Значение типа {@link double} - стоимость заказа.
+     */
     public double getOrderPrice() {
         return orderPrice;
     }
 
+    /**
+     * Устанавливает общую стоимость заказа.
+     *
+     * @param orderPrice стоимость заказа.
+     */
     public void setOrderPrice(double orderPrice) {
         this.orderPrice = orderPrice;
     }
 
+    /**
+     * Возвращает доставку связанную с заказом.
+     *
+     * @return Значение типа {@link Delivery} - доставка связанная с заказом.
+     */
     public Delivery getDelivery() {
         return delivery;
     }
 
+    /**
+     * Устанавливает доставку связанную с заказом.
+     *
+     * @param delivery доставка связанная с заказом.
+     */
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
     }
 
+    /**
+     * Возвращает уникальный код объекта.
+     *
+     * @return Значение типа {@link long} - уникальный код объекта.
+     */
     public long getOrderId() {
         return orderId;
     }
 
+    /**
+     * Возвращает дату создания заказа.
+     *
+     * @return Значение типа {@link String} - дата создания заказа.
+     */
     public String getDateCreated() {
         return dateCreated;
     }
 
+    /**
+     * Устанавливает дату создания заказа.
+     *
+     * @param dateCreated дату создания заказа.
+     */
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
+    /**
+     * Устанавливает дату создания заказа.
+     *
+     * @param localDate дату создания заказа.
+     */
     public void setDateCreated(LocalDate localDate) {
         this.dateCreated = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
     }
 
+    /**
+     * Возвращает время создания заказа.
+     *
+     * @return Значение типа {@link String} - время создания заказа.
+     */
     public String getTimeCreated() {
         return timeCreated;
     }
 
+    /**
+     * Устанавливает время создания заказа.
+     *
+     * @param timeCreated времясоздания заказа.
+     */
     public void setTimeCreated(String timeCreated) {
         this.timeCreated = timeCreated;
     }
 
+    /**
+     * Устанавливает время создания заказа.
+     *
+     * @param localTime времясоздания заказа.
+     */
     public void setTimeCreated(LocalTime localTime) {
         this.timeCreated = localTime.format(DateTimeFormatter.ofPattern("H:mm")).toString();
     }
 
-
+    /**
+     * Возвращает описание заказа.
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа {@link String} - строка описание заказа (номер, статус, стоимтость,
+     * дата, время, информация о доставке, информация о покупателе, информация о сотруднике.
+     */
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
+                "number='" + number + '\'' +
+                ", status=" + status +
                 ", orderPrice=" + orderPrice +
                 ", dateCreated='" + dateCreated + '\'' +
+                ", timeCreated='" + timeCreated + '\'' +
                 ", delivery=" + delivery +
+                ", customer=" + customer +
                 ", employee=" + employee +
                 '}';
     }
