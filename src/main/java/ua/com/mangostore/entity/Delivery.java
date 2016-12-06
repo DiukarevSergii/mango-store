@@ -80,50 +80,110 @@ public class Delivery {
     public Delivery() {
     }
 
+    /**
+     * Возвращает курьера.
+     *
+     * @return Значение типа {@link Employee} - курьер ответственный за доставку.
+     */
     public Employee getEmployee() {
         return employee;
     }
 
+    /**
+     * Устанавливает курьра связанного с доставкой.
+     *
+     * @param employee курьер связанный с доставкой.
+     */
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
+    /**
+     * Возвращает заказ связанный с доставкой.
+     *
+     * @return Значение типа {@link Order} - заказ связанный с доставкой.
+     */
     public Order getOrder() {
         return order;
     }
 
+    /**
+     * Устанавливает заказ связанный с доставкой.
+     *
+     * @param order заказ связанный с доставкой.
+     */
     public void setOrder(Order order) {
         this.order = order;
     }
 
+    /**
+     * Возвращает дату доставки.
+     *
+     * @return Значение типа {@link String} - дата доставки.
+     */
     public String getDeliveryDate() {
         return deliveryDate;
     }
 
+    /**
+     * Устанавливает дату доставки.
+     *
+     * @param deliveryDate дату доставки.
+     */
     public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
+    /**
+     * Возвращает время доставки.
+     *
+     * @return Значение типа {@link String} - время доставки.
+     */
     public String getDeliveryTime() {
         return deliveryTime;
     }
 
+    /**
+     * Устанавливает время доставки.
+     *
+     * @param deliveryTime время доставки.
+     */
     public void setDeliveryTime(String deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 
+    /**
+     * Возвращает стоимость доставки.
+     *
+     * @return Значение типа {@link String} - стоимость доставки.
+     */
     public double getCost() {
         return cost;
     }
 
+    /**
+     * Устанавливает стоимость доставки.
+     *
+     * @param cost стоимость доставки.
+     */
     public void setCost(double cost) {
         this.cost = cost;
     }
 
+    /**
+     * Возвращает тип доставки.
+     *
+     * @return Значение типа {@link String} - тип доставки.
+     */
     public DeliveryType getDeliveryType() {
         return deliveryType;
     }
 
+    /**
+     * Устанавливает тип доставки.
+     *
+     * @param deliveryType тип доставки.
+     */
     public void setDeliveryType(String deliveryType) {
         if (deliveryType.equals(DeliveryType.PICKUP.name())) {
             this.setDeliveryType(DeliveryType.PICKUP);
@@ -137,6 +197,11 @@ public class Delivery {
         }
     }
 
+    /**
+     * Устанавливает тип доставки.
+     *
+     * @param deliveryType тип доставки.
+     */
     public void setDeliveryType(DeliveryType deliveryType) {
         this.deliveryType = deliveryType;
     }
@@ -147,4 +212,21 @@ public class Delivery {
         this.setEmployee(null);
     }
 
+    /**
+     * Возвращает описание доставки.
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа {@link String} - строка описание доставки (дата и время доставки, стомость, тип, заказ, курьер).
+     */
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "deliveryDate='" + deliveryDate + '\'' +
+                ", deliveryTime='" + deliveryTime + '\'' +
+                ", cost=" + cost +
+                ", deliveryType=" + deliveryType +
+                ", order=" + order +
+                ", employee=" + employee +
+                '}';
+    }
 }

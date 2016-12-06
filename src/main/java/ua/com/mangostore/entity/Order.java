@@ -355,7 +355,7 @@ public class Order {
      * @param localDate дату создания заказа.
      */
     public void setDateCreated(LocalDate localDate) {
-        this.dateCreated = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
+        this.dateCreated = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     /**
@@ -382,7 +382,7 @@ public class Order {
      * @param localTime времясоздания заказа.
      */
     public void setTimeCreated(LocalTime localTime) {
-        this.timeCreated = localTime.format(DateTimeFormatter.ofPattern("H:mm")).toString();
+        this.timeCreated = localTime.format(DateTimeFormatter.ofPattern("H:mm"));
     }
 
     /**
