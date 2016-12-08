@@ -33,6 +33,9 @@
         <!-- MYSQL -->
         <mysql.version>5.1.29</mysql.version>
 
+        <!-- POSTGRESQL -->
+        <postgre.version>9.3-1100-jdbc41</postgre.version>
+
         <!-- HIBERNATE -->
         <hb.manager>4.2.5.Final</hb.manager>
 
@@ -99,6 +102,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgre.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa}</version>
@@ -131,7 +140,6 @@
         </dependency>
 
     </dependencies>
-
 
 
     <build>

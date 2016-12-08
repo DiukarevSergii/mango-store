@@ -41,27 +41,52 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     /**
      * Драйвер для подключение к базе данных.
      */
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+
+    //Для MySQL
+//    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+
+    //Для PostgreSQL
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
 
     /**
      * Путь к базе данных.
      */
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
+
+    //Для MySQL
+//    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
+
+    //Для PostgreSQL
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/mangodb";
 
     /**
      * Логин для подключение к базе данных.
      */
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+
+    //Для MySQL
+//    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+
+    //Для PostgreSQL
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
 
     /**
      * Пароль для подключение к базе данных.
      */
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
+
+    //Для MySQL
+//    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
+
+    //Для PostgreSQL
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
 
     /**
      * Диалект.
      */
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+
+    //Для MySQL
+//    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+
+    //Для PostgreSQL
+    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
 
     /**
      * Отображение SQL запросов.
