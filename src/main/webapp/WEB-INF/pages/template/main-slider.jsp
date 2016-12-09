@@ -60,12 +60,7 @@
                     d: 500,
                     x: -70,
                     y: 120
-                }, {b: 2600, d: 500, y: -80}, {b: 3100, d: 900, y: 160, e: {y: 24}}],
-                [{b: 0, d: 1000, o: -0.4, rX: 2, rY: 1}, {b: 1000, d: 1000, rY: 1}, {
-                    b: 2000,
-                    d: 1000,
-                    rX: -1
-                }, {b: 3000, d: 1000, rY: -1}, {b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1}]
+                }, {b: 2600, d: 500, y: -80}, {b: 3100, d: 900, y: 160, e: {y: 24}}]
             ];
 
             var jssor_1_options = {
@@ -216,61 +211,61 @@
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/meizu-mx6-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/gift-2017-slider-1000x343-v3.jpg"/>
                 <div data-u="caption" data-t="2"
                      style="position:absolute;top:30px;left:-380px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.5);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    finger catchable right to left
+                    Это то что ты искал
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/iphone-6s-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/samsung-20yoP2-slider-1000x343-ru.jpg"/>
                 <div data-u="caption" data-t="3"
                      style="position:absolute;top:30px;left:30px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.5);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    responsive, scale smoothly
+                    20 лет не шутки
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/meizu-mx6-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/ipad-gift-on-ny-slider-1000x343-v3.jpg"/>
                 <div data-u="caption" data-t="4"
                      style="position:absolute;top:30px;left:30px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.6);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    image, text, and custom layers
+                    Подарочки
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/iphone-6s-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/macbook-gift-on-ny-slider-1000x343-v3.jpg"/>
                 <div data-u="caption" data-t="5"
                      style="position:absolute;top:30px;left:1000px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.5);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    tons of transition type
+                    Всё и так ясно
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/meizu-mx6-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/samsung-galaxy-tabpro_s-adapter-v_podarok-1000x343.jpg"/>
                 <div data-u="caption" data-t="6"
                      style="position:absolute;top:30px;left:30px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.5);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    visual slider maker
+                    БЕРИСЬ! ЭТО БОМБА!!
                 </div>
             </div>
             <div data-b="0" data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/iphone-6s-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/zagrebolog-slider-1000x343.jpg"/>
                 <div data-u="caption" data-t="7"
                      style="position:absolute;top:-50px;left:30px;width:350px;height:30px;z-index:0;
                      background-color:rgba(235,81,0,0.5);font-size:20px;color:#ffffff;line-height:30px;text-align:center;">
-                    play in and play out
+                    Я уже гребу! А ты?
                 </div>
             </div>
             <div data-p="112.50" style="display: none;">
-                <img data-u="image" src="/resources/img/slider/meizu-mx6-slider-1000x343.jpg"/>
+                <img data-u="image" src="/resources/img/slider/vmeste-deshevle-fitnes-trecker--1000x343.jpg"/>
                 <div data-u="caption" data-t="8" data-3d="1"
                      style="position:absolute;top:25px;left:150px;width:250px;height:250px;z-index:0;
                      background-color:rgba(40,177,255,0.6); overflow: hidden;">
                     <div data-u="caption" data-t="9"
                          style="position:absolute;top:100px;left:25px;width:200px;height:50px;z-index:0;font-size:24px;line-height:50px;">
-                        A Child Layer
+                        Будь в форме
                     </div>
                 </div>
             </div>
