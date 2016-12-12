@@ -10,7 +10,7 @@ import java.text.DecimalFormatSymbols;
  * Класс описывает сущность "Торговая позиция".
  * Торговая позиция составляет товар и количество этого товара.
  * Аннотация @Entity говорит о том что объекты этого класса будет обрабатываться hibernate.
- * Аннотация @Table(name = "sales") указывает на таблицу "sales", в которой будут храниться объекты.
+ * Аннотация @Table(name = "SalePosition") указывает на таблицу "SalePosition", в которой будут храниться объекты.
  *
  * @author Diukarev Sergii
  * @see Product
@@ -29,11 +29,11 @@ public class SalePosition{
 
     /**
      * Товар текущей торговой позици.
-     * Значение поля (id объекта product) сохраняется в колонке "product_id". Не может быть null.
      * Между объектами классов {@link Product}
      * и {@link SalePosition} связь один-к-одному, а именно каждая
      * запись в одной таблице напрямую связана с отдельной записью в другой таблице.
-     * Выборка объекта product до первого доступа нему, при первом доступе к текущему объекту.
+     * Выборка объекта product происходит до первого доступа нему.
+     * * Не может быть null.
      */
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
@@ -168,17 +168,27 @@ public class SalePosition{
         this.order = order;
     }
 
+    /**
+     * Сравнение торговых позиций
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа {@link boolean}.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         SalePosition that = (SalePosition) o;
-
         return product.equals(that.product);
-
     }
 
+
+    /**
+     * HashCode торговой позиции
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа {@link int}.
+     */
     @Override
     public int hashCode() {
         return product.hashCode();

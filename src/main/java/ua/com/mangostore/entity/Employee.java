@@ -185,7 +185,7 @@ public class Employee {
     /**
      * Возвращает должность сотрудника.
      *
-     * @return Значение типа {@link String} - должность сотрудника.
+     * @return Значение типа {@link EmployeePosition} - должность сотрудника.
      */
     public EmployeePosition getPosition() {
         return position;
