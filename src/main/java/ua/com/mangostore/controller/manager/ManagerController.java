@@ -148,7 +148,7 @@ public class ManagerController {
 
         order.setCustomer(customer);
 
-        //doesn't work yet
+        //TODO
 
 //        idProductForRemove = idProductForRemove.replaceFirst(",", "");
 //

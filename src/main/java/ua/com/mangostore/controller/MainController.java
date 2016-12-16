@@ -20,9 +20,11 @@ import java.util.List;
 
 /**
  * Класс-контроллер основных страниц. К даному контроллеру и соответствующим
- * страницам могут обращатсья все пользователи, независимо от ихних ролей.
+ * страницам могут обращаться все пользователи, независимо от ихних ролей.
  * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
  * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Аннотацией @RequestMapping(value = "/admin") сообщаем, что данный контроллер
+ * будет обрабатывать запрос, URI которого "/admin".
  * Методы класса работают с объектом, возвращенным handleRequest методом, является
  * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
  * Этот тип представляет Model и View в MVC шаблоне.
@@ -41,23 +43,26 @@ public class MainController {
      * Объект сервиса для работы с заказами.
      */
     private OrderService orderService;
+
     /**
      * Объект сервиса для работы с товарами.
      */
     private ProductService productService;
+
     /**
      * Объект сервиса для работы с торговой корзиной.
      */
     private ShoppingCartService shoppingCartService;
+
     /**
      * Объект сервиса для работы с покупателями.
      */
     private CustomerService customerService;
+
     /**
      * Объект сервиса по работе с доставкой.
      */
     private DeliveryService deliveryService;
-
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -746,6 +751,10 @@ public class MainController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает страницу "employee/unauthorized", если у пользователя не хватает прав доступа
+     * URL запроса "/unauthorized"
+     */
     @RequestMapping("/unauthorized")
     public String unauthorized(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
