@@ -18,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee addEmployee(Employee employee) {
+        if (getAll().contains(employee)) {
+            return employee;
+        }
         Employee saveEmployee = employeeRepository.saveAndFlush(employee);
         return saveEmployee;
     }
@@ -32,6 +35,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public Employee getByFullName(String fullName) {
         return employeeRepository.findByFullName(fullName);
+    }
+
+    @Override
+    @Transactional
+    public Employee getById(long id) {
+        return employeeRepository.findById(id);
     }
 
     @Override

@@ -3,7 +3,7 @@ package ua.com.mangostore.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.mangostore.dao.ShoppingCartDAO;
+import ua.com.mangostore.repository.ShoppingCartRepository;
 import ua.com.mangostore.entity.SalePosition;
 import ua.com.mangostore.exception.BadRequestException;
 import ua.com.mangostore.model.ShoppingCart;
@@ -24,14 +24,14 @@ import java.util.List;
  * @author Diukarev Sergii
  * @see ShoppingCart
  * @see ShoppingCartService
- * @see ShoppingCartDAO
+ * @see ShoppingCartRepository
  */
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     /**
      * Реализация интерфейса для работы з торговой корзиной.
      */
-    private ShoppingCartDAO shoppingCartDAO;
+    private ShoppingCartRepository shoppingCartDAO;
 
     /**
      * Конструктор для инициализации основных переменных сервиса.
@@ -40,7 +40,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @param shoppingCartDAO Реализация интерфейса для работы з торговой корзиной.
      */
     @Autowired
-    public ShoppingCartServiceImpl(ShoppingCartDAO shoppingCartDAO) {
+    public ShoppingCartServiceImpl(ShoppingCartRepository shoppingCartDAO) {
         this.shoppingCartDAO = shoppingCartDAO;
     }
 

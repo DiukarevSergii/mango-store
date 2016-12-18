@@ -7,4 +7,9 @@ public enum EmployeePosition {
 
     EmployeePosition() {
     }
+
+    @Override
+    public String toString() {
+        return "ROLE_" + name();
+    }
 }

@@ -18,10 +18,10 @@
 <c:choose>
     <c:when test="${cart_size > 0}">
     <!-- PRODUCTS IN CART -->
-    <jsp:include page="/WEB-INF/pages/template/products_in_cart.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/products-in-cart.jsp"/>
 
     <!-- REGISTRATION ORDER-->
-    <jsp:include page="/WEB-INF/pages/template/registration_order.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/registration-order.jsp"/>
     </c:when>
     <c:otherwise>
         Ваша корзина все ещё пуста =(

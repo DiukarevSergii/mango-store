@@ -10,6 +10,10 @@ body {
     font-family: Georgia;
 }
 
+.block{
+    height: 700px;
+}
+
 .container {
     bgcolor: "white";
     background-color: white;
@@ -258,7 +262,7 @@ input[type="submit"] {
     background-repeat: no-repeat;
 }
 
-input[type="text"]{
+input[type="text"] {
     width: 440px;
 }
 
@@ -284,6 +288,235 @@ input[type="submit"]:hover {
     width: 440px;
     font-size: medium;
     margin-top: 10px;
+    background-image: none;
+}
+
+.btn.btn-change-product {
+     background-color: rgb(236, 168, 9);
+     box-shadow: 0 3px 0 0 rgb(214, 152, 8);
+     height: 30px;
+     width: 180px;
+     font-size: 14px;
+     margin-top: -4px;
+     background-image: none;
+ }
+
+.btn.btn-change-product:hover {
+    background-color: rgba(197, 140, 7, 0.87);
+    box-shadow: 0 3px 0 0 rgb(184, 130, 7);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-change-employee {
+    background-color: rgb(236, 168, 9);
+    box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
+.btn.btn-change-employee:hover {
+    background-color: rgb(224, 159, 9);
+    box-shadow: 0 3px 0 0 rgb(152, 107, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
+.btn.btn-change-order {
+    background-color: rgb(236, 168, 9);
+    box-shadow: 0 3px 0 0 rgb(171, 120, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
+.btn.btn-change-order:hover {
+    background-color: rgb(224, 159, 9);
+    box-shadow: 0 3px 0 0 rgb(152, 107, 6);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: -20px;
+    padding-top: 0px;
+    margin-top: 5px;
+    background-image: none;
+}
+
+.btn.btn-remove-employee {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
+.btn.btn-remove-employee:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
+
+.btn.btn-remove-order {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
+.btn.btn-remove-order:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 20px;
+    min-width: 50px;
+    font-size: 14px;
+    padding-top: 0px;
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: -10px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-employee {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-employee:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-orders {
+    background-color: rgb(236, 77, 1);
+    box-shadow: 0 3px 0 0 rgb(203, 66, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-remove-all-orders:hover {
+    background-color: rgb(222, 72, 1);
+    box-shadow: 0 3px 0 0 rgb(185, 60, 1);
+    height: 27px;
+    min-width: 50px;
+    font-size: 13px;
+    padding-top: 4px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-danger {
+    background-color: rgb(250, 96, 12);
+    box-shadow: 0 3px 0 0 rgb(229, 88, 11);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-danger:hover {
+    background-color: rgb(236, 93, 12);
+    box-shadow: 0 3px 0 0 rgb(229, 88, 11);
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+/*.btn.btn-add-product {*/
+    /*background-color: rgba(147, 147, 147, 0.78);*/
+    /*box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.56);*/
+    /*height: 30px;*/
+    /*width: 240px;*/
+    /*font-size: medium;*/
+    /*margin-top: 10px;*/
+    /*background-image: none;*/
+/*}*/
+
+/*.btn.btn-add-product:hover {*/
+    /*background-color: rgba(147, 147, 147, 0.62);*/
+    /*box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.66);*/
+    /*height: 30px;*/
+    /*width: 240px;*/
+    /*font-size: medium;*/
+    /*margin-top: 10px;*/
+    /*background-image: none;*/
+/*}*/
+
+.btn.btn-add-product {
+    background-color: #52af10;
+    box-shadow: 0 3px 0 0 #4ca20f;
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
+    background-image: none;
+}
+
+.btn.btn-add-product:hover {
+    background-color: #4ba10f;
+    box-shadow: 0 3px 0 0 #438e0d;
+    height: 30px;
+    width: 180px;
+    font-size: 14px;
+    margin-top: -4px;
     background-image: none;
 }
 
@@ -365,4 +598,33 @@ input[type="submit"]:hover {
     position: relative;
     min-height: 400px;
     vertical-align: bottom;
+}
+
+.admin-page {
+    min-height: 700px;
+}
+
+.admin-title {
+    background-color: rgba(239, 170, 8, 0.38);
+    height: 33px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.admin-title > h3 {
+    margin-top: 2px;
+    margin-left: 35px;
+}
+
+.admin-main-title {
+    height: 44px;
+    background-color: rgba(239, 170, 8, 0.8);
+    margin-top: 1px;
+    margin-bottom: -13px;
+}
+
+.admin-main-title > h3 {
+    margin-top: 2px;
+    margin-left: 20px;
+
 }

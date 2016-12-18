@@ -17,17 +17,16 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Employee employee = employeeService.getByEmail(email);
-        if (employee == null)
-            throw new UsernameNotFoundException(employee.getFullName() + " not found");
-
+        if (employee == null) {
+            throw new UsernameNotFoundException(employee.getEmail() + " not found");
+        }
         Set<GrantedAuthority> roles = new HashSet<>();
-        System.out.println(employee.getPosition().name().toString());
-        roles.add(new SimpleGrantedAuthority(employee.getPosition().name().toString()));
+        roles.add(new SimpleGrantedAuthority(employee.getPosition().toString()));
 
         return new User(employee.getEmail(), employee.getPassword(), roles);
     }

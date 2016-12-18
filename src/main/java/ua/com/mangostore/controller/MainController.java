@@ -1,31 +1,30 @@
 package ua.com.mangostore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.mangostore.config.InitDatabase;
-import ua.com.mangostore.entity.Customer;
-import ua.com.mangostore.entity.Order;
-import ua.com.mangostore.entity.Product;
-import ua.com.mangostore.entity.SalePosition;
-import ua.com.mangostore.service.CustomerService;
-import ua.com.mangostore.service.OrderService;
-import ua.com.mangostore.service.ProductService;
-import ua.com.mangostore.service.ShoppingCartService;
+import ua.com.mangostore.entity.*;
+import ua.com.mangostore.entity.enums.DeliveryType;
+import ua.com.mangostore.service.*;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Класс-контроллер основных страниц. К даному контроллеру и соответствующим
- * страницам могут обращатсья все пользователи, независимо от ихних ролей.
+ * страницам могут обращаться все пользователи, независимо от ихних ролей.
  * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
  * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Аннотацией @RequestMapping(value = "/admin") сообщаем, что данный контроллер
+ * будет обрабатывать запрос, URI которого "/admin".
  * Методы класса работают с объектом, возвращенным handleRequest методом, является
  * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
  * Этот тип представляет Model и View в MVC шаблоне.
@@ -44,18 +43,26 @@ public class MainController {
      * Объект сервиса для работы с заказами.
      */
     private OrderService orderService;
+
     /**
      * Объект сервиса для работы с товарами.
      */
     private ProductService productService;
+
     /**
      * Объект сервиса для работы с торговой корзиной.
      */
     private ShoppingCartService shoppingCartService;
+
     /**
      * Объект сервиса для работы с покупателями.
      */
     private CustomerService customerService;
+
+    /**
+     * Объект сервиса по работе с доставкой.
+     */
+    private DeliveryService deliveryService;
 
     /**
      * Конструктор для инициализации основных переменных контроллера главных страниц сайта.
@@ -67,11 +74,12 @@ public class MainController {
      */
     @Autowired
     public MainController(OrderService orderService, ProductService productService, ShoppingCartService shoppingCartService,
-                          CustomerService customerService) {
+                          CustomerService customerService, DeliveryService deliveryService) {
         this.orderService = orderService;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
         this.customerService = customerService;
+        this.deliveryService = deliveryService;
     }
 
     /**
@@ -90,9 +98,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         Product sliderProduct = null;
         for (Product product : productService.getAll()) {
-            if (product.getOnMain() != null && product.getOnMain().name().equals("ON_MAIN")) {
-                groupOfProducts.add(product);
-            }
+            groupOfProducts.add(product);
             if (product.getProductTitle().equals("Meizu MX6")) {
                 sliderProduct = product;
             }
@@ -107,7 +113,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/samsung"}, метод GET.
      *
@@ -122,12 +128,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Samsung");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/samsung/smartphones"}, метод GET.
      *
@@ -141,7 +147,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/samsung/tablet-pc"}, метод GET.
      *
@@ -154,7 +160,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/samsung/tv"}, метод GET.
      *
@@ -168,7 +174,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/samsung/accessories"}, метод GET.
      *
@@ -189,12 +195,12 @@ public class MainController {
         groupByBrand(groupOfProducts, "Samsung");
         groupByType(type, groupOfProducts);
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/apple"}, метод GET.
      *
@@ -209,12 +215,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/apple/iphone"}, метод GET.
      *
@@ -229,12 +235,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByModel(groupOfProducts, "iphone", "apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/apple/ipad"}, метод GET.
      *
@@ -249,12 +255,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByModel(groupOfProducts, "ipad", "apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/apple/mac"}, метод GET.
      *
@@ -269,12 +275,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByModel(groupOfProducts, "mac", "apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/apple/accessories"}, метод GET.
      *
@@ -289,7 +295,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Акссесуары для Apple");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
@@ -303,7 +309,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/xiaomi"}, метод GET.
      *
@@ -318,12 +324,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Xiaomi");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/meizu"}, метод GET.
      *
@@ -338,7 +344,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByBrand(groupOfProducts, "Meizu");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
@@ -351,7 +357,7 @@ public class MainController {
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/tablet-pc"}, метод GET.
      *
@@ -366,12 +372,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Планшеты", "Акссесуары для планшетов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/tablet-pc/accessories"}, метод GET.
      *
@@ -386,12 +392,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Акссесуары для планшетов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/smartphones"}, метод GET.
      *
@@ -406,12 +412,12 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Смартфоны", "Акссесуары для смартфонов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
     /**
-     * Возвращает cтраницу сайта "customer/some_products". Для формирования страницы с базы подгружаются
+     * Возвращает cтраницу сайта "customer/some-products". Для формирования страницы с базы подгружаются
      * соответствующие товары.
      * URL запроса {"/smartphones/accessories"}, метод GET.
      *
@@ -426,7 +432,7 @@ public class MainController {
         List<Product> groupOfProducts = new ArrayList<>();
         groupByType(groupOfProducts, "Акссесуары для смартфонов");
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
@@ -453,10 +459,10 @@ public class MainController {
 
     /**
      * Возвращает страницу "customer/product" с 1-м товаром с уникальним URL, который
-     * совпадает с входящим параметром url. URL запроса "/product_{url}", метод GET.
-     * В запросе в параметре url можно передавать как URL так и артикль товара.
+     * совпадает с входящим параметром url. URL запроса "/product-{id}", метод GET.
+     * В запросе в параметре id передается артикль товара.
      *
-     * @param id           URL или id товара, который нужно вернуть на страницу.
+     * @param id           id товара, который нужно вернуть на страницу.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -486,21 +492,21 @@ public class MainController {
     }
 
     /**
-     * Возвращает страницу "customer/stores_addresses" - страница описания адрессов магазинов компаниии.
-     * URL запроса "/stores_addresses", метод GET.
+     * Возвращает страницу "customer/stores-addresses" - страница описания адрессов магазинов компаниии.
+     * URL запроса "/stores-addresses", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/stores_addresses", method = RequestMethod.GET)
+    @RequestMapping(value = "/stores-addresses", method = RequestMethod.GET)
     public ModelAndView onAddresses(ModelAndView modelAndView) {
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
-        modelAndView.setViewName("customer/stores_addresses");
+        modelAndView.setViewName("customer/stores-addresses");
         return modelAndView;
     }
 
     /**
-     * Возвращает страницу "customer/some_products" - страница описания товаров находящихся на распродаже.
+     * Возвращает страницу "customer/some-products" - страница описания товаров находящихся на распродаже.
      * URL запроса "/sales", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
@@ -518,7 +524,7 @@ public class MainController {
             }
         }
         modelAndView.addObject("groupOfProducts", groupOfProducts);
-        modelAndView.setViewName("customer/some_products");
+        modelAndView.setViewName("customer/some-products");
         return modelAndView;
     }
 
@@ -641,14 +647,14 @@ public class MainController {
 
     /**
      * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
-     * URL запроса "/cart_add", метод POST.
+     * URL запроса "/cart-add", метод POST.
      *
      * @param id           Код товара, который нужно добавить в корзину.
      * @param url          URL запроса для перенаправления.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/cart_add", method = RequestMethod.POST)
+    @RequestMapping(value = "/cart-add", method = RequestMethod.POST)
     public ModelAndView addProductToCart(@RequestParam long id, @RequestParam("url") String url,
                                          ModelAndView modelAndView) {
         SalePosition salePosition = new SalePosition(productService.getById(id), 1);
@@ -659,17 +665,17 @@ public class MainController {
 
     /**
      * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
-     * URL запроса "/cart_remove_position", метод POST.
+     * URL запроса "/cart-remove-position", метод POST.
      *
      * @param id           Код товара, который нужно добавить в корзину.
      * @param url          URL запроса для перенаправления.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/cart_remove_position", method = RequestMethod.POST)
+    @RequestMapping(value = "/cart-remove-position", method = RequestMethod.POST)
     public ModelAndView removeProductFromCart(@RequestParam long id, @RequestParam("url") String url,
                                               ModelAndView modelAndView) {
-        if (shoppingCartService.getSize() == 0){
+        if (shoppingCartService.getSize() == 0) {
             modelAndView.setViewName("redirect:" + "/");
             return modelAndView;
         }
@@ -688,8 +694,8 @@ public class MainController {
      * @param surname      Фамилия клиента, сжелавшего заказ.
      * @param email        Электронная почта клиента.
      * @param phone        Номер телефона клиента.
-     * @param city        Город клиента.
-     * @param address        Адресс клиента.
+     * @param city         Город клиента.
+     * @param address      Адресс клиента.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -700,7 +706,7 @@ public class MainController {
                                      @RequestParam(value = "email") String email,
                                      @RequestParam(value = "city") String city,
                                      @RequestParam(value = "address") String address,
-                                     @RequestParam(value = "delivery_type") String delivery_type,
+                                     @RequestParam(value = "delivery") String deliveryType,
                                      ModelAndView modelAndView) {
         if (shoppingCartService.getSize() > 0) {
             Customer customer = new Customer();
@@ -710,13 +716,24 @@ public class MainController {
             customer.setEmail(email);
             customer.setCity(city);
             customer.setAddress(address);
-////            customer.setCreditCard(creditCard);
 
             Order order = new Order();
             order.setOrderPrice(shoppingCartService.getPrice());
-            order.setOrderPriceWithDiscount(shoppingCartService.getPrice());
             order.addSalePositions(shoppingCartService.getSalePositions());
             order.setCustomer(customer);
+
+            Delivery delivery = new Delivery();
+            if (deliveryType.equals(DeliveryType.PICKUP.name())) {
+                delivery.setDeliveryType(DeliveryType.PICKUP.name());
+            } else if (deliveryType.equals(DeliveryType.COURIER.name())) {
+                delivery.setDeliveryType(DeliveryType.COURIER.name());
+            } else {
+                delivery.setDeliveryType(DeliveryType.UNMANNED_AIRCRAFT.name());
+            }
+            delivery.setOrder(order);
+            deliveryService.addDelivery(delivery);
+
+            order.setDelivery(delivery);
             orderService.addOrder(order);
 
             modelAndView.addObject("name", name);
@@ -732,6 +749,17 @@ public class MainController {
             modelAndView.setViewName("redirect:/");
         }
         return modelAndView;
+    }
+
+    /**
+     * Возвращает страницу "employee/unauthorized", если у пользователя не хватает прав доступа
+     * URL запроса "/unauthorized"
+     */
+    @RequestMapping("/unauthorized")
+    public String unauthorized(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("login", user.getUsername());
+        return "employee/unauthorized";
     }
 }
 

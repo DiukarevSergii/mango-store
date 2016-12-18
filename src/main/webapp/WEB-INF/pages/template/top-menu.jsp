@@ -7,7 +7,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle">Компания <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="/about">О нас</a></li>
-                    <li><a href="/stores_addresses">Магазины</a></li>
+                    <li><a href="/stores-addresses">Магазины</a></li>
                 </ul>
             </li>
             <li class="topbutton">

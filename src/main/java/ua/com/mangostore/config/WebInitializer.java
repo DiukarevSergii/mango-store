@@ -33,15 +33,16 @@ public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+        /**
+         * Регистрируем в контексте
+         */
         appContext.register(RootConfig.class, WebConfig.class, SecurityConfig.class);
 
         /**
          * Управление жизненным циклом корневого контекста приложения
          */
         servletContext.addListener(new SessionListener());
-
         appContext.setServletContext(servletContext);
-
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(appContext));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);

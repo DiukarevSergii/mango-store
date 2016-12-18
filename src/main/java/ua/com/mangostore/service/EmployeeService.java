@@ -9,6 +9,7 @@ public interface EmployeeService {
     Employee addEmployee(Employee employee);
     void delete(long id);
     Employee getByFullName(String fullName);
+    Employee getById(long id);
     Employee getByEmail(String email);
     Employee editEmployee(Employee employee);
     List<Employee> getAll();

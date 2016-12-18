@@ -4,43 +4,83 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import ua.com.mangostore.entity.Employee;
-import ua.com.mangostore.entity.Product;
+import ua.com.mangostore.entity.*;
+import ua.com.mangostore.entity.enums.DeliveryType;
 import ua.com.mangostore.entity.enums.EmployeePosition;
 import ua.com.mangostore.entity.enums.OnMain;
-import ua.com.mangostore.service.EmployeeService;
-import ua.com.mangostore.service.ProductService;
+import ua.com.mangostore.entity.enums.Status;
+import ua.com.mangostore.service.*;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Класс инициализации БД при запуске.
+ * Помечен аннотацией @Component - класс является компонентом Spring;
+ * помечен аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо искать внутри
+ * пакета "ua.com.mangostore".
+ *
+ * @author Diukarev Sergii
+ * @see Product
+ * @see ProductService
+ * @see Order
+ * @see OrderService
+ * @see Delivery
+ * @see DeliveryService
+ * @see Customer
+ * @see CustomerService
+ */
 @Component
 @ComponentScan("ua.com.mangostore")
 public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> {
+    /**
+     * Аннотация @PersistenceContext предназаначена для автоматического связывания менеджера сущностей с бином.
+     */
     @PersistenceContext
     protected EntityManager em;
 
+    /**
+     * Аннотация @Resource, в отличие от @Autowired,
+     * позволяет передать в качестве зависимости конкретный бин по его имени.
+     */
     @Resource
     private ProductService productService;
-
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private OrderService orderService;
+    @Resource
+    private DeliveryService deliveryService;
+    @Resource
+    private CustomerService customerService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        /**
+         * Выводим сообщение в консоль об начале инициализации
+         */
         System.out.println("Start init!");
 
+        /**
+         * Добавляем персонал
+         */
         employeeService.addEmployee(new Employee(
-                "Super Admin", EmployeePosition.ADMIN, "044",
-                "admin@mango.com.ua", "password"));
+                "Сергей Семенов", EmployeePosition.ADMIN, "0 800 678 777",
+                "sergii_admin@mangostore.com.ua", "password"));
         employeeService.addEmployee(new Employee(
-                "Simple Manage", EmployeePosition.MANAGER, "123456789",
-                "simpleManager@mango.com.ua", "password"));
+                "Юлия Джима", EmployeePosition.MANAGER, "0 800 678 800",
+                "juliya_manager@mangostore.com.ua", "password"));
         employeeService.addEmployee(new Employee(
-                "Junior Courier", EmployeePosition.COURIER, "0 800 678 900",
-                "juniorCourier@mango.com.ua", "password"));
+                "Мартен Фуркад", EmployeePosition.COURIER, "0 800 678 900",
+                "marten_courier@mangostore.com.ua", "password"));
+        employeeService.addEmployee(new Employee(
+                "Симон Фуркад", EmployeePosition.COURIER, "0 800 678 901",
+                "simon_courier@mangostore.com.ua", "password"));
 
+        /**
+         * Добавляем продукцию
+         */
         Product product1 = new Product("iPhone 7 Plus 32GB ", "Смартфоны", "Apple", 35_000, 17_999);
         product1.setImageURL("http://localhost:8080/resources/img/apple_iphone-7_400x480.jpg");
         product1.setOnMain(OnMain.ON_MAIN);
@@ -73,7 +113,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product1.setSpecification(
                 "iOS", "Четырехъядерный Apple A10 Fusion с 64-битной архитектурой",
-                "5.5\"", "1920 x 1080", "158.2 x 77.9 x 7.3 мм", "188 г",
+                "5.5", "1920 x 1080", "158.2 x 77.9 x 7.3 мм", "188 г",
                 "двойная камера 12 Мп с широкоугольным и телеобъективом", "7 Мп");
 
         Product product2 = new Product("Samsung A710F Galaxy A7", "Смартфоны", "Samsung", 11_199, 7_999);
@@ -98,7 +138,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product2.setSpecification(
                 "Android v5.1 Lollipop", "8-ядерный процессор с частотой 1.6 ГГц",
-                "5.5\"", "1920 x 1080", "151.5 x 74.1 x 7.3 мм", "172 г", "13 Мп", "5 Мп");
+                "5.5", "1920 x 1080", "151.5 x 74.1 x 7.3 мм", "172 г", "13 Мп", "5 Мп");
 
         Product product3 = new Product("Meizu MX6", "Смартфоны", "Meizu", 7_099, 5_299);
         product3.setImageURL("http://localhost:8080/resources/img/meizu_mx6_400x480.jpg");
@@ -131,7 +171,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "</p>");
         product3.setSpecification(
                 "Android", "Десятиядерный MediaTek Helio X20 (MT6797) (4 x 1.5 ГГц + 4 x 1.9 ГГц + 2 x 2.3 ГГц)",
-                "5.5\"", "1920 x 1080", "153.6 x 75.2 x 7.25 мм", "155 г", "(Sony IMX 386) 12 Мп", "5 Мп");
+                "5.5", "1920 x 1080", "153.6 x 75.2 x 7.25 мм", "155 г", "(Sony IMX 386) 12 Мп", "5 Мп");
 
         Product product4 = new Product("iPad Air 2 16GB", "Планшеты", "Apple", 12_000, 10_999);
         product4.setImageURL("http://localhost:8080/resources/img/apple_ipad_air-2_400x480.jpg");
@@ -190,7 +230,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "с увеличенными пикселями позволяет делать более чёткие снимки в условиях низкой освещённости." +
                         "</p>");
         product4.setSpecification(
-                "iOS 8", "Процессор A8X с 64-битной архитектурой", "9.7\"", "2048 x 1536",
+                "iOS 8", "Процессор A8X с 64-битной архитектурой", "9.7", "2048 x 1536",
                 "240 х 169.5 х 6.1 мм", "444 г", "8 Мп ", "1.2 Мп");
 
         Product product5 = new Product("Xiaomi MiPad 2 16Gb", "Планшеты", "Xiaomi", 4_700, 3_999);
@@ -216,7 +256,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "быстрой зарядки вместо привычного microUSB." +
                         "</p>");
         product5.setSpecification(
-                "Android 5.1 + MIUI V7", "4-ядерный Intel Atom X5-Z8500 с тактовой частотой 2.2 ГГц", "7.9\"", "2048x1536",
+                "Android 5.1 + MIUI V7", "4-ядерный Intel Atom X5-Z8500 с тактовой частотой 2.2 ГГц", "7.9", "2048x1536",
                 "200.4 х 132.6 х 6.95 мм", "322 г", "8 Мп ", "5 Мп");
 
         Product product6 = new Product("Samsung Galaxy Tab S2 8\"", "Планшеты", "Samsung", 10_000, 7_999);
@@ -276,7 +316,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Надёжнее только в швейцарском банке. И то не факт." +
                         "</p>");
         product7.setSpecification(
-                "Android", "Восьмиядерный MediaTek MT6750 (4 x 1.5 ГГц + 4 x 1 ГГц)", "5\"", "1280 x 720",
+                "Android", "Восьмиядерный MediaTek MT6750 (4 x 1.5 ГГц + 4 x 1 ГГц)", "5", "1280 x 720",
                 "141.9 x 69.9 x 8.3 мм", "138 г", "13 Мп ", "5 Мп");
 
         Product product8 = new Product("Meizu M3 Note 16GB Grey", "Смартфоны", "Meizu", 3_000, 3_000);
@@ -309,7 +349,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Надёжнее только в швейцарском банке. И то не факт." +
                         "</p>");
         product8.setSpecification(
-                "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5\"", "1920 x 1080",
+                "Android", "Восьмиядерный MediaTek Helio P10 (4 x 1.8 ГГц + 4 x 1 ГГц)", "5.5", "1920 x 1080",
                 "153.6 х 75.5 х 8.2 мм", "163 г", "13 Мп ", "5 Мп");
 
         Product product9 = new Product("iPhone 5s 16GB", "Смартфоны", "Apple", 7_000, 7_000);
@@ -374,7 +414,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "чем объяснять тонкости съёмки пользователям." +
                         "</p>");
         product9.setSpecification(
-                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4\"", "1136 x 640",
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "4", "1136 x 640",
                 "123.8 x 58.6 x 7.6 мм", "112 г", "8 Мп ", "1.2 Мп");
 
         Product product10 = new Product("iPhone 6s Plus 16GB", "Смартфоны", "Apple", 20_000, 20_000);
@@ -430,7 +470,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "сети Wi‑Fi iPhone 6s позволяет работать в интернете и загружать приложения почти в два раза быстрее." +
                         "</p>");
         product10.setSpecification(
-                "iOS 9", "Процессор A9 с 64-битной архитектурой", "5.5\"", "1920x1080",
+                "iOS 9", "Процессор A9 с 64-битной архитектурой", "5.5", "1920x1080",
                 "158.2 x 77.9 x 7.3 мм", "192 г", "12 Мп ", "5 Мп");
 
         Product product11 = new Product("iPhone 6 Plus", "Смартфоны", "Apple", 19_000, 19_000);
@@ -479,7 +519,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "Передовая технология Touch ID позволяет защитить iPhone идеальным паролем: вашим отпечатком пальца. Кроме того, таким же образом можно подтверждать покупки в iTunes и App Store, поэтому вам не придётся снова и снова вводить пароль." +
                         "</p>");
         product11.setSpecification(
-                "iOS 8", "Процессор A8 с 64-разрядной архитектурой", "5.5\"", "1920x1080",
+                "iOS 8", "Процессор A8 с 64-разрядной архитектурой", "5.5", "1920x1080",
                 "158,1 x 77,8 x 7,1 мм", "172 г", "8 Мп", "1.2 Мп");
 
         Product product12 = new Product("iPhone SE 16Gb", "Смартфоны", "Apple", 12_000, 12_000);
@@ -542,7 +582,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "выглядит и отлично работает на iPhone. Теперь даже самые простые задачи будут увлекательными." +
                         "</p>");
         product12.setSpecification(
-                "iOS 9", "Процессор A9 с 64-битной архитектурой", "4\"", "1136 x 640",
+                "iOS 9", "Процессор A9 с 64-битной архитектурой", "4", "1136 x 640",
                 "123.8 x 58.6 x 7.6 мм", "113 г", "12 Мп ", "1.2 Мп");
 
         Product product13 = new Product("iPad Air 16GB", "Планшеты", "Apple", 8_000, 7_000);
@@ -619,7 +659,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "соединением. А благодаря гибким тарифным планам вам не нужно подписывать долгосрочный контракт." +
                         "</p>");
         product13.setSpecification(
-                "iOS 7", "Процессор A7 с 64-битной архитектурой", "9.7\"", "2048 x 1536",
+                "iOS 7", "Процессор A7 с 64-битной архитектурой", "9.7", "2048 x 1536",
                 "240 х 169.5 х 7.5 мм", "469 г", "5 Мп ", "1.2 Мп");
 
         Product product14 = new Product("iPad Pro 9.7 32GB", "Планшеты", "Apple", 17_000, 17_000);
@@ -689,7 +729,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                         "эффективную работу аккумулятора до 10 часов." +
                         "</p>");
         product14.setSpecification(
-                "iOS 9", "Процессор A9X с 64-битной архитектурой", "9.7\"", "2048х1536",
+                "iOS 9", "Процессор A9X с 64-битной архитектурой", "9.7", "2048х1536",
                 "240 х 169,5 х 6,1 мм", "437 г", "12 Мп ", "5 Мп");
 
 
@@ -739,14 +779,14 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
                 "OS X El Capitan",
                 "4-ядерный процессор Intel Core i5 с тактовой частотой 3.2 ГГц (ускорение Turbo Boost до 3.6 ГГц)",
                 "Графический процессор AMD Radeon R9 M390 с 2 ГБ памяти GDDR5",
-                "27\"", "5120 x 2880",
+                "27", "5120 x 2880",
                 "51.6  х 65.0 х 20.3 cм", "9.54 кг",
                 "8 ГБ (два модуля по 4 ГБ) памяти DDR3 1867 МГц; четыре слота SO-DIMM, доступных пользователю",
                 "Накопитель Fusion Drive ёмкостью 1 ТБ",
                 "Стереодинамики");
         product15.setOnMain(OnMain.ON_MAIN);
 
-        //        Product product12 = new Product("", "Смартфоны", "Apple", 20_000, 20_000);
+        //        Product product16 = new Product("", "Смартфоны", "Apple", 20_000, 20_000);
 //        product12.setImageURL("http://localhost:8080/resources/img/");
 //        product12.setDescription(
 //                "<h3 style=\"margin-top: 10px; margin-bottom: -5px\"> </h3>" +
@@ -773,8 +813,141 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         productService.addProduct(product14);
         productService.addProduct(product15);
 
+        /**
+         * Добавляем покупателя
+         */
+        //Customer customer
+        Customer customer = new Customer();
+        customer.setName("Ирина");
+        customer.setSurname("Варвинец");
+        customer.setPhone("+38(012)345-67-89");
+        customer.setEmail("customers@newcustomer.com");
+        customer.setCity("Киев");
+        customer.setAddress("проспект Независимости 4");
+
+        /**
+         * Создаем торговые позиции
+         */
+        double sumAllSalePositions = 0;
+        SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
+        SalePosition salePosition2 = new SalePosition(productService.getById(3), 1);
+        SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        /**
+         * Создаём заказ
+         */
+        //Order order1
+        Order order1 = new Order();
+        order1.setOrderPrice(sumAllSalePositions);
+        order1.addSalePosition(salePosition1);
+        order1.addSalePosition(salePosition2);
+        order1.addSalePosition(salePosition3);
+        order1.setCustomer(customer);
+
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery
+        Delivery delivery = new Delivery();
+        delivery.setDeliveryType(DeliveryType.COURIER.name());
+        delivery.setOrder(order1);
+        order1.setDelivery(delivery);
+        customer.addOrder(order1);
+
+        orderService.addOrder(order1);
+
+        /**
+         * Добавляем покупателя
+         */
+        //Customer customer2
+        Customer customer2 = new Customer();
+        customer2.setName("Ольга");
+        customer2.setSurname("Абрамова");
+        customer2.setPhone("+38(012)342-67-89");
+        customer2.setEmail("customers2@newcustomer.com");
+        customer2.setCity("Киев");
+        customer2.setAddress("бульвар Дружбы Народов 24");
+
+        /**
+         * Создаем торговые позиции
+         */
+        sumAllSalePositions = 0;
+        SalePosition salePosition4 = new SalePosition(productService.getById(11), 1);
+        SalePosition salePosition5 = new SalePosition(productService.getById(7), 1);
+        SalePosition salePosition6 = new SalePosition(productService.getById(8), 3);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        /**
+         * Создаём заказ
+         */
+        //Order order2
+        Order order2 = new Order();
+        order2.setOrderPrice(sumAllSalePositions);
+        order2.addSalePosition(salePosition4);
+        order2.addSalePosition(salePosition5);
+        order2.addSalePosition(salePosition6);
+        order2.setCustomer(customer2);
+
+        customer2.addOrder(order2);
+
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery2
+        Delivery delivery2 = new Delivery();
+        delivery2.setDeliveryType(DeliveryType.COURIER.name());
+        delivery2.setOrder(order2);
+        order2.setDelivery(delivery2);
+
+        orderService.addOrder(order2);
+
+        /**
+         * Добавляем покупателя
+         */
+        //Customer customer3
+        Customer customer3 = new Customer();
+        customer3.setName("Симон");
+        customer3.setSurname("Шемп");
+        customer3.setPhone("+38(012)342-67-89");
+        customer3.setEmail("customers3@newcustomer.com");
+        customer3.setCity("Киев");
+        customer3.setAddress("проспект Свободы 14");
+
+        /**
+         * Создаем торговые позиции
+         */
+        sumAllSalePositions = 0;
+        SalePosition salePosition7 = new SalePosition(productService.getById(10), 1);
+        SalePosition salePosition8 = new SalePosition(productService.getById(6), 1);
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+
+        /**
+         * Создаём заказ
+         */
+        //Order order3
+        Order order3 = new Order();
+        order3.setOrderPrice(sumAllSalePositions);
+        order3.addSalePosition(salePosition7);
+        order3.addSalePosition(salePosition8);
+        order3.setCustomer(customer3);
+        order3.setStatus(Status.WORK);
+
+        /**
+         * Создаем доставку
+         */
+        //Delivery delivery3
+        Delivery delivery3 = new Delivery();
+        delivery3.setDeliveryType(DeliveryType.COURIER.name());
+        delivery3.setOrder(order3);
+        order3.setDelivery(delivery3);
+
+        orderService.addOrder(order3);
+
+        /**
+         * Выводим сообщение в консоль об окончании инициализации
+         */
         System.out.println("Finish!");
+
     }
-
-
 }

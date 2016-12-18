@@ -30,7 +30,7 @@
 
     <h4 style="color: orange;">Вы заказали:</h4>
     <!-- PRODUCTS IN CART -->
-    <jsp:include page="/WEB-INF/pages/template/products_in_cart.jsp"/>
+    <jsp:include page="/WEB-INF/pages/template/products-in-cart.jsp"/>
 
     <!-- BASEMENT -->
     <jsp:include page="/WEB-INF/pages/template/basement.jsp"/>
