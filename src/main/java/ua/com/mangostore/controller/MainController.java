@@ -17,6 +17,7 @@ import ua.com.mangostore.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Класс-контроллер основных страниц. К даному контроллеру и соответствующим
@@ -96,16 +97,26 @@ public class MainController {
         modelAndView.addObject("title", "Лидеры продаж");
         modelAndView.addObject("url", "/");
         List<Product> groupOfProducts = new ArrayList<>();
-        Product sliderProduct = null;
-        for (Product product : productService.getAll()) {
-            groupOfProducts.add(product);
-            if (product.getProductTitle().equals("Meizu MX6")) {
-                sliderProduct = product;
-            }
-        }
+
+//        Product sliderProduct = null;
+//        for (Product product : productService.getAll()) {
+//            groupOfProducts.add(product);
+//            if (product.getProductTitle().equals("Meizu MX6")) {
+//                sliderProduct = product;
+//            }
+//        }
+
+        //Use Java 8
+        productService.getAll().forEach(p -> {
+            groupOfProducts.add(p);
+        });
+        Product sliderProduct = productService.getAll().stream()
+                .filter(product -> product.getProductTitle().equals("Meizu MX6"))
+                .findAny()
+                .orElse(null);
+
         if (sliderProduct != null) {
             modelAndView.addObject("meizu_id", sliderProduct.getProductId());
-            modelAndView.addObject("meizu_alt", sliderProduct.getProductTitle());
         }
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("index");
@@ -349,11 +360,18 @@ public class MainController {
     }
 
     private void groupByBrand(List<Product> groupOfProducts, String param) {
-        for (Product product : productService.getAll()) {
-            if (product.getBrand().equals(param)) {
-                groupOfProducts.add(product);
-            }
-        }
+//        for (Product product : productService.getAll()) {
+//            if (product.getBrand().equals(param)) {
+//                groupOfProducts.add(product);
+//            }
+//        }
+
+        //Use Java 8
+        groupOfProducts.addAll(
+                productService.getAll().stream()
+                        .filter(product -> product.getBrand().equals(param))
+                        .collect(Collectors.toList())
+        );
     }
 
     /**

@@ -25,10 +25,10 @@
         <spring-data-jpa>1.10.1.RELEASE</spring-data-jpa>
 
         <!-- SPRING TEST -->
-        <spring.test>3.2.4.RELEASE</spring.test>
+        <spring.test>4.2.6.RELEASE</spring.test>
 
         <!-- MultipartResolver -->
-        <commons-fileupload>1.3.1</commons-fileupload>
+        <commons-fileupload>1.3.2</commons-fileupload>
 
         <!-- MYSQL -->
         <mysql.version>5.1.29</mysql.version>
@@ -37,7 +37,7 @@
         <postgre.version>9.3-1100-jdbc41</postgre.version>
 
         <!-- HIBERNATE -->
-        <hb.manager>4.2.5.Final</hb.manager>
+        <hb.manager>5.2.5.Final</hb.manager>
 
         <!-- JUNIT -->
         <junit.version>4.12</junit.version>
@@ -46,48 +46,56 @@
 
     <dependencies>
 
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.securiry}</version>
         </dependency>
 
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring.securiry}</version>
         </dependency>
 
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.securiry}</version>
         </dependency>
 
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>${spring.securiry}</version>
         </dependency>
 
+        <!-- SPRING CORE -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl}</version>
-        </dependency>
-
+        <!-- SPRING CORE -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-webmvc}</version>
         </dependency>
 
+        <!-- JAVAX CORE -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl}</version>
+        </dependency>
+
+        <!-- JAVAX CORE -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -95,30 +103,35 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- MYSQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
 
+        <!-- POSTGRESQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgre.version}</version>
         </dependency>
 
+        <!-- SPRING DATA -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa}</version>
         </dependency>
 
+        <!-- HIBERNATE -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hb.manager}</version>
         </dependency>
 
+        <!-- JUNIT -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -126,6 +139,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- SPRING TEST -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -133,6 +147,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- MultipartResolver -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
