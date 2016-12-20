@@ -66,7 +66,7 @@ public class Product {
     /**
      * Описание товара
      */
-    @Column(name = "DESCRIPTION", length = 2000)
+    @Column(name = "DESCRIPTION", length = 20000)
     private String description;
 
 

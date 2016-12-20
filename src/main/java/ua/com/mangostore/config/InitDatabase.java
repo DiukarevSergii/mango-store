@@ -829,10 +829,18 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          * Создаем торговые позиции
          */
         double sumAllSalePositions = 0;
-        SalePosition salePosition1 = new SalePosition(productService.getById(1), 1);
-        SalePosition salePosition2 = new SalePosition(productService.getById(3), 1);
-        SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
-        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+        Product product = productService.getById(1);
+        SalePosition salePosition1 = new SalePosition(product, 1);
+        product = productService.getById(3);
+        SalePosition salePosition2 = new SalePosition(product, 1);
+        product = productService.getById(5);
+        SalePosition salePosition3 = new SalePosition(product, 3);
+
+        System.out.println(product == null);
+        System.out.println(salePosition1 == null);
+//        SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
+//        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+        sumAllSalePositions = 0;
 
         /**
          * Создаём заказ

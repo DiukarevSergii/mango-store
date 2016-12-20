@@ -1,19 +1,18 @@
 package ua.com.mangostore.config;
 
-import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -43,50 +42,50 @@ public class RootConfig extends WebMvcConfigurerAdapter {
      */
 
     //Для MySQL
-//    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
 
     //Для PostgreSQL
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
+//    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
 
     /**
      * Путь к базе данных.
      */
 
     //Для MySQL
-//    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
 
     //Для PostgreSQL
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/mangodb";
+//    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/mangodb";
 
     /**
      * Логин для подключение к базе данных.
      */
 
     //Для MySQL
-//    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
 
     //Для PostgreSQL
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
+//    private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
 
     /**
      * Пароль для подключение к базе данных.
      */
 
     //Для MySQL
-//    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
 
     //Для PostgreSQL
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
+//    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
 
     /**
      * Диалект.
      */
 
     //Для MySQL
-//    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
 
     //Для PostgreSQL
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+//    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
 
     /**
      * Отображение SQL запросов.
@@ -112,7 +111,7 @@ public class RootConfig extends WebMvcConfigurerAdapter {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
+        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPackagesToScan(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN);
         entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
         return entityManagerFactoryBean;
