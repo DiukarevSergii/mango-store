@@ -829,17 +829,11 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          * Создаем торговые позиции
          */
         double sumAllSalePositions = 0;
-        Product product = productService.getById(1);
-        SalePosition salePosition1 = new SalePosition(product, 1);
-        product = productService.getById(3);
-        SalePosition salePosition2 = new SalePosition(product, 1);
-        product = productService.getById(5);
-        SalePosition salePosition3 = new SalePosition(product, 3);
+        SalePosition salePosition1 = new SalePosition(product1, 1);
+        SalePosition salePosition2 = new SalePosition(product3, 1);
+        SalePosition salePosition3 = new SalePosition(product5, 3);
 
-        System.out.println(product == null);
-        System.out.println(salePosition1 == null);
-//        SalePosition salePosition3 = new SalePosition(productService.getById(5), 3);
-//        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
+        sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
         sumAllSalePositions = 0;
 
         /**
@@ -881,9 +875,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          * Создаем торговые позиции
          */
         sumAllSalePositions = 0;
-        SalePosition salePosition4 = new SalePosition(productService.getById(11), 1);
-        SalePosition salePosition5 = new SalePosition(productService.getById(7), 1);
-        SalePosition salePosition6 = new SalePosition(productService.getById(8), 3);
+        SalePosition salePosition4 = new SalePosition(product11, 1);
+        SalePosition salePosition5 = new SalePosition(product7, 1);
+        SalePosition salePosition6 = new SalePosition(product8, 3);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
         /**
@@ -926,8 +920,8 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          * Создаем торговые позиции
          */
         sumAllSalePositions = 0;
-        SalePosition salePosition7 = new SalePosition(productService.getById(10), 1);
-        SalePosition salePosition8 = new SalePosition(productService.getById(6), 1);
+        SalePosition salePosition7 = new SalePosition(product10, 1);
+        SalePosition salePosition8 = new SalePosition(product6, 1);
         sumAllSalePositions = salePosition1.getPrice() + salePosition2.getPrice() + salePosition3.getPrice();
 
         /**

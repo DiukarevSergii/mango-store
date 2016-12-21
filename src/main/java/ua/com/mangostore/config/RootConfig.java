@@ -42,50 +42,50 @@ public class RootConfig extends WebMvcConfigurerAdapter {
      */
 
     //Для MySQL
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+//    private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
 
     //Для PostgreSQL
-//    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
+    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
 
     /**
      * Путь к базе данных.
      */
 
     //Для MySQL
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
+//    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/mangodb";
 
     //Для PostgreSQL
-//    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/mangodb";
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/mangodb";
 
     /**
      * Логин для подключение к базе данных.
      */
 
     //Для MySQL
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+//    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
 
     //Для PostgreSQL
-//    private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
 
     /**
      * Пароль для подключение к базе данных.
      */
 
     //Для MySQL
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
+//    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "666999";
 
     //Для PostgreSQL
-//    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "password";
 
     /**
      * Диалект.
      */
 
     //Для MySQL
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+//    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
 
     //Для PostgreSQL
-//    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
 
     /**
      * Отображение SQL запросов.
