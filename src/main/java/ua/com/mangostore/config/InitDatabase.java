@@ -50,10 +50,6 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
     private EmployeeService employeeService;
     @Resource
     private OrderService orderService;
-    @Resource
-    private DeliveryService deliveryService;
-    @Resource
-    private CustomerService customerService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -890,6 +886,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         order2.addSalePosition(salePosition5);
         order2.addSalePosition(salePosition6);
         order2.setCustomer(customer2);
+        order2.setStatus(Status.WORK);
 
         customer2.addOrder(order2);
 
@@ -950,6 +947,5 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
          * Выводим сообщение в консоль об окончании инициализации
          */
         System.out.println("Finish!");
-
     }
 }

@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.mangostore.config.InitDatabase;
 import ua.com.mangostore.entity.Employee;
 import ua.com.mangostore.entity.Product;
 import ua.com.mangostore.entity.enums.OnMain;
 import ua.com.mangostore.service.EmployeeService;
+import ua.com.mangostore.service.OrderService;
 import ua.com.mangostore.service.ProductService;
 
 import java.util.ArrayList;
@@ -20,11 +22,34 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * Класс-контроллер админских страниц. К даному контроллеру и соответствующим
+ * страницам могут обращаться только пользователи с ролью администратора.
+ * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
+ * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Методы класса работают с объектом, возвращенным handleRequest методом, является
+ * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
+ * Этот тип представляет Model и View в MVC шаблоне.
+ *
+ * @author Diukarev Sergii
+ * @see InitDatabase
+ * @see Product
+ * @see ProductService
+ * @see OrderService
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminProductController {
+
+    /**
+     * Объект сервиса для работы с сотрудниками.
+     */
     @Autowired
     private EmployeeService employeeService;
+
+    /**
+     * Объект сервиса для работы с товарами.
+     */
     @Autowired
     private ProductService productService;
 
