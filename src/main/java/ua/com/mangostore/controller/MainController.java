@@ -97,7 +97,7 @@ public class MainController {
         modelAndView.addObject("title", "Лидеры продаж");
         modelAndView.addObject("url", "/");
         List<Product> groupOfProducts = new ArrayList<>();
-
+        //Use Java 7
 //        Product sliderProduct = null;
 //        for (Product product : productService.getAll()) {
 //            groupOfProducts.add(product);
@@ -311,12 +311,21 @@ public class MainController {
     }
 
     private void groupByModel(List<Product> groupOfProducts, String model, String brand) {
-        for (Product product : productService.getAll()) {
-            if (product.getProductTitle().toLowerCase().contains(model)
-                    && product.getBrand().toLowerCase().contains(brand)) {
-                groupOfProducts.add(product);
-            }
-        }
+        //Use Java 7
+//        for (Product product : productService.getAll()) {
+//            if (product.getProductTitle().toLowerCase().contains(model)
+//                    && product.getBrand().toLowerCase().contains(brand)) {
+//                groupOfProducts.add(product);
+//            }
+//        }
+
+        //Use Java 8
+        groupOfProducts.addAll(
+                productService.getAll().stream()
+                        .filter(product -> product.getProductTitle().toLowerCase().contains(model)
+                                && product.getBrand().toLowerCase().contains(brand))
+                        .collect(Collectors.toList())
+        );
     }
 
     /**
@@ -360,6 +369,7 @@ public class MainController {
     }
 
     private void groupByBrand(List<Product> groupOfProducts, String param) {
+        //Use Java 7
 //        for (Product product : productService.getAll()) {
 //            if (product.getBrand().equals(param)) {
 //                groupOfProducts.add(product);
@@ -457,11 +467,19 @@ public class MainController {
     private void groupByType(List<Product> groupOfProducts, String... param) {
         String param1 = param[0];
         String param2 = param.length > 1 ? param[1] : "";
-        for (Product product : productService.getAll()) {
-            if ((product.getType().equals(param1) || product.getType().equals(param2))) {
-                groupOfProducts.add(product);
-            }
-        }
+        //Use Java 7
+//        for (Product product : productService.getAll()) {
+//            if (product.getType().equals(param1) || product.getType().equals(param2)) {
+//                groupOfProducts.add(product);
+//            }
+//        }
+
+        //Use Java 8
+        groupOfProducts.addAll(
+                productService.getAll().stream()
+                        .filter(product -> product.getType().equals(param1) || product.getType().equals(param2))
+                        .collect(Collectors.toList())
+        );
     }
 
     private void groupByType(String type, List<Product> groupOfProducts) {
@@ -536,11 +554,20 @@ public class MainController {
         modelAndView.addObject("title", "Акции компании МАНГО");
         modelAndView.addObject("url", "/sales");
         List<Product> groupOfProducts = new ArrayList<>();
-        for (Product product : productService.getAll()) {
-            if ((product.getFullPrice() != product.getSalePrice())) {
-                groupOfProducts.add(product);
-            }
-        }
+        //Use Java 7
+//        for (Product product : productService.getAll()) {
+//            if (product.getFullPrice() != product.getSalePrice()) {
+//                groupOfProducts.add(product);
+//            }
+//        }
+
+        //Use Java 8
+        groupOfProducts.addAll(
+                productService.getAll().stream()
+                        .filter(product -> product.getFullPrice() != product.getSalePrice())
+                        .collect(Collectors.toList())
+        );
+
         modelAndView.addObject("groupOfProducts", groupOfProducts);
         modelAndView.setViewName("customer/some-products");
         return modelAndView;
