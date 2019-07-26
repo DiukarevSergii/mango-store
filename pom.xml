@@ -28,7 +28,7 @@
         <spring.test>4.2.6.RELEASE</spring.test>
 
         <!-- MultipartResolver -->
-        <commons-fileupload>1.3.2</commons-fileupload>
+        <commons-fileupload>1.3.3</commons-fileupload>
 
         <!-- MYSQL -->
         <mysql.version>5.1.29</mysql.version>
