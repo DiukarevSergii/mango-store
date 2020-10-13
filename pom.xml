@@ -40,7 +40,7 @@
         <hb.manager>5.2.5.Final</hb.manager>
 
         <!-- JUNIT -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
 
     </properties>
 
