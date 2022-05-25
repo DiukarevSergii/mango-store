@@ -19,7 +19,7 @@
         <spring-context>4.2.6.RELEASE</spring-context>
 
         <!-- SPRING SECURITY -->
-        <spring.securiry>4.1.0.RELEASE</spring.securiry>
+        <spring.securiry>5.5.7</spring.securiry>
 
         <!-- SPRING DATA -->
         <spring-data-jpa>1.10.1.RELEASE</spring-data-jpa>
