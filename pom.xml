@@ -34,7 +34,7 @@
         <mysql.version>5.1.29</mysql.version>
 
         <!-- POSTGRESQL -->
-        <postgre.version>9.3-1100-jdbc41</postgre.version>
+        <postgre.version>42.3.7</postgre.version>
 
         <!-- HIBERNATE -->
         <hb.manager>5.2.5.Final</hb.manager>
