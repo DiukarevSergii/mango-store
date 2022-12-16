@@ -15,7 +15,7 @@
         <jstl>1.2</jstl>
 
         <!-- SPRING CORE -->
-        <spring-webmvc>4.2.6.RELEASE</spring-webmvc>
+        <spring-webmvc>5.2.20.RELEASE</spring-webmvc>
         <spring-context>4.2.6.RELEASE</spring-context>
 
         <!-- SPRING SECURITY -->
